@@ -40,7 +40,7 @@
     <meta property="og:image" content="https://s3.amazonaws.com/creativetim_bucket/products/154/opt_md_laravel_thumbnail.jpg"/>
     <meta property="og:description" content="Material Dashboard Laravel is a Free Material Bootstrap Admin Preset for Laravel with a fresh, new design inspired by Google's Material Design." />
     <meta property="og:site_name" content="Creative Tim" />
-    
+
     <title>{{ __('Material Dashboard Laravel - Free Frontend Preset for Laravel') }}</title>
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('material') }}/img/apple-icon.png">
     <link rel="icon" type="image/png" href="{{ asset('material') }}/img/favicon.png">
@@ -72,7 +72,7 @@
             <div class="sidebar" data-color="orange" data-background-color="white" data-image="{{ asset('material') }}/img/sidebar-1.jpg">
               <!--
                   Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-            
+
                   Tip 2: you can also add an image using data-image tag
               -->
               <div class="logo">
@@ -165,22 +165,14 @@
     <a class="navbar-brand" href="#">User Management</a>
   </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-    
+
   <span class="sr-only">Toggle navigation</span>
   <span class="navbar-toggler-icon icon-bar"></span>
   <span class="navbar-toggler-icon icon-bar"></span>
   <span class="navbar-toggler-icon icon-bar"></span>
   </button>
   <div class="collapse navbar-collapse justify-content-end">
-    <form class="navbar-form">
-      <span class="bmd-form-group"><div class="input-group no-border">
-      <input type="text" value="" class="form-control" placeholder="Search...">
-      <button type="submit" class="btn btn-white btn-round btn-just-icon">
-        <i class="material-icons">search</i>
-        <div class="ripple-container"></div>
-      </button>
-      </div></span>
-    </form>
+
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" href="{{ route('home') }}">
@@ -324,7 +316,7 @@
 </footer>
 </div>
 </div>
-                      
+
       <div class="fixed-plugin">
         <div class="dropdown show-dropdown">
           <a href="#" data-toggle="dropdown">
