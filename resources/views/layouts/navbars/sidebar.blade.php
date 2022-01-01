@@ -6,7 +6,7 @@
   -->
   <div class="logo">
     <a href="https://nrc.no/" class="simple-text logo-normal">
-      {{ __('Norwegian Refugee Councilllll') }}
+      {{ __('NRC') }}
     </a>
   </div>
   <div class="sidebar-wrapper">
@@ -17,7 +17,7 @@
             <p>{{ __('Home') }}</p>
         </a>
       </li>
-      <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
+      {{-- <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
           <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
           <p>{{ __('Vacations & leaves') }}
@@ -40,8 +40,8 @@
             </li>
           </ul>
         </div>
-      </li>
-      <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
+      </li> --}}
+      {{-- <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
           <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
           <p>{{ __('Overtime') }}
@@ -64,7 +64,7 @@
             </li>
           </ul>
         </div>
-      </li>
+      </li> --}}
       <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('table') }}">
           <i class="material-icons">content_paste</i>
