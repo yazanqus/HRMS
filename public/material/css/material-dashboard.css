@@ -14817,45 +14817,46 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   color: rgba(60, 72, 88, 0.8);
 }
 
-.sidebar[data-background-color="red"] .nav .nav-item .nav-link {
+.sidebar[data-background-color="grey"] .nav .nav-item .nav-link {
   color: #fff;
 }
 
-.sidebar[data-background-color="red"] .nav .nav-item i {
+.sidebar[data-background-color="grey"] .nav .nav-item i {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.sidebar[data-background-color="red"] .nav .nav-item.active [data-toggle="collapse"],
-.sidebar[data-background-color="red"] .nav .nav-item:hover [data-toggle="collapse"] {
+.sidebar[data-background-color="grey"] .nav .nav-item.active [data-toggle="collapse"],
+.sidebar[data-background-color="grey"] .nav .nav-item:hover [data-toggle="collapse"] {
   color: #fff;
 }
 
-.sidebar[data-background-color="red"] .nav .nav-item.active [data-toggle="collapse"] i,
-.sidebar[data-background-color="red"] .nav .nav-item:hover [data-toggle="collapse"] i {
+.sidebar[data-background-color="grey"] .nav .nav-item.active [data-toggle="collapse"] i,
+.sidebar[data-background-color="grey"] .nav .nav-item:hover [data-toggle="collapse"] i {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.sidebar[data-background-color="red"] .user a {
+.sidebar[data-background-color="grey"] .user a {
   color: #fff;
 }
 
-.sidebar[data-background-color="red"] .simple-text {
+.sidebar[data-background-color="grey"] .simple-text {
   color: #fff;
 }
 
-.sidebar[data-background-color="red"] .sidebar-background:after {
-  background: #f44336;
-  opacity: .8;
-}
 
-.sidebar[data-background-color="red"] .user:after,
-.sidebar[data-background-color="red"] .logo:after,
-.sidebar[data-background-color="red"] .nav li.separator:after {
+.sidebar[data-background-color="grey"] .sidebar-background:after {
+    background: #34444C;
+    opacity: 1;
+  }
+
+.sidebar[data-background-color="grey"] .user:after,
+.sidebar[data-background-color="grey"] .logo:after,
+.sidebar[data-background-color="grey"] .nav li.separator:after {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
-.sidebar[data-background-color="red"] .nav li:hover:not(.active)>a,
-.sidebar[data-background-color="red"] .nav li.active>[data-toggle="collapse"] {
+.sidebar[data-background-color="grey"] .nav li:hover:not(.active)>a,
+.sidebar[data-background-color="grey"] .nav li.active>[data-toggle="collapse"] {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
