@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'profile', 'titlePage' => ('users create')])
+@extends('layouts.app', ['activePage' => 'create-new-user', 'titlePage' => ('users create')])
 
 @section('content')
   <div class="content">
@@ -17,14 +17,15 @@
                           <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                             <div class="card-body p-4 p-md-5">
                               <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Onboarding details</h3>
-                              <form>
+                              <form action="{{ route('admin.users.store') }}" method="POST">
+                                @csrf
 
                                 <div class="row">
                                   <div class="col-md-6 mb-6">
 
                                     <div class="form-outline">
-                                      <input type="text" name="name" id="firstName" class="form-control form-control-lg" />
-                                      <label class="form-label" for="firstName">Name</label>
+                                      <input type="text" name="name" class="form-control form-control-lg" />
+                                      <label class="form-label" >Name</label>
                                     </div>
 
                                   </div>
@@ -32,8 +33,8 @@
                                     <div class="col-md-6 mb-6">
 
                                       <div class="form-outline">
-                                        <input type="date" name="birth_date" id="firstName" class="form-control form-control-lg" />
-                                        <label class="form-label" for="firstName">Birth date</label>
+                                        <input type="date" name="birth_date" class="form-control form-control-lg" />
+                                        <label class="form-label" >Birth date</label>
                                       </div>
 
                                     </div>
@@ -44,8 +45,8 @@
                                     <div class="col-md-6 mb-6">
 
                                       <div class="form-outline">
-                                        <input type="text" name="unit" id="firstName" class="form-control form-control-lg" />
-                                        <label class="form-label" for="firstName">Unit</label>
+                                        <input type="text" name="unit" class="form-control form-control-lg" />
+                                        <label class="form-label" >Unit</label>
                                       </div>
 
                                     </div>
@@ -53,8 +54,8 @@
                                       <div class="col-md-6 mb-6">
 
                                         <div class="form-outline">
-                                          <input type="text" name="position" id="firstName" class="form-control form-control-lg" />
-                                          <label class="form-label" for="firstName">Position</label>
+                                          <input type="text" name="position" class="form-control form-control-lg" />
+                                          <label class="form-label" >Position</label>
                                         </div>
 
                                       </div>
@@ -65,8 +66,8 @@
                                     <div class="col-md-6 mb-6">
 
                                       <div class="form-outline">
-                                        <input type="date" name="joined_date" id="firstName" class="form-control form-control-lg" />
-                                        <label class="form-label" for="firstName">Joined Date</label>
+                                        <input type="date" name="joined_date" class="form-control form-control-lg" />
+                                        <label class="form-label" >Joined Date</label>
                                       </div>
 
                                     </div>
@@ -74,8 +75,8 @@
                                     <div class="col-md-6 mb-6">
 
                                         <div class="form-outline">
-                                          <input type="text" name="employee_number" id="firstName" class="form-control form-control-lg" />
-                                          <label class="form-label" for="firstName">Employee Number</label>
+                                          <input type="text" name="employee_number" class="form-control form-control-lg" />
+                                          <label class="form-label" >Employee Number</label>
                                         </div>
 
                                       </div>
