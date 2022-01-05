@@ -19,20 +19,20 @@
                     <table class="table table-striped table-Secondary">
                     <thead>
                         <tr>
-                          <th scope="col">status</th>
+                          <th scope="col">Name</th>
                           <th scope="col">start date</th>
                           <th scope="col">end date</th>
-                          <th scope="col">cancelled date</th>
+                          <th scope="col">Status</th>
                           <th scope="col">Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         @foreach ($leaves as $leave)
                         <tr>
-                          <td>{{ $leave->status }}</td>
+                          <td>{{ $leave->user->name }}</td>
                           <td>{{ $leave->start_date }}</td>
                           <td>{{ $leave->end_date }}</td>
-                          <td>{{ $leave->user->name }}</td>
+                          <td>{{ $leave->status }}</td>
                           <td>edit</td>
                         </tr>
                         @endforeach
