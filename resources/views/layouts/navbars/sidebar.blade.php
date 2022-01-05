@@ -73,6 +73,13 @@
         </a>
       </li> --}}
 
+      <li class="nav-item{{ $activePage == 'all-leaves' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('leaves.index') }}">
+          <i class="material-icons">content_paste</i>
+            <p>{{ __('Leaves') }}</p>
+        </a>
+      </li>
+
       <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('table') }}">
           <i class="material-icons">content_paste</i>

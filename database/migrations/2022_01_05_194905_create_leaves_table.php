@@ -19,6 +19,8 @@ class CreateLeavesTable extends Migration
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->date('cancelled_date')->nullable();
+            $table->foreignId('leavetype_id');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

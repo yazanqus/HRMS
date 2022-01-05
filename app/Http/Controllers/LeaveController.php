@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Leave;
+use App\Models\Leavetype;
 use Illuminate\Http\Request;
 
 class LeaveController extends Controller
@@ -14,7 +15,8 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        //
+        $leave = Leave::all();
+        return view('leaves.index', ['leaves' => $leave]);
     }
 
     /**
@@ -24,7 +26,8 @@ class LeaveController extends Controller
      */
     public function create()
     {
-        //
+        $leavetypes = Leavetype::all();
+        return view('leaves.create', ['leavetypes' => $leavetypes]);
     }
 
     /**
@@ -35,7 +38,58 @@ class LeaveController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'leavetype_id' => 'required',
+        ]);
+
+        $leave = new Leave();
+        $leave->start_date = $request->start_date;
+        $leave->end_date = $request->end_date;
+        $leave->leavetype_id = $request->leavetype_id;
+        $leave->user_id = auth()->user()->id;
+
+        $leave->save();
+
+        // $user = new User();
+        // $user->name = $request->name;
+        // $user->national_id = $request->national_id;
+        // $user->country = $request->country;
+        // $user->phone_number = $request->phone_number;
+        // $user->save();
+
+        // $reservation = new Reservation();
+        // // $reservation->price = $request->price;
+        // $reservation->room_id = $request->room_id;
+        // $reservation->paid = $request->paid;
+        // $reservation->started_at = $request->started_at;
+        // $reservation->offer_id = $request->offer_id;
+        // $reservation->ended_at = $request->ended_at;
+        // $reservation->paid_at = $request->paid_at;
+        // $reservation->canceled_at = $request->canceled_at;
+        // $reservation->user_id = $user->id;
+        // // $reservation->room->status = 'Busy';
+        // if ($reservation->offer->type = 'percentage') {
+        //     $dis = (1 - (0.01 * $reservation->offer->discount));
+        //     $reservation->price = $reservation->room->price * $dis - $reservation->paid;
+        // } elseif ($reservation->offer->type = 'const') {
+        //     $dis = $reservation->offer->discount * 1;
+        //     $reservation->price = $reservation->room->price - $dis - $reservation->paid;
+        // }
+        // $reservation->save();
+
+        // $reservation->room->update(['status' => 'busy']);
+        // if ($reservation->paid != '0') {
+        //     $reservation->transactions()->create([
+        //         'type' => 'In',
+        //         'amount' => $reservation->paid,
+        //         'description' => 'paid at Booking',
+        //     ]);
+        // }
+
+        return redirect()->route('leaves.index');
+
     }
 
     /**
