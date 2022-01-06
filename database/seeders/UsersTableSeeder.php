@@ -120,14 +120,14 @@ class UsersTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Danial Janboura',
+            'name' => 'rami Janboura',
             'birth_date' => '2022-01-03',
             'employee_number' => '1008',
             'position' => 'CEO',
             'unit' => 'Management',
             'grade' => '10',
             'joined_date' => '2022-01-03',
-            'email' => 'danial.janboura@nrc.no',
+            'email' => 'rami.janboura@nrc.no',
             'email_verified_at' => now(),
             'password' => Hash::make('Password8'),
             'created_at' => now(),
