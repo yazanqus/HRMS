@@ -98,7 +98,7 @@
                     <table class="table table-striped table-Secondary">
                     <thead>
                         <tr>
-                          <th scope="col">Name</th>
+                          <th scope="col"> @sortablelink('name')</th>
                           <th scope="col">Emplyee ID</th>
                           <th scope="col">Position</th>
                           <th scope="col">Join Date</th>

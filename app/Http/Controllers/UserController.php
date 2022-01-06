@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Kyslik\ColumnSortable\Sortable;
 
 class UserController extends Controller
 {
@@ -15,6 +16,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+
+        $users = User::sortable();
 
         $users = User::query();
         if (request('term')) {
@@ -33,6 +36,7 @@ class UserController extends Controller
         }
 
         User::orderBy('employee_number')->pluck('name', 'position');
+        $users = User::sortable();
 
         return view('admin.users.index', ['users' => $users->paginate(15)]);
     }
