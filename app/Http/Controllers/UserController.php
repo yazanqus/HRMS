@@ -13,9 +13,28 @@ class UserController extends Controller
      * @param  \App\Models\User  $model
      * @return \Illuminate\View\View
      */
-    public function index(User $model)
+    public function index(Request $request)
     {
-        return view('admin.users.index', ['users' => $model->paginate(15)]);
+
+        $users = User::query();
+        if (request('term')) {
+            $users->where('name', 'Like', '%' . request('term') . '%');
+            $users->orderBy('name', 'DESC')->paginate(10);
+        }
+
+        if (request('id')) {
+            $users->where('employee_number', 'Like', '%' . request('id') . '%');
+            $users->orderBy('name', 'DESC')->paginate(10);
+        }
+
+        if (request('position')) {
+            $users->where('position', 'Like', '%' . request('position') . '%');
+            $users->orderBy('name', 'DESC')->paginate(10);
+        }
+
+        User::orderBy('employee_number')->pluck('name', 'position');
+
+        return view('admin.users.index', ['users' => $users->paginate(15)]);
     }
 
     public function create()

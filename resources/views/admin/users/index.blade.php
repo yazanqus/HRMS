@@ -4,6 +4,85 @@
 
           <div class="content">
               <div class="container-fluid">
+
+                <div>
+                    <div class="mx-auto pull-right">
+                        <div class="">
+                            <form action="{{ route('admin.users.index') }}" method="GET" role="search">
+
+                                <div class="input-group">
+                                    <span class="input-group-btn mr-5 mt-1">
+                                        <button class="btn btn-info" type="submit" title="Search projects">
+                                            <span class="fas fa-search"></span>
+                                        </button>
+                                    </span>
+                                    <input type="text" class="form-control mr-2" name="term" placeholder="Search projects" id="term">
+                                    <a href="{{ route('admin.users.index') }}" class=" mt-1">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-danger" type="button" title="Refresh page">
+                                                <span class="fas fa-sync-alt"></span>
+                                            </button>
+                                        </span>
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="mx-auto pull-right">
+                        <div class="">
+                            <form action="{{ route('admin.users.index') }}" method="GET" role="search">
+
+                                <div class="input-group">
+                                    <span class="input-group-btn mr-5 mt-1">
+                                        <button class="btn btn-info" type="submit" title="Search projects">
+                                            <span class="fas fa-search"></span>
+                                        </button>
+                                    </span>
+                                    <input type="text" class="form-control mr-2" name="id" placeholder="Search projects" id="id">
+                                    <a href="{{ route('admin.users.index') }}" class=" mt-1">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-danger" type="button" title="Refresh page">
+                                                <span class="fas fa-sync-alt"></span>
+                                            </button>
+                                        </span>
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="mx-auto pull-right">
+                        <div class="">
+                            <form action="{{ route('admin.users.index') }}" method="GET" role="search">
+
+                                <div class="input-group">
+                                    <span class="input-group-btn mr-5 mt-1">
+                                        <button class="btn btn-info" type="submit" title="Search projects">
+                                            <span class="fas fa-search"></span>
+                                        </button>
+                                    </span>
+                                    <input type="text" class="form-control mr-2" name="position" placeholder="Search projects" id="position">
+                                    <a href="{{ route('admin.users.index') }}" class=" mt-1">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-danger" type="button" title="Refresh page">
+                                                <span class="fas fa-sync-alt"></span>
+                                            </button>
+                                        </span>
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
                   <div class="card">
                     <div class="card-header card-header-primary">
                       <h4 class="card-title ">Users</h4>

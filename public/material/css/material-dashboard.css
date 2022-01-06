@@ -16,7 +16,7 @@
 /*     brand Colors              */
 
 .card {
-  font-size: .875rem;
+  font-size: 1.2rem;
 }
 
 *,
@@ -55,7 +55,7 @@ section {
 body {
   margin: 0;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
@@ -459,7 +459,7 @@ section {
 body {
   margin: 0;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
@@ -2146,7 +2146,7 @@ pre code {
   display: block;
   width: 100%;
   padding: 0.4375rem 0;
-  font-size: 1rem;
+  font-size: 2rem;
   line-height: 1.5;
   color: #495057;
   background-color: rgba(0, 0, 0, 0);
@@ -2630,7 +2630,7 @@ select.form-control-lg:not([size]):not([multiple]),
   user-select: none;
   border: 1px solid transparent;
   padding: 0.46875rem 1rem;
-  font-size: 1rem;
+  font-size: 2rem;
   line-height: 1.5;
   border-radius: 0.25rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -3409,7 +3409,7 @@ tbody.collapse.show {
   min-width: 10rem;
   padding: 0.5rem 0;
   margin: 0.125rem 0 0;
-  font-size: 1rem;
+  font-size: 2rem;
   color: #212529;
   text-align: left;
   list-style: none;
@@ -4221,7 +4221,7 @@ tbody.collapse.show {
 
 .navbar-toggler {
   padding: 0.25rem 0.75rem;
-  font-size: 1.25rem;
+  font-size: 2rem;
   line-height: 1;
   background-color: transparent;
   border: 1px solid transparent;
@@ -10615,7 +10615,7 @@ fieldset[disabled][disabled] .btn-group-raised .btn,
 .btn-group-lg>.btn,
 .btn-group-lg .btn {
   padding: 1.125rem 2.25rem;
-  font-size: 0.875rem;
+  font-size: 1.2rem;
   line-height: 1.333333;
   border-radius: 0.2rem;
 }
@@ -11185,7 +11185,7 @@ form {
   padding-left: 0;
   padding-right: 0;
   border-radius: 0;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .form-control:focus,
@@ -14630,7 +14630,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .sidebar .nav p {
   margin: 0;
   line-height: 30px;
-  font-size: 14px;
+  font-size: 18px;
   position: relative;
   display: block;
   height: auto;
@@ -16330,7 +16330,7 @@ a .material-icons {
 
 .form-check,
 label {
-  font-size: 14px;
+  font-size: 18px;
   line-height: 1.42857;
   color: #AAAAAA;
   font-weight: 400;
