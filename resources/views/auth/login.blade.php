@@ -30,21 +30,21 @@
                             {{-- <p class="card-description text-center">{{ __('Or Sign in with ') }}
                                 <strong>admin@material.com</strong> {{ __(' and the password ') }}<strong>secret</strong>
                             </p> --}}
-                            <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                            <div class="bmd-form-group{{ $errors->has('employee_number') ? ' has-danger' : '' }}">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            <i class="material-icons">email</i>
+                                            <i class="material-icons">employee_number</i>
                                         </span>
                                     </div>
-                                    <input type="email" name="email" class="form-control"
-                                        placeholder="{{ __('Email...') }}"
-                                        value="{{ old('email', 'email@nrc.com') }}" required>
+                                    <input type="employee_number" name="employee_number" class="form-control"
+                                        placeholder="{{ __('employee_number...') }}"
+                                        value="{{ old('employee_number', '12511') }}" required>
                                 </div>
-                                @if ($errors->has('email'))
-                                    <div id="email-error" class="error text-danger pl-3" for="email"
+                                @if ($errors->has('employee_number'))
+                                    <div id="employee_number-error" class="error text-danger pl-3" for="employee_number"
                                         style="display: block;">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('employee_number') }}</strong>
                                     </div>
                                 @endif
                             </div>
