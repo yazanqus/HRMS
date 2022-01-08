@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Leavetype;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Kyslik\ColumnSortable\Sortable;
@@ -67,6 +68,48 @@ class UserController extends Controller
         $user->unit = $request->unit;
         $user->joined_date = $request->joined_date;
         $user->save();
+
+        $day = date("d", strtotime($user->joined_date));
+        $month = date("m", strtotime($user->joined_date));
+        if ($day < '15') {
+
+            $userannualleavebalance = (1.25 * (12 - $month + 1));
+
+        }
+
+        if ($day >= '15') {
+            $userannualleavebalance = ((1.25 * (12 - $month)) + 0.5);
+        }
+
+        // dd($userannualleavebalance);
+
+        $leavetypes = Leavetype::all();
+        foreach ($leavetypes as $leavetype) {if ($leavetype->id = '1') {
+
+            $user->balances()->create([
+                'leavetype_id' => $leavetype->id,
+                'name' => $leavetype->name,
+                'value' => $userannualleavebalance,
+            ]);
+
+            $user->balances()->create([
+                'leavetype_id' => $leavetype->id,
+                'name' => $leavetype->name,
+                'value' => '5',
+            ]);
+        }
+        }
+        // $user->balances()->create([
+        //     'leavetype_id' => '2',
+        //     'name' => 'Sick',
+        //     'value' => '6',
+        // ]);
+
+        // $user->balances()->create([
+        //     'leavetype_id' => '3',
+        //     'name' => 'Annual - First half',
+        //     'value' => '7',
+        // ]);
 
         return redirect()->route('admin.users.index');
 

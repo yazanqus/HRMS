@@ -24,5 +24,36 @@ class LeavetypeTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        DB::table('leavetypes')->insert([
+            'name' => 'Annual leave - First half',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('leavetypes')->insert([
+            'name' => 'Annual leave - Second half',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('leavetypes')->insert([
+            'name' => 'Compensation Vacation',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('leavetypes')->insert([
+            'name' => 'Unpaid leave - First half',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('leavetypes')->insert([
+            'name' => 'Unpaid leave - Second half',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
     }
 }

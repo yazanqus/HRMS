@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Leave::class);
     }
+
+    public function balances()
+    {
+        return $this->hasMany(Balance::class);
+    }
 }

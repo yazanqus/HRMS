@@ -34,7 +34,7 @@
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            <i class="material-icons">employee_number</i>
+                                            <i class="material-icons">lock_outline</i>
                                         </span>
                                     </div>
                                     <input type="employee_number" name="employee_number" class="form-control"

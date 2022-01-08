@@ -5,20 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Leavetype extends Model
+class Balance extends Model
 {
+
     protected $fillable = [
         'leavetype_id',
+        'name',
+        'value',
     ];
     use HasFactory;
 
-    public function leaves()
+    public function leavetype()
     {
-        return $this->hasMany(Leave::class);
+        return $this->belongsTo(Leavetype::class);
     }
 
-    public function balances()
+    public function user()
     {
-        return $this->hasMany(Balance::class);
+        return $this->belongsTo(User::class);
     }
 }
