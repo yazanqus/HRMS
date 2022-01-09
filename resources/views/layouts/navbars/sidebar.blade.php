@@ -80,8 +80,8 @@
         </a>
       </li>
 
-      <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('table') }}">
+      <li class="nav-item{{ $activePage == 'policies' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.policies.index') }}">
           <i class="material-icons">content_paste</i>
             <p>{{ __('HR Policies') }}</p>
         </a>
