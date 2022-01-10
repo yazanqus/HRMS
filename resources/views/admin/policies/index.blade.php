@@ -4,103 +4,25 @@
 
           <div class="content">
               <div class="container-fluid">
-
-                <div>
-                    <div class="mx-auto pull-right">
-                        <div class="">
-                            <form action="{{ route('admin.policies.index') }}" method="GET" role="search">
-
-                                <div class="input-group">
-                                    <span class="input-group-btn mr-5 mt-1">
-                                        <button class="btn btn-info" type="submit" title="Search projects">
-                                            <span class="fas fa-search"></span>
-                                        </button>
-                                    </span>
-                                    <input type="text" class="form-control mr-2" name="term" placeholder="Search projects" id="term">
-                                    <a href="{{ route('admin.policies.index') }}" class=" mt-1">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-danger" type="button" title="Refresh page">
-                                                <span class="fas fa-sync-alt"></span>
-                                            </button>
-                                        </span>
-                                    </a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="mx-auto pull-right">
-                        <div class="">
-                            <form action="{{ route('admin.policies.index') }}" method="GET" role="search">
-
-                                <div class="input-group">
-                                    <span class="input-group-btn mr-5 mt-1">
-                                        <button class="btn btn-info" type="submit" title="Search projects">
-                                            <span class="fas fa-search"></span>
-                                        </button>
-                                    </span>
-                                    <input type="text" class="form-control mr-2" name="id" placeholder="Search projects" id="id">
-                                    <a href="{{ route('admin.policies.index') }}" class=" mt-1">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-danger" type="button" title="Refresh page">
-                                                <span class="fas fa-sync-alt"></span>
-                                            </button>
-                                        </span>
-                                    </a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="mx-auto pull-right">
-                        <div class="">
-                            <form action="{{ route('admin.policies.index') }}" method="GET" role="search">
-
-                                <div class="input-group">
-                                    <span class="input-group-btn mr-5 mt-1">
-                                        <button class="btn btn-info" type="submit" title="Search projects">
-                                            <span class="fas fa-search"></span>
-                                        </button>
-                                    </span>
-                                    <input type="text" class="form-control mr-2" name="position" placeholder="Search projects" id="position">
-                                    <a href="{{ route('admin.policies.index') }}" class=" mt-1">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-danger" type="button" title="Refresh page">
-                                                <span class="fas fa-sync-alt"></span>
-                                            </button>
-                                        </span>
-                                    </a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
                   <div class="card">
                     <div class="card-header card-header-primary">
-                      <h4 class="card-title ">Users</h4>
-                      <p class="card-category"> Here you can manage users</p>
+                      <h4 class="card-title ">HR Policies</h4>
+                      <p class="card-category"></p>
                     </div>
                     <div class="card-body">
-                                      <div class="row">
-                        <div class="col-12 text-right">
-                          <a href="{{route('admin.policies.create')}}" class="btn btn-sm btn-primary">Add user</a>
+                        <div class="row">
+                            <div   div class="col-12 text-right">
+                              <a href="{{route('admin.policies.create')}}" class="btn btn-sm btn-primary">Add Policy</a>
+                            </div>
                         </div>
-                      </div>
                       <div class="row">
                     <table class="table table-striped table-Secondary">
                     <thead>
                         <tr>
-                          <th scope="col">name</th>
-                          <th scope="col">desc</th>
-
+                          <th scope="col">Name</th>
+                          <th scope="col">Desc</th>
+                          <th scope="col">Created date</th>
+                          <th scope="col">Last updated</th>
                           <th scope="col">Action</th>
                         </tr>
                       </thead>
@@ -109,7 +31,26 @@
                         <tr>
                           <td>{{ $policy->name }}</td>
                           <td>{{ $policy->desc }}</td>
-                          <td>edit</td>
+                          <td>{{ $policy->created_date }}</td>
+                          <td>{{ $policy->lastupdate_date }}</td>
+                          <td>
+                            <div class="btn-group dropright">
+                            <button class="btn btn-secondary dropdown-toggle justify-content-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </button>
+                            <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                              <div class="justify-content-center"><a class="dropdown-item justify-content-center" href="/storage/files/{{$policy->name}}.pdf" >View</a></div>
+                              <div class="justify-content-center"><a class="dropdown-item justify-content-center" href="{{ route('admin.policies.edit', $policy) }}"  >Edit</a></div>
+                              <form method="POST" action="{{ route('admin.policies.destroy', $policy) }}" class="text-center" >
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-danger" value="Delete">
+                                </div>
+                            </form>
+                            </div>
+                          </div>
+                        </td>
                         </tr>
                         @endforeach
                       </tbody>
@@ -129,7 +70,7 @@
                           @endforeach --}}
                       </div>
 
-                      <iframe src="{{url('/storage/files/0j7YmC2IIpwwkvLLhg23zidqXYRGwhYpSGNWZklb.pdf')}}" width="100%" height="600"></iframe>
+                      {{-- <iframe src="{{url('/storage/files/0j7YmC2IIpwwkvLLhg23zidqXYRGwhYpSGNWZklb.pdf')}}" width="100%" height="600"></iframe> --}}
 
                     </div>
                   </div>

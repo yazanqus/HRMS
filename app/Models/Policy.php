@@ -11,6 +11,8 @@ class Policy extends Model
     protected $fillable = [
         'name',
         'desc',
+        'created_date',
+        'lastupdate_date',
     ];
 
     use HasFactory;
