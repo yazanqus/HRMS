@@ -18,7 +18,7 @@ class CreateBalancesTable extends Migration
             $table->string('name');
             $table->foreignId('leavetype_id');
             $table->foreignId('user_id');
-            $table->double('value');
+            $table->float('value')->nullable();
             $table->timestamps();
         });
     }

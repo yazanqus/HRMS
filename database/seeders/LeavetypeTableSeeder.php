@@ -15,12 +15,14 @@ class LeavetypeTableSeeder extends Seeder
     {
         DB::table('leavetypes')->insert([
             'name' => 'Annual leave',
+            'value' => '15',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
         DB::table('leavetypes')->insert([
             'name' => 'Sick leave',
+            'value' => '5',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -39,6 +41,7 @@ class LeavetypeTableSeeder extends Seeder
 
         DB::table('leavetypes')->insert([
             'name' => 'Compensation Vacation',
+            'value' => '7',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

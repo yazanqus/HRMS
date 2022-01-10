@@ -81,6 +81,15 @@
 
                                       </div>
 
+                                      <div class="col-md-6 mb-6">
+
+                                        <div class="form-outline">
+                                          <input type="password" name="password" class="form-control form-control-lg" />
+                                          <label class="form-label" >Password</label>
+                                        </div>
+
+                                      </div>
+
                                   </div>
 
 

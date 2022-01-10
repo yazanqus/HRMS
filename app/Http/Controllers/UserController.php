@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Leavetype;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Kyslik\ColumnSortable\Sortable;
 
 class UserController extends Controller
@@ -58,6 +59,7 @@ class UserController extends Controller
             'position' => 'required',
             'unit' => 'required',
             'joined_date' => 'required',
+            'password' => 'required',
         ]);
 
         $user = new User();
@@ -67,6 +69,8 @@ class UserController extends Controller
         $user->position = $request->position;
         $user->unit = $request->unit;
         $user->joined_date = $request->joined_date;
+        $user->password = Hash::make($request->password);
+
         $user->save();
 
         $day = date("d", strtotime($user->joined_date));
@@ -84,20 +88,36 @@ class UserController extends Controller
         // dd($userannualleavebalance);
 
         $leavetypes = Leavetype::all();
-        foreach ($leavetypes as $leavetype) {if ($leavetype->id = '1') {
+        foreach ($leavetypes as $leavetype) {
 
-            $user->balances()->create([
-                'leavetype_id' => $leavetype->id,
-                'name' => $leavetype->name,
-                'value' => $userannualleavebalance,
-            ]);
+            if ($leavetype->name == "Annual leave") {
+                $user->balances()->create([
 
-            $user->balances()->create([
-                'leavetype_id' => $leavetype->id,
-                'name' => $leavetype->name,
-                'value' => '5',
-            ]);
-        }
+                    'name' => $leavetype->name,
+                    'value' => $userannualleavebalance,
+                    'leavetype_id' => $leavetype->id,
+                ]);
+
+                // if ($leavetype->id = '1') {
+
+                // $user->balances()->create([
+                //     'leavetype_id' => $leavetype->id,
+                //     'name' => $leavetype->name,
+                //     'value' => $userannualleavebalance,
+                // ]);
+
+                // $user->balances()->create([
+                //     'leavetype_id' => $leavetype->id,
+                //     'name' => $leavetype->name,
+                //     'value' => '5',
+                // ]);
+            } else {
+                $user->balances()->create([
+                    'name' => $leavetype->name,
+                    'value' => $leavetype->value,
+                    'leavetype_id' => $leavetype->id,
+                ]);
+            }
         }
         // $user->balances()->create([
         //     'leavetype_id' => '2',

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Leave;
 use App\Models\Leavetype;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LeaveController extends Controller
 {
@@ -43,6 +45,24 @@ class LeaveController extends Controller
             'end_date' => 'required',
             'leavetype_id' => 'required',
         ]);
+
+        $fdate = $request->start_date;
+        $ldate = $request->end_date;
+        $datetime1 = new DateTime($fdate);
+        $datetime2 = new DateTime($ldate);
+        $interval = $datetime1->diff($datetime2);
+        $days = $interval->format('%a');
+
+        // $userid = Auth::user()->id;
+        $user = Auth::user();
+
+        $userbalance = $user->balances->vlaue->where('leavetype_id' == $request->leavetype_id);
+
+        dd($userbalance);
+
+        if ($days >= $userbalance) {
+
+        }
 
         $leave = new Leave();
         $leave->start_date = $request->start_date;
