@@ -86,8 +86,8 @@
             <p>{{ __('HR Policies') }}</p>
         </a>
       </li>
-      <li class="nav-item{{ $activePage == 'typography' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('typography') }}">
+      <li class="nav-item{{ $activePage == 'holidays' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.holidays.index') }}">
           <i class="material-icons">library_books</i>
             <p>{{ __('Holidays') }}</p>
         </a>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\UserController;
@@ -71,6 +72,10 @@ Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], f
 
 Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::resource('policies', PolicyController::class);
+});
+
+Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], function () {
+    Route::resource('holidays', HolidayController::class);
 });
 
 Route::group(['middleware' => 'auth'], function () {
