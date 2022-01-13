@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Balance;
 use App\Models\Leave;
 use App\Models\Leavetype;
+use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,6 +42,51 @@ class LeaveController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
+
+        // $userid = $user->balances->get();
+
+        // $test = Balance::with('leavetype', 'leavetype.user')->find('1');
+        $balances = Balance::where('user_id', $user->id)->get();
+
+        // $userbalance = Balance::whereBelongsTo($user)->get();
+        // $subset = $userbalance->map(function ($balance) {
+        //     return collect($balance)
+        //         ->only(['value'])
+        //         ->all();
+        // });
+
+        // $test = Balance::whereHas('user', function ($q) {
+        //     $q->whereHas('balances', function($q)
+        //         {
+        //             $q->whereIn('group.name_short', array('admin','user'));
+        //         });
+        // })->get();
+
+        // $test = DB::table('balances')->where([
+        //     ['name', 'Sick leave'],
+        //     ['leavetype_id', '2'],
+        // ])->get();
+
+        // $userbalance = $user->balances->where('leavetype_id', $request->leavetype_id);
+
+        $subsets = $balances->map(function ($balance) {
+            return collect($balance->toArray())
+
+                ->only(['value', 'leavetype_id'])
+                ->all();
+        });
+
+        $final = $subsets->firstwhere('leavetype_id', $request->leavetype_id);
+
+        // $finalfinal = $final->filter(function ($value) {
+        //     return $value == 'value';
+        // })->first();
+
+        $finalfinal = $final['value'];
+
+        dd($finalfinal);
+
         $request->validate([
             'start_date' => 'required',
             'end_date' => 'required',
@@ -54,15 +101,7 @@ class LeaveController extends Controller
         $days = $interval->format('%a');
 
         // $userid = Auth::user()->id;
-        $user = Auth::user();
-
-        $userbalance = $user->balances->vlaue->where('leavetype_id' == $request->leavetype_id);
-
-        dd($userbalance);
-
-        if ($days >= $userbalance) {
-
-        }
+        // $user = Auth::user();
 
         $leave = new Leave();
         $leave->start_date = $request->start_date;
