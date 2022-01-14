@@ -84,8 +84,9 @@ class LeaveController extends Controller
         // })->first();
 
         $finalfinal = $final['value'];
+        $currentbalance = $finalfinal;
 
-        dd($finalfinal);
+        // dd($finalfinal);
 
         $request->validate([
             'start_date' => 'required',
@@ -103,49 +104,24 @@ class LeaveController extends Controller
         // $userid = Auth::user()->id;
         // $user = Auth::user();
 
-        $leave = new Leave();
-        $leave->start_date = $request->start_date;
-        $leave->end_date = $request->end_date;
-        $leave->leavetype_id = $request->leavetype_id;
-        $leave->user_id = auth()->user()->id;
+        if ($days <= $currentbalance) {
 
-        $leave->save();
+            $leave = new Leave();
+            $leave->start_date = $request->start_date;
+            $leave->end_date = $request->end_date;
+            $leave->days = $days;
+            $leave->leavetype_id = $request->leavetype_id;
+            $leave->user_id = auth()->user()->id;
 
-        // $user = new User();
-        // $user->name = $request->name;
-        // $user->national_id = $request->national_id;
-        // $user->country = $request->country;
-        // $user->phone_number = $request->phone_number;
-        // $user->save();
+            $leave->save();
+            $newbalance = $currentbalance - $days;
 
-        // $reservation = new Reservation();
-        // // $reservation->price = $request->price;
-        // $reservation->room_id = $request->room_id;
-        // $reservation->paid = $request->paid;
-        // $reservation->started_at = $request->started_at;
-        // $reservation->offer_id = $request->offer_id;
-        // $reservation->ended_at = $request->ended_at;
-        // $reservation->paid_at = $request->paid_at;
-        // $reservation->canceled_at = $request->canceled_at;
-        // $reservation->user_id = $user->id;
-        // // $reservation->room->status = 'Busy';
-        // if ($reservation->offer->type = 'percentage') {
-        //     $dis = (1 - (0.01 * $reservation->offer->discount));
-        //     $reservation->price = $reservation->room->price * $dis - $reservation->paid;
-        // } elseif ($reservation->offer->type = 'const') {
-        //     $dis = $reservation->offer->discount * 1;
-        //     $reservation->price = $reservation->room->price - $dis - $reservation->paid;
-        // }
-        // $reservation->save();
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', $request->leavetype_id],
+            ])->update(['value' => $newbalance]);
 
-        // $reservation->room->update(['status' => 'busy']);
-        // if ($reservation->paid != '0') {
-        //     $reservation->transactions()->create([
-        //         'type' => 'In',
-        //         'amount' => $reservation->paid,
-        //         'description' => 'paid at Booking',
-        //     ]);
-        // }
+        }
 
         return redirect()->route('leaves.index');
 
