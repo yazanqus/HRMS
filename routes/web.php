@@ -4,6 +4,7 @@ use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\UserController;
+use App\Models\Balance;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,17 +20,32 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes();
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Auth::routes();
 
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
+// Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('welcome', function () {
+        $user = Auth::user();
+        $balances = Balance::where('user_id', $user->id)->get();
+        $subsets = $balances->map(function ($balance) {
+            return collect($balance->toArray())
+
+                ->only(['value', 'leavetype_id'])
+                ->all();
+        });
+        $final = $subsets->firstwhere('leavetype_id', '1');
+        $finalfinal = $final['value'];
+        return view('dashboard', ['user' => $user, 'balance' => $finalfinal]);
+    })->name('welcome');
+
     Route::get('table-list', function () {
         return view('pages.table_list');
     })->name('table');

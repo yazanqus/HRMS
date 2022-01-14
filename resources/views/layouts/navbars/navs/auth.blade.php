@@ -13,7 +13,7 @@
     <div class="collapse navbar-collapse justify-content-end">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('home') }}">
+          <a class="nav-link" href="{{ route('welcome') }}">
             <i class="material-icons">language</i>
             <p class="d-lg-none d-md-block">
               {{ __('Stats') }}

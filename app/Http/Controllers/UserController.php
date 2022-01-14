@@ -59,6 +59,7 @@ class UserController extends Controller
             'position' => 'required',
             'unit' => 'required',
             'joined_date' => 'required',
+            'linemanager' => 'required',
             'password' => 'required',
         ]);
 
@@ -68,6 +69,7 @@ class UserController extends Controller
         $user->birth_date = $request->birth_date;
         $user->position = $request->position;
         $user->unit = $request->unit;
+        $user->linemanager = $request->linemanager;
         $user->joined_date = $request->joined_date;
         $user->password = Hash::make($request->password);
 

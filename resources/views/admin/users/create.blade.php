@@ -66,6 +66,19 @@
                                     <div class="col-md-6 mb-6">
 
                                       <div class="form-outline">
+                                        <input type="text" name="linemanager" class="form-control form-control-lg" />
+                                        <label class="form-label" >Line Manager</label>
+                                      </div>
+
+                                    </div>
+
+
+                                  </div>
+                                  <br>
+                                  <div class="row">
+                                    <div class="col-md-6 mb-6">
+
+                                      <div class="form-outline">
                                         <input type="date" name="joined_date" class="form-control form-control-lg" />
                                         <label class="form-label" >Joined Date</label>
                                       </div>

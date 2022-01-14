@@ -12,9 +12,9 @@
   <div class="sidebar-wrapper">
     <ul class="nav">
       <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('home') }}">
+        <a class="nav-link" href="{{ route('welcome') }}">
           <i class="material-icons">dashboard</i>
-            <p>{{ __('Home') }}</p>
+            <p>{{ __('welcome') }}</p>
         </a>
       </li>
       {{-- <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">

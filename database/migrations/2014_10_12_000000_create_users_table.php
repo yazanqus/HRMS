@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('position')->nullable();
             $table->string('unit')->nullable();
             $table->string('grade')->nullable();
+            $table->string('linemanager')->nullable();
             $table->date('joined_date')->nullable();
             $table->date('resigned_date')->nullable();
             $table->string('email')->unique()->nullable();
