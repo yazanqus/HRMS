@@ -5,6 +5,7 @@ use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\UserController;
 use App\Models\Balance;
+use App\Models\Leave;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,12 @@ Route::group(['middleware' => 'auth'], function () {
         $finalfinal = $final['value'];
         return view('dashboard', ['user' => $user, 'balance' => $finalfinal]);
     })->name('welcome');
+
+    Route::get('approval', function () {
+        $leaves = Leave::where('Status', 'Pending Approval')->get();
+
+        return view('approval.index', ['leaves' => $leaves]);
+    })->name('approval');
 
     Route::get('table-list', function () {
         return view('pages.table_list');

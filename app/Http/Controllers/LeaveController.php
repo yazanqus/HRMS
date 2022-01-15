@@ -112,14 +112,15 @@ class LeaveController extends Controller
             $leave->days = $days;
             $leave->leavetype_id = $request->leavetype_id;
             $leave->user_id = auth()->user()->id;
+            $leave->status = 'Pending Approval';
 
             $leave->save();
-            $newbalance = $currentbalance - $days;
+            // $newbalance = $currentbalance - $days;
 
-            Balance::where([
-                ['user_id', $user->id],
-                ['leavetype_id', $request->leavetype_id],
-            ])->update(['value' => $newbalance]);
+            // Balance::where([
+            //     ['user_id', $user->id],
+            //     ['leavetype_id', $request->leavetype_id],
+            // ])->update(['value' => $newbalance]);
 
         }
 

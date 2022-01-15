@@ -1,30 +1,32 @@
-@extends('layouts.app', ['activePage' => 'all-leaves', 'titlePage' => ('all leaves')])
+@extends('layouts.app', ['activePage' => 'all-users', 'titlePage' => ('all users')])
 
 @section('content')
 
           <div class="content">
               <div class="container-fluid">
+
+
+
+
+
+
                   <div class="card">
                     <div class="card-header card-header-primary">
-                      <h4 class="card-title ">My leaves</h4>
-                      {{-- <p class="card-category">Here you can see the history of leaves</p> --}}
+                      <h4 class="card-title ">Leaves pending approval</h4>
+                      {{-- <p class="card-category"> Here you can manage users</p> --}}
                     </div>
                     <div class="card-body">
-                                      <div class="row">
-                        <div class="col-12 text-right">
-                          <a href="{{route('leaves.create')}}" class="btn btn-sm btn-primary">Submit a new Leave</a>
-                        </div>
-                      </div>
+
                       <div class="row">
                     <table class="table table-striped table-Secondary">
                     <thead>
                         <tr>
-                          <th scope="col">Name</th>
-                          <th scope="col">start date</th>
-                          <th scope="col">end date</th>
-                          <th scope="col">Days</th>
-                          <th scope="col">Status</th>
-                          <th scope="col">Action</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">start date</th>
+                            <th scope="col">end date</th>
+                            <th scope="col">Days</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
                         </tr>
                       </thead>
                       <tbody>
