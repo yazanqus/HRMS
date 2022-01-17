@@ -19,7 +19,8 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        $leave = Leave::all();
+        $user = Auth::user();
+        $leave = Leave::where('user_id', $user->id)->get();
         return view('leaves.index', ['leaves' => $leave]);
     }
 

@@ -49,7 +49,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('approval', function () {
         $leaves = Leave::where('Status', 'Pending Approval')->get();
-
         return view('approval.index', ['leaves' => $leaves]);
     })->name('approval');
 
