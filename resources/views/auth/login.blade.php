@@ -38,8 +38,8 @@
                                         </span>
                                     </div>
                                     <input type="employee_number" name="employee_number" class="form-control"
-                                        placeholder="{{ __('employee_number...') }}"
-                                        value="{{ old('employee_number', '12511') }}" required>
+                                        placeholder="{{ __('Employee Number...') }}"
+                                        value="{{ old('employee_number', '') }}" required>
                                 </div>
                                 @if ($errors->has('employee_number'))
                                     <div id="employee_number-error" class="error text-danger pl-3" for="employee_number"

@@ -88,6 +88,26 @@ Route::group(['middleware' => 'auth'], function () {
         return view('approval.index', ['leaves' => $leaves]);
     })->name('approval');
 
+    Route::get('staffleaves', function () {
+
+        $user = Auth::user();
+        $staff = User::where('linemanager', $user->name)->get();
+        // dd($user);
+
+        $subsets = $staff->map(function ($staff) {
+            return collect($staff->toArray())
+
+                ->only(['id'])
+                ->all();
+        });
+
+        $leaves = Leave::where([
+            ['user_id', $subsets],
+        ])->get();
+
+        return view('staffleaves.index', ['leaves' => $leaves]);
+    })->name('staffleaves');
+
     Route::get('table-list', function () {
         return view('pages.table_list');
     })->name('table');

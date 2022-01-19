@@ -28,6 +28,13 @@
   </a>
 </li>
 
+<li class="nav-item{{ $activePage == 'approval' ? ' active' : '' }}">
+    <a class="nav-link" href="{{ route('staffleaves') }}">
+      <i class="material-icons">dashboard</i>
+        <p>{{ __('staffleaves') }}</p>
+    </a>
+  </li>
+
     @endif
 
 

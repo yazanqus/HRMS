@@ -103,6 +103,18 @@
 
                                     </div>
 
+                                    <div class="col-md-6 mb-6">
+
+                                        <div class="form-outline">
+                                          <input type="Radio" name="hradmin" Value="yes" class="form-control form-control-lg" />Yes
+                                          <input type="Radio" name="hradmin" Value="no" class="form-control form-control-lg" Checked/>No
+                                          <label class="form-label" >HR Admin on the system</label>
+                                        </div>
+
+                                      </div>
+
+
+
 
                                   </div>
                                   <br>

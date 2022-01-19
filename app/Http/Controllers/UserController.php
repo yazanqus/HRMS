@@ -63,6 +63,7 @@ class UserController extends Controller
             'unit' => 'required',
             'joined_date' => 'required',
             'linemanager' => 'required',
+            'hradmin' => 'required',
             'password' => 'required',
         ]);
 
@@ -74,6 +75,7 @@ class UserController extends Controller
         $user->unit = $request->unit;
         $user->linemanager = $request->linemanager;
         $user->joined_date = $request->joined_date;
+        $user->hradmin = $request->hradmin;
         $user->password = Hash::make($request->password);
 
         $user->save();

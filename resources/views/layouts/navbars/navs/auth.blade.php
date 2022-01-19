@@ -43,6 +43,10 @@
             <p class="d-lg-none d-md-block">
               {{ __('Account') }}
             </p>
+            @php
+                $user = Auth::user();
+            @endphp
+            {{$user->name}}
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
             {{-- <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a> --}}
