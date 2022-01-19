@@ -1,4 +1,5 @@
 <?php
+namespace App\Http\Middleware;
 
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\LeaveController;
@@ -144,7 +145,7 @@ Route::group(['middleware' => 'auth'], function () {
 //     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 // });
 
-Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], function () {
+Route::group(['middleware' => ['auth', 'hradmin'], 'prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::resource('users', UserController::class);
 });
 

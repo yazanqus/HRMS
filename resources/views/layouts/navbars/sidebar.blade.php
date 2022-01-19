@@ -63,6 +63,7 @@
           </ul>
         </div>
       </li> --}}
+      @if($user->hradmin == 'yes')
       <li class="nav-item {{ ($activePage == 'Users' || $activePage == 'create-new-user') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
             <i class="material-icons">perm_identity</i>
@@ -70,6 +71,7 @@
             <b class="caret"></b>
           </p>
         </a>
+
         <div class="collapse hide" id="laravelExample">
           <ul class="nav">
             <li class="nav-item{{ $activePage == 'create-new-user' ? ' active' : '' }}">
@@ -87,6 +89,7 @@
           </ul>
         </div>
       </li>
+      @endif
 
       {{-- <li class="nav-item{{ $activePage == 'users' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('table') }}">
