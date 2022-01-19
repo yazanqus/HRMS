@@ -66,7 +66,7 @@
                                     <div class="col-md-6 mb-6">
 
                                         <div class="form-group">
-                                            <input type="text" list="FavoriteColor" id="color" name="linemanager">
+                                            <input type="text" list="FavoriteColor" id="color" name="linemanager" autocomplete="off">
 
                                                 <datalist id="FavoriteColor">
                                                     @foreach ($users as $user)
@@ -74,20 +74,14 @@
                                                         <option value="{{$user->name}}"> </option>
 
                                                     @endforeach
-                                                {{-- <option value="Red">
-                                                <option value="Green">
-                                                <option value="Silver">
-                                                <option value="Gold">
-                                                <option value="White">
-                                                <option value="Black">
-                                                <option value="Blue">
-                                                <option value="Purple">
-                                                <option value="Orange">
-                                                <option value="Yellow"> --}}
+
                                                 </datalist>
                                                 </p>
-{{--
-                                            <select
+
+
+
+
+                                            {{-- <select
 
                                             class="form-control"
                                             name="linemanager" id="input-room_id" type="text"
