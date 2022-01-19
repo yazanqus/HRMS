@@ -6,6 +6,7 @@ use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\UserController;
 use App\Models\Balance;
 use App\Models\Leave;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -68,7 +69,22 @@ Route::group(['middleware' => 'auth'], function () {
     })->name('welcome');
 
     Route::get('approval', function () {
-        $leaves = Leave::where('Status', 'Pending Approval')->get();
+        $user = Auth::user();
+        $staff = User::where('linemanager', $user->name)->get();
+        // dd($user);
+
+        $subsets = $staff->map(function ($staff) {
+            return collect($staff->toArray())
+
+                ->only(['id'])
+                ->all();
+        });
+
+        $leaves = Leave::where([
+            ['user_id', $subsets],
+            ['status', 'Pending Approval'],
+        ])->get();
+        // $leaves = Leave::where('Status', 'Pending Approval')->get();
         return view('approval.index', ['leaves' => $leaves]);
     })->name('approval');
 

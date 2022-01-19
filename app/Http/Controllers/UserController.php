@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Leavetype;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Kyslik\ColumnSortable\Sortable;
 
@@ -134,6 +135,9 @@ class UserController extends Controller
         //     'name' => 'Annual - First half',
         //     'value' => '7',
         // ]);
+
+        $setlinemenager = $request->linemanager;
+        DB::table('users')->where('name', $setlinemenager)->update(['usertype_id' => '2']);
 
         return redirect()->route('admin.users.index');
 

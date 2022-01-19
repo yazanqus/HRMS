@@ -21,9 +21,5 @@ class UsertypeTableSeeder extends Seeder
             'name' => 'linemanager',
         ]);
 
-        DB::table('usertypes')->insert([
-            'name' => 'hradmin',
-        ]);
-
     }
 }
