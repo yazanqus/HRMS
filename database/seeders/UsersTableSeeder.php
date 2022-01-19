@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Danial Janboura',
             'birth_date' => '2022-01-03',
             'employee_number' => '1001',
+            'usertype_id' => '1',
             'position' => 'CIO',
             'unit' => 'IT',
             'grade' => '9',

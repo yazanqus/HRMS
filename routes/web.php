@@ -19,10 +19,30 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
  */
+// Route::group(['middleware' => 'auth'], function () {
+//     Route::get('/', function () {
+//         return view('dashboard');
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+//     });
+
+// });
+// Route::group(['middleware' => 'auth'], function () {
+
+//     Route::get('/', function () {
+//         $user = Auth::user();
+//         $balances = Balance::where('user_id', $user->id)->get();
+//         $subsets = $balances->map(function ($balance) {
+//             return collect($balance->toArray())
+
+//                 ->only(['value', 'leavetype_id'])
+//                 ->all();
+//         });
+//         $final = $subsets->firstwhere('leavetype_id', '1');
+//         $finalfinal = $final['value'];
+//         return view('dashboard', ['user' => $user, 'balance' => $finalfinal]);
+//     })->name('welcome');
+
+// });
 
 Auth::routes();
 
@@ -102,6 +122,8 @@ Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], f
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('leaves', LeaveController::class);
+    Route::get('/leaves/approved/{id}', [LeaveController::class, 'approved'])->name('leaves.approved');
+    Route::get('/leaves/declined/{id}', [LeaveController::class, 'declined'])->name('leaves.declined');
 });
 
 // Route::resource('leaves', LeaveController::class);

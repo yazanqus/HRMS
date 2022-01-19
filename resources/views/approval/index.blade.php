@@ -21,7 +21,8 @@
                             <th scope="col">end date</th>
                             <th scope="col">Days</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Approve</th>
+                            <th scope="col">Decline</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -32,6 +33,15 @@
                           <td>{{ $leave->end_date }}</td>
                           <td>{{ $leave->days }}</td>
                           <td>{{ $leave->status }}</td>
+                          <td>
+                              <a class="btn btn-success"
+                              href="{{route('leaves.approved',$leave->id)}}">Approve</a>
+                            </td>
+
+                            <td>
+                                <a class="btn btn-danger" href="{{route('leaves.declined',$leave->id)}}">Decline</a>
+
+                            </td>
                           <td>edit</td>
                         </tr>
                         @endforeach

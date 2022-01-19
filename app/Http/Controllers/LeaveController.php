@@ -173,4 +173,43 @@ class LeaveController extends Controller
     {
         //
     }
+
+    public function approved($id)
+    {
+        $leave = Leave::find($id);
+        $leave->status = 'approved';
+        $leave->save();
+
+        $balances = Balance::where('user_id', $leave->user->id)->get();
+        $subsets = $balances->map(function ($balance) {
+            return collect($balance->toArray())
+
+                ->only(['value', 'leavetype_id'])
+                ->all();
+        });
+        $final = $subsets->firstwhere('leavetype_id', $leave->leavetype_id);
+
+        $finalfinal = $final['value'];
+        $currentbalance = $finalfinal;
+
+        $newbalance = $currentbalance - $leave->days;
+
+        Balance::where([
+            ['user_id', $leave->user->id],
+            ['leavetype_id', $leave->leavetype_id],
+        ])->update(['value' => $newbalance]);
+
+        return redirect()->route('approval');
+
+    }
+
+    public function declined($id)
+    {
+        $leave = Leave::find($id);
+        $leave->status = 'declined';
+        $leave->save();
+
+        return redirect()->route('approval');
+
+    }
 }

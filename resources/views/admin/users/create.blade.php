@@ -65,10 +65,47 @@
                                   <div class="row">
                                     <div class="col-md-6 mb-6">
 
-                                      <div class="form-outline">
+                                        <div class="form-group">
+                                            <input type="text" list="FavoriteColor" id="color" name="linemanager">
+
+                                                <datalist id="FavoriteColor">
+                                                    @foreach ($users as $user)
+
+                                                        <option value="{{$user->name}}"> </option>
+
+                                                    @endforeach
+                                                {{-- <option value="Red">
+                                                <option value="Green">
+                                                <option value="Silver">
+                                                <option value="Gold">
+                                                <option value="White">
+                                                <option value="Black">
+                                                <option value="Blue">
+                                                <option value="Purple">
+                                                <option value="Orange">
+                                                <option value="Yellow"> --}}
+                                                </datalist>
+                                                </p>
+{{--
+                                            <select
+
+                                            class="form-control"
+                                            name="linemanager" id="input-room_id" type="text"
+                                            placeholder="{{ __('Line Manager') }}"
+                                            required>
+                                            @foreach ($users as $user)
+                                                <option value="{{ $user->id }}"> {{$user->name}} </option>
+                                            @endforeach
+                                        </select> --}}
+                                        <label class="form-label" >Line Manager</label>
+
+                                          </div>
+
+
+                                      {{-- <div class="form-outline">
                                         <input type="text" name="linemanager" class="form-control form-control-lg" />
                                         <label class="form-label" >Line Manager</label>
-                                      </div>
+                                      </div> --}}
 
                                     </div>
 

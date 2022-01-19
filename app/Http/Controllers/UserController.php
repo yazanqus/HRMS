@@ -45,7 +45,9 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('admin.users.create');
+        $users = User::all();
+
+        return view('admin.users.create', ['users' => $users]);
     }
 
     public function store(Request $request)

@@ -102,6 +102,7 @@
                           <th scope="col">Emplyee ID</th>
                           <th scope="col">Position</th>
                           <th scope="col">Join Date</th>
+                          <th scope="col">Line Manager</th>
                           <th scope="col">Action</th>
                         </tr>
                       </thead>
@@ -112,6 +113,7 @@
                           <td>{{ $user->employee_number }}</td>
                           <td>{{ $user->position }}</td>
                           <td>{{ $user->joined_date }}</td>
+                          <td>{{ $user->linemanager }}</td>
                           <td>edit</td>
                         </tr>
                         @endforeach
