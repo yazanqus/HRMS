@@ -32,13 +32,15 @@
                         <div class="col">
                             Full Name: {{$user->name}}
                             <br>
-                            Unit: {{$user->unit}}
+                            Birth date: {{$user->birth_date}}
                             <br>
-                            Position: {{$user->position}}
+                            Unit: {{$user->unit}}
                             <br>
                             Employee ID: {{$user->employee_number}}
                           </div>
                           <div class="col">
+                            Position: {{$user->position}}
+                              <br>
                             Line Manager: {{$user->linemanager}}
                           </div>
                     </div>

@@ -114,7 +114,24 @@
                           <td>{{ $user->position }}</td>
                           <td>{{ $user->joined_date }}</td>
                           <td>{{ $user->linemanager }}</td>
-                          <td>edit</td>
+                          <td>
+                            <div class="btn-group dropright">
+                                <button class="btn btn-secondary dropdown-toggle justify-content-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </button>
+                                <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                                  <div class="justify-content-center"><a class="dropdown-item justify-content-center" href="{{ route('admin.users.show', $user) }}" target="_blank">View</a></div>
+                                  <div class="justify-content-center"><a class="dropdown-item justify-content-center" href="{{ route('admin.users.edit', $user) }}"  >Edit</a></div>
+                                  <form method="POST" action="#" class="text-center" >
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+
+                                    <div class="form-group">
+                                        <input type="submit" class="btn btn-danger" value="Delete">
+                                    </div>
+                                </form>
+                                </div>
+                              </div>
+                          </td>
                         </tr>
                         @endforeach
                       </tbody>

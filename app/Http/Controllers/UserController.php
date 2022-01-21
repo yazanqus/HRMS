@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Balance;
 use App\Models\Leavetype;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -142,6 +143,38 @@ class UserController extends Controller
         DB::table('users')->where('name', $setlinemenager)->update(['usertype_id' => '2']);
 
         return redirect()->route('admin.users.index');
+
+    }
+
+    public function show(User $user)
+    {
+        $balances = Balance::where('user_id', $user->id)->get();
+        $subsets = $balances->map(function ($balance) {
+            return collect($balance->toArray())
+
+                ->only(['value', 'leavetype_id'])
+                ->all();
+        });
+        $final = $subsets->firstwhere('leavetype_id', '1');
+        $finalfinal = $final['value'];
+        return view('admin.users.show', ['user' => $user, 'balance' => $finalfinal]);
+
+    }
+
+    public function edit(User $user)
+    {
+        // $balances = Balance::where('user_id', $user->id)->get();
+        // $subsets = $balances->map(function ($balance) {
+        //     return collect($balance->toArray())
+
+        //         ->only(['value', 'leavetype_id'])
+        //         ->all();
+        // });
+        // $final = $subsets->firstwhere('leavetype_id', '1');
+        // $finalfinal = $final['value'];
+        // return view('admin.users.edit', ['user' => $user, 'balance' => $finalfinal]);
+        $users = User::all();
+        return view('admin.users.edit', ['user' => $user, 'users' => $users]);
 
     }
 }
