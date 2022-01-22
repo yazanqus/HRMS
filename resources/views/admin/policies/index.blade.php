@@ -10,17 +10,25 @@
                       <p class="card-category"></p>
                     </div>
                     <div class="card-body">
+                        @php
+                            $user = Auth::user()
+                        @endphp
+                        @if ($user->hradmin == 'yes')
+
                         <div class="row">
-                            <div   div class="col-12 text-right">
-                              <a href="{{route('admin.policies.create')}}" class="btn btn-sm btn-primary">Add Policy</a>
-                            </div>
-                        </div>
+                               <div   div class="col-12 text-right">
+                                  <a href="{{route('admin.policies.create')}}" class="btn btn-sm btn-primary">Add Policy</a>
+                               </div>
+                         </div>
+
+
+                        @endif
                       <div class="row">
                     <table class="table table-striped table-Secondary">
                     <thead>
                         <tr>
                           <th scope="col">Name</th>
-                          <th scope="col">Desc</th>
+                          <th scope="col">Description</th>
                           <th scope="col">Created date</th>
                           <th scope="col">Last updated</th>
                           <th scope="col">Action</th>
@@ -39,6 +47,7 @@
                             </button>
                             <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
                               <div class="justify-content-center"><a class="dropdown-item justify-content-center" href="/storage/files/{{$policy->name}}.pdf" target="_blank">View</a></div>
+                              @if ($user->hradmin == 'yes')
                               <div class="justify-content-center"><a class="dropdown-item justify-content-center" href="{{ route('admin.policies.edit', $policy) }}"  >Edit</a></div>
                               <form method="POST" action="{{ route('admin.policies.destroy', $policy) }}" class="text-center" >
                                 {{ csrf_field() }}
@@ -48,6 +57,7 @@
                                     <input type="submit" class="btn btn-danger" value="Delete">
                                 </div>
                             </form>
+                              @endif
                             </div>
                           </div>
                         </td>

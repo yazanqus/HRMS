@@ -16,6 +16,8 @@ class PolicyController extends Controller
     public function index()
     {
         $policy = Policy::all();
+        // $user = Auth::user();
+
         return view('admin.policies.index', ['policies' => $policy]);
     }
 
