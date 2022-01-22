@@ -89,7 +89,18 @@
           </ul>
         </div>
       </li>
+
+
+      <li class="nav-item{{ $activePage == 'allstaffleaves' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.allstaffleaves.index') }}">
+          <i class="material-icons">library_books</i>
+            <p>{{ __('All Staff Leaves') }}</p>
+        </a>
+      </li>
       @endif
+
+
+
 
       {{-- <li class="nav-item{{ $activePage == 'users' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('table') }}">

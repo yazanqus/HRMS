@@ -51,6 +51,13 @@ Auth::routes();
 
 // Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
 
+Route::group(['middleware' => ['auth', 'hradmin'], 'prefix' => '/admin', 'as' => 'admin.'], function () {
+    Route::get('allstaffleaves', function () {
+        $leaves = Leave::all();
+        return view('admin.allstaffleaves.index', ['leaves' => $leaves]);
+    })->name('allstaffleaves.index');
+});
+
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('welcome', function () {

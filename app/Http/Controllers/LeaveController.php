@@ -100,7 +100,8 @@ class LeaveController extends Controller
         $datetime1 = new DateTime($fdate);
         $datetime2 = new DateTime($ldate);
         $interval = $datetime1->diff($datetime2);
-        $days = $interval->format('%a');
+        $dayss = $interval->format('%a');
+        $days = $dayss+'1';
 
         // $userid = Auth::user()->id;
         // $user = Auth::user();
