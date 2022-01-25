@@ -6,6 +6,7 @@ use App\Models\Balance;
 use App\Models\Leave;
 use App\Models\Leavetype;
 use App\Models\User;
+use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -106,24 +107,35 @@ class LeaveController extends Controller
         // $userid = Auth::user()->id;
         // $user = Auth::user();
 
-        if ($days <= $currentbalance) {
+        $datenow = Carbon::now();
+        $joineddate = new DateTime($user->joined_date);
+        $dateenow = new DateTime($datenow);
+        $intervall = $joineddate->diff($dateenow);
+        $probationdays = $intervall->format('%a');
 
-            $leave = new Leave();
-            $leave->start_date = $request->start_date;
-            $leave->end_date = $request->end_date;
-            $leave->days = $days;
-            $leave->leavetype_id = $request->leavetype_id;
-            $leave->user_id = auth()->user()->id;
-            $leave->status = 'Pending Approval';
+        if ($probationdays >= '90') {
 
-            $leave->save();
-            // $newbalance = $currentbalance - $days;
+            if ($days <= $currentbalance) {
 
-            // Balance::where([
-            //     ['user_id', $user->id],
-            //     ['leavetype_id', $request->leavetype_id],
-            // ])->update(['value' => $newbalance]);
+                $leave = new Leave();
+                $leave->start_date = $request->start_date;
+                $leave->end_date = $request->end_date;
+                $leave->days = $days;
+                $leave->leavetype_id = $request->leavetype_id;
+                $leave->user_id = auth()->user()->id;
+                $leave->status = 'Pending Approval';
 
+                $leave->save();
+                // $newbalance = $currentbalance - $days;
+
+                // Balance::where([
+                //     ['user_id', $user->id],
+                //     ['leavetype_id', $request->leavetype_id],
+                // ])->update(['value' => $newbalance]);
+
+            }
+        } else {
+            echo 'you are still on probation';
         }
 
         return redirect()->route('leaves.index');
