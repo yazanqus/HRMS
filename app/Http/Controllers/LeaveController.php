@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class LeaveController extends Controller
 {
@@ -44,19 +45,16 @@ class LeaveController extends Controller
      */
     public function store(Request $request)
     {
+        // getting the balance for the user for the inserted leave type
         $user = Auth::user();
-
         $balances = Balance::where('user_id', $user->id)->get();
-
         $subsets = $balances->map(function ($balance) {
             return collect($balance->toArray())
 
                 ->only(['value', 'leavetype_id'])
                 ->all();
         });
-
         $final = $subsets->firstwhere('leavetype_id', $request->leavetype_id);
-
         $finalfinal = $final['value'];
         $currentbalance = $finalfinal;
 
@@ -80,6 +78,7 @@ class LeaveController extends Controller
         $intervall = $joineddate->diff($dateenow);
         $probationdays = $intervall->format('%a');
 
+        // Annual leave conditions
         if ($request->leavetype_id == '1') {
 
             if ($probationdays >= '90') {
@@ -101,6 +100,79 @@ class LeaveController extends Controller
             } else {
                 echo 'you are still on probation';
             }
+        }
+
+        // Marriage leave conditions
+        elseif ($request->leavetype_id == '5') {
+
+            if ($probationdays >= '180') {
+
+                if ($days <= $currentbalance) {
+
+                    $leave = new Leave();
+                    $leave->start_date = $request->start_date;
+                    $leave->end_date = $request->end_date;
+                    $leave->days = $days;
+                    $leave->leavetype_id = $request->leavetype_id;
+                    $leave->user_id = auth()->user()->id;
+                    $leave->status = 'Pending Approval';
+
+                    $leave->save();
+
+                    return redirect()->route('leaves.index');
+                }
+            } else {
+                echo 'you cant apply for marriage leave yet';
+            }
+
+        }
+
+        // Maternity leave coditions
+        elseif ($request->leavetype_id == '8') {
+
+            if ($probationdays >= '180') {
+
+                if ($days <= $currentbalance) {
+
+                    $leave = new Leave();
+                    $leave->start_date = $request->start_date;
+                    $leave->end_date = $request->end_date;
+                    $leave->days = $days;
+                    $leave->leavetype_id = $request->leavetype_id;
+                    $leave->user_id = auth()->user()->id;
+                    $leave->status = 'Pending Approval';
+
+                    $leave->save();
+
+                    return redirect()->route('leaves.index');
+                }
+            } else {
+                echo 'you cant apply for marriage leave yet';
+            }
+        }
+
+        // Paternity leave coditions
+        elseif ($request->leavetype_id == '9') {
+
+            if ($probationdays >= '180') {
+
+                if ($days <= $currentbalance) {
+
+                    $leave = new Leave();
+                    $leave->start_date = $request->start_date;
+                    $leave->end_date = $request->end_date;
+                    $leave->days = $days;
+                    $leave->leavetype_id = $request->leavetype_id;
+                    $leave->user_id = auth()->user()->id;
+                    $leave->status = 'Pending Approval';
+
+                    $leave->save();
+
+                    return redirect()->route('leaves.index');
+                }
+            } else {
+                echo 'you cant apply for marriage leave yet';
+            }
         } else {
             $leave = new Leave();
             $leave->start_date = $request->start_date;
@@ -111,6 +183,13 @@ class LeaveController extends Controller
             $leave->status = 'Pending Approval';
 
             $leave->save();
+
+            $data = ['foo' => 'baz'];
+
+            Mail::send('danial@admin.com', $data, function ($message) use ($user) {
+                $message->to('danial@admin.com');
+                $message->subject('Welcome Mail');
+            });
 
             return redirect()->route('leaves.index');
         }

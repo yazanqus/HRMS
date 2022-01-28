@@ -129,6 +129,7 @@ class UsersTableSeeder extends Seeder
             'grade' => '10',
             'joined_date' => '2022-01-03',
             'email' => 'rami.janboura@nrc.no',
+            'hradmin' => 'yes',
             'email_verified_at' => now(),
             'password' => Hash::make('Password8'),
             'created_at' => now(),
