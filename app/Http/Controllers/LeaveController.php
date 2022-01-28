@@ -113,32 +113,50 @@ class LeaveController extends Controller
         $intervall = $joineddate->diff($dateenow);
         $probationdays = $intervall->format('%a');
 
-        if ($probationdays >= '90') {
+        if ($request->leavetype_id == '1') {
 
-            if ($days <= $currentbalance) {
+            if ($probationdays >= '90') {
 
-                $leave = new Leave();
-                $leave->start_date = $request->start_date;
-                $leave->end_date = $request->end_date;
-                $leave->days = $days;
-                $leave->leavetype_id = $request->leavetype_id;
-                $leave->user_id = auth()->user()->id;
-                $leave->status = 'Pending Approval';
+                if ($days <= $currentbalance) {
 
-                $leave->save();
-                // $newbalance = $currentbalance - $days;
+                    $leave = new Leave();
+                    $leave->start_date = $request->start_date;
+                    $leave->end_date = $request->end_date;
+                    $leave->days = $days;
+                    $leave->leavetype_id = $request->leavetype_id;
+                    $leave->user_id = auth()->user()->id;
+                    $leave->status = 'Pending Approval';
 
-                // Balance::where([
-                //     ['user_id', $user->id],
-                //     ['leavetype_id', $request->leavetype_id],
-                // ])->update(['value' => $newbalance]);
+                    $leave->save();
+                    // $newbalance = $currentbalance - $days;
 
+                    // Balance::where([
+                    //     ['user_id', $user->id],
+                    //     ['leavetype_id', $request->leavetype_id],
+                    // ])->update(['value' => $newbalance]);
+                    return redirect()->route('leaves.index');
+                }
+            } else {
+                echo 'you are still on probation';
             }
         } else {
-            echo 'you are still on probation';
-        }
+            $leave = new Leave();
+            $leave->start_date = $request->start_date;
+            $leave->end_date = $request->end_date;
+            $leave->days = $days;
+            $leave->leavetype_id = $request->leavetype_id;
+            $leave->user_id = auth()->user()->id;
+            $leave->status = 'Pending Approval';
 
-        return redirect()->route('leaves.index');
+            $leave->save();
+            // $newbalance = $currentbalance - $days;
+
+            // Balance::where([
+            //     ['user_id', $user->id],
+            //     ['leavetype_id', $request->leavetype_id],
+            // ])->update(['value' => $newbalance]);
+            return redirect()->route('leaves.index');
+        }
 
     }
 

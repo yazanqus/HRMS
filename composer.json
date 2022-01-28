@@ -12,8 +12,10 @@
         "laravel-frontend-presets/material-dashboard": "^1.1",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
+        "laravel/socialite": "^5.4",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.4"
+        "laravel/ui": "^3.4",
+        "socialiteproviders/okta": "^4.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

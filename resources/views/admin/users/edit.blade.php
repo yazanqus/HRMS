@@ -45,7 +45,7 @@
                                 </div>
                             </form> --}}
 
-                            <form class="form-card" action="{{ route('admin.users.store') }}" method="POST">
+                            <form class="form-card" action="{{ route('admin.users.update',$user) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="row justify-content-between text-left">
@@ -97,8 +97,9 @@
                                         <label class="form-control-label px-3">Line Manager</label>
                                         <input type="text" list="FavoriteColor" id="linemanager"  value="{{$user->linemanager}}" name="linemanager" placeholder="" autocomplete="off">
                                                 <datalist id="FavoriteColor">
-                                                    @foreach ($users as $user)
-                                                        <option value="{{$user->name}}"> </option>
+
+                                                    @foreach ($userss as $userr)
+                                                        <option value="{{$userr->name}}"> </option>
                                                     @endforeach
                                                 </datalist>
                                                 </p>
@@ -119,13 +120,13 @@
                                         <label class="form-control-label px-3">Role <small>(Currently: {{$admin}})</small></label>
 
                                         <div class="form-check">
-                                            <input class="btn-check" type="radio" name="hradmin" Value="1" id="test1">
+                                            <input class="btn-check" type="radio" name="hradmin" Value="no" id="test1">
                                             <label class="form-check-label" for="test1">
                                               Not Admin
                                             </label>
                                           </div>
                                           <div class="form-check">
-                                            <input class="btn-check" type="radio" name="hradmin" Value="2" id="test2" >
+                                            <input class="btn-check" type="radio" name="hradmin" Value="yes" id="test2" >
                                             <label class="form-check-label" for="test2">
                                               Admin
                                             </label>
@@ -156,7 +157,7 @@
             </div>
           </div>
 
-
+{{--
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -235,25 +236,9 @@
 
 
 
-                                            {{-- <select
-
-                                            class="form-control"
-                                            name="linemanager" id="input-room_id" type="text"
-                                            placeholder="{{ __('Line Manager') }}"
-                                            required>
-                                            @foreach ($users as $user)
-                                                <option value="{{ $user->id }}"> {{$user->name}} </option>
-                                            @endforeach
-                                        </select> --}}
                                         <label class="form-label" >Line Manager</label>
 
                                           </div>
-
-
-                                      {{-- <div class="form-outline">
-                                        <input type="text" name="linemanager" class="form-control form-control-lg" />
-                                        <label class="form-label" >Line Manager</label>
-                                      </div> --}}
 
                                     </div>
 
@@ -319,7 +304,7 @@
 
 
             </div>
-          </div>
+          </div>--}}
 
 
     </div>

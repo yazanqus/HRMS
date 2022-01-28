@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Middleware;
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\PolicyController;
@@ -58,6 +59,9 @@ Route::group(['middleware' => ['auth', 'hradmin'], 'prefix' => '/admin', 'as' =>
     })->name('allstaffleaves.index');
 });
 
+Route::get('login/okta', [LoginController::class, 'redirectToProvider'])->name('login-okta');
+Route::get('login/okta/callback', [LoginController::class, 'handleProviderCallback']);
+
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('welcome', function () {
@@ -77,21 +81,32 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('approval', function () {
         $user = Auth::user();
         $staff = User::where('linemanager', $user->name)->get();
-        // dd($user);
+        // dd($staff);
+        if (count($staff)) {
 
-        $subsets = $staff->map(function ($staff) {
-            return collect($staff->toArray())
+            $subsets = $staff->map(function ($staff) {
+                return collect($staff->toArray())
 
-                ->only(['id'])
-                ->all();
-        });
+                    ->only(['id'])
+                    ->all();
+            });
 
-        $leaves = Leave::where([
-            ['user_id', $subsets],
-            ['status', 'Pending Approval'],
-        ])->get();
-        // $leaves = Leave::where('Status', 'Pending Approval')->get();
-        return view('approval.index', ['leaves' => $leaves]);
+            $leaves = Leave::where([
+                ['user_id', $subsets],
+                ['status', 'Pending Approval'],
+            ])->get();
+            // $leaves = Leave::where('Status', 'Pending Approval')->get();
+            return view('approval.index', ['leaves' => $leaves]);
+
+        } else {
+            $leavess = Leave::where([
+                ['user_id', $user->id],
+                ['status', 'no staff under this line manager'],
+            ])->get();
+            // dd($leavess);
+            return view('approval.index', ['leaves' => $leavess]);
+        }
+
     })->name('approval');
 
     Route::get('staffleaves', function () {
@@ -99,19 +114,28 @@ Route::group(['middleware' => 'auth'], function () {
         $user = Auth::user();
         $staff = User::where('linemanager', $user->name)->get();
         // dd($user);
+        if (count($staff)) {
+            $subsets = $staff->map(function ($staff) {
+                return collect($staff->toArray())
 
-        $subsets = $staff->map(function ($staff) {
-            return collect($staff->toArray())
+                    ->only(['id'])
+                    ->all();
+            });
 
-                ->only(['id'])
-                ->all();
-        });
+            $leaves = Leave::where([
+                ['user_id', $subsets],
+            ])->get();
 
-        $leaves = Leave::where([
-            ['user_id', $subsets],
-        ])->get();
+            return view('staffleaves.index', ['leaves' => $leaves]);
+        } else {
+            $leavess = Leave::where([
+                ['user_id', $user->id],
+                ['status', 'no staff under this line manager'],
+            ])->get();
+            // dd($leavess);
+            return view('staffleaves.index', ['leaves' => $leavess]);
+        }
 
-        return view('staffleaves.index', ['leaves' => $leaves]);
     })->name('staffleaves');
 
     Route::get('table-list', function () {

@@ -94,6 +94,12 @@
                             <small>{{ __('Create new account') }}</small>
                         </a>
                     </div>
+
+                    <div class="btn btn-danger">
+                        <a href="{{ route('login-okta') }}" class="text-light">
+                            {{ __('Login With OKTA') }}
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

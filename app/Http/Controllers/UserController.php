@@ -173,8 +173,91 @@ class UserController extends Controller
         // $final = $subsets->firstwhere('leavetype_id', '1');
         // $finalfinal = $final['value'];
         // return view('admin.users.edit', ['user' => $user, 'balance' => $finalfinal]);
-        $users = User::all();
-        return view('admin.users.edit', ['user' => $user, 'users' => $users]);
+        $userss = User::all();
+        return view('admin.users.edit', ['user' => $user, 'userss' => $userss]);
+
+    }
+
+    public function update(User $user, Request $request)
+    {
+        $request->validate([
+
+            'name' => 'required',
+            'employee_number' => 'required',
+            'birth_date' => 'required',
+            'position' => 'required',
+            'unit' => 'required',
+            'grade' => 'required',
+            'joined_date' => 'required',
+            'linemanager' => 'required',
+            'hradmin',
+            'password',
+            // hradminrole?
+            // staffrole?
+        ]);
+        // dd($request);
+        $user->password = Hash::make($request->password);
+
+        $user->update($request->all());
+
+        $day = date("d", strtotime($user->joined_date));
+        $month = date("m", strtotime($user->joined_date));
+        if ($day < '15') {
+
+            $userannualleavebalance = (1.25 * (12 - $month + 1));
+
+        }
+
+        if ($day >= '15') {
+            $userannualleavebalance = ((1.25 * (12 - $month)) + 0.5);
+        }
+
+        // dd($userannualleavebalance);
+
+        // $balances = Balance::where('user_id', $user->id)->get();
+        // dd($balances);
+
+        $user->balances()->where('name', 'Annual leave')->update([
+            'value' => $userannualleavebalance,
+        ]);
+
+        // $leavetypes = Leavetype::all();
+        // foreach ($leavetypes as $leavetype) {
+
+        //     if ($leavetype->name == "Annual leave") {
+        //         $user->balances()->create([
+
+        //             'name' => $leavetype->name,
+        //             'value' => $userannualleavebalance,
+        //             'leavetype_id' => $leavetype->id,
+        //         ]);
+
+        //         // if ($leavetype->id = '1') {
+
+        //         // $user->balances()->create([
+        //         //     'leavetype_id' => $leavetype->id,
+        //         //     'name' => $leavetype->name,
+        //         //     'value' => $userannualleavebalance,
+        //         // ]);
+
+        //         // $user->balances()->create([
+        //         //     'leavetype_id' => $leavetype->id,
+        //         //     'name' => $leavetype->name,
+        //         //     'value' => '5',
+        //         // ]);
+        //     } else {
+        //         $user->balances()->create([
+        //             'name' => $leavetype->name,
+        //             'value' => $leavetype->value,
+        //             'leavetype_id' => $leavetype->id,
+        //         ]);
+        //     }
+        // }
+
+        $setlinemenager = $request->linemanager;
+        DB::table('users')->where('name', $setlinemenager)->update(['usertype_id' => '2']);
+
+        return redirect()->route('admin.users.index');
 
     }
 }

@@ -26,7 +26,12 @@ class User extends Authenticatable
         'employee_number',
         'joined_date',
         'email',
+        'grade',
         'password',
+        'linemanager',
+        'usertype_id',
+        'hradmin',
+        'token',
     ];
     public $sortable = ['name', 'position', 'created_at', 'updated_at'];
 
