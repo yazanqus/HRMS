@@ -46,31 +46,7 @@ class LeaveController extends Controller
     {
         $user = Auth::user();
 
-        // $userid = $user->balances->get();
-
-        // $test = Balance::with('leavetype', 'leavetype.user')->find('1');
         $balances = Balance::where('user_id', $user->id)->get();
-
-        // $userbalance = Balance::whereBelongsTo($user)->get();
-        // $subset = $userbalance->map(function ($balance) {
-        //     return collect($balance)
-        //         ->only(['value'])
-        //         ->all();
-        // });
-
-        // $test = Balance::whereHas('user', function ($q) {
-        //     $q->whereHas('balances', function($q)
-        //         {
-        //             $q->whereIn('group.name_short', array('admin','user'));
-        //         });
-        // })->get();
-
-        // $test = DB::table('balances')->where([
-        //     ['name', 'Sick leave'],
-        //     ['leavetype_id', '2'],
-        // ])->get();
-
-        // $userbalance = $user->balances->where('leavetype_id', $request->leavetype_id);
 
         $subsets = $balances->map(function ($balance) {
             return collect($balance->toArray())
@@ -81,14 +57,8 @@ class LeaveController extends Controller
 
         $final = $subsets->firstwhere('leavetype_id', $request->leavetype_id);
 
-        // $finalfinal = $final->filter(function ($value) {
-        //     return $value == 'value';
-        // })->first();
-
         $finalfinal = $final['value'];
         $currentbalance = $finalfinal;
-
-        // dd($finalfinal);
 
         $request->validate([
             'start_date' => 'required',
@@ -103,9 +73,6 @@ class LeaveController extends Controller
         $interval = $datetime1->diff($datetime2);
         $dayss = $interval->format('%a');
         $days = $dayss+'1';
-
-        // $userid = Auth::user()->id;
-        // $user = Auth::user();
 
         $datenow = Carbon::now();
         $joineddate = new DateTime($user->joined_date);
@@ -128,12 +95,7 @@ class LeaveController extends Controller
                     $leave->status = 'Pending Approval';
 
                     $leave->save();
-                    // $newbalance = $currentbalance - $days;
 
-                    // Balance::where([
-                    //     ['user_id', $user->id],
-                    //     ['leavetype_id', $request->leavetype_id],
-                    // ])->update(['value' => $newbalance]);
                     return redirect()->route('leaves.index');
                 }
             } else {
@@ -149,12 +111,7 @@ class LeaveController extends Controller
             $leave->status = 'Pending Approval';
 
             $leave->save();
-            // $newbalance = $currentbalance - $days;
 
-            // Balance::where([
-            //     ['user_id', $user->id],
-            //     ['leavetype_id', $request->leavetype_id],
-            // ])->update(['value' => $newbalance]);
             return redirect()->route('leaves.index');
         }
 
