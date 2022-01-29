@@ -58,11 +58,11 @@ class UserController extends Controller
         $request->validate([
 
             'name' => 'required',
-            'employee_number' => 'required',
-            'birth_date' => 'required',
+            'employee_number' => 'required|numeric|digits:4|unique',
+            'birth_date' => 'required|date',
             'position' => 'required',
             'unit' => 'required',
-            'joined_date' => 'required',
+            'joined_date' => 'required|date',
             'linemanager' => 'required',
             'hradmin' => 'required',
             'password' => 'required',
