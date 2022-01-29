@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\LeaveController;
+use App\Http\Controllers\OvertimeController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\UserController;
 use App\Models\Balance;
@@ -190,6 +191,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('leaves', LeaveController::class);
     Route::get('/leaves/approved/{id}', [LeaveController::class, 'approved'])->name('leaves.approved');
     Route::get('/leaves/declined/{id}', [LeaveController::class, 'declined'])->name('leaves.declined');
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('overtimes', OvertimeController::class);
+    // Route::get('/leaves/approved/{id}', [LeaveController::class, 'approved'])->name('leaves.approved');
+    // Route::get('/leaves/declined/{id}', [LeaveController::class, 'declined'])->name('leaves.declined');
 });
 
 // Route::resource('leaves', LeaveController::class);

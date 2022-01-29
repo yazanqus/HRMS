@@ -116,6 +116,15 @@
         </a>
       </li>
 
+
+      <li class="nav-item{{ $activePage == 'overtime' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('overtimes.index') }}">
+          <i class="material-icons">content_paste</i>
+            <p>{{ __('Overtime') }}</p>
+        </a>
+      </li>
+
+
       <li class="nav-item{{ $activePage == 'policies' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('admin.policies.index') }}">
           <i class="material-icons">content_paste</i>

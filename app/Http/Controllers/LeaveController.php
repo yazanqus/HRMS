@@ -10,7 +10,6 @@ use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
 class LeaveController extends Controller
 {
@@ -186,10 +185,10 @@ class LeaveController extends Controller
 
             $data = ['foo' => 'baz'];
 
-            Mail::send('danial@admin.com', $data, function ($message) use ($user) {
-                $message->to('danial@admin.com');
-                $message->subject('Welcome Mail');
-            });
+            // Mail::send('danial@admin.com', $data, function ($message) use ($user) {
+            //     $message->to('danial@admin.com');
+            //     $message->subject('Welcome Mail');
+            // });
 
             return redirect()->route('leaves.index');
         }
