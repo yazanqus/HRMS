@@ -58,7 +58,7 @@ class UserController extends Controller
         $request->validate([
 
             'name' => 'required',
-            'employee_number' => 'required|numeric|digits:4|unique',
+            'employee_number' => 'required|numeric|digits:4|unique:users',
             'birth_date' => 'required|date',
             'position' => 'required',
             'unit' => 'required',
@@ -80,6 +80,12 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
 
         $user->save();
+
+        // EmployeeCreated::dispatch($user);
+        // listeners
+        // create employee balance
+        // set line manger
+        //
 
         $day = date("d", strtotime($user->joined_date));
         $month = date("m", strtotime($user->joined_date));
