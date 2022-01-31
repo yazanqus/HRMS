@@ -58,6 +58,12 @@ class LoginController extends Controller
         // return 'You are Always Welcome';
         $user = Socialite::driver('okta')->user();
 
+        // $localUser = User::updateOrCreate([
+        //     'email' => $user->email,
+        // ], [
+        //     'name' => $user->name,
+        //     'token' => $user->token,
+        // ]);
         $localUser = User::where('email', $user->email)->first();
 
         // create a local user with the email and token from Okta
@@ -79,7 +85,7 @@ class LoginController extends Controller
             return redirect('/login-okta');
         }
 
-        return redirect('/home');
+        return redirect(RouteServiceProvider::HOME);
     }
 
     public function logout()
