@@ -3,33 +3,91 @@
 @section('content')
     <div class="container" style="height: auto;">
         <div class="row align-items-center">
-            {{-- <div class="col-md-9 ml-auto mr-auto mb-3 text-center">
-                <h3>{{ __('Log in to see how you can speed up your web development with out of the box CRUD for #User Management and more.') }}
-                </h3>
-            </div> --}}
+
+      <!-- /.login-logo -->
+      <div class="card card-outline card-primary col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
+        <div class="card-header text-center">
+          <a href="#" class="h1"><b>Admin</b>LTE</a>
+        </div>
+        <div class="card-body text-center">
+          <p class="login-box-msg">Sign in to start your session</p>
+
+          <form action="{{ route('login') }}" method="post">
+            @csrf
+            <div class="input-group mb-3">
+              <input type="text" name="employee_number" value="{{ old('employee_number', '') }}" class="form-control"
+                placeholder="{{ __('Employee Number...') }}" required>
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-envelope"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="password" name="password" class="form-control" placeholder="Password" required>
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-8">
+                <div class="icheck-primary">
+                  <input type="checkbox" id="remember">
+                  <label for="remember">
+                    Remember Me
+                  </label>
+                </div>
+              </div>
+              <!-- /.col -->
+              <div class="col-4">
+                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+              </div>
+              <!-- /.col -->
+            </div>
+          </form>
+
+          <div class="social-auth-links text-center mt-2 mb-3">
+            <a href="#" class="btn btn-block btn-primary">
+              <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+            </a>
+            <a href="#" class="btn btn-block btn-danger">
+              <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+            </a>
+          </div>
+          <!-- /.social-auth-links -->
+
+          <p class="mb-1">
+            <a href="forgot-password.html">I forgot my password</a>
+          </p>
+          <p class="mb-0">
+            <a href="register.html" class="text-center">Register a new membership</a>
+          </p>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+
+
+
+
+
+</div>
+</div>
+
+
+
+
+{{--
             <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
                 <form class="form" method="POST" action="{{ route('login') }}">
                     @csrf
                   <div class="color-head" style="margin: 0 0 -73px 0; background-color:#ff9400; height: 50px; border-radius: 5px;"></div>
                     <div class="card card-login card-hidden mb-3">
-                        {{-- <div class="card-header card-header-primary text-center">
-                            <h4 class="card-title"><strong>{{ __('Login') }}</strong></h4>
-                            <div class="social-line">
-                                <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                                    <i class="fa fa-facebook-square"></i>
-                                </a>
-                                <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                                <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
-                            </div>
-                        </div> --}}
+
                         <div class="card-body">
-                            {{-- <p class="card-description text-center">{{ __('Or Sign in with ') }}
-                                <strong>admin@material.com</strong> {{ __(' and the password ') }}<strong>secret</strong>
-                            </p> --}}
+
                             <div class="bmd-form-group{{ $errors->has('employee_number') ? ' has-danger' : '' }}">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -82,18 +140,6 @@
                     </div>
                 </form>
                 <div class="row">
-                    <div class="col-6">
-                        @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}" class="text-light">
-                                <small>{{ __('Forgot password?') }}</small>
-                            </a>
-                        @endif
-                    </div>
-                    <div class="col-6 text-right">
-                        <a href="{{ route('register') }}" class="text-light">
-                            <small>{{ __('Create new account') }}</small>
-                        </a>
-                    </div>
 
                     <div class="btn btn-danger">
                         <a href="{{ route('login-okta') }}" class="text-light">
@@ -103,6 +149,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
+
+
+
+
 @endsection
 

@@ -85,7 +85,7 @@ class LoginController extends Controller
             return redirect('/login-okta');
         }
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect('/home');
     }
 
     public function logout()
