@@ -4,57 +4,58 @@
 
           <div class="content">
               <div class="container-fluid">
-                  <div class="card">
-                    <div class="card-header card-header-primary">
-                      <h4 class="card-title ">My leaves</h4>
-                      {{-- <p class="card-category">Here you can see the history of leaves</p> --}}
+                <div class="row">
+                    <div class="col-md-6 mb-6">
+                        <div class="text">
+                            {{-- @foreach ($users as $user) --}}
+                            {{-- <h3>Welcome <b>{{$user->name}}</b> </h3> --}}
+                            {{-- @endforeach --}}
+                        </div>
                     </div>
-                    <div class="card-body">
-                                      <div class="row">
-                        <div class="col-12 text-right">
-                          <a href="{{route('leaves.create')}}" class="btn btn-sm btn-primary">Submit a new Leave</a>
+                </div>
+                <br>
+
+                  <div class="container-fluid">
+                      <div class="card">
+                        <div class="card-header card-header-primary">
+                          <h4 class="card-title ">My leaves</h4>
+                          {{-- <p class="card-category">Here you can see the history of leaves</p> --}}
+                          {{-- <div class="row"> --}}
+                            <div class="col-12 text-right">
+                              <a href="{{route('leaves.create')}}" class="btn btn-sm btn-primary">Submit a new Leave</a>
+                            </div>
+                          {{-- </div> --}}
+                        </div>
+                        <div class="card-body table-responsive-md">
+
+                          <div class="row">
+                        <table class="table table-hover text-nowrap table-Secondary">
+                        <thead>
+                            <tr>
+                              <th scope="col">Name</th>
+                              <th class="text-center" scope="col">Start date</th>
+                              <th class="text-center" scope="col">End date</th>
+                              <th class="text-center" scope="col">Days</th>
+                              <th class="text-center" scope="col">Status</th>
+                              <th class="text-center" scope="col">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            @foreach ($leaves as $leave)
+                            <tr>
+                              <td>{{ $leave->user->name }}</td>
+                              <td class="text-center">{{ $leave->start_date }}</td>
+                              <td class="text-center">{{ $leave->end_date }}</td>
+                              <td class="text-center">{{ $leave->days }}</td>
+                              <td class="text-center">{{ $leave->status }}</td>
+                              <td class="text-center">edit</td>
+                            </tr>
+                            @endforeach
+                          </tbody>
+                      </table>
+                          </div>
                         </div>
                       </div>
-                      <div class="row">
-                    <table class="table table-striped table-Secondary">
-                    <thead>
-                        <tr>
-                          <th scope="col">Name</th>
-                          <th scope="col">start date</th>
-                          <th scope="col">end date</th>
-                          <th scope="col">Days</th>
-                          <th scope="col">Status</th>
-                          <th scope="col">Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        @foreach ($leaves as $leave)
-                        <tr>
-                          <td>{{ $leave->user->name }}</td>
-                          <td>{{ $leave->start_date }}</td>
-                          <td>{{ $leave->end_date }}</td>
-                          <td>{{ $leave->days }}</td>
-                          <td>{{ $leave->status }}</td>
-                          <td>edit</td>
-                        </tr>
-                        @endforeach
-                      </tbody>
-                  </table>
-                        {{-- @foreach ($users as $user)
-                          <div class="col-md-3">
-                            <div class="card text-center"  style="width: 18rem;">
-                              <img class="card-img-top" src="..." alt="Card image cap">
-                              <div class="card-body" >
-                                <h5 class="card-title">{{$user->name}}</h5>
-                                <p class="card-text">{{$user->employee_number}}</p>
-                                <p class="card-text">{{$user->position}}</p>
-                                <a href="#" class="btn btn-primary">Profile</a>
-                              </div>
-                            </div>
-                          </div>
-                          @endforeach --}}
-                      </div>
-                    </div>
                   </div>
               </div>
           </div>

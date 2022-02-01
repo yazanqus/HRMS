@@ -8,7 +8,7 @@
                 <div class="col-md-6 mb-6">
                     <div class="text">
                         {{-- @foreach ($users as $user) --}}
-                        <h3>Welcome <b>{{$user->name}}</b> </h3>
+                        {{-- <h3>Welcome <b>{{$user->name}}</b> </h3> --}}
                         {{-- @endforeach --}}
                     </div>
                 </div>

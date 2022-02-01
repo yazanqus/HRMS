@@ -123,7 +123,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{ asset('adminlte') }}/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.cs')}}">
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('adminlte') }}/dist/css/adminlte.min.css">
 </head>
@@ -148,18 +152,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <li class="nav-item">
     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
   </li>
-  <li class="nav-item d-none d-sm-inline-block">
+  {{-- <li class="nav-item d-none d-sm-inline-block">
     <a href="index3.html" class="nav-link">Home</a>
   </li>
   <li class="nav-item d-none d-sm-inline-block">
     <a href="#" class="nav-link">Contact</a>
-  </li>
+  </li> --}}
 </ul>
 
 <!-- Right navbar links -->
 <ul class="navbar-nav ml-auto">
   <!-- Navbar Search -->
   <li class="nav-item">
+    <a class="nav-link" href="{{ route('welcome') }}">
+        <i class="fas fa-language fa-lg"></i>
+      {{-- <p class="d-lg-none d-md-block">
+        {{ __('Stats') }}
+      </p> --}}
+    </a>
+  </li>
+  {{-- <li class="nav-item">
     <a class="nav-link" data-widget="navbar-search" href="#" role="button">
       <i class="fas fa-search"></i>
     </a>
@@ -178,7 +190,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
       </form>
     </div>
-  </li>
+  </li> --}}
 
   <!-- Messages Dropdown Menu -->
   <li class="nav-item dropdown">
@@ -265,15 +277,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
     </div>
   </li> --}}
-  <li class="nav-item">
+  {{-- <li class="nav-item">
     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
       <i class="fas fa-expand-arrows-alt"></i>
     </a>
-  </li>
-  <li class="nav-item">
+  </li> --}}
+  {{-- <li class="nav-item">
     <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
       <i class="fas fa-th-large"></i>
     </a>
+  </li> --}}
+  <li class="nav-item dropdown">
+    <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-user-alt"></i>
+      <p class="d-lg-none d-md-block">
+        {{ __('Account') }}
+      </p>
+      @php
+          $user = Auth::user();
+      @endphp
+      {{$user->name}}
+    </a>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+      {{-- <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a> --}}
+      <a class="dropdown-item" href="#">{{ __('Change Password') }}</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Log out') }}</a>
+    </div>
   </li>
 </ul>
 </nav>
@@ -436,15 +466,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <p>{{ __('Holidays') }}</p>
     </a>
   </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link">
-          <i class="nav-icon fas fa-th"></i>
-          <p>
-            Simple Link
-            <span class="right badge badge-danger">New</span>
-          </p>
-        </a>
-      </li>
+
     </ul>
   </nav>
   <!-- /.sidebar-menu -->
@@ -566,12 +588,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-@stack('scripts')
-<script src="{{ asset('adminlte') }}/plugins/jquery/jquery.min.js"></script>
+
+{{-- <script src="{{ asset('adminlte') }}/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('adminlte') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('adminlte') }}/dist/js/adminlte.min.js"></script>
+
+<script src={{"/adminlte/dist/js/adminlte.min.js"}}></script>
+<script src={{"/adminlte/plugins/jquery/jquery.min.js"}}></script>
+<script src={{"/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"}}></script> --}}
+
+
+<script src="{{ asset('adminlte/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{ asset('adminlte/dist/js/adminlte.min.js')}}"></script>
+
+@stack('scripts')
 
 </body>
 </html>

@@ -82,7 +82,7 @@ class LoginController extends Controller
         try {
             Auth::login($localUser);
         } catch (\Throwable$e) {
-            return redirect('/login-okta');
+            return redirect('/login');
         }
 
         return redirect('/home');
