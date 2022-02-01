@@ -91,13 +91,18 @@ Route::group(['middleware' => 'auth'], function () {
                     ->only(['id'])
                     ->all();
             });
+            // dd($subsets);
+            // $leaves = Leave::whereIn([
+            //     ['user_id', $subsets],
+            //     ['status', 'Pending Approval'],
+            // ])->get();
 
-            $leaves = Leave::where([
-                ['user_id', $subsets],
-                ['status', 'Pending Approval'],
-            ])->get();
+            $leaves = Leave::whereIn('user_id', $subsets)->where('status', 'Pending Approval')->get();
             // $leaves = Leave::where('Status', 'Pending Approval')->get();
-            return view('approval.index', ['leaves' => $leaves]);
+            if (count($leaves)) {
+                return view('approval.index', ['leaves' => $leaves]);
+
+            }
 
         } else {
             $leavess = Leave::where([
@@ -105,6 +110,7 @@ Route::group(['middleware' => 'auth'], function () {
                 ['status', 'no staff under this line manager'],
             ])->get();
             // dd($leavess);
+
             return view('approval.index', ['leaves' => $leavess]);
         }
 
@@ -123,9 +129,7 @@ Route::group(['middleware' => 'auth'], function () {
                     ->all();
             });
 
-            $leaves = Leave::where([
-                ['user_id', $subsets],
-            ])->get();
+            $leaves = Leave::whereIn('user_id', $subsets)->get();
 
             return view('staffleaves.index', ['leaves' => $leaves]);
         } else {
