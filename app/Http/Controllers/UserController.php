@@ -58,13 +58,15 @@ class UserController extends Controller
         $request->validate([
 
             'name' => 'required',
-            'employee_number' => 'required|numeric|digits:4|unique:users',
-            'birth_date' => 'required|date',
+            'employee_number' => 'required',
+            'birth_date' => 'required',
             'position' => 'required',
-            'unit' => 'required',
-            'joined_date' => 'required|date',
+            'grade' => 'required',
+            // 'unit' => 'required',
+            'joined_date' => 'required',
             'linemanager' => 'required',
             'hradmin' => 'required',
+            'email' => 'required',
             'password' => 'required',
         ]);
 
@@ -74,9 +76,11 @@ class UserController extends Controller
         $user->birth_date = $request->birth_date;
         $user->position = $request->position;
         $user->unit = $request->unit;
+        $user->grade = $request->grade;
         $user->linemanager = $request->linemanager;
         $user->joined_date = $request->joined_date;
         $user->hradmin = $request->hradmin;
+        $user->email = $request->email;
         $user->password = Hash::make($request->password);
 
         $user->save();

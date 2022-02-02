@@ -354,7 +354,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <p>{{ __('Welcome') }}</p>
             </a>
           </li>
-          <div class="dropdown-divider" style="border-color:gray;"></div>
+          <div class="dropdown-divider" style="border-color:rgb(77, 77, 77);"></div>
 
   @php
   $user = Auth::user();
@@ -370,11 +370,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <li class="nav-item{{ $activePage == 'approval' ? ' active' : '' }}">
 <a class="nav-link" href="{{ route('staffleaves') }}">
     <i class="fas fa-paste nav-icon"></i>
-    <p>{{ __('Staffleaves') }}</p>
+    <p>{{ __('Staff leaves') }}</p>
 </a>
 </li>
 
-<div class="dropdown-divider" style="border-color:gray;"></div>
+<div class="dropdown-divider" style="border-color:rgb(77, 77, 77);"></div>
 @endif
 
            @if($user->hradmin == 'yes')
@@ -408,10 +408,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <li class="nav-item{{ $activePage == 'allstaffleaves' ? ' active' : '' }}">
     <a class="nav-link" href="{{ route('admin.allstaffleaves.index') }}">
         <i class="fas fa-address-book nav-icon"></i>
-        <p>{{ __('All Staff Leaves') }}</p>
+        <p>{{ __('All Staff leaves') }}</p>
     </a>
   </li>
-  <div class="dropdown-divider" style="border-color:gray;"></div>
+
+
+  <li class="nav-item{{ $activePage == 'allstaffbalances' ? ' active' : '' }}">
+    <a class="nav-link" href="{{ route('admin.allstaffbalances.index') }}">
+        <i class="fas fa-address-book nav-icon"></i>
+        <p>{{ __('All Staff balances') }}</p>
+    </a>
+  </li>
+  <div class="dropdown-divider" style="border-color:rgb(77, 77, 77);"></div>
   @endif
 
 
@@ -452,7 +460,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <p>{{ __('Overtime') }}</p>
         </a>
       </li>
-      <div class="dropdown-divider" style="border-color:gray;"></div>
+      <div class="dropdown-divider" style="border-color:rgb(77, 77, 77);"></div>
   <li class="nav-item{{ $activePage == 'policies' ? ' active' : '' }}">
     <a class="nav-link" href="{{ route('admin.policies.index') }}">
         <i class="fas fa-file-alt nav-icon"></i>

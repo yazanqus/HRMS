@@ -7,10 +7,10 @@
       <!-- /.login-logo -->
       <div class="card card-outline card-primary col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
         <div class="card-header text-center">
-          <a href="#" class="h1"><b>Admin</b>LTE</a>
+          <a href="#" class="h1"><b>Company</b>Name</a>
         </div>
         <div class="card-body text-center">
-          <p class="login-box-msg">Sign in to start your session</p>
+          <p class="login-box-msg">Poweredby: maker</p>
 
           <form action="{{ route('login') }}" method="post">
             @csrf
@@ -19,7 +19,8 @@
                 placeholder="{{ __('Employee Number...') }}" required>
               <div class="input-group-append">
                 <div class="input-group-text">
-                  <span class="fas fa-envelope"></span>
+                    <i class="fas fa-id-badge"></i>
+                  {{-- <span class="fas fa-envelope"></span> --}}
                 </div>
               </div>
             </div>
@@ -32,38 +33,42 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-8">
-                <div class="icheck-primary">
-                  <input type="checkbox" id="remember">
-                  <label for="remember">
-                    Remember Me
-                  </label>
+              {{-- <div class="col-2"> --}}
+                <div class="container d-flex justify-content-start">
+                    <div class="icheck-primary">
+                      <input type="checkbox" id="remember">
+                      <label for="remember">
+                        Remember Me
+                      </label>
+                    </div>
                 </div>
-              </div>
-              <!-- /.col -->
-              <div class="col-4">
-                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-              </div>
-              <!-- /.col -->
+              {{-- </div> --}}
             </div>
+              <!-- /.col -->
+              <div class="row">
+                  <div class="col-12">
+                    <button type="submit" class="btn bg-gradient-primary btn-block">Sign In</button>
+                  </div>
+              </div>
+              <!-- /.col -->
           </form>
 
           <div class="social-auth-links text-center mt-2 mb-3">
-            <a href="#" class="btn btn-block btn-primary">
-              <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+            <a href="#" class="btn btn-block btn-outline-primary">
+              <i class="fab fa-facebook mr-2"></i> SSO - Sign in with Okta
             </a>
-            <a href="#" class="btn btn-block btn-danger">
+            {{-- <a href="#" class="btn btn-block btn-danger">
               <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-            </a>
+            </a> --}}
           </div>
           <!-- /.social-auth-links -->
-
+{{--
           <p class="mb-1">
             <a href="forgot-password.html">I forgot my password</a>
           </p>
           <p class="mb-0">
             <a href="register.html" class="text-center">Register a new membership</a>
-          </p>
+          </p> --}}
         </div>
         <!-- /.card-body -->
       </div>

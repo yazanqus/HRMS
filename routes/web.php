@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 |
  */
 Route::get('/', function () {
-    return view('auth.login');
+    return redirect('welcome');
 })->name('home');
 
 // });
@@ -58,6 +58,13 @@ Route::group(['middleware' => ['auth', 'hradmin'], 'prefix' => '/admin', 'as' =>
         $leaves = Leave::all();
         return view('admin.allstaffleaves.index', ['leaves' => $leaves]);
     })->name('allstaffleaves.index');
+
+    Route::get('allstaffbalances', function () {
+        $users = User::all();
+        $balances = Balance::all();
+        return view('admin.allstaffbalances.index', ['users' => $users]);
+    })->name('allstaffbalances.index');
+
 });
 
 Route::get('login/okta', [LoginController::class, 'redirectToProvider'])->name('login-okta');
