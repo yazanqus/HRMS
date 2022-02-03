@@ -32,22 +32,22 @@
                                 <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                                   <div class="card-body p-4 p-md-5">
                                     <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">User information</h3>
-                                  <form class="form-card" action="{{ route('admin.users.store') }}" method="POST">
+                                  <form class="form-outline" action="{{ route('admin.users.store') }}" method="POST">
                                       @csrf
                                       <div class="row justify-content-between text-left">
-                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Name</label> <input type="text" id="name"  name="name" placeholder=""> </div>
-                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Birth Date</label> <input type="date" name="birth_date" id="birth_date" placeholder="" > </div>
+                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Name</label> <input class="form-control form-outline" type="text" id="name"  name="name" placeholder=""> </div>
+                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Birth Date</label> <input class="form-control form-outline" type="date" name="birth_date" id="birth_date" placeholder="" > </div>
                                       </div>
                                       <div class="row justify-content-between text-left">
-                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Position</label> <input type="text" id="position"  name="position" placeholder="" > </div>
-                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Grade</label> <input type="text" id="grade"  name="grade" placeholder="" > </div>
+                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Position</label> <input class="form-control form-outline" type="text" id="position"  name="position" placeholder="" > </div>
+                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Grade</label> <input class="form-control form-outline" type="text" id="grade"  name="grade" placeholder="" > </div>
                                       </div>
                                       <div class="row justify-content-between text-left">
-                                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Join Date</label> <input type="date" name="joined_date" id="joined_date" placeholder="" > </div>
-                                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Employee ID</label> <input type="text" name= "employee_number" id="employee_number"  placeholder="" > </div>
+                                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label  px-1">Join Date</label> <input class="form-control form-outline" type="date" name="joined_date" id="joined_date" placeholder="" > </div>
+                                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label  px-1">Employee ID</label> <input class="form-control form-outline" type="text" name= "employee_number" id="employee_number"  placeholder="" > </div>
                                       </div>
                                       <div class="row justify-content-between text-left">
-                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Line Manager</label><input type="text" list="FavoriteColor" id="color"
+                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Line Manager</label><input class="form-control form-outline" type="text" list="FavoriteColor" id="color"
                                             name="linemanager" autocomplete="off">
                                         <datalist id="FavoriteColor">
                                             @foreach ($users as $user)
@@ -55,22 +55,22 @@
                                             @endforeach
                                         </datalist>
                                     </div>
-                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">HR admin <small>(Admin on HRMS)</small></label> <div class="form-check">
-                                            <input class="btn-check" type="radio" name="hradmin" Value="no" id="test1">
+                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">HR admin <small>(Admin on HRMS)</small></label> <div class="form-check">
+                                            <input  class="btn-check" type="radio" name="hradmin" Value="no" id="test1">
                                             <label class="form-check-label" for="test1">
                                               Not Admin
                                             </label>
                                           </div>
                                           <div class="form-check">
-                                            <input class="btn-check" type="radio" name="hradmin" Value="yes" id="test2" >
+                                            <input  class="btn-check" type="radio" name="hradmin" Value="yes" id="test2" >
                                             <label class="form-check-label" for="test2">
                                               Admin
                                             </label>
                                           </div> </div>
                                       </div>
                                       <div class="row justify-content-between text-left">
-                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Email</label> <input type="email" id="email"  name="email" autocomplete="off" placeholder="" > </div>
-                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Password <small>(When signing using Employee ID)</small></label> <input type="password" id="password"  name="password" autocomplete="off" placeholder="" > </div>
+                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Email</label> <input class="form-control form-outline"  type="email" id="email"  name="email" autocomplete="off" placeholder="" > </div>
+                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Password <small>(When signing using Employee ID)</small></label> <input class="form-control form-outline"  type="password" id="password"  name="password" autocomplete="off" placeholder="" > </div>
                                       </div>
                                       {{-- MUST ADD requirepd for radio check --}}
                                       <div class="row justify-content-center">

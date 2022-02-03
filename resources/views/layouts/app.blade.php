@@ -128,6 +128,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 
+
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('adminlte') }}/dist/css/adminlte.min.css">
 </head>
@@ -290,9 +291,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <li class="nav-item dropdown">
     <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-user-alt"></i>
-      <p class="d-lg-none d-md-block">
+      {{-- <p class="d-lg-none d-md-block">
         {{ __('Account') }}
-      </p>
+      </p> --}}
       @php
           $user = Auth::user();
       @endphp
@@ -407,7 +408,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <li class="nav-item{{ $activePage == 'allstaffleaves' ? ' active' : '' }}">
     <a class="nav-link" href="{{ route('admin.allstaffleaves.index') }}">
-        <i class="fas fa-address-book nav-icon"></i>
+        <i class="fas fa-paste nav-icon"></i>
         <p>{{ __('All Staff leaves') }}</p>
     </a>
   </li>
