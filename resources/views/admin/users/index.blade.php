@@ -25,7 +25,7 @@
                                 <h3 class="card-title">DataTable with default features</h3>
                               </div>
                                   <div class="card-body">
-                                      <table id="example1" class="table table-bordered table-striped">
+                                      <table id="table_id" class="table table-bordered table-striped">
                                         <thead>
                                           <tr>
                                           {{-- <th scope="col"> @sortablelink('name')</th> --}}
@@ -90,27 +90,14 @@
 
   <!-- DataTables  & Plugins -->
 
-  <script src="{{ asset('adminlte/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-  <script src="{{ asset('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-  <script src="{{ asset('adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-  <script src="{{ asset('adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-  <script src="{{ asset('adminlte/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
-  <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
-  <script src="{{ asset('adminlte/plugins/jszip/jszip.min.js')}}"></script>
-  <script src="{{ asset('adminlte/plugins/pdfmake/pdfmake.min.js')}}"></script>
-  <script src="{{ asset('adminlte/plugins/pdfmake/vfs_fonts.js')}}"></script>
-  <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
-  <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
-  <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
 
 
   <script>
-    $(function () {
-      $("#example1").DataTable({
-        "responsive": true, "lengthChange": true, "autoWidth": true,
-      });
-    });
+    $(document).ready( function () {
+    $('#table_id').DataTable();
+} );
   </script>
 @endpush
 
