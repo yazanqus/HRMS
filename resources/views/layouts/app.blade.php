@@ -134,11 +134,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{ asset('adminlte') }}/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
-    {{-- @auth()
+    @auth()
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         @csrf
     </form>
-    @include('layouts.page_templates.auth')
+    @endauth
+    {{-- @include('layouts.page_templates.auth')
 @endauth --}}
 @guest()
     @include('layouts.page_templates.guest')
@@ -379,31 +380,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="dropdown-divider" style="border-color:rgb(77, 77, 77);"></div>
 @endif
 
-           @if($user->hradmin == 'yes')
-  <li class="nav-item {{ ($activePage == 'Users' || $activePage == 'create-new-user') ? ' active' : '' }}">
-    <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
+@if($user->hradmin == 'yes')
+
+  <li class="nav-item">
+    <a href="#" class="nav-link " >
         <i class="fas fa-users nav-icon"></i>
       <p>{{ __('Users') }}
-        <b class="caret"></b>
+        <i class="fas fa-angle-down right"></i>
       </p>
     </a>
 
-    <div class="collapse hide" id="laravelExample">
-      <ul class="nav">
-        <li class="nav-item{{ $activePage == 'create-new-user' ? ' active' : '' }}">
+
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
           <a class="nav-link" href="{{ route('admin.users.create') }}">
-            <i class="fas fa-clock nav-icon"></i>
-            <span class="sidebar-normal">{{ __('Create new user') }} </span>
+            <i class="fas fa-user-plus nav-icon"></i>
+            <p>{{ __('Create new user') }}</p>
           </a>
         </li>
         <li class="nav-item{{ $activePage == 'all-users' ? ' active' : '' }}">
           <a class="nav-link" href="{{ route('admin.users.index') }}">
-            <i class="fas fa-clock nav-icon"></i>
-            <span class="sidebar-normal"> {{ __('All users') }} </span>
+            <i class="fas fa-address-book nav-icon"></i>
+            <p>{{ __('All users') }}</p>
           </a>
         </li>
       </ul>
-    </div>
+
   </li>
 
 
@@ -417,7 +419,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <li class="nav-item{{ $activePage == 'allstaffbalances' ? ' active' : '' }}">
     <a class="nav-link" href="{{ route('admin.allstaffbalances.index') }}">
-        <i class="fas fa-address-book nav-icon"></i>
+        <i class="fas fa-list-ol nav-icon"></i>
         <p>{{ __('All Staff balances') }}</p>
     </a>
   </li>
@@ -614,7 +616,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{ asset('adminlte/dist/js/adminlte.min.js')}}"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
-
 
 @stack('scripts')
 

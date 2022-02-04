@@ -19,12 +19,9 @@
                       <div class="card">
                         <div class="card-header card-header-primary">
                           <h4 class="card-title ">My leaves</h4>
-                          {{-- <p class="card-category">Here you can see the history of leaves</p> --}}
-                          {{-- <div class="row"> --}}
                             <div class="col-12 text-right">
                               <a href="{{route('leaves.create')}}" class="btn btn-sm btn-primary">Submit a new Leave</a>
                             </div>
-                          {{-- </div> --}}
                         </div>
                         <div class="card-body table-responsive-md">
 
