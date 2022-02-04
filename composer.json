@@ -15,6 +15,7 @@
         "laravel/socialite": "^5.4",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
+        "snapappointments/bootstrap-select": "^1.13",
         "socialiteproviders/okta": "^4.1"
     },
     "require-dev": {

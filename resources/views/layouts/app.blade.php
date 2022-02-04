@@ -128,6 +128,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('adminlte') }}/dist/css/adminlte.min.css">
