@@ -17,6 +17,7 @@
             <div class="input-group mb-3">
               <input type="text" name="employee_number" value="{{ old('employee_number', '') }}" class="form-control"
                 placeholder="{{ __('Employee Number...') }}" required>
+
               <div class="input-group-append">
                 <div class="input-group-text">
                     <i class="fas fa-id-badge"></i>
@@ -26,6 +27,7 @@
             </div>
             <div class="input-group mb-3">
               <input type="password" name="password" class="form-control" placeholder="Password" required>
+
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-lock"></span>

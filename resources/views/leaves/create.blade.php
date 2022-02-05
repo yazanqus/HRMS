@@ -52,6 +52,8 @@
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Start date</label> <input class="form-control form-outline" type="date" id="start_date"  name="start_date" placeholder=""> </div>
                                             <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">End date</label> <input class="form-control form-outline" type="date" name="end_date" id="end_date" placeholder="" > </div>
+                                            {{-- <a href="#" id="output" class="btn btn-sm btn-primary"></a> --}}
+
                                         </div>
 
 
@@ -80,4 +82,22 @@
 
 @push('scripts')
 <script src="{{ asset('select/js/bootstrap-select.min.js')}}"></script>
+
+{{-- <script>
+function comparedates()
+{
+    var date1=new Date(document.getElementById('start_date').value);
+    var date2=new Date(document.getElementById('end_date').value);
+
+    var Difference_In_Time = date2.getTime() - date1.getTime();
+    var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+    var result;
+
+    result=Difference_In_Days;
+    document.getElementById('output').style.color='green';
+
+    if()
+}
+</script> --}}
 @endpush

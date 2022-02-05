@@ -106,9 +106,19 @@ Route::group(['middleware' => 'auth'], function () {
 
             $leaves = Leave::whereIn('user_id', $subsets)->where('status', 'Pending Approval')->get();
             // $leaves = Leave::where('Status', 'Pending Approval')->get();
+            // dd($leaves);
             if (count($leaves)) {
                 return view('approval.index', ['leaves' => $leaves]);
 
+            } else {
+
+                $leavess = Leave::where([
+                    ['user_id', $user->id],
+                    ['status', 'no staff under this line manager'],
+                ])->get();
+                // dd($leavess);
+
+                return view('approval.index', ['leaves' => $leavess]);
             }
 
         } else {

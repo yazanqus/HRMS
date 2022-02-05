@@ -46,16 +46,32 @@ class LeaveController extends Controller
     {
         // getting the balance for the user for the inserted leave type
         $user = Auth::user();
-        $balances = Balance::where('user_id', $user->id)->get();
-        $subsets = $balances->map(function ($balance) {
-            return collect($balance->toArray())
 
-                ->only(['value', 'leavetype_id'])
-                ->all();
-        });
-        $final = $subsets->firstwhere('leavetype_id', $request->leavetype_id);
-        $finalfinal = $final['value'];
-        $currentbalance = $finalfinal;
+        if ($request->leavetype_id == '13' || $request->leavetype_id == '14') {
+
+            $balances = Balance::where('user_id', $user->id)->get();
+            $subsets = $balances->map(function ($balance) {
+                return collect($balance->toArray())
+
+                    ->only(['value', 'leavetype_id'])
+                    ->all();
+            });
+            $final = $subsets->firstwhere('leavetype_id', '1');
+            $finalfinal = $final['value'];
+            $annualleavebalance = $finalfinal;
+
+        } else {
+            $balances = Balance::where('user_id', $user->id)->get();
+            $subsets = $balances->map(function ($balance) {
+                return collect($balance->toArray())
+
+                    ->only(['value', 'leavetype_id'])
+                    ->all();
+            });
+            $final = $subsets->firstwhere('leavetype_id', $request->leavetype_id);
+            $finalfinal = $final['value'];
+            $currentbalance = $finalfinal;
+        }
 
         $request->validate([
             'start_date' => 'required',
@@ -150,6 +166,30 @@ class LeaveController extends Controller
             }
         }
 
+        // Annual leave halfday coditions
+        elseif ($request->leavetype_id == '13' || $request->leavetype_id == '14') {
+
+            if ($probationdays >= '90') {
+
+                if ($annualleavebalance >= '0.5') {
+
+                    $leave = new Leave();
+                    $leave->start_date = $request->start_date;
+                    $leave->end_date = $request->end_date;
+                    $leave->days = '0.5';
+                    $leave->leavetype_id = $request->leavetype_id;
+                    $leave->user_id = auth()->user()->id;
+                    $leave->status = 'Pending Approval';
+
+                    $leave->save();
+
+                    return redirect()->route('leaves.index');
+                }
+            } else {
+                echo 'you cant apply for marriage leave yet';
+            }
+        }
+
         // Paternity leave coditions
         elseif ($request->leavetype_id == '9') {
 
@@ -183,7 +223,7 @@ class LeaveController extends Controller
 
             $leave->save();
 
-            $data = ['foo' => 'baz'];
+            // $data = ['foo' => 'baz'];
 
             // Mail::send('danial@admin.com', $data, function ($message) use ($user) {
             //     $message->to('danial@admin.com');
@@ -246,24 +286,46 @@ class LeaveController extends Controller
         $leave->status = 'approved';
         $leave->save();
 
-        $balances = Balance::where('user_id', $leave->user->id)->get();
-        $subsets = $balances->map(function ($balance) {
-            return collect($balance->toArray())
+        if ($leave->leavetype_id == '13' || $leave->leavetype_id == '14') {
 
-                ->only(['value', 'leavetype_id'])
-                ->all();
-        });
-        $final = $subsets->firstwhere('leavetype_id', $leave->leavetype_id);
+            $balances = Balance::where('user_id', $leave->user->id)->get();
+            $subsets = $balances->map(function ($balance) {
+                return collect($balance->toArray())
 
-        $finalfinal = $final['value'];
-        $currentbalance = $finalfinal;
+                    ->only(['value', 'leavetype_id'])
+                    ->all();
+            });
+            $final = $subsets->firstwhere('leavetype_id', '1');
 
-        $newbalance = $currentbalance - $leave->days;
+            $finalfinal = $final['value'];
+            $currentbalanceforannual = $finalfinal;
 
-        Balance::where([
-            ['user_id', $leave->user->id],
-            ['leavetype_id', $leave->leavetype_id],
-        ])->update(['value' => $newbalance]);
+            $newbalance = $currentbalanceforannual - $leave->days;
+
+            Balance::where([
+                ['user_id', $leave->user->id],
+                ['leavetype_id', '1'],
+            ])->update(['value' => $newbalance]);
+        } else {
+            $balances = Balance::where('user_id', $leave->user->id)->get();
+            $subsets = $balances->map(function ($balance) {
+                return collect($balance->toArray())
+
+                    ->only(['value', 'leavetype_id'])
+                    ->all();
+            });
+            $final = $subsets->firstwhere('leavetype_id', $leave->leavetype_id);
+
+            $finalfinal = $final['value'];
+            $currentbalance = $finalfinal;
+
+            $newbalance = $currentbalance - $leave->days;
+
+            Balance::where([
+                ['user_id', $leave->user->id],
+                ['leavetype_id', $leave->leavetype_id],
+            ])->update(['value' => $newbalance]);
+        }
 
         return redirect()->route('approval');
 

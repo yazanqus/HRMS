@@ -103,6 +103,8 @@ class UserController extends Controller
             $userannualleavebalance = ((1.25 * (12 - $month)) + 0.5);
         }
 
+        $annualleavehalfday = $userannualleavebalance * 2;
+
         // dd($userannualleavebalance);
 
         $leavetypes = Leavetype::all();
@@ -129,6 +131,21 @@ class UserController extends Controller
                 //     'name' => $leavetype->name,
                 //     'value' => '5',
                 // ]);
+            } elseif ($leavetype->name == "Annual leave - First half") {
+                $user->balances()->create([
+
+                    'name' => $leavetype->name,
+                    'value' => $annualleavehalfday,
+                    'leavetype_id' => $leavetype->id,
+                ]);
+
+            } elseif ($leavetype->name == "Annual leave - Second half") {
+                $user->balances()->create([
+
+                    'name' => $leavetype->name,
+                    'value' => $annualleavehalfday,
+                    'leavetype_id' => $leavetype->id,
+                ]);
             } else {
                 $user->balances()->create([
                     'name' => $leavetype->name,
