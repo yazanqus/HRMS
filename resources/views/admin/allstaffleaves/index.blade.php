@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'all-users', 'titlePage' => ('all users')])
+@extends('layouts.app', ['activePage' => 'allstaffleaves', 'titlePage' => ('allstaffleaves')])
 
 @section('content')
 

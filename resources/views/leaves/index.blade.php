@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'all-leaves', 'titlePage' => ('all leaves')])
+@extends('layouts.app', ['activePage' => 'my-leaves', 'titlePage' => ('all leaves')])
 
 @section('content')
 
