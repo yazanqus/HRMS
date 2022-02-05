@@ -9,6 +9,7 @@ use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\UserController;
 use App\Models\Balance;
 use App\Models\Leave;
+use App\Models\Overtime;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -86,7 +87,7 @@ Route::group(['middleware' => 'auth'], function () {
         return view('dashboard', ['user' => $user, 'balance' => $finalfinal]);
     })->name('welcome');
 
-    Route::get('approval', function () {
+    Route::get('leaves/approval', function () {
         $user = Auth::user();
         $staff = User::where('linemanager', $user->name)->get();
         // dd($staff);
@@ -108,7 +109,7 @@ Route::group(['middleware' => 'auth'], function () {
             // $leaves = Leave::where('Status', 'Pending Approval')->get();
             // dd($leaves);
             if (count($leaves)) {
-                return view('approval.index', ['leaves' => $leaves]);
+                return view('approval.leaves.index', ['leaves' => $leaves]);
 
             } else {
 
@@ -118,7 +119,7 @@ Route::group(['middleware' => 'auth'], function () {
                 ])->get();
                 // dd($leavess);
 
-                return view('approval.index', ['leaves' => $leavess]);
+                return view('approval.leaves.index', ['leaves' => $leavess]);
             }
 
         } else {
@@ -128,10 +129,57 @@ Route::group(['middleware' => 'auth'], function () {
             ])->get();
             // dd($leavess);
 
-            return view('approval.index', ['leaves' => $leavess]);
+            return view('approval.leaves.index', ['leaves' => $leavess]);
         }
 
-    })->name('approval');
+    })->name('leaves.approval');
+
+    Route::get('overtimes/approval', function () {
+        $user = Auth::user();
+        $staff = User::where('linemanager', $user->name)->get();
+        // dd($staff);
+        if (count($staff)) {
+
+            $subsets = $staff->map(function ($staff) {
+                return collect($staff->toArray())
+
+                    ->only(['id'])
+                    ->all();
+            });
+            // dd($subsets);
+            // $leaves = Leave::whereIn([
+            //     ['user_id', $subsets],
+            //     ['status', 'Pending Approval'],
+            // ])->get();
+
+            $overtimes = Overtime::whereIn('user_id', $subsets)->where('status', 'Pending Approval')->get();
+            // $leaves = Leave::where('Status', 'Pending Approval')->get();
+            // dd($leaves);
+            if (count($overtimes)) {
+                return view('approval.overtimes.index', ['overtimes' => $overtimes]);
+
+            } else {
+
+                $overtimess = Overtime::where([
+                    ['user_id', $user->id],
+                    ['status', 'no staff under this line manager'],
+                ])->get();
+                // dd($leavess);
+
+                return view('approval.overtimes.index', ['overtimes' => $overtimess]);
+            }
+
+        } else {
+            $overtimess = Overtime::where([
+                ['user_id', $user->id],
+                ['status', 'no staff under this line manager'],
+            ])->get();
+            // dd($leavess);
+
+            return view('approval.overtimes.index', ['overtimes' => $overtimess]);
+        }
+
+    })->name('overtimes.approval');
 
     Route::get('staffleaves', function () {
 
@@ -216,8 +264,14 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('overtimes', OvertimeController::class);
-    // Route::get('/leaves/approved/{id}', [LeaveController::class, 'approved'])->name('leaves.approved');
-    // Route::get('/leaves/declined/{id}', [LeaveController::class, 'declined'])->name('leaves.declined');
+    Route::get('/overtimes/approved/{id}', [OvertimeController::class, 'approved'])->name('overtimes.approved');
+    Route::get('/overtimes/declined/{id}', [OvertimeController::class, 'declined'])->name('overtimes.declined');
 });
+
+// Route::group(['middleware' => 'auth'], function () {
+//     Route::resource('overtimes', OvertimeController::class);
+//     // Route::get('/leaves/approved/{id}', [LeaveController::class, 'approved'])->name('leaves.approved');
+//     // Route::get('/leaves/declined/{id}', [LeaveController::class, 'declined'])->name('leaves.declined');
+// });
 
 // Route::resource('leaves', LeaveController::class);

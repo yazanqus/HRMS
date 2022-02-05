@@ -130,6 +130,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('adminlte') }}/dist/css/adminlte.min.css">
 </head>
@@ -363,12 +365,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
   $user = Auth::user();
   @endphp
  @if($user->usertype_id == '2')
-<li class="nav-item{{ $activePage == 'approval' ? ' active' : '' }}">
-<a class="nav-link" href="{{ route('approval') }}">
-<i class="fas fa-check nav-icon"></i>
-  <p>{{ __('Approval') }}</p>
-</a>
-</li>
+
+ <li class="nav-item">
+    <a href="#" class="nav-link " >
+        <i class="fas fa-check nav-icon"></i>
+      <p>{{ __('Approvals') }}
+        <i class="fas fa-angle-down right"></i>
+      </p>
+    </a>
+
+
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('leaves.approval') }}">
+            <i class="fas fa-user-plus nav-icon"></i>
+            <p>{{ __('Leaves approvals') }}</p>
+          </a>
+        </li>
+        <li class="nav-item{{ $activePage == 'all-users' ? ' active' : '' }}">
+          <a class="nav-link" href="{{ route('overtimes.approval') }}">
+            <i class="fas fa-address-book nav-icon"></i>
+            <p>{{ __('Overtimes approvals') }}</p>
+          </a>
+        </li>
+      </ul>
+
+  </li>
+
+
 
 <li class="nav-item{{ $activePage == 'approval' ? ' active' : '' }}">
 <a class="nav-link" href="{{ route('staffleaves') }}">

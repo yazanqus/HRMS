@@ -16,6 +16,7 @@ class CreateOvertimesTable extends Migration
         Schema::create('overtimes', function (Blueprint $table) {
             $table->id();
             $table->string('status')->nullable();
+            $table->string('type')->nullable();
             $table->date('date')->nullable();
             $table->time('start_hour')->nullable();
             $table->time('end_hour')->nullable();

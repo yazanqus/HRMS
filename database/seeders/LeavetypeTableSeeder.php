@@ -125,6 +125,7 @@ class LeavetypeTableSeeder extends Seeder
         // id=15
         DB::table('leavetypes')->insert([
             'name' => 'Unpaid leave',
+            'value' => '300',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -132,6 +133,7 @@ class LeavetypeTableSeeder extends Seeder
         // id=16
         DB::table('leavetypes')->insert([
             'name' => 'Unpaid leave - First half',
+            'value' => '300',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -139,6 +141,7 @@ class LeavetypeTableSeeder extends Seeder
         // id=17
         DB::table('leavetypes')->insert([
             'name' => 'Unpaid leave - Second half',
+            'value' => '300',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

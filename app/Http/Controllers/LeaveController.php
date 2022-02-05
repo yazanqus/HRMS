@@ -60,6 +60,19 @@ class LeaveController extends Controller
             $finalfinal = $final['value'];
             $annualleavebalance = $finalfinal;
 
+        } elseif ($request->leavetype_id == '16' || $request->leavetype_id == '17') {
+
+            $balances = Balance::where('user_id', $user->id)->get();
+            $subsets = $balances->map(function ($balance) {
+                return collect($balance->toArray())
+
+                    ->only(['value', 'leavetype_id'])
+                    ->all();
+            });
+            $final = $subsets->firstwhere('leavetype_id', '15');
+            $finalfinal = $final['value'];
+            $unpaidleavebalance = $finalfinal;
+
         } else {
             $balances = Balance::where('user_id', $user->id)->get();
             $subsets = $balances->map(function ($balance) {
@@ -212,6 +225,27 @@ class LeaveController extends Controller
             } else {
                 echo 'you cant apply for marriage leave yet';
             }
+        } elseif ($request->leavetype_id == '16' || $request->leavetype_id == '17') {
+
+            if ($probationdays >= '90') {
+
+                if ($unpaidleavebalance >= '0.5') {
+
+                    $leave = new Leave();
+                    $leave->start_date = $request->start_date;
+                    $leave->end_date = $request->end_date;
+                    $leave->days = '0.5';
+                    $leave->leavetype_id = $request->leavetype_id;
+                    $leave->user_id = auth()->user()->id;
+                    $leave->status = 'Pending Approval';
+
+                    $leave->save();
+
+                    return redirect()->route('leaves.index');
+                }
+            } else {
+                echo 'you cant apply for marriage leave yet';
+            }
         } else {
             $leave = new Leave();
             $leave->start_date = $request->start_date;
@@ -283,7 +317,7 @@ class LeaveController extends Controller
     public function approved($id)
     {
         $leave = Leave::find($id);
-        $leave->status = 'approved';
+        $leave->status = 'Approved';
         $leave->save();
 
         if ($leave->leavetype_id == '13' || $leave->leavetype_id == '14') {
@@ -306,6 +340,26 @@ class LeaveController extends Controller
                 ['user_id', $leave->user->id],
                 ['leavetype_id', '1'],
             ])->update(['value' => $newbalance]);
+        } elseif ($leave->leavetype_id == '16' || $leave->leavetype_id == '17') {
+
+            $balances = Balance::where('user_id', $leave->user->id)->get();
+            $subsets = $balances->map(function ($balance) {
+                return collect($balance->toArray())
+
+                    ->only(['value', 'leavetype_id'])
+                    ->all();
+            });
+            $final = $subsets->firstwhere('leavetype_id', '15');
+
+            $finalfinal = $final['value'];
+            $currentbalanceforannual = $finalfinal;
+
+            $newbalance = $currentbalanceforannual - $leave->days;
+
+            Balance::where([
+                ['user_id', $leave->user->id],
+                ['leavetype_id', '15'],
+            ])->update(['value' => $newbalance]);
         } else {
             $balances = Balance::where('user_id', $leave->user->id)->get();
             $subsets = $balances->map(function ($balance) {
@@ -327,17 +381,17 @@ class LeaveController extends Controller
             ])->update(['value' => $newbalance]);
         }
 
-        return redirect()->route('approval');
+        return redirect()->route('leaves.approval');
 
     }
 
     public function declined($id)
     {
         $leave = Leave::find($id);
-        $leave->status = 'declined';
+        $leave->status = 'Declined';
         $leave->save();
 
-        return redirect()->route('approval');
+        return redirect()->route('leaves.approval');
 
     }
 }

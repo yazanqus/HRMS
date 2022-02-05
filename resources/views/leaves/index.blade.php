@@ -29,6 +29,7 @@
                         <table class="table table-hover text-nowrap table-Secondary">
                         <thead>
                             <tr>
+                              <th scope="col">ID</th>
                               <th scope="col">Name</th>
                               <th class="text-center" scope="col">Start date</th>
                               <th class="text-center" scope="col">End date</th>
@@ -40,6 +41,7 @@
                           <tbody>
                             @foreach ($leaves as $leave)
                             <tr>
+                              <td>{{ $leave->id }}</td>
                               <td>{{ $leave->user->name }}</td>
                               <td class="text-center">{{ $leave->start_date }}</td>
                               <td class="text-center">{{ $leave->end_date }}</td>

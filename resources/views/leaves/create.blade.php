@@ -37,7 +37,7 @@
                                                 <div class="form-outline">
                                                     <label class="form-control-label px-1">Leave type</label>
                                                     <select
-                                                    class="form-control selectpicker" data-size="4" data-style="btn btn-outline-secondary"
+                                                    class="form-control selectpicker" data-size="5" data-style="btn btn-outline-secondary"
                                                     name="leavetype_id" id="leavetype_id" type="text"
                                                     placeholder="{{ __('Leave Type') }}"
                                                     required>
