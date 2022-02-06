@@ -21,5 +21,150 @@ class BalanceTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        DB::table('balances')->insert([
+            'name' => 'Sick leave',
+            'leavetype_id' => '2',
+            'user_id' => '1',
+            'value' => '15',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('balances')->insert([
+            'name' => 'Sick leave 30% deduction',
+            'leavetype_id' => '3',
+            'user_id' => '1',
+            'value' => '15',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('balances')->insert([
+            'name' => 'Sick leave 20% deduction',
+            'leavetype_id' => '4',
+            'user_id' => '1',
+            'value' => '15',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('balances')->insert([
+            'name' => 'Marriage leave',
+            'leavetype_id' => '5',
+            'user_id' => '1',
+            'value' => '15',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('balances')->insert([
+            'name' => 'Compassionate - First degree relative',
+            'leavetype_id' => '6',
+            'user_id' => '1',
+            'value' => '15',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('balances')->insert([
+            'name' => 'Compassionate - Second degree relative',
+            'leavetype_id' => '7',
+            'user_id' => '1',
+            'value' => '15',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('balances')->insert([
+            'name' => 'Maternity leave',
+            'leavetype_id' => '8',
+            'user_id' => '1',
+            'value' => '15',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('balances')->insert([
+            'name' => 'Paternity leave',
+            'leavetype_id' => '9',
+            'user_id' => '1',
+            'value' => '15',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('balances')->insert([
+            'name' => 'Pilgrimage Islamic leave',
+            'leavetype_id' => '10',
+            'user_id' => '1',
+            'value' => '15',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('balances')->insert([
+            'name' => 'Pilgrimage Christian leave',
+            'leavetype_id' => '11',
+            'user_id' => '1',
+            'value' => '15',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('balances')->insert([
+            'name' => 'Welfare leave',
+            'leavetype_id' => '12',
+            'user_id' => '1',
+            'value' => '15',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('balances')->insert([
+            'name' => 'Annual leave - First half',
+            'leavetype_id' => '13',
+            'user_id' => '1',
+            'value' => '15',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('balances')->insert([
+            'name' => 'Annual leave - Second half',
+            'leavetype_id' => '14',
+            'user_id' => '1',
+            'value' => '15',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('balances')->insert([
+            'name' => 'Unpaid leave',
+            'leavetype_id' => '15',
+            'user_id' => '1',
+            'value' => '15',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('balances')->insert([
+            'name' => 'Unpaid leave - First half',
+            'leavetype_id' => '16',
+            'user_id' => '1',
+            'value' => '15',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('balances')->insert([
+            'name' => 'Unpaid leave - Second half',
+            'leavetype_id' => '17',
+            'user_id' => '1',
+            'value' => '15',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
     }
 }
