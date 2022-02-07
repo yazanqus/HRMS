@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call([UsersTableSeeder::class]);
         $this->call([LeavetypeTableSeeder::class]);
         $this->call([UsertypeTableSeeder::class]);
+        $this->call([BalanceTableSeeder::class]);
         // $this->call([BalanceTableSeeder::class]);
     }
 }

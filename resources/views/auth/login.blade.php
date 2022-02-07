@@ -7,10 +7,10 @@
       <!-- /.login-logo -->
       <div class="card card-outline card-primary col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
         <div class="card-header text-center">
-          <a href="#" class="h1"><b>Company</b>Name</a>
+          <a href="#" class="h1"><b>NRC</b></a>
         </div>
         <div class="card-body text-center">
-          <p class="login-box-msg">Poweredby: maker</p>
+          <p class="login-box-msg">Poweredby: </p>
 
           <form action="{{ route('login') }}" method="post">
             @csrf
