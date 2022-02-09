@@ -44,7 +44,7 @@
                                       </div>
                                       <div class="row justify-content-between text-left">
                                         <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label  px-1">Join Date</label> <input class="form-control form-outline" type="date" name="joined_date" id="joined_date" placeholder="" > </div>
-                                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label  px-1">Employee ID</label> <input class="form-control form-outline" type="text" name= "employee_number" id="employee_number"  placeholder="" > </div>
+                                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label  px-1">Employee ID</label> <input class="form-control form-outline" type="text" name= "employee_number" autocomplete="off" id="employee_number"  placeholder="" > </div>
                                       </div>
                                       <div class="row justify-content-between text-left">
                                           <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Line Manager</label><input class="form-control form-outline" type="text" list="FavoriteColor" id="color"
@@ -70,7 +70,7 @@
                                       </div>
                                       <div class="row justify-content-between text-left">
                                           <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Email</label> <input class="form-control form-outline"  type="email" id="email"  name="email" autocomplete="off" placeholder="" > </div>
-                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Password <small>(When signing using Employee ID)</small></label> <input class="form-control form-outline"  type="password" id="password"  name="password" autocomplete="off" placeholder="" > </div>
+                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Password <small>(When signing using Employee ID)</small></label> <input class="form-control form-outline"  type="password" id="password" autocomplete="off" name="password" autocomplete="off" placeholder="" > </div>
                                       </div>
                                       {{-- MUST ADD requirepd for radio check --}}
                                       <div class="row justify-content-center">

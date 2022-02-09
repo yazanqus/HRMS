@@ -29,18 +29,23 @@
                           </div> --}}
                         <div class="row">
                             <div class="col">
-                                Full Name: {{$user->name}}
+                                <strong>Full Name: </strong> {{$user->name}}
                                 <br>
-                                Birth date: {{$user->birth_date}}
+                                <strong>Birth date: </strong> {{$user->birth_date}}
                                 <br>
-                                Unit: {{$user->unit}}
+                                <strong>Email: </strong> {{$user->email}}
                                 <br>
-                                Employee ID: {{$user->employee_number}}
+                                <strong>Employee ID: </strong> {{$user->employee_number}}
                               </div>
                               <div class="col">
-                                Position: {{$user->position}}
+
+                                <strong>Position: </strong> {{$user->position}}
                                   <br>
-                                Line Manager: {{$user->linemanager}}
+                                  <strong>Grade: </strong> {{$user->grade}}
+                                  <br>
+                                  <strong>Joined Date: </strong> {{$user->joined_date}}
+                                  <br>
+                                <strong>Line Manager: </strong> {{$user->linemanager}}
                               </div>
                         </div>
                         {{-- <iframe src="{{url('/storage/files/0j7YmC2IIpwwkvLLhg23zidqXYRGwhYpSGNWZklb.pdf')}}" width="100%" height="600"></iframe> --}}
@@ -48,7 +53,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">Leave Balance</h4>
+                          <h4 class="card-title ">Leaves - Remaining balance</h4>
                           <p class="card-category"></p>
                         </div>
                         <div class="card-body">
@@ -59,14 +64,38 @@
                             </div> --}}
                           <div class="row">
                               <div class="col">
-                                  Remaining: {{$balance}}
+                                  <strong>Annual Leave:</strong> {{$balance1}}
+                                  <br>
+                                  <strong>Sick leave:</strong> {{$balance2}}
+
                                 </div>
-                                <div class="col">
-                                  Leaves Taken: {{$user->linemanager}}
-                                </div>
+
                           </div>
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Leaves - Taken</h4>
+                  <p class="card-category"></p>
+                </div>
+                <div class="card-body">
+                    {{-- <div class="row">
+                        <div   div class="col-12 text-right">
+                          <a href="#" class="btn btn-sm btn-primary">Add Holiday</a>
+                        </div>
+                    </div> --}}
+                  <div class="row">
+                      <div class="col">
+                          <strong>Annual Leave:</strong> {{$balance1}}
+                          <br>
+                          <strong>Sick leave:</strong> {{$balance2}}
+
+                        </div>
+
+                  </div>
+        </div>
+    </div>
         </div>
     </div>
     </div>

@@ -82,9 +82,16 @@ Route::group(['middleware' => 'auth'], function () {
                 ->only(['value', 'leavetype_id'])
                 ->all();
         });
-        $final = $subsets->firstwhere('leavetype_id', '1');
-        $finalfinal = $final['value'];
-        return view('dashboard', ['user' => $user, 'balance' => $finalfinal]);
+        $leave1 = $subsets->firstwhere('leavetype_id', '1');
+        $balance1 = $leave1['value'];
+
+        $leave2 = $subsets->firstwhere('leavetype_id', '2');
+        $balance2 = $leave2['value'];
+
+        $leave12 = $subsets->firstwhere('leavetype_id', '12');
+        $balance12 = $leave12['value'];
+
+        return view('dashboard', ['user' => $user, 'balance1' => $balance1, 'balance2' => $balance2, 'balance12' => $balance12]);
     })->name('welcome');
 
     Route::get('leaves/approval', function () {

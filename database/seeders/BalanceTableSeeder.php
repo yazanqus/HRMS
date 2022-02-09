@@ -26,7 +26,7 @@ class BalanceTableSeeder extends Seeder
             'name' => 'Sick leave',
             'leavetype_id' => '2',
             'user_id' => '1',
-            'value' => '15',
+            'value' => '5',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -35,7 +35,7 @@ class BalanceTableSeeder extends Seeder
             'name' => 'Sick leave 30% deduction',
             'leavetype_id' => '3',
             'user_id' => '1',
-            'value' => '15',
+            'value' => '90',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -44,7 +44,7 @@ class BalanceTableSeeder extends Seeder
             'name' => 'Sick leave 20% deduction',
             'leavetype_id' => '4',
             'user_id' => '1',
-            'value' => '15',
+            'value' => '90',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -53,7 +53,7 @@ class BalanceTableSeeder extends Seeder
             'name' => 'Marriage leave',
             'leavetype_id' => '5',
             'user_id' => '1',
-            'value' => '15',
+            'value' => '7',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -62,7 +62,7 @@ class BalanceTableSeeder extends Seeder
             'name' => 'Compassionate - First degree relative',
             'leavetype_id' => '6',
             'user_id' => '1',
-            'value' => '15',
+            'value' => '100',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -71,7 +71,7 @@ class BalanceTableSeeder extends Seeder
             'name' => 'Compassionate - Second degree relative',
             'leavetype_id' => '7',
             'user_id' => '1',
-            'value' => '15',
+            'value' => '100',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -80,7 +80,7 @@ class BalanceTableSeeder extends Seeder
             'name' => 'Maternity leave',
             'leavetype_id' => '8',
             'user_id' => '1',
-            'value' => '15',
+            'value' => '120',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -89,7 +89,7 @@ class BalanceTableSeeder extends Seeder
             'name' => 'Paternity leave',
             'leavetype_id' => '9',
             'user_id' => '1',
-            'value' => '15',
+            'value' => '7',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -98,7 +98,7 @@ class BalanceTableSeeder extends Seeder
             'name' => 'Pilgrimage Islamic leave',
             'leavetype_id' => '10',
             'user_id' => '1',
-            'value' => '15',
+            'value' => '30',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -107,7 +107,7 @@ class BalanceTableSeeder extends Seeder
             'name' => 'Pilgrimage Christian leave',
             'leavetype_id' => '11',
             'user_id' => '1',
-            'value' => '15',
+            'value' => '7',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -116,7 +116,7 @@ class BalanceTableSeeder extends Seeder
             'name' => 'Welfare leave',
             'leavetype_id' => '12',
             'user_id' => '1',
-            'value' => '15',
+            'value' => '9',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -143,7 +143,7 @@ class BalanceTableSeeder extends Seeder
             'name' => 'Unpaid leave',
             'leavetype_id' => '15',
             'user_id' => '1',
-            'value' => '15',
+            'value' => '300',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -152,7 +152,7 @@ class BalanceTableSeeder extends Seeder
             'name' => 'Unpaid leave - First half',
             'leavetype_id' => '16',
             'user_id' => '1',
-            'value' => '15',
+            'value' => '300',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -161,7 +161,7 @@ class BalanceTableSeeder extends Seeder
             'name' => 'Unpaid leave - Second half',
             'leavetype_id' => '17',
             'user_id' => '1',
-            'value' => '15',
+            'value' => '300',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
