@@ -7,16 +7,16 @@
       <!-- /.login-logo -->
       <div class="card card-outline card-primary col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
         <div class="card-header text-center">
-          <a href="#" class="h1"><b>NRC</b></a>
+          <a href="#" class="h1"><b>HR</b>Management</a>
         </div>
         <div class="card-body text-center">
-          <p class="login-box-msg">Poweredby: </p>
+          <p class="login-box-msg">Sign in to start your session</p>
 
           <form action="{{ route('login') }}" method="post">
             @csrf
             <div class="input-group mb-3">
               <input type="text" name="employee_number" value="{{ old('employee_number', '') }}" class="form-control"
-                placeholder="{{ __('Employee Number...') }}" required>
+                placeholder="{{ __('Employee Number') }}" required>
 
               <div class="input-group-append">
                 <div class="input-group-text">
@@ -26,7 +26,8 @@
               </div>
             </div>
             <div class="input-group mb-3">
-              <input type="password" name="password" class="form-control" placeholder="Password" required>
+              <input type="password" name="password" class="form-control pwd" placeholder="Password" required>
+
 
               <div class="input-group-append">
                 <div class="input-group-text">
@@ -37,10 +38,10 @@
             <div class="row">
               {{-- <div class="col-2"> --}}
                 <div class="container d-flex justify-content-start">
-                    <div class="icheck-primary">
-                      <input type="checkbox" id="remember">
-                      <label for="remember">
-                        Remember Me
+                    <div class="check-primary  pwd">
+                      <input type="checkbox" class="reveal">
+                      <label>
+                        Show password
                       </label>
                     </div>
                 </div>
@@ -57,7 +58,7 @@
 
           <div class="social-auth-links text-center mt-2 mb-3">
             <a href="#" class="btn btn-block btn-outline-primary">
-              <i class="fab fa-facebook mr-2"></i> SSO - Sign in with Okta
+              <i class="fab fa-faecebook mr-2"></i> SSO - Sign in with Okta
             </a>
             {{-- <a href="#" class="btn btn-block btn-danger">
               <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
@@ -163,3 +164,17 @@
 
 @endsection
 
+@push('scripts')
+
+<script>
+  $(".reveal").on('click',function() {
+    var $pwd = $(".pwd");
+    if ($pwd.attr('type') === 'password') {
+        $pwd.attr('type', 'text');
+    } else {
+        $pwd.attr('type', 'password');
+    }
+});
+</script>
+
+@endpush
