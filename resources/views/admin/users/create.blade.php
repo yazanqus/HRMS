@@ -32,7 +32,7 @@
                                 <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                                   <div class="card-body p-4 p-md-5">
                                     <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">User information</h3>
-                                  <form class="form-outline" action="{{ route('admin.users.store') }}" method="POST">
+                                  <form class="form-outline" autocomplete="off" action="{{ route('admin.users.store') }}" method="POST">
                                       @csrf
                                       <div class="row justify-content-between text-left">
                                           <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Name</label> <input class="form-control form-outline" type="text" id="name"  name="name" placeholder=""> </div>
@@ -44,7 +44,7 @@
                                       </div>
                                       <div class="row justify-content-between text-left">
                                         <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label  px-1">Join Date</label> <input class="form-control form-outline" type="date" name="joined_date" id="joined_date" placeholder="" > </div>
-                                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label  px-1">Employee ID</label> <input class="form-control form-outline" type="text" name= "employee_number" autocomplete="off" id="employee_number"  placeholder="" > </div>
+                                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label  px-1">Employee ID</label> <input class="form-control form-outline" type="text" name= "employee_number" autocomplete="Employee ID" id="employee_number"  placeholder="" > </div>
                                       </div>
                                       <div class="row justify-content-between text-left">
                                           <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Line Manager</label><input class="form-control form-outline" type="text" list="FavoriteColor" id="color"
@@ -54,7 +54,7 @@
                                                 <option value="{{ $user->name }}"> </option>
                                             @endforeach
                                         </datalist>
-                                    </div>
+                                     </div>
                                           <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">HR admin <small>(Permission on HRMS)</small></label> <div class="form-check">
                                             <input  class="btn-check" type="radio" name="hradmin" Value="no" id="test1">
                                             <label class="form-check-label" for="test1">
@@ -70,11 +70,25 @@
                                       </div>
                                       <div class="row justify-content-between text-left">
                                           <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Email</label> <input class="form-control form-outline"  type="email" id="email"  name="email" autocomplete="off" placeholder="" > </div>
-                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Password <small>(When signing using Employee ID)</small></label> <input class="form-control form-outline"  type="password" id="password" autocomplete="off" name="password" autocomplete="off" placeholder="" > </div>
+                                          <div class="form-group col-sm-6 flex-column d-flex">
+                                              <label class="form-control-label px-1">Password <small>(When signing using Employee ID)</small></label>
+
+                                               <div class="input-group">
+                                                   <input class="form-control form-outline pwd"  type="password" id="password" autocomplete="off"
+                                                   name="password" autocomplete="new-password" placeholder="">
+
+                                                   <div class="input-group-append">
+                                                    <div class="input-group-text reveal ">
+                                                      <span class="fas fa-eye-slash"></span>
+                                                    </div>
+                                                  </div>
+                                               </div>
+                                        </div>
                                       </div>
                                       {{-- MUST ADD requirepd for radio check --}}
+<br>
                                       <div class="row justify-content-center">
-                                          <div class="form-group col-sm-3"> <button type="submit" class="btn-block btn-primary">Create</button> </div>
+                                          <div class="form-group col-sm-3"> <button type="submit" class="btn bg-gradient-primary btn-block">Create</button> </div>
                                       </div>
                                   </form>
                                   </div>
@@ -227,3 +241,18 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+
+<script>
+  $(".reveal").on('click',function() {
+    var $pwd = $(".pwd");
+    if ($pwd.attr('type') === 'password') {
+        $pwd.attr('type', 'text');
+    } else {
+        $pwd.attr('type', 'password');
+    }
+});
+</script>
+
+@endpush
