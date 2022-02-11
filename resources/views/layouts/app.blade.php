@@ -363,6 +363,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   @php
   $user = Auth::user();
+
+//   dd($approvals);
   @endphp
  @if($user->usertype_id == '2')
 
@@ -370,6 +372,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <a href="#" class="nav-link {{ $activePage == 'leavesapproval'||$activePage == 'overtimesapproval' ? ' active' : '' }} " >
         <i class="fas fa-check nav-icon"></i>
       <p>{{ __('Approvals') }}
+        {{-- @php
+            dd($numapproval);
+            @endphp --}}
+            @if ($numapproval > '0')
+
+            <span class="ml-1 badge badge-primary"> {{$numapproval}} </span>
+        @endif
         <i class="fas fa-angle-down right"></i>
       </p>
     </a>
