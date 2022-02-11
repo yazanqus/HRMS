@@ -14,17 +14,28 @@
 
           <form action="{{ route('login') }}" method="post">
             @csrf
-            <div class="input-group mb-3">
-              <input type="text" name="employee_number" value="{{ old('employee_number', '') }}" class="form-control"
-                placeholder="{{ __('Employee Number') }}" required>
 
-              <div class="input-group-append">
-                <div class="input-group-text">
-                    <i class="fas fa-id-badge"></i>
-                  {{-- <span class="fas fa-envelope"></span> --}}
+            <div class="bmd-form-group{{ $errors->has('employee_number') ? ' has' : '' }}">
+                <div class="input-group mb-3">
+                  <input type="text" name="employee_number" value="{{ old('employee_number', '') }}" class="form-control"
+                    placeholder="{{ __('Employee Number') }}" required>
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                        <i class="fas fa-id-badge"></i>
+                      {{-- <span class="fas fa-envelope"></span> --}}
+                    </div>
+                  </div>
                 </div>
-              </div>
+                {{-- @if ($errors->has('employee_number'))
+                                    <div id="employee_number-error" class="error text-danger mr-3 pl-3" for="employee_number"
+                                        style="display: block;">
+                                        <strong>{{ $errors->first('employee_number') }}</strong>
+                                    </div>
+                                @endif --}}
             </div>
+
+
+
             <div class="input-group mb-3">
               <input type="password" name="password" class="form-control pwd" placeholder="Password" required>
 
@@ -35,6 +46,7 @@
                 </div>
               </div>
             </div>
+
             <div class="row">
               {{-- <div class="col-2"> --}}
                 <div class="container d-flex justify-content-start">
@@ -47,6 +59,12 @@
                 </div>
               {{-- </div> --}}
             </div>
+            @if ($errors->has('employee_number'))
+                                    <div id="employee_number-error" class="mb-2 error text-danger mr-3 pl-3" for="employee_number"
+                                        style="display: block;">
+                                        <strong>{{ $errors->first('employee_number') }}</strong>
+                                    </div>
+                                @endif
               <!-- /.col -->
               <div class="row">
                   <div class="col-12">
@@ -56,9 +74,9 @@
               <!-- /.col -->
           </form>
 
-          <div class="social-auth-links text-center mt-2 mb-3">
+          <div class="social-auth-links text-center ">
             <a href="#" class="btn btn-block btn-outline-primary">
-              <i class="fab fa-faecebook mr-2"></i> SSO - Sign in with Okta
+              <i class="fab fa-faecebook"></i>SSO - Sign in with Okta
             </a>
             {{-- <a href="#" class="btn btn-block btn-danger">
               <i class="fab fa-google-plus mr-2"></i> Sign in using Google+

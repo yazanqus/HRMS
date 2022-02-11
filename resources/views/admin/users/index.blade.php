@@ -34,6 +34,8 @@
                                               <th scope="col">Position</th>
                                               <th scope="col">Join Date</th>
                                               <th scope="col">Line Manager</th>
+                                              <th class="text-center" scope="col">Admin<small> (on HR System)</small></th>
+                                              <th class="text-center" scope="col">Date Created</th>
                                               <th class="text-center" scope="col">Action</th>
                                               </tr>
                                             </thead>
@@ -45,21 +47,23 @@
                                                   <td>{{ $user->position }}</td>
                                                   <td>{{ $user->joined_date }}</td>
                                                   <td>{{ $user->linemanager }}</td>
+                                                  <td class="text-center" >{{ $user->hradmin }}</td>
+                                                  <td class="text-center" >{{ $user->created_at }}</td>
                                                   <td class="text-center">
                                                     <div class="btn-group dropright">
                                                         <button class="btn btn-xs " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <i class="fas fa-bars"></i>
                                                         </button>
-                                                        <div  class="dropdown-menu " aria-labelledby="dropdownMenuButton">
-                                                          <div class="text-center"><a class="dropdown-item text-center" href="{{ route('admin.users.show', $user) }}" target="_blank">View</a></div>
-                                                          <div class="text-center"><a class="dropdown-item text-center" href="{{ route('admin.users.edit', $user) }}"  >Edit</a></div>
-                                                          <form method="POST" action="#" class="text-center" >
-                                                            {{ csrf_field() }}
-                                                            {{ method_field('DELETE') }}
-                                                            <div class="form-group">
-                                                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
-                                                            </div>
-                                                        </form>
+                                                        <div style="min-width: 7rem" class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                                                          {{-- <div class="text-center"><a class="dropdown-item text-center" href="{{ route('admin.users.show', $user) }}" target="_blank">View</a></div>
+                                                          <div class="text-center"><a class="dropdown-item text-center" href="{{ route('admin.users.edit', $user) }}" >Edit</a></div>
+                                                          <button type="button" class="dropdown-item text-center form-group btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal{{$user->id}}">Delete</button> --}}
+
+                                                          <div class="text-center"><a class="form-group btn btn-sm btn-outline-primary" href="{{ route('admin.users.show', $user) }}" target="_blank">View</a></div>
+                                                          <div class="text-center"><a class="form-group btn btn-sm btn-outline-info" href="{{ route('admin.users.edit', $user) }}" >Edit</a></div>
+                                                          <div class="text-center"><button type="button" class=" form-group btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal{{$user->id}}">Delete</button></div>
+
+
                                                         </div>
                                                       </div>
                                                   </td>
@@ -73,7 +77,9 @@
                                             <th scope="col">Position</th>
                                             <th scope="col">Join Date</th>
                                             <th scope="col">Line Manager</th>
-                                            <th scope="col">Action</th>
+                                            <th class="text-center" scope="col">Admin<small> (on HR System)</small></th>
+                                            <th class="text-center" scope="col">Date Created</th>
+                                            <th class="text-center" scope="col">Action</th>
                                               </tr>
                                             </tfoot>
                                           </table>
@@ -81,6 +87,42 @@
 
 
                           </div>
+
+
+
+
+
+<!-- Modal -->
+@foreach ($users as $user)
+
+
+<div id="myModal{{$user->id}}" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 style="color: red" class="modal-title">Attention!</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete: <br><strong>{{$user->name}}</strong>.</p>
+          <form method="POST" action="{{ route('admin.users.destroy', $user) }}" class="text-center" >
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+            <div class="form-group">
+                <input type="submit" class="btn btn-danger" value="Delete">
+            </div>
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  @endforeach
 
                     <!-- /.card-body -->
 
@@ -98,10 +140,27 @@
 
 
   <script>
+
+
+
     $(document).ready( function () {
-    $('#table_id').DataTable();
-} );
+    $('#table_id').DataTable({
+        "aLengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+        "order": [[6, "desc" ]],
+    });
+});
   </script>
+
+
+<script>
+
+var myModal = document.getElementById('myModal')
+var myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', function () {
+  myInput.focus()
+})
+</script>
 @endpush
 
 

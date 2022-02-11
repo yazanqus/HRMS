@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'Users', 'titlePage' => __('Users')])
+@extends('layouts.app', ['activePage' => 'all-users', 'titlePage' => ('all users')])
 
 @section('content')
 
@@ -9,16 +9,9 @@
                     <div class="text">
                         {{-- @foreach ($users as $user) --}}
                         <br>
-                        <h3> <b>{{$user->name}}</b> </h3>
+                        <h3> <b>{{$user->name}} <a href="{{route('admin.users.edit', $user)}}" role="button" class="btn btn-sm btn-outline-primary">Edit  <i class="ml-2 fas fa-lg fa-user-cog"></i></a></b> </h3>
                         {{-- @endforeach --}}
                     </div>
-                </div>
-                <div class="col align-items-center">
-
-                        {{-- @foreach ($users as $user) --}}
-                        <a href="{{route('admin.users.edit', $user)}}" class="btn btn-sm btn-primary">Edit</a>
-                        {{-- @endforeach --}}
-
                 </div>
 
 
@@ -39,20 +32,22 @@
                           </div> --}}
                         <div class="row">
                             <div class="col">
-                                Full Name: {{$user->name}}
+                                <strong>Full Name: </strong> {{$user->name}}
                                 <br>
-                                Birth date: {{$user->birth_date}}
+                                <strong>Birth date: </strong> {{$user->birth_date}}
                                 <br>
-                                Unit: {{$user->unit}}
+                                <strong>Email: </strong> {{$user->email}}
                                 <br>
-                                Employee ID: {{$user->employee_number}}
+                                <strong>Employee ID: </strong> {{$user->employee_number}}
                               </div>
                               <div class="col">
-                                Position: {{$user->position}}
+                                <strong>Position: </strong> {{$user->position}}
                                 <br>
-                                Grade: {{$user->grade}}
+                                <strong>Grade: </strong> {{$user->grade}}
                                 <br>
-                                Line Manager: {{$user->linemanager}}
+                                <strong>Joined Date: </strong> {{$user->joined_date}}
+                                <br>
+                              <strong>Line Manager: </strong> {{$user->linemanager}}
                               </div>
                         </div>
                         {{-- <iframe src="{{url('/storage/files/0j7YmC2IIpwwkvLLhg23zidqXYRGwhYpSGNWZklb.pdf')}}" width="100%" height="600"></iframe> --}}
@@ -72,47 +67,38 @@
                           <div class="row">
                               <div class="col">
                                     @php
-                                    if ($user->usertype_id == "1") {
-                                      $role = "Staff";
-                                    }
-                                  elseif ($user->usertype_id == "2") {
+                                    if ($user->usertype_id == "2") {
                                       $role = "Line Manager";
                                     }
                                     else {
-                                        $role = "undefined";
+                                        $role = "Staff";
                                     }
                                     @endphp
-                                  Role <small>(Staff or Line Manger)</small>: {{$role}}
+                                  <strong>Role</strong> <small>(Staff or Line Manger)</small>: {{$role}}
                                   <br>
                                   @php
-                                      if ($user->hradmin == "no") {
-                                      $admin = "Not admin";
-                                    }
-                                  elseif ($user->hradmin == "yes") {
+                                      if ($user->hradmin == "yes") {
                                       $admin = "Admin";
                                     }
+
                                     else {
-                                        $admin = "Undefined";
+                                        $admin = "Not Admin";
                                     }
                                   @endphp
-                                  Permission in HR System: {{$admin}}
-                                  <br>
-                                  Joined Date: {{$user->joined_date}}
+                                  <strong>Permission in HR System:</strong> {{$admin}}
                                 </div>
                                 <div class="col">
-                                  Email: {{$user->email}}
+                                  <strong>User Created on System at:</strong> {{$user->created_at}}
                                   <br>
-                                  User Created on System at: {{$user->created_at}}
-                                  <br>
-                                  Info last updated: {{$user->updated_at}}
+                                  <strong>Info last updated:</strong> {{$user->updated_at}}
                                 </div>
                           </div>
                           {{-- <iframe src="{{url('/storage/files/0j7YmC2IIpwwkvLLhg23zidqXYRGwhYpSGNWZklb.pdf')}}" width="100%" height="600"></iframe> --}}
                         </div>
                       </div>
-                    <div class="card">
+                      <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">Leave Balance</h4>
+                          <h4 class="card-title ">Leaves - Remaining balance</h4>
                           <p class="card-category"></p>
                         </div>
                         <div class="card-body">
@@ -123,19 +109,42 @@
                             </div> --}}
                           <div class="row">
                               <div class="col">
-                                  Remaining: {{$balance}}
+                                  <strong>Annual Leave:</strong> {{$balance1}}
+                                  <br>
+                                  <strong>Sick leave:</strong> {{$balance2}}
+
                                 </div>
-                                <div class="col">
-                                  Leaves Taken: {{$user->linemanager}}
-                                </div>
+
                           </div>
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Leaves - Taken</h4>
+                  <p class="card-category"></p>
                 </div>
-            </div>
+                <div class="card-body">
+                    {{-- <div class="row">
+                        <div   div class="col-12 text-right">
+                          <a href="#" class="btn btn-sm btn-primary">Add Holiday</a>
+                        </div>
+                    </div> --}}
+                  <div class="row">
+                      <div class="col">
+                          <strong>Annual Leave:</strong> {{$balance1}}
+                          <br>
+                          <strong>Sick leave:</strong> {{$balance2}}
+
+                        </div>
+
+                  </div>
         </div>
     </div>
 
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
