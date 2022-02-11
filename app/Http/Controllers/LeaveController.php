@@ -122,6 +122,7 @@ class LeaveController extends Controller
                     $leave->status = 'Pending Approval';
 
                     $leave->save();
+                    // $user->notify(new EmailNotification($leave));
 
                     return redirect()->route('leaves.index');
                 }
@@ -259,7 +260,7 @@ class LeaveController extends Controller
 
             // $data = ['foo' => 'baz'];
 
-            // Mail::send('danial@admin.com', $data, function ($message) use ($user) {
+            // Mail::send('danial@admin.com', $data, function ($message) use ($user)
             //     $message->to('danial@admin.com');
             //     $message->subject('Welcome Mail');
             // });

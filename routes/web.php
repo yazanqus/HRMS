@@ -54,6 +54,8 @@ Auth::routes();
 
 // Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
 
+Route::get('send', 'HomeController@sendNotification');
+
 Route::group(['middleware' => ['auth', 'hradmin'], 'prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::get('allstaffleaves', function () {
         $leaves = Leave::all();
