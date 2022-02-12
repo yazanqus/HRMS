@@ -34,6 +34,7 @@
                                     <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">User information</h3>
                                   <form class="form-outline" autocomplete="off" action="{{ route('admin.users.store') }}" method="POST">
                                       @csrf
+
                                       <div class="row justify-content-between text-left">
                                           <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
                                               <label class="form-control-label required px-1">Name</label>

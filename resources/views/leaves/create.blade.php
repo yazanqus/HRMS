@@ -32,6 +32,7 @@
                                       <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">New Leave</h3>
                                       <form action="{{ route('leaves.store') }}" method="POST">
                                         @csrf
+
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <div class="form-outline">
