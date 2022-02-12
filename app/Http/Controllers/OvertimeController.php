@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Balance;
 use App\Models\Overtime;
 use DateTime;
 use Illuminate\Http\Request;
@@ -41,9 +42,10 @@ class OvertimeController extends Controller
     {
         $request->validate([
 
+            'type' => 'required',
             'date' => 'required',
             'start_hour' => 'required',
-            'end_hour' => 'required',
+            'end_hour' => 'required|after:start_hour',
             // 'leavetype_id' => 'required',
         ]);
 
@@ -52,20 +54,34 @@ class OvertimeController extends Controller
         $starttime1 = new DateTime($stime);
         $endtime2 = new DateTime($etime);
         $interval = $starttime1->diff($endtime2);
-        $hours = $interval->format('%h');
+        $hourss = $interval->format('%h');
+        $minss = $interval->format('%i');
+        $units = round($minss / 30) * 30;
+        $mintohour = $units / 60;
+        $last = $hourss + $mintohour;
+
+        // dd($last);
+
         // $hours = $hourss+'1';
 
         $overtime = new Overtime();
+        $overtime->type = $request->type;
         $overtime->date = $request->date;
         $overtime->start_hour = $request->start_hour;
         $overtime->end_hour = $request->end_hour;
-        $overtime->hours = $hours;
+        $overtime->hours = $last;
         // $overtime->overtimetype_id = $request->overtimetype_id;
         $overtime->user_id = auth()->user()->id;
         $overtime->status = 'Pending Approval';
+        if ($overtime->type == 'weekday') {
+            $overtime->value = $last * 1.5;
+        } else {
+            $overtime->value = $last * 2;
+        }
 
         $overtime->save();
 
+        // dd($partialstoannual);
         return redirect()->route('overtimes.index');
 
     }
@@ -121,6 +137,29 @@ class OvertimeController extends Controller
         $overtime->status = 'Approved';
         $overtime->save();
 
+        if ($overtime->type == 'week-end') {
+            $partialstoannua = $overtime->hours / 8;
+            $partialstoannual = round($partialstoannua, 2);
+
+            $balances = Balance::where('user_id', $overtime->user->id)->get();
+            $subsets = $balances->map(function ($balance) {
+                return collect($balance->toArray())
+
+                    ->only(['value', 'leavetype_id'])
+                    ->all();
+            });
+            $final = $subsets->firstwhere('leavetype_id', '1');
+
+            $finalfinal = $final['value'];
+            $currentbalance = $finalfinal;
+
+            $newbalance = $currentbalance + $partialstoannual;
+
+            Balance::where([
+                ['user_id', $overtime->user->id],
+                ['leavetype_id', '1'],
+            ])->update(['value' => $newbalance]);
+        }
         // if ($leave->leavetype_id == '13' || $leave->leavetype_id == '14') {
 
         //     $balances = Balance::where('user_id', $leave->user->id)->get();

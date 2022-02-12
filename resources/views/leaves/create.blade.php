@@ -33,7 +33,7 @@
                                       <form action="{{ route('leaves.store') }}" method="POST">
                                         @csrf
                                         <div class="row justify-content-between text-left">
-                                            <div class="col-md-6 mb-6">
+                                            <div class="form-group col-sm-6 flex-column d-flex">
                                                 <div class="form-outline">
                                                     <label class="form-control-label px-1">Leave type</label>
                                                     <select
@@ -50,16 +50,29 @@
                                         </div>
                                         <br>
                                         <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Start date</label> <input class="form-control form-outline" type="date" id="start_date"  name="start_date" placeholder=""> </div>
-                                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">End date</label> <input class="form-control form-outline" type="date" name="end_date" id="end_date" placeholder="" > </div>
+                                            <div class="form-group {{ $errors->has('start_date') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
+                                                 <label class="form-control-label required px-1">Start date</label>
+                                                 <input class="form-control form-outline  {{ $errors->has('start_date') ? ' is-invalid' : '' }} " type="date" id="start_date"  name="start_date" placeholder="">
+                                                 @if ($errors->has('start_date'))
+                                                <span id="start_date-error" class="error text-danger" for="input-start_date">{{ $errors->first('start_date') }}</span>
+                                               @endif
+                                                </div>
+                                            <div class="form-group  {{ $errors->has('end_date') ? ' has-danger' : '' }}  col-sm-6 flex-column d-flex">
+                                                <label class="form-control-label required px-1">End date</label>
+                                                 <input class="form-control form-outline {{ $errors->has('end_date') ? ' is-invalid' : '' }}" type="date" name="end_date" id="end_date" placeholder="" >
+                                                 @if ($errors->has('end_date'))
+                                                 <span id="end_date-error" class="error text-danger" for="input-end_date">{{ $errors->first('end_date') }}</span>
+                                                @endif
+                                                </div>
                                             {{-- <a href="#" id="output" class="btn btn-sm btn-primary"></a> --}}
 
                                         </div>
+                                        <br>
 
 
 
-                                        <div class="mt-4 pt-2">
-                                          <input class="btn btn-primary btn-lg" type="submit" value="Add" />
+                                        <div class="row justify-content-center">
+                                            <div class="form-group col-sm-2"> <button type="submit" class="btn bg-gradient-primary btn-block">Submit</button> </div>
                                         </div>
                                       </form>
                                     </div>
@@ -70,6 +83,12 @@
                         </div>
                     </div>
                 </div>
+                <style>
+                    .required:after {
+                      content:" *";
+                      color: red;
+                    }
+                  </style>
 
 
 

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Leave;
+use App\Models\Overtime;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
@@ -51,10 +52,15 @@ class AppServiceProvider extends ServiceProvider
                         // ])->get();
 
                         $leaves = Leave::whereIn('user_id', $subsets)->where('status', 'Pending Approval')->get();
+                        $overtimes = Overtime::whereIn('user_id', $subsets)->where('status', 'Pending Approval')->get();
                         // if (count($leaves)) {
-                        $numapproval = count($leaves);
+                        $numleaveapproval = count($leaves);
+                        $numoverapproval = count($overtimes);
+                        $numapproval = $numleaveapproval + $numoverapproval;
                         // dd($numapproval);
-                        $view->with('numapproval', $numapproval);
+                        $view->with('numleaveapproval', $numleaveapproval)
+                            ->with('numoverapproval', $numoverapproval)
+                            ->with('numapproval', $numapproval);
                         // }
                     }
                 }

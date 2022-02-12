@@ -88,7 +88,7 @@ class LeaveController extends Controller
 
         $request->validate([
             'start_date' => 'required',
-            'end_date' => 'required',
+            'end_date' => 'required|after_or_equal:start_date',
             'leavetype_id' => 'required',
         ]);
 

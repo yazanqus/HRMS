@@ -74,17 +74,13 @@
                 </div>
             </div>
 
-            <div class="card">
+            {{-- <div class="card">
                 <div class="card-header card-header-primary">
                   <h4 class="card-title ">Leaves - Taken</h4>
                   <p class="card-category"></p>
                 </div>
                 <div class="card-body">
-                    {{-- <div class="row">
-                        <div   div class="col-12 text-right">
-                          <a href="#" class="btn btn-sm btn-primary">Add Holiday</a>
-                        </div>
-                    </div> --}}
+
                   <div class="row">
                       <div class="col">
                           <strong>Annual Leave:</strong> {{$balance1}}
@@ -95,7 +91,7 @@
 
                   </div>
         </div>
-    </div>
+    </div> --}}
         </div>
     </div>
     </div>

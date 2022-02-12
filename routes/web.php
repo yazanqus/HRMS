@@ -62,6 +62,11 @@ Route::group(['middleware' => ['auth', 'hradmin'], 'prefix' => '/admin', 'as' =>
         return view('admin.allstaffleaves.index', ['leaves' => $leaves]);
     })->name('allstaffleaves.index');
 
+    Route::get('allstaffovertimes', function () {
+        $overtimes = Overtime::all();
+        return view('admin.allstaffovertimes.index', ['overtimes' => $overtimes]);
+    })->name('allstaffovertimes.index');
+
     Route::get('allstaffbalances', function () {
         $users = User::all();
         $balances = Balance::all();

@@ -112,24 +112,41 @@
                                   <strong>Annual Leave:</strong> {{$balance1}}
                                   <br>
                                   <strong>Sick leave:</strong> {{$balance2}}
-
+                                  <br>
+                                  <strong>Sick leave 30% deduction:</strong> {{$balance3}}
+                                    <br>
+                                    <strong>Sick leave 20% deduction</strong> {{$balance4}}
+                                    <br>
+                                  <strong>Marriage leave:</strong> {{$balance5}}
+                                    <br>
+                                    <strong>Welfare leave:</strong> {{$balance12}}
                                 </div>
+
+                                <div class="col">
+                                    <strong>Unpaid leave:</strong> {{$balance15}}
+                                    <br>
+                                    <strong>Maternity leave:</strong> {{$balance8}}
+                                    <br>
+                                    <strong>Paternity leave:</strong> {{$balance9}}
+                                    <br>
+                                  <strong>Compassionate - Second degree:</strong> {{$balance7}}
+                                  <br>
+                                {{-- <strong>Annual Leave:</strong> {{$balance1}}
+                                  <br> --}}
+                                  <strong>Compassionate - First degree:</strong> {{$balance6}}
+                                  </div>
 
                           </div>
                 </div>
             </div>
 
-            <div class="card">
+            {{-- <div class="card">
                 <div class="card-header card-header-primary">
                   <h4 class="card-title ">Leaves - Taken</h4>
                   <p class="card-category"></p>
                 </div>
                 <div class="card-body">
-                    {{-- <div class="row">
-                        <div   div class="col-12 text-right">
-                          <a href="#" class="btn btn-sm btn-primary">Add Holiday</a>
-                        </div>
-                    </div> --}}
+
                   <div class="row">
                       <div class="col">
                           <strong>Annual Leave:</strong> {{$balance1}}
@@ -140,7 +157,7 @@
 
                   </div>
         </div>
-    </div>
+    </div> --}}
 
                 </div>
             </div>
