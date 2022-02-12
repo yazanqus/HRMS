@@ -62,6 +62,10 @@ class AppServiceProvider extends ServiceProvider
                             ->with('numoverapproval', $numoverapproval)
                             ->with('numapproval', $numapproval);
                         // }
+                    } else {
+                        $view->with('numleaveapproval', '0')
+                            ->with('numoverapproval', '0')
+                            ->with('numapproval', '0');
                     }
                 }
             }
