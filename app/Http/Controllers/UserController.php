@@ -280,7 +280,7 @@ class UserController extends Controller
             // 'unit' => 'required',
             'grade',
             'joined_date' => 'required',
-            'linemanager' => 'required',
+            'linemanager',
             'hradmin',
             'password',
             // hradminrole?

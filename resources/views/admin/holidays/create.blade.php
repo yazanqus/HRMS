@@ -34,41 +34,36 @@
                                         @csrf
 
                                         <div class="row justify-content-between text-left">
-                                          <div class="col-md-6 mb-6">
-                                            <div class="form-outline">
-                                              <input type="text" name="name" class="form-control form-control-lg" />
-                                              <label class="form-label" >Name</label>
-                                            </div>
-                                          </div>
-                                            <div class="col-md-6 mb-6">
-                                              <div class="form-outline">
-                                                <input type="text" name="desc" class="form-control form-control-lg" />
-                                                <label class="form-label" >Desc</label>
-                                              </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 mb-6">
-                                              <div class="form-outline">
-                                                <input type="date" name="start_date" class="form-control form-control-lg" />
-                                                <label class="form-label" >Start Date</label>
-                                              </div>
-                                            </div>
-                                              <div class="col-md-6 mb-6">
-                                                <div class="form-outline">
-                                                  <input type="date" name="end_date" class="form-control form-control-lg" />
-                                                  <label class="form-label" >Last Date</label>
+                                            <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
+                                                 <label class="form-control-label required px-1">Name</label>
+                                                 <input class="form-control form-outline  {{ $errors->has('name') ? ' is-invalid' : '' }} " type="text" id="name"  name="name" placeholder="example: Formal holidays..">
+                                                 @if ($errors->has('name'))
+                                                <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
+                                               @endif
                                                 </div>
-                                              </div>
-                                          </div>
-                                        <div class="row">
-                                            <div class="form-outline">
-                                                <input type="file" name="file" class="form-control">
-                                              </div>
-                                          </div>
+                                            <div class="form-group  {{ $errors->has('year') ? ' has-danger' : '' }}  col-sm-6 flex-column d-flex">
+                                                <label class="form-control-label required px-1">Year</label>
+                                                 <input class="form-control form-outline {{ $errors->has('year') ? ' is-invalid' : '' }}" type="text" name="year" id="year" placeholder="example: 2022 or 2022-2023.." >
+                                                 @if ($errors->has('year'))
+                                                 <span id="year-error" class="error text-danger" for="input-year">{{ $errors->first('year') }}</span>
+                                                @endif
+                                                </div>
+                                        </div>
+
+                                        <div class="row justify-content-between text-left">
+                                            <div class="form-group {{ $errors->has('file') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
+                                                 <label class="form-control-label required px-1">File <small>(PDF only)</small></label>
+                                                 <input class="form-control-file form-outline  {{ $errors->has('file') ? ' is-invalid' : '' }} " type="file" id="file"  name="file">
+                                                 @if ($errors->has('file'))
+                                                <span id="file-error" class="error text-danger" for="input-file">{{ $errors->first('file') }}</span>
+                                               @endif
+                                                </div>
+                                        </div>
+
+
                                           <br>
-                                        <div class="mt-4 pt-2">
-                                          <input class="btn btn-primary btn-lg" type="submit" value="Add" />
+                                          <div class="row justify-content-center">
+                                            <div class="form-group col-sm-2"> <button type="submit" class="btn bg-gradient-primary btn-block">Add</button> </div>
                                         </div>
                                       </form>
                                     </div>
@@ -80,7 +75,12 @@
                     </div>
                 </div>
 
-
+                <style>
+                    .required:after {
+                      content:" *";
+                      color: red;
+                    }
+                  </style>
 
 
 

@@ -103,6 +103,27 @@
 @push('scripts')
 <script src="{{ asset('select/js/bootstrap-select.min.js')}}"></script>
 
+
+
+<script>
+$(document).ready(function() {
+$('#leavetype_id').on('change',function(){
+    if ($(this).val() == '13' || $(this).val() == '14' || $(this).val() == '16' || $(this).val() == '17'  ) {
+        $('#end_date').prop('readonly',true);
+    }
+    else {
+        $('#end_date').prop('readonly',false);
+    }
+    if ($('#end_date').is('[readonly]')) {
+   var myInput = $('#start_date');
+   myInput.change(function() {
+       $('#end_date').val(myInput.val());
+   });
+    }
+});
+});
+</script>
+
 {{-- <script>
 function comparedates()
 {

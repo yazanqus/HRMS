@@ -39,9 +39,8 @@ class HolidayController extends Controller
         $request->validate([
 
             'name' => 'required',
-            'desc' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
+            'year' => 'required',
+
             'file' => 'required',
         ]);
 
@@ -49,9 +48,8 @@ class HolidayController extends Controller
 
         $holiday = new Holiday();
         $holiday->name = $request->name;
-        $holiday->desc = $request->desc;
-        $holiday->start_date = $request->start_date;
-        $holiday->end_date = $request->end_date;
+        $holiday->year = $request->year;
+
         $holiday->path = $path;
         $holiday->save();
 
@@ -78,7 +76,7 @@ class HolidayController extends Controller
      */
     public function edit(Holiday $holiday)
     {
-        return view('admin.holidays.edit', ['holidays' => $holiday]);
+        return view('admin.holidays.edit', ['holiday' => $holiday]);
     }
 
     /**
