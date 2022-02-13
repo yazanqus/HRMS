@@ -70,7 +70,7 @@
                                         </div>
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group  col-sm-4 flex-column d-flex">
-                                                 <label class="form-control-label  px-1">Number of Days</label>
+                                                 <label id="labelnumofdays" class="form-control-label  px-1">Number of Days</label>
                                                  <input class="form-control form-outline " type="text" id="numofdays" readonly name="numofdays" placeholder="Enter Start date and End date...">
                                                 </div>
                                             {{-- <a href="#" id="output" class="btn btn-sm btn-primary"></a> --}}
@@ -118,9 +118,13 @@ $(document).ready(function() {
 $('#leavetype_id').on('change',function(){
     if ($(this).val() == '13' || $(this).val() == '14' || $(this).val() == '16' || $(this).val() == '17'  ) {
         $('#end_date').prop('readonly',true);
+        $('#numofdays').hide();
+        $('#labelnumofdays').hide();
     }
     else {
         $('#end_date').prop('readonly',false);
+        $('#numofdays').show();
+        $('#labelnumofdays').show();
     }
     if ($('#end_date').is('[readonly]')) {
    var myInput = $('#start_date');
@@ -130,7 +134,7 @@ $('#leavetype_id').on('change',function(){
     }
 });
 
-$('#end_date').on('change',function(){
+$('#end_date,#start_date').on('change',function(){
 var start = $('#start_date').val();
 var end = $('#end_date').val();
 
@@ -139,9 +143,12 @@ var startt = new Date(start);
 var endd = new Date (end);
 var diff = endd - startt ;
 // get days
-var days = diff/1000/60/60/24 + 1;
+var days = diff/1000/60/60/24 + 1 || 0;
+
 
 $('#numofdays').val(days);
+
+
 });
 
 });
