@@ -125,9 +125,11 @@ class LeaveController extends Controller
                     // $user->notify(new EmailNotification($leave));
 
                     return redirect()->route('leaves.index');
+                } else {
+                    return redirect()->back()->with("error", "Leave remaining balance is not enough");
                 }
             } else {
-                echo 'you are still on probation';
+                return redirect()->back()->with("error", "You can't submit leave while still on probation");
             }
         }
 
@@ -149,9 +151,11 @@ class LeaveController extends Controller
                     $leave->save();
 
                     return redirect()->route('leaves.index');
+                } else {
+                    return redirect()->back()->with("error", "Leave remaining balance is not enough");
                 }
             } else {
-                echo 'you cant apply for marriage leave yet';
+                return redirect()->back()->with("error", "You can't submit leave before at least 6 months of service");
             }
 
         }
@@ -174,9 +178,11 @@ class LeaveController extends Controller
                     $leave->save();
 
                     return redirect()->route('leaves.index');
+                } else {
+                    return redirect()->back()->with("error", "Leave remaining balance is not enough");
                 }
             } else {
-                echo 'you cant apply for marriage leave yet';
+                return redirect()->back()->with("error", "You can't submit leave before at least 6 months of service");
             }
         }
 
@@ -198,9 +204,11 @@ class LeaveController extends Controller
                     $leave->save();
 
                     return redirect()->route('leaves.index');
+                } else {
+                    return redirect()->back()->with("error", "Leave remaining balance is not enough");
                 }
             } else {
-                echo 'you cant apply for marriage leave yet';
+                return redirect()->back()->with("error", "You can't submit leave while still on probation");
             }
         }
 
@@ -222,10 +230,13 @@ class LeaveController extends Controller
                     $leave->save();
 
                     return redirect()->route('leaves.index');
+                } else {
+                    return redirect()->back()->with("error", "Leave remaining balance is not enough");
                 }
             } else {
-                echo 'you cant apply for marriage leave yet';
+                return redirect()->back()->with("error", "You can't submit leave before at least 6 months of service");
             }
+
         } elseif ($request->leavetype_id == '16' || $request->leavetype_id == '17') {
 
             if ($probationdays >= '90') {
@@ -243,9 +254,11 @@ class LeaveController extends Controller
                     $leave->save();
 
                     return redirect()->route('leaves.index');
+                } else {
+                    return redirect()->back()->with("error", "Leave remaining balance is not enough");
                 }
             } else {
-                echo 'you cant apply for marriage leave yet';
+                return redirect()->back()->with("error", "You can't submit leave while still on probation");
             }
         } else {
             $leave = new Leave();
