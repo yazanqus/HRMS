@@ -68,6 +68,14 @@
                                             {{-- <a href="#" id="output" class="btn btn-sm btn-primary"></a> --}}
 
                                         </div>
+                                        <div class="row justify-content-between text-left">
+                                            <div class="form-group  col-sm-4 flex-column d-flex">
+                                                 <label class="form-control-label  px-1">Number of Days</label>
+                                                 <input class="form-control form-outline " type="text" id="numofdays" readonly name="numofdays" placeholder="Enter Start date and End date...">
+                                                </div>
+                                            {{-- <a href="#" id="output" class="btn btn-sm btn-primary"></a> --}}
+
+                                        </div>
                                         <br>
 
 
@@ -121,6 +129,21 @@ $('#leavetype_id').on('change',function(){
    });
     }
 });
+
+$('#end_date').on('change',function(){
+var start = $('#start_date').val();
+var end = $('#end_date').val();
+
+// end - start returns difference in milliseconds
+var startt = new Date(start);
+var endd = new Date (end);
+var diff = endd - startt ;
+// get days
+var days = diff/1000/60/60/24 + 1;
+
+$('#numofdays').val(days);
+});
+
 });
 </script>
 
