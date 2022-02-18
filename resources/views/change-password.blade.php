@@ -99,9 +99,9 @@
                                                               </div>
                                                         </div>
                                                              @if ($errors->has('new-password'))
-                                                             <i class="help-block">
-                                                             <strong>{{ $errors->first('new-password') }}</strong>
-                                                            </i>
+
+                                                             {{-- <strong>{{ $errors->first('new-password') }}</strong> --}}
+
                                                              @endif
                                                           </div>
                                                         </div>

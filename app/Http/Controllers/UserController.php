@@ -42,7 +42,9 @@ class UserController extends Controller
         User::orderBy('employee_number')->pluck('name', 'position');
         $users = User::sortable();
 
-        return view('admin.users.index', ['users' => $users->paginate(15)]);
+        $variablee = '';
+
+        return view('admin.users.index', ['users' => $users->paginate(15) , 'variablee' => $variablee]);
     }
 
     public function create()

@@ -107,6 +107,21 @@
         </div>
         <div class="modal-body">
           <p>Are you sure you want to delete: <br><strong>{{$user->name}}</strong>.</p>
+@php
+    if ($user->name != Auth::user()->name)
+    {
+        $variablee='1';
+
+    }
+
+    else
+    {
+        $variablee ='2';
+    }
+@endphp
+          @if ($variablee=='2')
+          <strong style="color: red">You will be logged out immediately <br> </strong> <br>
+          @endif
           <form method="POST" action="{{ route('admin.users.destroy', $user) }}" class="text-center" >
             {{ csrf_field() }}
             {{ method_field('DELETE') }}

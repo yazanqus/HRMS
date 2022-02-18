@@ -146,14 +146,14 @@
                                             <div class="form-group  {{ $errors->has('password') ? ' has-danger' : '' }}  col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label required px-1">Password <small>(Change User Password)</small></label>
                                                 <div class="input-group">
-                                                    <input class="form-control form-outline  {{ $errors->has('password') ? ' is-invalid' : '' }} pwd"  type="password" id="password" autocomplete="off"
+                                                    <input class="form-control form-outline  {{ $errors->has('password') ? ' is-invalid' : '' }} "  type="password" id="password" autocomplete="off"
                                                     name="password" autocomplete="new-password" placeholder="">
                                                     {{-- @if ($errors->has('password'))
                                                  <span id="password-error" class="error text-danger" for="input-password">{{ $errors->first('password') }}</span>
                                                 @endif --}}
                                                     <div class="input-group-append">
-                                                     <div class="input-group-text reveal ">
-                                                       <span class="fas fa-eye-slash"></span>
+                                                     <div class="input-group-text  ">
+                                                       <i class="fas fa-eye-slash" id="eye1"></i>
                                                      </div>
                                                    </div>
                                                  </div>
@@ -181,6 +181,9 @@
                       content:" *";
                       color: red;
                     }
+                    i{
+                                                        cursor:pointer;
+                                                    }
                   </style>
 
 
@@ -195,13 +198,24 @@
 @push('scripts')
 
 <script>
-  $(".reveal").on('click',function() {
-    var $pwd = $(".pwd");
-    if ($pwd.attr('type') === 'password') {
-        $pwd.attr('type', 'text');
-    } else {
-        $pwd.attr('type', 'password');
-    }
+  $("#eye1").on('click',function() {
+
+if($(this).hasClass('fa-eye-slash')){
+
+  $(this).removeClass('fa-eye-slash');
+
+  $(this).addClass('fa-eye');
+
+  $('#password').attr('type','text');
+
+}else{
+
+  $(this).removeClass('fa-eye');
+
+  $(this).addClass('fa-eye-slash');
+
+  $('#password').attr('type','password');
+}
 });
 </script>
 
