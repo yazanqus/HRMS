@@ -2,6 +2,7 @@
 namespace App\Http\Middleware;
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ChangePassword;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\OvertimeController;
@@ -310,6 +311,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('upgrade', function () {
         return view('pages.upgrade');
     })->name('upgrade');
+
+    Route::get('/changePassword', [ChangePassword::class, 'showChangePasswordGet'])->name('changePasswordGet');
+    Route::post('/changePassword', [ChangePassword::class, 'changePasswordPost'])->name('changePasswordPost');
 });
 
 // Route::group(['middleware' => 'auth'], function () {

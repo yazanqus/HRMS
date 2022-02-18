@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Notifications\EmailNotification;
-use Illuminate\Notifications\Notification;
 
 class HomeController extends Controller
 {
@@ -46,8 +44,9 @@ class HomeController extends Controller
             'order_id' => 101,
         ];
 
-        Notification::send($user, new EmailNotification($details));
+        // Notification::send($user, new EmailNotification($details));
 
         dd('done');
     }
+
 }

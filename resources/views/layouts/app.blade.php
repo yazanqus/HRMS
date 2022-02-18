@@ -305,7 +305,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </a>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
       {{-- <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a> --}}
-      <a class="dropdown-item" href="#">{{ __('Change Password') }}</a>
+      <a class="dropdown-item" href="{{ route('changePasswordGet') }}">{{ __('Change Password') }}</a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Log out') }}</a>
     </div>
