@@ -72,7 +72,7 @@ class OvertimeController extends Controller
         $overtime->hours = $last;
         // $overtime->overtimetype_id = $request->overtimetype_id;
         $overtime->user_id = auth()->user()->id;
-        $overtime->status = 'Pending Approval';
+        $overtime->status = 'Pending LM Approval';
         if ($overtime->type == 'weekday') {
             $overtime->value = $last * 1.5;
         } else {
@@ -126,12 +126,59 @@ class OvertimeController extends Controller
      * @param  \App\Models\Overtime  $overtime
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Overtime $overtime)
+    public function destroy($id)
     {
-        //
+        $overtime = Overtime::find($id);
+        // dd($overtime);
+        $overtime->delete();
+        return redirect()->route('overtimes.index');
     }
 
     public function approved($id)
+    {
+        $overtime = Overtime::find($id);
+        $overtime->status = 'Pending HR Approval';
+        $overtime->save();
+
+        // if ($overtime->type == 'week-end') {
+        //     $partialstoannua = $overtime->hours / 8;
+        //     $partialstoannual = round($partialstoannua, 2);
+
+        //     $balances = Balance::where('user_id', $overtime->user->id)->get();
+        //     $subsets = $balances->map(function ($balance) {
+        //         return collect($balance->toArray())
+
+        //             ->only(['value', 'leavetype_id'])
+        //             ->all();
+        //     });
+        //     $final = $subsets->firstwhere('leavetype_id', '1');
+
+        //     $finalfinal = $final['value'];
+        //     $currentbalance = $finalfinal;
+
+        //     $newbalance = $currentbalance + $partialstoannual;
+
+        //     Balance::where([
+        //         ['user_id', $overtime->user->id],
+        //         ['leavetype_id', '1'],
+        //     ])->update(['value' => $newbalance]);
+        // }
+
+        return redirect()->route('overtimes.approval');
+
+    }
+
+    public function declined($id)
+    {
+        $overtime = Overtime::find($id);
+        $overtime->status = 'Declined by LM';
+        $overtime->save();
+
+        return redirect()->route('overtimes.approval');
+
+    }
+
+    public function hrapproved($id)
     {
         $overtime = Overtime::find($id);
         $overtime->status = 'Approved';
@@ -160,78 +207,18 @@ class OvertimeController extends Controller
                 ['leavetype_id', '1'],
             ])->update(['value' => $newbalance]);
         }
-        // if ($leave->leavetype_id == '13' || $leave->leavetype_id == '14') {
 
-        //     $balances = Balance::where('user_id', $leave->user->id)->get();
-        //     $subsets = $balances->map(function ($balance) {
-        //         return collect($balance->toArray())
-
-        //             ->only(['value', 'leavetype_id'])
-        //             ->all();
-        //     });
-        //     $final = $subsets->firstwhere('leavetype_id', '1');
-
-        //     $finalfinal = $final['value'];
-        //     $currentbalanceforannual = $finalfinal;
-
-        //     $newbalance = $currentbalanceforannual - $leave->days;
-
-        //     Balance::where([
-        //         ['user_id', $leave->user->id],
-        //         ['leavetype_id', '1'],
-        //     ])->update(['value' => $newbalance]);
-        // } elseif ($leave->leavetype_id == '16' || $leave->leavetype_id == '17') {
-
-        //     $balances = Balance::where('user_id', $leave->user->id)->get();
-        //     $subsets = $balances->map(function ($balance) {
-        //         return collect($balance->toArray())
-
-        //             ->only(['value', 'leavetype_id'])
-        //             ->all();
-        //     });
-        //     $final = $subsets->firstwhere('leavetype_id', '15');
-
-        //     $finalfinal = $final['value'];
-        //     $currentbalanceforannual = $finalfinal;
-
-        //     $newbalance = $currentbalanceforannual - $leave->days;
-
-        //     Balance::where([
-        //         ['user_id', $leave->user->id],
-        //         ['leavetype_id', '15'],
-        //     ])->update(['value' => $newbalance]);
-        // } else {
-        //     $balances = Balance::where('user_id', $leave->user->id)->get();
-        //     $subsets = $balances->map(function ($balance) {
-        //         return collect($balance->toArray())
-
-        //             ->only(['value', 'leavetype_id'])
-        //             ->all();
-        //     });
-        //     $final = $subsets->firstwhere('leavetype_id', $leave->leavetype_id);
-
-        //     $finalfinal = $final['value'];
-        //     $currentbalance = $finalfinal;
-
-        //     $newbalance = $currentbalance - $leave->days;
-
-        //     Balance::where([
-        //         ['user_id', $leave->user->id],
-        //         ['leavetype_id', $leave->leavetype_id],
-        //     ])->update(['value' => $newbalance]);
-        // }
-
-        return redirect()->route('overtimes.approval');
+        return redirect()->route('overtimes.hrapproval');
 
     }
 
-    public function declined($id)
+    public function hrdeclined($id)
     {
         $overtime = Overtime::find($id);
-        $overtime->status = 'Declined';
+        $overtime->status = 'Declined by HR';
         $overtime->save();
 
-        return redirect()->route('overtimes.approval');
+        return redirect()->route('overtimes.hrapproval');
 
     }
 }

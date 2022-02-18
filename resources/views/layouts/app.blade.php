@@ -415,7 +415,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <li class="nav-item">
 <a class="nav-link {{ $activePage == 'staffleaves' ? ' active' : '' }}" href="{{ route('staffleaves') }}">
     <i class="fas fa-paste nav-icon"></i>
-    <p>{{ __('My Staff leaves') }}</p>
+    <p>{{ __('My Staff') }}</p>
 </a>
 </li>
 
@@ -456,6 +456,49 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <p>{{ __('All Staff balances') }}</p>
     </a>
   </li> --}}
+
+  <li class="nav-item {{ $activePage == 'hrleavesapproval'||$activePage == 'hrovertimesapproval' ? ' menu-open' : ''  }}">
+    <a href="#" class="nav-link {{ $activePage == 'hrleavesapproval'||$activePage == 'hrovertimesapproval' ? ' active' : '' }} " >
+        <i class="fas fa-check nav-icon"></i>
+      <p>{{ __('HR Approvals') }}
+        {{-- @php
+            dd($numapproval);
+            @endphp --}}
+            @if ($numhrapproval > '0')
+
+            <span class="ml-1 badge badge-primary"> {{$numhrapproval}} </span>
+        @endif
+        <i class="fas fa-angle-down right"></i>
+      </p>
+    </a>
+
+
+      <ul class="nav nav-treeview">
+        <li class="nav-item" >
+          <a class="nav-link {{ $activePage == 'hrleavesapproval' ? ' active' : '' }}" href="{{ route('leaves.hrapproval') }}">
+            <i style="padding-left:20px" class="fas fa-running nav-icon "></i>
+            <p style="padding-left:20px">{{ __('Leave Approval') }}
+                @if ($numleavehrapproval > '0')
+
+            <span class="ml-1 badge badge-primary"> {{$numleavehrapproval}} </span>
+        @endif
+
+            </p>
+          </a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link {{ $activePage == 'hrovertimesapproval' ? ' active' : '' }}" href="{{ route('overtimes.hrapproval') }}">
+            <i style="padding-left:20px" class="fas fa-adjust nav-icon"></i>
+            <p style="padding-left:20px">{{ __('Overtime Approval') }}
+                @if ($numoverhrapproval > '0')
+                <span class="ml-1 badge badge-primary"> {{$numoverhrapproval}} </span>
+            @endif</p>
+          </a>
+        </li>
+      </ul>
+
+  </li>
+
 
   <li class="nav-item">
     <a class="nav-link {{ $activePage == 'allstaffleaves' ? ' active' : '' }}" href="{{ route('admin.allstaffleaves.index') }}">

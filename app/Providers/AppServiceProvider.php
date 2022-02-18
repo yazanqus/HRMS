@@ -51,21 +51,34 @@ class AppServiceProvider extends ServiceProvider
                         //     ['status', 'Pending Approval'],
                         // ])->get();
 
-                        $leaves = Leave::whereIn('user_id', $subsets)->where('status', 'Pending Approval')->get();
-                        $overtimes = Overtime::whereIn('user_id', $subsets)->where('status', 'Pending Approval')->get();
+                        $leaves = Leave::whereIn('user_id', $subsets)->where('status', 'Pending LM Approval')->get();
+                        $overtimes = Overtime::whereIn('user_id', $subsets)->where('status', 'Pending LM Approval')->get();
                         // if (count($leaves)) {
                         $numleaveapproval = count($leaves);
                         $numoverapproval = count($overtimes);
                         $numapproval = $numleaveapproval + $numoverapproval;
+
+                        $hrleaves = Leave::where('status', 'Pending HR Approval')->get();
+                        $hrovertimes = Overtime::where('status', 'Pending HR Approval')->get();
+                        $numleavehrapproval = count($hrleaves);
+                        $numoverhrapproval = count($hrovertimes);
+                        $numhrapproval = $numleavehrapproval + $numoverhrapproval;
                         // dd($numapproval);
+
                         $view->with('numleaveapproval', $numleaveapproval)
                             ->with('numoverapproval', $numoverapproval)
-                            ->with('numapproval', $numapproval);
+                            ->with('numapproval', $numapproval)
+                            ->with('numleavehrapproval', $numleavehrapproval)
+                            ->with('numoverhrapproval', $numoverhrapproval)
+                            ->with('numhrapproval', $numhrapproval);
                         // }
                     } else {
                         $view->with('numleaveapproval', '0')
                             ->with('numoverapproval', '0')
-                            ->with('numapproval', '0');
+                            ->with('numapproval', '0')
+                            ->with('numleavehrapproval', '0')
+                            ->with('numoverhrapproval', '0')
+                            ->with('numhrapproval', '0');
                     }
                 }
             }

@@ -10,6 +10,7 @@ class Leave extends Model
 {
     use HasFactory;
     use Notifiable;
+    // use SoftDeletes;
     protected $fillable = [
         'start_date',
         'end_date',

@@ -46,7 +46,23 @@
                               <td class="text-center">{{ $overtime->end_hour }}</td>
                               <td class="text-center">{{ $overtime->hours }}</td>
                               <td class="text-center">{{ $overtime->status }}</td>
-                              <td class="text-center">edit</td>
+                              <td class="text-center">
+                                @php
+                                if ($overtime->status == 'Approved' || $overtime->status == 'Declined by HR')
+                                {
+                                    $variable='disabled';
+                                }
+                                      else
+                                      {
+                                          $variable = 'notdisabled';
+                                      }
+
+                                @endphp
+                                @if ($variable == 'notdisabled')
+
+                                <div class="text-center"><button type="button" class="mb-0 form-group btn btn-xs btn-danger" data-toggle="modal" data-target="#myModal{{$overtime->id}}"><i class="fas fa-minus-circle "></i> </button></div>
+                                @endif
+                              </td>
                             </tr>
                             @endforeach
                           </tbody>
@@ -54,7 +70,58 @@
                           </div>
                         </div>
                       </div>
+
+                      @foreach ($overtimes as $overtime)
+
+
+<div id="myModal{{$overtime->id}}" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 style="color: red" class="modal-title">Attention!</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete overtime ID: <strong>{{$overtime->id}}</strong>.</p>
+          <form method="POST" action="{{ route('overtimes.destroy', $overtime->id) }}" class="text-center" >
+            {{-- @csrf
+            @method('DELETE') --}}
+
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+            <div class="form-group">
+                <input type="submit" class="btn btn-danger" value="Delete">
+            </div>
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  @endforeach
                   </div>
               </div>
           </div>
  @endsection
+ @push('scripts')
+
+ <!-- DataTables  & Plugins -->
+
+
+
+
+<script>
+
+var myModal = document.getElementById('myModal')
+var myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', function () {
+ myInput.focus()
+})
+</script>
+@endpush

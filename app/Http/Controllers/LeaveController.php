@@ -22,7 +22,8 @@ class LeaveController extends Controller
     {
         $user = Auth::user();
         $leave = Leave::where('user_id', $user->id)->get();
-        return view('leaves.index', ['leaves' => $leave]);
+        $variable = '';
+        return view('leaves.index', ['leaves' => $leave, 'variable' => $variable]);
     }
 
     /**
@@ -119,7 +120,7 @@ class LeaveController extends Controller
                     $leave->days = $days;
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
-                    $leave->status = 'Pending Approval';
+                    $leave->status = 'Pending LM Approval';
 
                     $leave->save();
                     // $user->notify(new EmailNotification($leave));
@@ -146,7 +147,7 @@ class LeaveController extends Controller
                     $leave->days = $days;
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
-                    $leave->status = 'Pending Approval';
+                    $leave->status = 'Pending LM Approval';
 
                     $leave->save();
 
@@ -173,7 +174,7 @@ class LeaveController extends Controller
                     $leave->days = $days;
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
-                    $leave->status = 'Pending Approval';
+                    $leave->status = 'Pending LM Approval';
 
                     $leave->save();
 
@@ -199,7 +200,7 @@ class LeaveController extends Controller
                     $leave->days = '0.5';
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
-                    $leave->status = 'Pending Approval';
+                    $leave->status = 'Pending LM Approval';
 
                     $leave->save();
 
@@ -225,7 +226,7 @@ class LeaveController extends Controller
                     $leave->days = $days;
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
-                    $leave->status = 'Pending Approval';
+                    $leave->status = 'Pending LM Approval';
 
                     $leave->save();
 
@@ -249,7 +250,7 @@ class LeaveController extends Controller
                     $leave->days = '0.5';
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
-                    $leave->status = 'Pending Approval';
+                    $leave->status = 'Pending LM Approval';
 
                     $leave->save();
 
@@ -267,7 +268,7 @@ class LeaveController extends Controller
             $leave->days = $days;
             $leave->leavetype_id = $request->leavetype_id;
             $leave->user_id = auth()->user()->id;
-            $leave->status = 'Pending Approval';
+            $leave->status = 'Pending LM Approval';
 
             $leave->save();
 
@@ -323,12 +324,96 @@ class LeaveController extends Controller
      * @param  \App\Models\Leave  $leave
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Leave $leave)
+    public function destroy($id)
     {
-        //
+        $leave = Leave::find($id);
+        // dd($leave);
+        $leave->delete();
+        return redirect()->route('leaves.index')->with("success", "Leave is canceled");
     }
 
     public function approved($id)
+    {
+        $leave = Leave::find($id);
+        $leave->status = 'Pending HR Approval';
+        $leave->save();
+
+        // if ($leave->leavetype_id == '13' || $leave->leavetype_id == '14') {
+
+        //     $balances = Balance::where('user_id', $leave->user->id)->get();
+        //     $subsets = $balances->map(function ($balance) {
+        //         return collect($balance->toArray())
+
+        //             ->only(['value', 'leavetype_id'])
+        //             ->all();
+        //     });
+        //     $final = $subsets->firstwhere('leavetype_id', '1');
+
+        //     $finalfinal = $final['value'];
+        //     $currentbalanceforannual = $finalfinal;
+
+        //     $newbalance = $currentbalanceforannual - $leave->days;
+
+        //     Balance::where([
+        //         ['user_id', $leave->user->id],
+        //         ['leavetype_id', '1'],
+        //     ])->update(['value' => $newbalance]);
+        // } elseif ($leave->leavetype_id == '16' || $leave->leavetype_id == '17') {
+
+        //     $balances = Balance::where('user_id', $leave->user->id)->get();
+        //     $subsets = $balances->map(function ($balance) {
+        //         return collect($balance->toArray())
+
+        //             ->only(['value', 'leavetype_id'])
+        //             ->all();
+        //     });
+        //     $final = $subsets->firstwhere('leavetype_id', '15');
+
+        //     $finalfinal = $final['value'];
+        //     $currentbalanceforannual = $finalfinal;
+
+        //     $newbalance = $currentbalanceforannual - $leave->days;
+
+        //     Balance::where([
+        //         ['user_id', $leave->user->id],
+        //         ['leavetype_id', '15'],
+        //     ])->update(['value' => $newbalance]);
+        // } else {
+        //     $balances = Balance::where('user_id', $leave->user->id)->get();
+        //     $subsets = $balances->map(function ($balance) {
+        //         return collect($balance->toArray())
+
+        //             ->only(['value', 'leavetype_id'])
+        //             ->all();
+        //     });
+        //     $final = $subsets->firstwhere('leavetype_id', $leave->leavetype_id);
+
+        //     $finalfinal = $final['value'];
+        //     $currentbalance = $finalfinal;
+
+        //     $newbalance = $currentbalance - $leave->days;
+
+        //     Balance::where([
+        //         ['user_id', $leave->user->id],
+        //         ['leavetype_id', $leave->leavetype_id],
+        //     ])->update(['value' => $newbalance]);
+        // }
+
+        return redirect()->route('leaves.approval');
+
+    }
+
+    public function declined($id)
+    {
+        $leave = Leave::find($id);
+        $leave->status = 'Declined by LM';
+        $leave->save();
+
+        return redirect()->route('leaves.approval');
+
+    }
+
+    public function hrapproved($id)
     {
         $leave = Leave::find($id);
         $leave->status = 'Approved';
@@ -395,17 +480,17 @@ class LeaveController extends Controller
             ])->update(['value' => $newbalance]);
         }
 
-        return redirect()->route('leaves.approval');
+        return redirect()->route('leaves.hrapproval');
 
     }
 
-    public function declined($id)
+    public function hrdeclined($id)
     {
         $leave = Leave::find($id);
-        $leave->status = 'Declined';
+        $leave->status = 'Declined by HR';
         $leave->save();
 
-        return redirect()->route('leaves.approval');
+        return redirect()->route('leaves.hrapproval');
 
     }
 }
