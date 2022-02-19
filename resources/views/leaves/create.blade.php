@@ -63,7 +63,7 @@
                                                 </div>
                                               </div>
                                         </div>
-                                        <br>
+
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group {{ $errors->has('start_date') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
                                                  <label class="form-control-label required px-1">Start date</label>
@@ -90,12 +90,9 @@
                                             {{-- <a href="#" id="output" class="btn btn-sm btn-primary"></a> --}}
 
                                         </div>
-                                        <br>
-
-
 
                                         <div class="row justify-content-center">
-                                            <div class="form-group col-sm-2"> <button type="submit" class="btn bg-gradient-primary btn-block">Submit</button> </div>
+                                            <div class="justify-content-center form-group col-sm-2"> <button type="submit" class="btn bg-gradient-primary btn-block">Submit</button> </div>
                                         </div>
                                       </form>
                                     </div>

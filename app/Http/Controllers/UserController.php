@@ -60,7 +60,7 @@ class UserController extends Controller
         $request->validate([
 
             'name' => 'required',
-            'employee_number' => 'required',
+            'employee_number' => 'required|unique:users,employee_number',
             'birth_date',
             'position',
             'grade',
@@ -68,7 +68,7 @@ class UserController extends Controller
             'joined_date' => 'required',
             'linemanager',
             'hradmin' => 'required',
-            'email',
+            'email' => 'email|unique:users,email',
             'password' => 'required',
         ]);
 
@@ -276,7 +276,7 @@ class UserController extends Controller
         $request->validate([
 
             'name' => 'required',
-            'employee_number' => 'required',
+            'employee_number' => 'required|unique:users,employee_number',
             'birth_date',
             'position',
             // 'unit' => 'required',
