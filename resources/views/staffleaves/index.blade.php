@@ -101,6 +101,50 @@
                         </div>
                       </div>
                   </div>
+
+                  <div class="container-fluid">
+                    <div class="card">
+                      <div class="card-header card-header-primary">
+                        <h4 class="card-title ">My staff overtimes</h4>
+                        {{-- <p class="card-category"> Here you can manage users</p> --}}
+                      </div>
+                      <div class="card-body table-responsive-md">
+
+                      <table id="table_idd" class="table table-bordered table-hover text-nowrap table-Secondary table-striped">
+                      <thead>
+                          <tr>
+                              <th scope="col">ID</th>
+                              <th scope="col">Name</th>
+                              <th class="text-center" scope="col">Overtime type</th>
+                              <th class="text-center" scope="col">Date</th>
+                              <th  class="text-center"scope="col">Start Hour</th>
+                              <th class="text-center" scope="col">End Hour</th>
+                              <th class="text-center" scope="col">Hours</th>
+                              <th class="text-center" scope="col">Status</th>
+                              <th class="text-center" scope="col">Date Created</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach ($overtimes as $overtime)
+                          <tr>
+                            <td>{{ $overtime->id }}</td>
+                            <td>{{ $overtime->user ? $overtime->user->name : 'Deleted User' }}</td>
+                            <td class="text-center">{{ $overtime->type }}</td>
+                            <td class="text-center">{{ $overtime->date }}</td>
+                            <td class="text-center">{{ $overtime->start_hour }}</td>
+                            <td class="text-center">{{ $overtime->end_hour }}</td>
+                            <td class="text-center">{{ $overtime->hours }}</td>
+                            <td class="text-center">{{ $overtime->status }}</td>
+                            <td class="text-center"> {{ $overtime->created_at }}</td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                    </table>
+                      </div>
+                    </div>
+                </div>
+
+
               </div>
           </div>
  @endsection
@@ -119,6 +163,11 @@
     $('#table_id').DataTable(
         {
             "order": [[ 7, "desc" ]]
+        }
+    );
+    $('#table_idd').DataTable(
+        {
+            "order": [[ 8, "desc" ]]
         }
     );
 } );

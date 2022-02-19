@@ -245,15 +245,20 @@ Route::group(['middleware' => 'auth'], function () {
             });
 
             $leaves = Leave::whereIn('user_id', $subsets)->get();
-
-            return view('staffleaves.index', ['leaves' => $leaves, 'users' => $staff]);
+            $overtimes = Overtime::whereIn('user_id', $subsets)->get();
+            return view('staffleaves.index', ['leaves' => $leaves, 'users' => $staff, 'overtimes' => $overtimes]);
         } else {
             $leavess = Leave::where([
                 ['user_id', $user->id],
                 ['status', 'no staff under this line manager'],
             ])->get();
             // dd($leavess);
-            return view('staffleaves.index', ['leaves' => $leavess, 'users' => $staff]);
+            $overtimess = Overtime::where([
+                ['user_id', $user->id],
+                ['status', 'no staff under this line manager'],
+            ])->get();
+
+            return view('staffleaves.index', ['leaves' => $leavess, 'users' => $staff, 'overtimes' => $overtimess]);
         }
 
     })->name('staffleaves');
