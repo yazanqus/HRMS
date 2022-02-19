@@ -30,7 +30,7 @@
                                               <tr>
                                               {{-- <th scope="col"> @sortablelink('name')</th> --}}
                                               <th scope="col">Name</th>
-                                              <th scope="col">Emplyee ID</th>
+                                              <th scope="col">Employee ID</th>
                                               <th scope="col">Position</th>
                                               <th scope="col">Join Date</th>
                                               <th scope="col">Line Manager</th>
@@ -80,7 +80,7 @@
                                             <tfoot>
                                               <tr>
                                             <th scope="col">Name</th>
-                                            <th scope="col">Emplyee ID</th>
+                                            <th scope="col">Employee ID</th>
                                             <th scope="col">Position</th>
                                             <th scope="col">Join Date</th>
                                             <th scope="col">Line Manager</th>
