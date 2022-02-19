@@ -356,7 +356,7 @@ class UserController extends Controller
     public function removesuspend($id)
     {
         $user = User::find($id);
-        $user->account_status = 'active';
+        $user->status = 'active';
         $user->save();
 
         return redirect()->route('admin.users.index');
@@ -366,7 +366,7 @@ class UserController extends Controller
     public function suspend($id)
     {
         $user = User::find($id);
-        $user->account_status = 'suspended';
+        $user->status = 'suspended';
         $user->save();
 
         return redirect()->route('admin.users.index');
