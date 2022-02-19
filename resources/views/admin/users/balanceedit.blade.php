@@ -31,75 +31,75 @@
                                   <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                                     <div class="card-body p-4 p-md-5">
                                       <h3 class="mb-4 pb-2 pb-md-0 mb-md-5"><strong>{{$user->name}}</strong> Leave Balances:</h3>
-                                    <form class="form-card" action="{{ route('admin.users.update',$user) }}" method="POST">
+                                    <form class="form-card" action="{{ route('admin.users.balanceupdate',$user) }}" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-1">Annual Leave:</label>
-                                                <input class="form-control form-outline " type="text" id="name" value="{{$balance1}}" name="name" placeholder="">
+                                                <input class="form-control form-outline " type="text" id="annual_leave" value="{{$balance1}}" name="annual_leave" placeholder="">
 
                                             </div>
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-1">Unpaid leave:</label>
-                                                <input class="form-control form-outline" type="text" id="birth_date" value="{{$balance15}}" name="birth_date" placeholder="" >
+                                                <input class="form-control form-outline" type="text" id="unpaid_leave" value="{{$balance15}}" name="unpaid_leave" placeholder="" >
                                             </div>
                                         </div>
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                  <label class="form-control-label px-1">Sick leave:</label>
-                                                  <input class="form-control form-outline" type="text" id="position" value="{{$balance2}}" name="position" placeholder="" >
+                                                  <input class="form-control form-outline" type="text" id="sick_leave" value="{{$balance2}}" name="sick_leave" placeholder="" >
                                                  </div>
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                  <label class="form-control-label px-1">Maternity leave:</label>
-                                                 <input class="form-control form-outline" type="text" id="grade" value="{{$balance8}}" name="grade" placeholder="" >
+                                                 <input class="form-control form-outline" type="text" id="maternity_leave" value="{{$balance8}}" name="maternity_leave" placeholder="" >
                                                  </div>
                                         </div>
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group  col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label  px-1">Sick leave 30% Deduction:</label>
-                                                <input class="form-control form-outline " type="text" id="joined_date" value="{{$balance3}}" name="joined_date" placeholder="" >
+                                                <input class="form-control form-outline " type="text" id="sick_leave30" value="{{$balance3}}" name="sick_leave30" placeholder="" >
 
                                             </div>
                                             <div class="form-group  col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label  px-1">Paternity leave:</label>
-                                                <input class="form-control form-outline " type="text" id="employee_id"  value="{{$balance9}}" name="employee_number" placeholder="" >
+                                                <input class="form-control form-outline " type="text" id="paternity_leave"  value="{{$balance9}}" name="paternity_leave" placeholder="" >
 
                                             </div>
                                         </div>
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group  col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label  px-1">Sick leave 20% Deduction:</label>
-                                                <input class="form-control form-outline " type="text" id="joined_date" value="{{$balance4}}" name="joined_date" placeholder="" >
+                                                <input class="form-control form-outline " type="text" id="sick_leave20" value="{{$balance4}}" name="sick_leave20" placeholder="" >
 
                                             </div>
                                             <div class="form-group  col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label  px-1">Compassionate - Second degree:</label>
-                                                <input class="form-control form-outline " type="text" id="employee_id"  value="{{$balance7}}" name="employee_number" placeholder="" >
+                                                <input class="form-control form-outline " type="text" id="compassion_second"  value="{{$balance7}}" name="compassion_second" placeholder="" >
 
                                             </div>
                                         </div>
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group  col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label  px-1">Marriage leave:</label>
-                                                <input class="form-control form-outline " type="text" id="joined_date" value="{{$balance5}}" name="joined_date" placeholder="" >
+                                                <input class="form-control form-outline " type="text" id="marriage_leave" value="{{$balance5}}" name="marriage_leave" placeholder="" >
 
                                             </div>
                                             <div class="form-group  col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label  px-1">Compassionate - First degree:</label>
-                                                <input class="form-control form-outline " type="text" id="employee_id"  value="{{$balance6}}" name="employee_number" placeholder="" >
+                                                <input class="form-control form-outline " type="text" id="compassion_first"  value="{{$balance6}}" name="compassion_first" placeholder="" >
 
                                             </div>
                                         </div>
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group  col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label  px-1">Welfare leave:</label>
-                                                <input class="form-control form-outline " type="text" id="joined_date" value="{{$balance12}}" name="joined_date" placeholder="" >
+                                                <input class="form-control form-outline " type="text" id="welfare_leave" value="{{$balance12}}" name="welfare_leave" placeholder="" >
 
                                             </div>
                                             <div class="form-group  col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label  px-1">Compansetion:</label>
-                                                <input class="form-control form-outline " type="text" id="employee_id"  value="{{$balance18}}" name="employee_number" placeholder="" >
+                                                <input class="form-control form-outline " type="text" id="compansention"  value="{{$balance18}}" name="compansention" placeholder="" >
 
                                             </div>
                                         </div>

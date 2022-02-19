@@ -300,6 +300,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => ['auth', 'hradmin'], 'prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::resource('users', UserController::class);
     Route::get('/users/{user}/balanceedit', [UserController::class, 'balanceedit'])->name('users.balanceedit');
+    Route::put('/users/{user}/balanceupdate', [UserController::class, 'balanceupdate'])->name('users.balanceupdate');
 
 });
 

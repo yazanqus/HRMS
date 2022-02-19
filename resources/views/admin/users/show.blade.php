@@ -99,8 +99,12 @@
                       </div>
                       <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">Leaves - Remaining balance</h4>
-                          <p class="card-category"></p>
+                          <h4 class="card-title mr-2 ">Leaves - Remaining balance</h4>
+                          <div class="col-12 text-left">
+                            <a href="{{route('admin.users.balanceedit', $user)}}" role="button" class="mb-0 btn btn-sm btn-outline-primary">Edit  <i class="ml-2  fas fa-lg fa-list-ol"></i></a>
+                          </div>
+                          {{-- <a href="{{route('admin.users.balanceedit', $user)}}" role="button" class="btn btn-sm btn-outline-primary">Edit  <i class="ml-2 fas fa-lg fa-user-cog"></i></a> --}}
+
                         </div>
                         <div class="card-body">
                             {{-- <div class="row">
@@ -110,7 +114,6 @@
                             </div> --}}
                           <div class="row">
                               <div class="col">
-                                <a href="{{route('admin.users.balanceedit', $user)}}" role="button" class="btn btn-sm btn-outline-primary">Edit  <i class="ml-2 fas fa-lg fa-user-cog"></i></a>
                                   <strong>Annual Leave:</strong> {{$balance1}}
                                   <br>
                                   <strong>Sick leave:</strong> {{$balance2}}
