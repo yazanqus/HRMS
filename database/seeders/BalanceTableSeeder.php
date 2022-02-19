@@ -166,5 +166,13 @@ class BalanceTableSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
+        DB::table('balances')->insert([
+            'name' => 'Compansetion',
+            'leavetype_id' => '18',
+            'user_id' => '1',
+            'value' => '0',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }

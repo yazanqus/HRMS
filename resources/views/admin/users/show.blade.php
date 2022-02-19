@@ -134,6 +134,8 @@
                                 {{-- <strong>Annual Leave:</strong> {{$balance1}}
                                   <br> --}}
                                   <strong>Compassionate - First degree:</strong> {{$balance6}}
+                                  <br>
+                                  <strong>Compansetion:</strong> {{$balance18}}
                                   </div>
 
                           </div>

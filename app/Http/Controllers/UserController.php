@@ -68,7 +68,7 @@ class UserController extends Controller
             'joined_date' => 'required',
             'linemanager',
             'hradmin' => 'required',
-            'email' => 'email|unique:users,email',
+            'email',
             'password' => 'required',
         ]);
 
@@ -234,6 +234,8 @@ class UserController extends Controller
 
         // $leave17 = $subsets->firstwhere('leavetype_id', '17');
         // $balance17 = $leave17['value'];
+        $leave18 = $subsets->firstwhere('leavetype_id', '18');
+        $balance18 = $leave18['value'];
 
         return view('admin.users.show', [
             'user' => $user,
@@ -250,6 +252,7 @@ class UserController extends Controller
             'balance11' => $balance11,
             'balance12' => $balance12,
             'balance15' => $balance15,
+            'balance18' => $balance18,
         ]);
 
     }

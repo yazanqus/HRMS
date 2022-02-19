@@ -195,7 +195,7 @@ class OvertimeController extends Controller
                     ->only(['value', 'leavetype_id'])
                     ->all();
             });
-            $final = $subsets->firstwhere('leavetype_id', '1');
+            $final = $subsets->firstwhere('leavetype_id', '18');
 
             $finalfinal = $final['value'];
             $currentbalance = $finalfinal;
@@ -204,7 +204,7 @@ class OvertimeController extends Controller
 
             Balance::where([
                 ['user_id', $overtime->user->id],
-                ['leavetype_id', '1'],
+                ['leavetype_id', '18'],
             ])->update(['value' => $newbalance]);
         }
 
