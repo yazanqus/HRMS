@@ -32,6 +32,7 @@
                           </div> --}}
                         <div class="row">
                             <div class="col">
+
                                 <strong>Full Name: </strong> {{$user->name}}
                                 <br>
                                 <strong>Birth date: </strong> {{$user->birth_date}}
@@ -109,6 +110,7 @@
                             </div> --}}
                           <div class="row">
                               <div class="col">
+                                <a href="{{route('admin.users.balanceedit', $user)}}" role="button" class="btn btn-sm btn-outline-primary">Edit  <i class="ml-2 fas fa-lg fa-user-cog"></i></a>
                                   <strong>Annual Leave:</strong> {{$balance1}}
                                   <br>
                                   <strong>Sick leave:</strong> {{$balance2}}
