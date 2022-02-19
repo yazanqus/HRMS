@@ -46,7 +46,7 @@ class OvertimeController extends Controller
             'date' => 'required',
             'start_hour' => 'required',
             'end_hour' => 'required|after:start_hour',
-            // 'leavetype_id' => 'required',
+
         ]);
 
         $stime = $request->start_hour;
@@ -140,29 +140,7 @@ class OvertimeController extends Controller
         $overtime->status = 'Pending HR Approval';
         $overtime->save();
 
-        // if ($overtime->type == 'week-end') {
-        //     $partialstoannua = $overtime->hours / 8;
-        //     $partialstoannual = round($partialstoannua, 2);
 
-        //     $balances = Balance::where('user_id', $overtime->user->id)->get();
-        //     $subsets = $balances->map(function ($balance) {
-        //         return collect($balance->toArray())
-
-        //             ->only(['value', 'leavetype_id'])
-        //             ->all();
-        //     });
-        //     $final = $subsets->firstwhere('leavetype_id', '1');
-
-        //     $finalfinal = $final['value'];
-        //     $currentbalance = $finalfinal;
-
-        //     $newbalance = $currentbalance + $partialstoannual;
-
-        //     Balance::where([
-        //         ['user_id', $overtime->user->id],
-        //         ['leavetype_id', '1'],
-        //     ])->update(['value' => $newbalance]);
-        // }
 
         return redirect()->route('overtimes.approval');
 

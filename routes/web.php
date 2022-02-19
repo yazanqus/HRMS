@@ -29,33 +29,7 @@ Route::get('/', function () {
     return redirect('welcome');
 })->name('home');
 
-// });
-// Route::group(['middleware' => 'auth'], function () {
-
-//     Route::get('/', function () {
-//         $user = Auth::user();
-//         $balances = Balance::where('user_id', $user->id)->get();
-//         $subsets = $balances->map(function ($balance) {
-//             return collect($balance->toArray())
-
-//                 ->only(['value', 'leavetype_id'])
-//                 ->all();
-//         });
-//         $final = $subsets->firstwhere('leavetype_id', '1');
-//         $finalfinal = $final['value'];
-//         return view('dashboard', ['user' => $user, 'balance' => $finalfinal]);
-//     })->name('welcome');
-
-// });
-
 Auth::routes();
-
-// Route::get('/', HomeController::class, 'home')->name('home');
-// Auth::routes();
-
-// Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
-
-// Route::get('send', 'HomeController@sendNotification');
 
 Route::group(['middleware' => ['auth', 'hradmin'], 'prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::get('allstaffleaves', function () {

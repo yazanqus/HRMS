@@ -120,19 +120,6 @@ class UserController extends Controller
                     'leavetype_id' => $leavetype->id,
                 ]);
 
-                // if ($leavetype->id = '1') {
-
-                // $user->balances()->create([
-                //     'leavetype_id' => $leavetype->id,
-                //     'name' => $leavetype->name,
-                //     'value' => $userannualleavebalance,
-                // ]);
-
-                // $user->balances()->create([
-                //     'leavetype_id' => $leavetype->id,
-                //     'name' => $leavetype->name,
-                //     'value' => '5',
-                // ]);
             } elseif ($leavetype->name == "Annual leave - First half") {
                 $user->balances()->create([
 
@@ -156,17 +143,6 @@ class UserController extends Controller
                 ]);
             }
         }
-        // $user->balances()->create([
-        //     'leavetype_id' => '2',
-        //     'name' => 'Sick',
-        //     'value' => '6',
-        // ]);
-
-        // $user->balances()->create([
-        //     'leavetype_id' => '3',
-        //     'name' => 'Annual - First half',
-        //     'value' => '7',
-        // ]);
 
         $setlinemenager = $request->linemanager;
         DB::table('users')->where('name', $setlinemenager)->update(['usertype_id' => '2']);

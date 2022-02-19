@@ -25,9 +25,7 @@
                         <div class="card-body table-responsive-md">
                           <div class="row">
                         <table class="table table-hover text-nowrap table-Secondar">
-                            {{-- @php
-                                 $annualbalance = Balance::where('leavetype_id', '1')->get();
-                            @endphp --}}
+                }
                         <thead>
                             <tr>
                                 <th scope="col">Name</th>
