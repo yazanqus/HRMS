@@ -42,7 +42,9 @@
                                             <tbody>
                                                 @foreach ($users as $user)
                                                 <tr>
-                                                  <td><a href="{{ route('admin.users.show', $user) }}" target="_blank">{{ $user->name }}</a></td>
+                                                  <td>
+                                                      <a href="{{ route('admin.users.show', $user) }}" target="_blank">{{ $user->name }}</a>
+                                                    </td>
                                                   <td>{{ $user->employee_number }}</td>
                                                   <td>{{ $user->position }}</td>
                                                   <td>{{ $user->joined_date }}</td>
@@ -61,6 +63,8 @@
 
                                                           <div class="text-center"><a class="form-group btn btn-sm btn-outline-primary" href="{{ route('admin.users.show', $user) }}" target="_blank">View</a></div>
                                                           <div class="text-center"><a class="form-group btn btn-sm btn-outline-info" href="{{ route('admin.users.edit', $user) }}" >Edit</a></div>
+                                                          <div class="text-center"><a class="form-group btn btn-sm btn-outline-info" href="{{ route('admin.users.suspend', $user) }}" >Suspend</a></div>
+                                                          <div class="text-center"><a class="form-group btn btn-sm btn-outline-info" href="{{ route('admin.users.removesuspend', $user) }}" >Activate</a></div>
                                                           <div class="text-center"><button type="button" class=" form-group btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal{{$user->id}}">Delete</button></div>
 
 
@@ -119,20 +123,33 @@
         $variablee ='2';
     }
 @endphp
-          @if ($variablee=='2')
-          <strong style="color: red">You will be logged out immediately <br> </strong> <br>
-          @endif
-          <form method="POST" action="{{ route('admin.users.destroy', $user) }}" class="text-center" >
+
+@if ($variablee=='2')
+          <strong style="color: red">Logged in user can't be deleted<br> </strong> <br>
+
+          {{-- <form method="POST" action="{{ route('admin.users.destroy', $user) }}" class="text-center" >
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+            <div class="form-group">
+                <input type="submit" class="btn btn-danger" value="Delete">
+            </div>
+        </form> --}}
+        @endif
+        @if ($variablee=='1')
+        <form method="POST" action="{{ route('admin.users.destroy', $user) }}" class="text-center" >
             {{ csrf_field() }}
             {{ method_field('DELETE') }}
             <div class="form-group">
                 <input type="submit" class="btn btn-danger" value="Delete">
             </div>
         </form>
+        @endif
         </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         </div>
+
       </div>
 
     </div>

@@ -327,7 +327,7 @@ class LeaveController extends Controller
     public function destroy($id)
     {
         $leave = Leave::find($id);
-        // dd($leave);
+
         $leave->delete();
         return redirect()->route('leaves.index')->with("success", "Leave is canceled");
     }
@@ -337,67 +337,6 @@ class LeaveController extends Controller
         $leave = Leave::find($id);
         $leave->status = 'Pending HR Approval';
         $leave->save();
-
-        // if ($leave->leavetype_id == '13' || $leave->leavetype_id == '14') {
-
-        //     $balances = Balance::where('user_id', $leave->user->id)->get();
-        //     $subsets = $balances->map(function ($balance) {
-        //         return collect($balance->toArray())
-
-        //             ->only(['value', 'leavetype_id'])
-        //             ->all();
-        //     });
-        //     $final = $subsets->firstwhere('leavetype_id', '1');
-
-        //     $finalfinal = $final['value'];
-        //     $currentbalanceforannual = $finalfinal;
-
-        //     $newbalance = $currentbalanceforannual - $leave->days;
-
-        //     Balance::where([
-        //         ['user_id', $leave->user->id],
-        //         ['leavetype_id', '1'],
-        //     ])->update(['value' => $newbalance]);
-        // } elseif ($leave->leavetype_id == '16' || $leave->leavetype_id == '17') {
-
-        //     $balances = Balance::where('user_id', $leave->user->id)->get();
-        //     $subsets = $balances->map(function ($balance) {
-        //         return collect($balance->toArray())
-
-        //             ->only(['value', 'leavetype_id'])
-        //             ->all();
-        //     });
-        //     $final = $subsets->firstwhere('leavetype_id', '15');
-
-        //     $finalfinal = $final['value'];
-        //     $currentbalanceforannual = $finalfinal;
-
-        //     $newbalance = $currentbalanceforannual - $leave->days;
-
-        //     Balance::where([
-        //         ['user_id', $leave->user->id],
-        //         ['leavetype_id', '15'],
-        //     ])->update(['value' => $newbalance]);
-        // } else {
-        //     $balances = Balance::where('user_id', $leave->user->id)->get();
-        //     $subsets = $balances->map(function ($balance) {
-        //         return collect($balance->toArray())
-
-        //             ->only(['value', 'leavetype_id'])
-        //             ->all();
-        //     });
-        //     $final = $subsets->firstwhere('leavetype_id', $leave->leavetype_id);
-
-        //     $finalfinal = $final['value'];
-        //     $currentbalance = $finalfinal;
-
-        //     $newbalance = $currentbalance - $leave->days;
-
-        //     Balance::where([
-        //         ['user_id', $leave->user->id],
-        //         ['leavetype_id', $leave->leavetype_id],
-        //     ])->update(['value' => $newbalance]);
-        // }
 
         return redirect()->route('leaves.approval');
 

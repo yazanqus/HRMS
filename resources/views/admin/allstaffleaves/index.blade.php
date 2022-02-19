@@ -41,13 +41,13 @@
                             @foreach ($leaves as $leave)
                             <tr>
                               <td>{{ $leave->id }}</td>
-                              <td>{{ $leave->user->name }}</td>
+                              <td>{{ $leave->user ? $leave->user->name : 'Deleted User' }}</td>
                               <td class="text-center">{{ $leave->leavetype->name }}</td>
                               <td class="text-center">{{ $leave->start_date }}</td>
                               <td class="text-center">{{ $leave->end_date }}</td>
                               <td class="text-center">{{ $leave->days }}</td>
                               <td class="text-center">{{ $leave->status }}</td>
-                              <td class="text-center">{{ $leave->user->linemanager }}</td>
+                              <td class="text-center">{{ $leave->user ? $leave->user->linemanager : '-' }}</td>
                               <td class="text-center">{{ $leave->created_at }}</td>
                               {{-- <td>edit</td> --}}
                             </tr>

@@ -44,7 +44,7 @@ class UserController extends Controller
 
         $variablee = '';
 
-        return view('admin.users.index', ['users' => $users->paginate(15) , 'variablee' => $variablee]);
+        return view('admin.users.index', ['users' => $users->paginate(15), 'variablee' => $variablee]);
     }
 
     public function create()
@@ -373,4 +373,25 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('admin.users.index');
     }
+
+    public function removesuspend($id)
+    {
+        $user = User::find($id);
+        $user->account_status = 'active';
+        $user->save();
+
+        return redirect()->route('admin.users.index');
+
+    }
+
+    public function suspend($id)
+    {
+        $user = User::find($id);
+        $user->account_status = 'suspended';
+        $user->save();
+
+        return redirect()->route('admin.users.index');
+
+    }
+
 }
