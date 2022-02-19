@@ -349,6 +349,9 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        $user->leaves()->delete();
+        $user->overtimes()->delete();
+        $user->balances()->delete();
         $user->delete();
         return redirect()->route('admin.users.index');
     }

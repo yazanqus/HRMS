@@ -43,6 +43,9 @@
                                                 @foreach ($users as $user)
                                                 <tr>
                                                   <td>
+                                                      @if ($user->status == 'suspended')
+                                                      <i class="fas fa-minus-circle"></i>
+                                                      @endif
                                                       <a href="{{ route('admin.users.show', $user) }}" target="_blank">{{ $user->name }}</a>
                                                     </td>
                                                   <td>{{ $user->employee_number }}</td>
