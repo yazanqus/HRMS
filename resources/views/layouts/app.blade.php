@@ -169,14 +169,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Right navbar links -->
 <ul class="navbar-nav ml-auto">
   <!-- Navbar Search -->
-  <li class="nav-item">
+  {{-- <li class="nav-item">
     <a class="nav-link" href="{{ route('welcome') }}">
         <i class="fas fa-language fa-lg"></i>
-      {{-- <p class="d-lg-none d-md-block">
-        {{ __('Stats') }}
-      </p> --}}
+
     </a>
-  </li>
+  </li> --}}
   {{-- <li class="nav-item">
     <a class="nav-link" data-widget="navbar-search" href="#" role="button">
       <i class="fas fa-search"></i>
