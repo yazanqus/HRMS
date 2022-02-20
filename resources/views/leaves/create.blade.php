@@ -127,7 +127,7 @@
 <script>
 $(document).ready(function() {
 $('#leavetype_id').on('change',function(){
-    if ($(this).val() == '13' || $(this).val() == '14' || $(this).val() == '16' || $(this).val() == '17' || $(this).val() == '17'  ) {
+    if ($(this).val() == '13' || $(this).val() == '14' || $(this).val() == '16' || $(this).val() == '17' || $(this).val() == '19'  ) {
         $('#end_date').prop('readonly',true);
         $('#numofdays').hide();
         $('#labelnumofdays').hide();
