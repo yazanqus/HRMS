@@ -384,6 +384,62 @@ class LeaveController extends Controller
             } else {
                 return redirect()->back()->with("error", "You can't submit leave while still on probation");
             }
+        }
+
+        //first degree days should be less than 5 days
+        elseif ($request->leavetype_id == '6') {
+
+            if ($request->days <= '5') {
+
+                $leave = new Leave();
+                $leave->start_date = $request->start_date;
+                $leave->end_date = $request->end_date;
+                $leave->days = $days;
+                $leave->leavetype_id = $request->leavetype_id;
+                $leave->user_id = auth()->user()->id;
+                if (!isset($user->linemanager)) {
+                    $leave->status = 'Pending HR Approval';
+
+                } else {
+
+                    $leave->status = 'Pending LM Approval';
+                }
+
+                $leave->save();
+
+                return redirect()->route('leaves.index');
+            } else {
+                return redirect()->back()->with("error", "Can't submit more than 5 days leave of this type");
+            }
+
+        }
+
+        //second degree days should be less than 5 days
+        elseif ($request->leavetype_id == '7') {
+
+            if ($request->days <= '3') {
+
+                $leave = new Leave();
+                $leave->start_date = $request->start_date;
+                $leave->end_date = $request->end_date;
+                $leave->days = $days;
+                $leave->leavetype_id = $request->leavetype_id;
+                $leave->user_id = auth()->user()->id;
+                if (!isset($user->linemanager)) {
+                    $leave->status = 'Pending HR Approval';
+
+                } else {
+
+                    $leave->status = 'Pending LM Approval';
+                }
+
+                $leave->save();
+
+                return redirect()->route('leaves.index');
+            } else {
+                return redirect()->back()->with("error", "Can't submit more than 3 days leave of this type");
+            }
+
         } else {
             $leave = new Leave();
             $leave->start_date = $request->start_date;
