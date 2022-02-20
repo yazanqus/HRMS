@@ -30,6 +30,8 @@
                         <table class="table table-hover text-nowrap table-Secondary">
                         <thead>
                             <tr>
+                                <th scope="col">ID</th>
+                              <th scope="col">Type</th>
                               <th class="text-center" scope="col">Date</th>
                               <th class="text-center" scope="col">Start Hour</th>
                               <th class="text-center" scope="col">End Hour</th>
@@ -41,6 +43,8 @@
                           <tbody>
                             @foreach ($overtimes as $overtime)
                             <tr>
+                                <td>{{ $overtime->id }}</td>
+                              <td>{{ $overtime->type }}</td>
                               <td class="text-center">{{ $overtime->date }}</td>
                               <td class="text-center">{{ $overtime->start_hour }}</td>
                               <td class="text-center">{{ $overtime->end_hour }}</td>

@@ -38,7 +38,7 @@ class HolidayController extends Controller
     {
         $request->validate([
 
-            'name' => 'required',
+            'name' => 'required|unique:holidays,name',
             'year' => 'required',
 
             'file' => 'required',

@@ -48,6 +48,7 @@ class LeaveController extends Controller
         // getting the balance for the user for the inserted leave type
         $user = Auth::user();
 
+        //balance of annual half first and second is from annual leavea
         if ($request->leavetype_id == '13' || $request->leavetype_id == '14') {
 
             $balances = Balance::where('user_id', $user->id)->get();
@@ -61,7 +62,9 @@ class LeaveController extends Controller
             $finalfinal = $final['value'];
             $annualleavebalance = $finalfinal;
 
-        } elseif ($request->leavetype_id == '16' || $request->leavetype_id == '17') {
+        }
+        //balance of unpaid half first and second is from unpaid leavea
+        elseif ($request->leavetype_id == '16' || $request->leavetype_id == '17') {
 
             $balances = Balance::where('user_id', $user->id)->get();
             $subsets = $balances->map(function ($balance) {
@@ -137,6 +140,87 @@ class LeaveController extends Controller
                 }
             } else {
                 return redirect()->back()->with("error", "You can't submit leave while still on probation");
+            }
+        }
+
+        //sick leave
+        elseif ($request->leavetype_id == '2') {
+            if ($days <= $currentbalance) {
+
+                $leave = new Leave();
+                $leave->start_date = $request->start_date;
+                $leave->end_date = $request->end_date;
+                $leave->days = $days;
+                $leave->leavetype_id = $request->leavetype_id;
+                $leave->user_id = auth()->user()->id;
+                if (!isset($user->linemanager)) {
+                    $leave->status = 'Pending HR Approval';
+
+                } else {
+
+                    $leave->status = 'Pending LM Approval';
+                }
+
+                $leave->save();
+                // $user->notify(new EmailNotification($leave));
+
+                return redirect()->route('leaves.index');
+            } else {
+                return redirect()->back()->with("error", "Leave remaining balance is not enough");
+            }
+        }
+
+        //sick 30 leave
+        elseif ($request->leavetype_id == '3') {
+            if ($days <= $currentbalance) {
+
+                $leave = new Leave();
+                $leave->start_date = $request->start_date;
+                $leave->end_date = $request->end_date;
+                $leave->days = $days;
+                $leave->leavetype_id = $request->leavetype_id;
+                $leave->user_id = auth()->user()->id;
+                if (!isset($user->linemanager)) {
+                    $leave->status = 'Pending HR Approval';
+
+                } else {
+
+                    $leave->status = 'Pending LM Approval';
+                }
+
+                $leave->save();
+                // $user->notify(new EmailNotification($leave));
+
+                return redirect()->route('leaves.index');
+            } else {
+                return redirect()->back()->with("error", "Leave remaining balance is not enough");
+            }
+        }
+
+        //sick 20 leave
+        elseif ($request->leavetype_id == '4') {
+            if ($days <= $currentbalance) {
+
+                $leave = new Leave();
+                $leave->start_date = $request->start_date;
+                $leave->end_date = $request->end_date;
+                $leave->days = $days;
+                $leave->leavetype_id = $request->leavetype_id;
+                $leave->user_id = auth()->user()->id;
+                if (!isset($user->linemanager)) {
+                    $leave->status = 'Pending HR Approval';
+
+                } else {
+
+                    $leave->status = 'Pending LM Approval';
+                }
+
+                $leave->save();
+                // $user->notify(new EmailNotification($leave));
+
+                return redirect()->route('leaves.index');
+            } else {
+                return redirect()->back()->with("error", "Leave remaining balance is not enough");
             }
         }
 
@@ -268,7 +352,10 @@ class LeaveController extends Controller
                 return redirect()->back()->with("error", "You can't submit leave before at least 6 months of service");
             }
 
-        } elseif ($request->leavetype_id == '16' || $request->leavetype_id == '17') {
+        }
+
+        //unpaid halfday
+        elseif ($request->leavetype_id == '16' || $request->leavetype_id == '17') {
 
             if ($probationdays >= '90') {
 
