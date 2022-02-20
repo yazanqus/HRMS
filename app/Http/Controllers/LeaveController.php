@@ -317,7 +317,7 @@ class LeaveController extends Controller
                     return redirect()->back()->with("error", "Leave remaining balance is not enough");
                 }
             } else {
-                return redirect()->back()->with("error", "You can't submit leave before at least 6 months of service");
+                return redirect()->back()->with("error", "You can't submit leave before at least 5 years of service");
             }
         }
 
@@ -349,7 +349,7 @@ class LeaveController extends Controller
                     return redirect()->back()->with("error", "Leave remaining balance is not enough");
                 }
             } else {
-                return redirect()->back()->with("error", "You can't submit leave before at least 6 months of service");
+                return redirect()->back()->with("error", "You can't submit leave before at least 5 years of service");
             }
         }
 
