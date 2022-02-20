@@ -72,7 +72,7 @@ class OvertimeController extends Controller
         $overtime->hours = $last;
         // $overtime->overtimetype_id = $request->overtimetype_id;
         $overtime->user_id = auth()->user()->id;
-        if (isset($user->linemanager)) {
+        if (!isset($user->linemanager)) {
             $overtime->status = 'Pending HR Approval';
 
         } else {
