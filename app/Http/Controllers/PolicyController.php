@@ -41,7 +41,7 @@ class PolicyController extends Controller
     {
         $request->validate([
 
-            'name' => 'required',
+            'name' => 'required|unique:policies,name',
             'desc' => 'required',
             'created_date' => 'required',
             'lastupdate_date' => 'required',
