@@ -373,7 +373,7 @@ class LeaveController extends Controller
         elseif ($request->leavetype_id == '12') {
 
             if ($days <= $currentbalance) {
-                if ($request->days <= '3') {
+                if ($days <= '3') {
 
                     $leave = new Leave();
                     $leave->start_date = $request->start_date;
@@ -530,7 +530,7 @@ class LeaveController extends Controller
         //first degree days should be less than 5 days
         elseif ($request->leavetype_id == '6') {
 
-            if ($request->days <= '5') {
+            if ($days <= '5') {
 
                 $leave = new Leave();
                 $leave->start_date = $request->start_date;
@@ -558,7 +558,7 @@ class LeaveController extends Controller
         //second degree days should be less than 5 days
         elseif ($request->leavetype_id == '7') {
 
-            if ($request->days <= '3') {
+            if ($days <= '3') {
 
                 $leave = new Leave();
                 $leave->start_date = $request->start_date;
