@@ -353,6 +353,39 @@ class LeaveController extends Controller
             }
         }
 
+        // welfare leave coditions
+        elseif ($request->leavetype_id == '12') {
+
+            if ($days <= $currentbalance) {
+                if ($request->days <= '3') {
+
+                    $leave = new Leave();
+                    $leave->start_date = $request->start_date;
+                    $leave->end_date = $request->end_date;
+                    $leave->days = $days;
+                    $leave->leavetype_id = $request->leavetype_id;
+                    $leave->user_id = auth()->user()->id;
+                    if (!isset($user->linemanager)) {
+                        $leave->status = 'Pending HR Approval';
+
+                    } else {
+
+                        $leave->status = 'Pending LM Approval';
+                    }
+
+                    $leave->save();
+
+                    return redirect()->route('leaves.index');
+
+                } else {
+                    return redirect()->back()->with("error", "Can't submit more than 3 days leave of this type");
+                }
+            } else {
+                return redirect()->back()->with("error", "Leave remaining balance is not enough");
+            }
+
+        }
+
         // Annual leave halfday coditions
         elseif ($request->leavetype_id == '13' || $request->leavetype_id == '14') {
 
