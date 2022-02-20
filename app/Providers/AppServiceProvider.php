@@ -73,12 +73,18 @@ class AppServiceProvider extends ServiceProvider
                             ->with('numhrapproval', $numhrapproval);
                         // }
                     } else {
+
+                        $hrleaves = Leave::where('status', 'Pending HR Approval')->get();
+                        $hrovertimes = Overtime::where('status', 'Pending HR Approval')->get();
+                        $numleavehrapproval = count($hrleaves);
+                        $numoverhrapproval = count($hrovertimes);
+                        $numhrapproval = $numleavehrapproval + $numoverhrapproval;
                         $view->with('numleaveapproval', '0')
                             ->with('numoverapproval', '0')
                             ->with('numapproval', '0')
-                            ->with('numleavehrapproval', '0')
-                            ->with('numoverhrapproval', '0')
-                            ->with('numhrapproval', '0');
+                            ->with('numleavehrapproval', $numleavehrapproval)
+                            ->with('numoverhrapproval', $numoverhrapproval)
+                            ->with('numhrapproval', $numhrapproval);
                     }
                 }
             }
