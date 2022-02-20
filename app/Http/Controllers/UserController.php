@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Balance;
 use App\Models\Leavetype;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -92,17 +93,27 @@ class UserController extends Controller
         // create employee balance
         // set line manger
         //
-
+        $year = date("Y", strtotime($user->joined_date));
         $day = date("d", strtotime($user->joined_date));
         $month = date("m", strtotime($user->joined_date));
-        if ($day < '15') {
+        $datenow = Carbon::now();
+        $yearnow = $datenow->year;
 
-            $userannualleavebalance = (1.25 * (12 - $month + 1));
+        if ($year < $yearnow) {
+            $userannualleavebalance = '15';
+        } else {
 
-        }
+            if ($year) {
+                if ($day < '15') {
 
-        if ($day >= '15') {
-            $userannualleavebalance = ((1.25 * (12 - $month)) + 0.5);
+                    $userannualleavebalance = (1.25 * (12 - $month + 1));
+
+                }
+            }
+
+            if ($day >= '15') {
+                $userannualleavebalance = ((1.25 * (12 - $month)) + 0.5);
+            }
         }
 
         $annualleavehalfday = $userannualleavebalance * 2;
