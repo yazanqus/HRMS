@@ -154,5 +154,13 @@ class LeavetypeTableSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
+        // id=19
+        DB::table('leavetypes')->insert([
+            'name' => 'Compansetion - half day',
+            'value' => '100',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
     }
 }

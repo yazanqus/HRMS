@@ -134,7 +134,10 @@ Route::group(['middleware' => 'auth'], function () {
         $leave12 = $subsets->firstwhere('leavetype_id', '12');
         $balance12 = $leave12['value'];
 
-        return view('dashboard', ['user' => $user, 'balance1' => $balance1, 'balance2' => $balance2, 'balance12' => $balance12]);
+        $leave18 = $subsets->firstwhere('leavetype_id', '18');
+        $balance18 = $leave18['value'];
+
+        return view('dashboard', ['user' => $user, 'balance1' => $balance1, 'balance2' => $balance2, 'balance12' => $balance12, 'balance18' => $balance18]);
     })->name('welcome');
 
     Route::get('leaves/approval', function () {

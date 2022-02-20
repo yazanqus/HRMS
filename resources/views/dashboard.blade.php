@@ -67,6 +67,8 @@
                                   <strong>Annual Leave:</strong> {{$balance1}}
                                   <br>
                                   <strong>Sick leave:</strong> {{$balance2}}
+                                  <br>
+                                  <strong>Compensation leave:</strong> {{$balance18}}
 
                                 </div>
 
