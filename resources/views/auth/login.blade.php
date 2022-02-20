@@ -62,12 +62,12 @@
             @if($errors->any())
             <div class="alert alert-danger">{{$errors->first()}}</></div>
 @endif
-            @if ($errors->has('employee_number'))
+            {{-- @if ($errors->has('employee_number'))
                                     <div id="employee_number-error" class="mb-2 error text-danger mr-3 pl-3" for="employee_number"
                                         style="display: block;">
                                         <strong>{{ $errors->first('employee_number') }}</strong>
                                     </div>
-                                @endif
+                                @endif --}}
               <!-- /.col -->
               <div class="row">
                   <div class="col-12">
