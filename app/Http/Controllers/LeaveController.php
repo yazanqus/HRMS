@@ -292,7 +292,7 @@ class LeaveController extends Controller
         // islamic leave coditions
         elseif ($request->leavetype_id == '10') {
 
-            if ($probationdays >= '180') {
+            if ($probationdays >= '1825') {
 
                 if ($days <= $currentbalance) {
 
@@ -324,7 +324,7 @@ class LeaveController extends Controller
         // christ leave coditions
         elseif ($request->leavetype_id == '11') {
 
-            if ($probationdays >= '180') {
+            if ($probationdays >= '1825') {
 
                 if ($days <= $currentbalance) {
 
