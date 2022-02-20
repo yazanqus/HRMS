@@ -120,7 +120,13 @@ class LeaveController extends Controller
                     $leave->days = $days;
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
-                    $leave->status = 'Pending LM Approval';
+                    if (isset($user->linemanager)) {
+                        $leave->status = 'Pending HR Approval';
+
+                    } else {
+
+                        $leave->status = 'Pending LM Approval';
+                    }
 
                     $leave->save();
                     // $user->notify(new EmailNotification($leave));
@@ -147,7 +153,13 @@ class LeaveController extends Controller
                     $leave->days = $days;
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
-                    $leave->status = 'Pending LM Approval';
+                    if (isset($user->linemanager)) {
+                        $leave->status = 'Pending HR Approval';
+
+                    } else {
+
+                        $leave->status = 'Pending LM Approval';
+                    }
 
                     $leave->save();
 
@@ -174,7 +186,13 @@ class LeaveController extends Controller
                     $leave->days = $days;
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
-                    $leave->status = 'Pending LM Approval';
+                    if (isset($user->linemanager)) {
+                        $leave->status = 'Pending HR Approval';
+
+                    } else {
+
+                        $leave->status = 'Pending LM Approval';
+                    }
 
                     $leave->save();
 
@@ -200,7 +218,13 @@ class LeaveController extends Controller
                     $leave->days = '0.5';
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
-                    $leave->status = 'Pending LM Approval';
+                    if (isset($user->linemanager)) {
+                        $leave->status = 'Pending HR Approval';
+
+                    } else {
+
+                        $leave->status = 'Pending LM Approval';
+                    }
 
                     $leave->save();
 
@@ -226,7 +250,13 @@ class LeaveController extends Controller
                     $leave->days = $days;
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
-                    $leave->status = 'Pending LM Approval';
+                    if (isset($user->linemanager)) {
+                        $leave->status = 'Pending HR Approval';
+
+                    } else {
+
+                        $leave->status = 'Pending LM Approval';
+                    }
 
                     $leave->save();
 
@@ -250,7 +280,13 @@ class LeaveController extends Controller
                     $leave->days = '0.5';
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
-                    $leave->status = 'Pending LM Approval';
+                    if (isset($user->linemanager)) {
+                        $leave->status = 'Pending HR Approval';
+
+                    } else {
+
+                        $leave->status = 'Pending LM Approval';
+                    }
 
                     $leave->save();
 
@@ -268,7 +304,13 @@ class LeaveController extends Controller
             $leave->days = $days;
             $leave->leavetype_id = $request->leavetype_id;
             $leave->user_id = auth()->user()->id;
-            $leave->status = 'Pending LM Approval';
+            if (isset($user->linemanager)) {
+                $leave->status = 'Pending HR Approval';
+
+            } else {
+
+                $leave->status = 'Pending LM Approval';
+            }
 
             $leave->save();
 

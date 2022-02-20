@@ -39,7 +39,7 @@ class OvertimeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {$user = Auth::user();
         $request->validate([
 
             'type' => 'required',
@@ -72,7 +72,13 @@ class OvertimeController extends Controller
         $overtime->hours = $last;
         // $overtime->overtimetype_id = $request->overtimetype_id;
         $overtime->user_id = auth()->user()->id;
-        $overtime->status = 'Pending LM Approval';
+        if (isset($user->linemanager)) {
+            $overtime->status = 'Pending HR Approval';
+
+        } else {
+
+            $overtime->status = 'Pending LM Approval';
+        }
         if ($overtime->type == 'weekday') {
             $overtime->value = $last * 1.5;
         } else {
@@ -139,8 +145,6 @@ class OvertimeController extends Controller
         $overtime = Overtime::find($id);
         $overtime->status = 'Pending HR Approval';
         $overtime->save();
-
-
 
         return redirect()->route('overtimes.approval');
 
