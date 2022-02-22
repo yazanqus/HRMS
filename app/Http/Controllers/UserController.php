@@ -9,7 +9,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Kyslik\ColumnSortable\Sortable;
 
 class UserController extends Controller
 {
@@ -22,30 +21,30 @@ class UserController extends Controller
     public function index(Request $request)
     {
 
-        $users = User::sortable();
+        // $users = User::sortable();
 
-        $users = User::query();
-        if (request('term')) {
-            $users->where('name', 'Like', '%' . request('term') . '%');
-            $users->orderBy('name', 'DESC')->paginate(10);
-        }
+        // $users = User::query();
+        // if (request('term')) {
+        //     $users->where('name', 'Like', '%' . request('term') . '%');
+        //     $users->orderBy('name', 'DESC')->paginate(10);
+        // }
 
-        if (request('id')) {
-            $users->where('employee_number', 'Like', '%' . request('id') . '%');
-            $users->orderBy('name', 'DESC')->paginate(10);
-        }
+        // if (request('id')) {
+        //     $users->where('employee_number', 'Like', '%' . request('id') . '%');
+        //     $users->orderBy('name', 'DESC')->paginate(10);
+        // }
 
-        if (request('position')) {
-            $users->where('position', 'Like', '%' . request('position') . '%');
-            $users->orderBy('name', 'DESC')->paginate(10);
-        }
+        // if (request('position')) {
+        //     $users->where('position', 'Like', '%' . request('position') . '%');
+        //     $users->orderBy('name', 'DESC')->paginate(10);
+        // }
 
-        User::orderBy('employee_number')->pluck('name', 'position');
-        $users = User::sortable();
-
+        // User::orderBy('employee_number')->pluck('name', 'position');
+        // $users = User::sortable();
+        $users = User::all();
         $variablee = '';
 
-        return view('admin.users.index', ['users' => $users->paginate(15), 'variablee' => $variablee]);
+        return view('admin.users.index', ['users' => $users, 'variablee' => $variablee]);
     }
 
     public function create()
