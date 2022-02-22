@@ -22,6 +22,7 @@ class CreateOvertimesTable extends Migration
             $table->time('end_hour')->nullable();
             $table->string('hours')->nullable();
             $table->string('reason')->nullable();
+            $table->string('path')->nullable();
             $table->string('value')->nullable();
             $table->date('cancelled_date')->nullable();
             // $table->foreignId('overtimetype_id');
