@@ -17,7 +17,7 @@
 
             <div class="bmd-form-group{{ $errors->has('employee_number') ? ' has' : '' }}">
                 <div class="input-group mb-3">
-                  <input type="text" name="employee_number" value="{{ old('employee_number', '') }}" class="form-control"
+                  <input type="text" name="employee_number"  class="form-control"
                     placeholder="{{ __('Employee Number') }}" required>
                   <div class="input-group-append">
                     <div class="input-group-text">
@@ -27,7 +27,7 @@
                   </div>
                 </div>
                 {{-- @if ($errors->has('employee_number'))
-                                    <div id="employee_number-error" class="error text-danger mr-3 pl-3" for="employee_number"
+                                    <div id="employee_number-error" class="error text-danger value="{{ old('employee_number', '') }} mr-3 pl-3" for="employee_number"
                                         style="display: block;">
                                         <strong>{{ $errors->first('employee_number') }}</strong>
                                     </div>
@@ -60,7 +60,7 @@
               {{-- </div> --}}
             </div>
             @if($errors->any())
-            <div class="alert alert-danger">{{$errors->first()}}</></div>
+            <div class="alert " style="color:red; font-weight:bold; padding-bottom: 0.2rem;"  >{{$errors->first()}}</></div>
 @endif
             {{-- @if ($errors->has('employee_number'))
                                     <div id="employee_number-error" class="mb-2 error text-danger mr-3 pl-3" for="employee_number"
