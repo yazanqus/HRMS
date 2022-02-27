@@ -9,10 +9,62 @@
                     <div class="text">
                         {{-- @foreach ($users as $user) --}}
                         <br>
-                        <h3> <b>{{$user->name}} <a href="{{route('admin.users.edit', $user)}}" role="button" class="btn btn-sm btn-outline-primary">Edit  <i class="ml-2 fas fa-lg fa-user-cog"></i></a></b> </h3>
+                        <h3>
+                             <b>{{$user->name}}
+                                 <a href="{{route('admin.users.edit', $user)}}" role="button" class="btn btn-sm btn-outline-primary">Edit
+                                  <i class="ml-2 fas fa-lg fa-user-cog"></i>
+                                </a>
+
+                                @php
+                                $authuser = Auth::user();
+                                $userstatus = $user->status;
+                                if ($authuser->id != $user->id) {
+                                    $sus='1';
+                                }
+                                else {
+                                    $sus='2';
+                                }
+                                @endphp
+                                {{-- @if ($authuser->id !== $userid) --}}
+                                @if ($userstatus == 'suspended')
+
+                                <a href="{{route('admin.users.removesuspend', $user)}}" role="button" class="btn btn-sm btn-outline-success">Activate
+                                    <i class="ml-2 fas fa-lg fa-check-circle"></i>
+                                </a>
+                                @endif
+                                {{-- @endif --}}
+                                @if ($userstatus !== 'suspended' && $sus=='1')
+
+                                <a href="{{route('admin.users.suspend', $user)}}" role="button" class="btn btn-sm btn-outline-warning">Suspend
+                                    <i class="ml-2 fas fa-lg fa-minus-circle"></i>
+                                </a>
+                                @endif
+
+
+
+                            </b>
+                         </h3>
                         {{-- @endforeach --}}
                     </div>
                 </div>
+
+                <div class="col ml-3">
+                    <div class="mr-2 text-right">
+                        {{-- @foreach ($users as $user) --}}
+                        <br>
+                        <h3>
+
+                                <a href="{{route('admin.users.edit', $user)}}" role="button" data-toggle="modal" data-target="#myModal{{$user->id}}" class="btn btn-sm btn-outline-danger">Delete
+                                    <i class="ml-2 fas fa-lg fa-user-times"></i>
+                                </a>
+
+                            </b>
+                         </h3>
+                        {{-- @endforeach --}}
+                    </div>
+                </div>
+
+
 
 
             </div>
@@ -98,9 +150,9 @@
                         </div>
                       </div>
                       <div class="card">
-                        <div class="card-header card-header-primary">
-                          <h4 class="card-title mr-2 ">Leaves - Remaining balance</h4>
-                          <div class="col-12 text-left">
+                        <div class="card-header card-header-primary ">
+                          <h4 class="mt-1 card-title mr-2 ">Leaves - Remaining balance</h4>
+                          <div class="col-12 text-left ">
                             <a href="{{route('admin.users.balanceedit', $user)}}" role="button" class="mb-0 btn btn-sm btn-outline-primary">Edit  <i class="ml-2  fas fa-lg fa-list-ol"></i></a>
                           </div>
                           {{-- <a href="{{route('admin.users.balanceedit', $user)}}" role="button" class="btn btn-sm btn-outline-primary">Edit  <i class="ml-2 fas fa-lg fa-user-cog"></i></a> --}}
@@ -166,6 +218,64 @@
         </div>
     </div> --}}
 
+
+
+<div id="myModal{{$user->id}}" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 style="color: red" class="modal-title">Attention!</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete: <br><strong>{{$user->name}}</strong>.</p>
+@php
+    if ($user->name != Auth::user()->name)
+    {
+        $variablee='1';
+
+    }
+
+    else
+    {
+        $variablee ='2';
+    }
+@endphp
+
+@if ($variablee=='2')
+          <strong style="color: red">Logged in user can't be deleted<br> </strong> <br>
+
+          {{-- <form method="POST" action="{{ route('admin.users.destroy', $user) }}" class="text-center" >
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+            <div class="form-group">
+                <input type="submit" class="btn btn-danger" value="Delete">
+            </div>
+        </form> --}}
+        @endif
+        @if ($variablee=='1')
+        <form method="POST" action="{{ route('admin.users.destroy', $user) }}" class="text-center" >
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+            <div class="form-group">
+                <input type="submit" class="btn btn-danger" value="Delete">
+            </div>
+        </form>
+        @endif
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
                 </div>
             </div>
         </div>
@@ -179,4 +289,13 @@
       md.initDashboardPageCharts();
     });
   </script> --}}
+  <script>
+
+    var myModal = document.getElementById('myModal')
+    var myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', function () {
+      myInput.focus()
+    });
+    </script>
 @endpush
