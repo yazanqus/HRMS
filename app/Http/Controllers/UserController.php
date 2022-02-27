@@ -265,7 +265,7 @@ class UserController extends Controller
         $request->validate([
 
             'name' => 'required',
-            'employee_number' => 'required|unique:users,employee_number',
+            'employee_number' => 'required',
             'birth_date',
             'position',
             // 'unit' => 'required',
