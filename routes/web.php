@@ -31,7 +31,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['middleware' => ['auth', 'hradmin'], 'prefix' => '/admin', 'as' => 'admin.'], function () {
+Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::get('allstaffleaves', function () {
         $leaves = Leave::all();
         return view('admin.allstaffleaves.index', ['leaves' => $leaves]);
@@ -50,7 +50,7 @@ Route::group(['middleware' => ['auth', 'hradmin'], 'prefix' => '/admin', 'as' =>
 
 });
 
-Route::group(['middleware' => ['auth', 'hradmin']], function () {
+Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin']], function () {
     Route::get('leaves/hrapproval', function () {
 
         // dd($staff);
@@ -116,7 +116,7 @@ Route::get('login/okta/callback', [LoginController::class, 'handleProviderCallba
 
 Route::get('/logout', [LoginController::class, 'logout']);
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'checkstatus']], function () {
 
     Route::get('welcome', function () {
         $user = Auth::user();
@@ -307,7 +307,7 @@ Route::group(['middleware' => 'auth'], function () {
 //     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 // });
 
-Route::group(['middleware' => ['auth', 'hradmin'], 'prefix' => '/admin', 'as' => 'admin.'], function () {
+Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::resource('users', UserController::class);
     Route::get('/users/suspend/{id}', [UserController::class, 'suspend'])->name('users.suspend');
     Route::get('/users/removesuspend/{id}', [UserController::class, 'removesuspend'])->name('users.removesuspend');
@@ -316,15 +316,15 @@ Route::group(['middleware' => ['auth', 'hradmin'], 'prefix' => '/admin', 'as' =>
 
 });
 
-Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], function () {
+Route::group(['middleware' => ['auth', 'checkstatus'], 'prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::resource('policies', PolicyController::class);
 });
 
-Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], function () {
+Route::group(['middleware' => ['auth', 'checkstatus'], 'prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::resource('holidays', HolidayController::class);
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'checkstatus']], function () {
     Route::resource('leaves', LeaveController::class);
     Route::get('/leaves/approved/{id}', [LeaveController::class, 'approved'])->name('leaves.approved');
     Route::get('/leaves/declined/{id}', [LeaveController::class, 'declined'])->name('leaves.declined');
@@ -332,7 +332,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/leaves/hrdeclined/{id}', [LeaveController::class, 'hrdeclined'])->name('leaves.hrdeclined');
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'checkstatus']], function () {
     Route::resource('overtimes', OvertimeController::class);
     Route::get('/overtimes/approved/{id}', [OvertimeController::class, 'approved'])->name('overtimes.approved');
     Route::get('/overtimes/declined/{id}', [OvertimeController::class, 'declined'])->name('overtimes.declined');
