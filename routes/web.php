@@ -14,6 +14,7 @@ use App\Models\Overtime;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Spatie\Activitylog\Models\Activity;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,12 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/
         $balances = Balance::all();
         return view('admin.allstaffbalances.index', ['users' => $users]);
     })->name('allstaffbalances.index');
+
+    Route::get('activity', function () {
+        $allactivity = Activity::all();
+
+        return view('admin.activitylog.index', ['allactivity' => $allactivity]);
+    })->name('activity.index');
 
 });
 

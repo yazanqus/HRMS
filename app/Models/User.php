@@ -8,9 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Kyslik\ColumnSortable\Sortable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Activitylog\Traits\CausesActivity;
 
 class User extends Authenticatable
 {
+    use CausesActivity;
     use HasApiTokens, HasFactory, Notifiable;
     use Sortable;
     use SoftDeletes;

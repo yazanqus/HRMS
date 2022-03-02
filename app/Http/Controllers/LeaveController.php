@@ -34,6 +34,8 @@ class LeaveController extends Controller
     public function create()
     {
         $leavetypes = Leavetype::all();
+        $users = User::pluck('name');
+        dd($users);
         return view('leaves.create', ['leavetypes' => $leavetypes]);
     }
 

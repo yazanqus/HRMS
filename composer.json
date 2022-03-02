@@ -16,7 +16,8 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "snapappointments/bootstrap-select": "^1.13",
-        "socialiteproviders/okta": "^4.1"
+        "socialiteproviders/okta": "^4.1",
+        "spatie/laravel-activitylog": "^4.4"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

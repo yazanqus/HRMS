@@ -513,6 +513,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </a>
   </li>
 
+  <li class="nav-item">
+    <a class="nav-link {{ $activePage == 'allactivities' ? ' active' : '' }}" href="{{ route('admin.activity.index') }}">
+        <i class="fas fa-adjust nav-icon"></i>
+        <p>{{ __('All activites') }}</p>
+    </a>
+  </li>
+
 
 
   <div class="dropdown-divider" style="border-color:rgb(77, 77, 77);"></div>
