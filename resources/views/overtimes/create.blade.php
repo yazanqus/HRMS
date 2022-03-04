@@ -33,7 +33,7 @@
                                   <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                                     <div class="card-body p-4 p-md-5">
                                       <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">New Overtime</h3>
-                                      <form action="{{ route('overtimes.store') }}" method="POST">
+                                      <form action="{{ route('overtimes.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-sm-6 flex-column d-flex">
@@ -81,6 +81,17 @@
                                                  <span id="end_hour-error" class="error text-danger" for="input-end_hour">{{ $errors->first('end_hour') }}</span>
                                                 @endif
                                                 </div>
+                                                {{-- new row --}}
+                                                <div class="form-group  col-sm-6 flex-column d-flex">
+                                                    <label class="form-control-label  px-1" >Reason/Comment<small>(Optional)</small></label>
+                                                    <input type="text" id="reason" autocomplete="off" name="reason" placeholder="" class="form-control form-outline " />
+
+                                                </div>
+                                                  <div class="form-group col-sm-6 flex-column d-flex">
+                                                      <label class="form-control-label  px-1" >Attachment <small>(Image or PDF)</small></label>
+                                                      <input  type="file" name="file" id="file" class="form-control-file form-outline" />
+
+                                                  </div>
                                           {{-- </div> --}}
                                         </div>
                                         <br>

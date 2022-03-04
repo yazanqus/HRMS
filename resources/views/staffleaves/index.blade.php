@@ -127,7 +127,7 @@
                         <tbody>
                           @foreach ($overtimes as $overtime)
                           <tr>
-                            <td>{{ $overtime->id }}</td>
+                            <td><a href="{{ route('overtimes.show', $overtime) }}" target="_blank">{{ $overtime->id }}</a></td>
                             <td>{{ $overtime->user ? $overtime->user->name : 'Deleted User' }}</td>
                             <td class="text-center">{{ $overtime->type }}</td>
                             <td class="text-center">{{ $overtime->date }}</td>

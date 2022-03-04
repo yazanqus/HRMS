@@ -26,6 +26,7 @@
                             <table class="table table-hover text-nowrap table-Secondary ">
                             <thead>
                                 <tr>
+                                    <th scope="col">ID</th>
                                     <th scope="col">Name</th>
                                     <th class="text-center" scope="col">Date</th>
                                     <th class="text-center" scope="col">Start Hour</th>
@@ -39,7 +40,8 @@
                               <tbody>
                                 @foreach ($overtimes as $overtime)
                                 <tr>
-                                  <td>{{ $overtime->user->name }}</td>
+                                    <td><a href="{{ route('overtimes.show', $overtime) }}" target="_blank">{{ $overtime->id }}</a></td>
+                                    <td>{{ $overtime->user->name }}</td>
                                   <td class="text-center">{{ $overtime->date }}</td>
                                   <td class="text-center">{{ $overtime->start_hour }}</td>
                                   <td class="text-center">{{ $overtime->end_hour }}</td>

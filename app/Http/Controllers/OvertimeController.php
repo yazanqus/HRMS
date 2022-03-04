@@ -46,6 +46,8 @@ class OvertimeController extends Controller
             'date' => 'required',
             'start_hour' => 'required',
             'end_hour' => 'required|after:start_hour',
+            'reason',
+            'file' => 'nullable|mimes:jpeg,png,jpg,pdf',
 
         ]);
 
@@ -63,13 +65,16 @@ class OvertimeController extends Controller
         // dd($last);
 
         // $hours = $hourss+'1';
-
+        if ($request->hasFile('file')) {
+            $path = $request->file('file')->store('public/overtimes');
+        }
         $overtime = new Overtime();
         $overtime->type = $request->type;
         $overtime->date = $request->date;
         $overtime->start_hour = $request->start_hour;
         $overtime->end_hour = $request->end_hour;
         $overtime->hours = $last;
+        $overtime->path = $path;
         // $overtime->overtimetype_id = $request->overtimetype_id;
         $overtime->user_id = auth()->user()->id;
         if (!isset($user->linemanager)) {
@@ -100,7 +105,7 @@ class OvertimeController extends Controller
      */
     public function show(Overtime $overtime)
     {
-        //
+        return view('overtimes.show', ['overtime' => $overtime]);
     }
 
     /**
@@ -135,7 +140,8 @@ class OvertimeController extends Controller
     public function destroy($id)
     {
         $overtime = Overtime::find($id);
-        // dd($overtime);
+        $file_path = public_path() . '/storage/overtimes/' . basename($overtime->path);
+        unlink($file_path);
         $overtime->delete();
         return redirect()->route('overtimes.index');
     }
