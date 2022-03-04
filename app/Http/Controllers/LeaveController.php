@@ -34,8 +34,7 @@ class LeaveController extends Controller
     public function create()
     {
         $leavetypes = Leavetype::all();
-        $users = User::pluck('name');
-        dd($users);
+
         return view('leaves.create', ['leavetypes' => $leavetypes]);
     }
 
@@ -112,6 +111,8 @@ class LeaveController extends Controller
             'start_date' => 'required',
             'end_date' => 'required|after_or_equal:start_date',
             'leavetype_id' => 'required',
+            'reason',
+            'file' => 'nullable|mimes:jpeg,png,jpg,pdf',
         ]);
 
         $fdate = $request->start_date;
@@ -135,9 +136,16 @@ class LeaveController extends Controller
 
                 if ($days <= $currentbalance) {
 
+                    if ($request->hasFile('file')) {
+                        $path = $request->file('file')->store('public/leaves');
+                    }
                     $leave = new Leave();
                     $leave->start_date = $request->start_date;
                     $leave->end_date = $request->end_date;
+                    $leave->reason = $request->reason;
+                    if ($request->hasFile('file')) {
+                        $leave->path = $path;
+                    }
                     $leave->days = $days;
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
@@ -165,9 +173,17 @@ class LeaveController extends Controller
         elseif ($request->leavetype_id == '2') {
             if ($days <= $currentbalance) {
 
+                if ($request->hasFile('file')) {
+                    $path = $request->file('file')->store('public/leaves');
+                }
                 $leave = new Leave();
                 $leave->start_date = $request->start_date;
                 $leave->end_date = $request->end_date;
+                $leave->reason = $request->reason;
+                if ($request->hasFile('file')) {
+                    $leave->path = $path;
+                }
+
                 $leave->days = $days;
                 $leave->leavetype_id = $request->leavetype_id;
                 $leave->user_id = auth()->user()->id;
@@ -192,9 +208,17 @@ class LeaveController extends Controller
         elseif ($request->leavetype_id == '3') {
             if ($days <= $currentbalance) {
 
+                if ($request->hasFile('file')) {
+                    $path = $request->file('file')->store('public/leaves');
+                }
                 $leave = new Leave();
                 $leave->start_date = $request->start_date;
                 $leave->end_date = $request->end_date;
+                $leave->reason = $request->reason;
+                if ($request->hasFile('file')) {
+                    $leave->path = $path;
+                }
+
                 $leave->days = $days;
                 $leave->leavetype_id = $request->leavetype_id;
                 $leave->user_id = auth()->user()->id;
@@ -219,9 +243,17 @@ class LeaveController extends Controller
         elseif ($request->leavetype_id == '4') {
             if ($days <= $currentbalance) {
 
+                if ($request->hasFile('file')) {
+                    $path = $request->file('file')->store('public/leaves');
+                }
                 $leave = new Leave();
                 $leave->start_date = $request->start_date;
                 $leave->end_date = $request->end_date;
+                $leave->reason = $request->reason;
+                if ($request->hasFile('file')) {
+                    $leave->path = $path;
+                }
+
                 $leave->days = $days;
                 $leave->leavetype_id = $request->leavetype_id;
                 $leave->user_id = auth()->user()->id;
@@ -249,9 +281,17 @@ class LeaveController extends Controller
 
                 if ($days <= $currentbalance) {
 
+                    if ($request->hasFile('file')) {
+                        $path = $request->file('file')->store('public/leaves');
+                    }
                     $leave = new Leave();
                     $leave->start_date = $request->start_date;
                     $leave->end_date = $request->end_date;
+                    $leave->reason = $request->reason;
+                    if ($request->hasFile('file')) {
+                        $leave->path = $path;
+                    }
+
                     $leave->days = $days;
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
@@ -282,9 +322,17 @@ class LeaveController extends Controller
 
                 if ($days <= $currentbalance) {
 
+                    if ($request->hasFile('file')) {
+                        $path = $request->file('file')->store('public/leaves');
+                    }
                     $leave = new Leave();
                     $leave->start_date = $request->start_date;
                     $leave->end_date = $request->end_date;
+                    $leave->reason = $request->reason;
+                    if ($request->hasFile('file')) {
+                        $leave->path = $path;
+                    }
+
                     $leave->days = $days;
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
@@ -314,9 +362,17 @@ class LeaveController extends Controller
 
                 if ($days <= $currentbalance) {
 
+                    if ($request->hasFile('file')) {
+                        $path = $request->file('file')->store('public/leaves');
+                    }
                     $leave = new Leave();
                     $leave->start_date = $request->start_date;
                     $leave->end_date = $request->end_date;
+                    $leave->reason = $request->reason;
+                    if ($request->hasFile('file')) {
+                        $leave->path = $path;
+                    }
+
                     $leave->days = $days;
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
@@ -346,9 +402,17 @@ class LeaveController extends Controller
 
                 if ($days <= $currentbalance) {
 
+                    if ($request->hasFile('file')) {
+                        $path = $request->file('file')->store('public/leaves');
+                    }
                     $leave = new Leave();
                     $leave->start_date = $request->start_date;
                     $leave->end_date = $request->end_date;
+                    $leave->reason = $request->reason;
+                    if ($request->hasFile('file')) {
+                        $leave->path = $path;
+                    }
+
                     $leave->days = $days;
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
@@ -377,9 +441,17 @@ class LeaveController extends Controller
             if ($days <= $currentbalance) {
                 if ($days <= '3') {
 
+                    if ($request->hasFile('file')) {
+                        $path = $request->file('file')->store('public/leaves');
+                    }
                     $leave = new Leave();
                     $leave->start_date = $request->start_date;
                     $leave->end_date = $request->end_date;
+                    $leave->reason = $request->reason;
+                    if ($request->hasFile('file')) {
+                        $leave->path = $path;
+                    }
+
                     $leave->days = $days;
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
@@ -411,9 +483,17 @@ class LeaveController extends Controller
 
                 if ($annualleavebalance >= '0.5') {
 
+                    if ($request->hasFile('file')) {
+                        $path = $request->file('file')->store('public/leaves');
+                    }
                     $leave = new Leave();
                     $leave->start_date = $request->start_date;
                     $leave->end_date = $request->end_date;
+                    $leave->reason = $request->reason;
+                    if ($request->hasFile('file')) {
+                        $leave->path = $path;
+                    }
+
                     $leave->days = '0.5';
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
@@ -441,9 +521,17 @@ class LeaveController extends Controller
 
             if ($comphalfleavebalance >= '0.5') {
 
+                if ($request->hasFile('file')) {
+                    $path = $request->file('file')->store('public/leaves');
+                }
                 $leave = new Leave();
                 $leave->start_date = $request->start_date;
                 $leave->end_date = $request->end_date;
+                $leave->reason = $request->reason;
+                if ($request->hasFile('file')) {
+                    $leave->path = $path;
+                }
+
                 $leave->days = '0.5';
                 $leave->leavetype_id = $request->leavetype_id;
                 $leave->user_id = auth()->user()->id;
@@ -471,9 +559,17 @@ class LeaveController extends Controller
 
                 if ($days <= $currentbalance) {
 
+                    if ($request->hasFile('file')) {
+                        $path = $request->file('file')->store('public/leaves');
+                    }
                     $leave = new Leave();
                     $leave->start_date = $request->start_date;
                     $leave->end_date = $request->end_date;
+                    $leave->reason = $request->reason;
+                    if ($request->hasFile('file')) {
+                        $leave->path = $path;
+                    }
+
                     $leave->days = $days;
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
@@ -504,9 +600,17 @@ class LeaveController extends Controller
 
                 if ($unpaidleavebalance >= '0.5') {
 
+                    if ($request->hasFile('file')) {
+                        $path = $request->file('file')->store('public/leaves');
+                    }
                     $leave = new Leave();
                     $leave->start_date = $request->start_date;
                     $leave->end_date = $request->end_date;
+                    $leave->reason = $request->reason;
+                    if ($request->hasFile('file')) {
+                        $leave->path = $path;
+                    }
+
                     $leave->days = '0.5';
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
@@ -534,9 +638,17 @@ class LeaveController extends Controller
 
             if ($days <= '5') {
 
+                if ($request->hasFile('file')) {
+                    $path = $request->file('file')->store('public/leaves');
+                }
                 $leave = new Leave();
                 $leave->start_date = $request->start_date;
                 $leave->end_date = $request->end_date;
+                $leave->reason = $request->reason;
+                if ($request->hasFile('file')) {
+                    $leave->path = $path;
+                }
+
                 $leave->days = $days;
                 $leave->leavetype_id = $request->leavetype_id;
                 $leave->user_id = auth()->user()->id;
@@ -562,9 +674,17 @@ class LeaveController extends Controller
 
             if ($days <= '3') {
 
+                if ($request->hasFile('file')) {
+                    $path = $request->file('file')->store('public/leaves');
+                }
                 $leave = new Leave();
                 $leave->start_date = $request->start_date;
                 $leave->end_date = $request->end_date;
+                $leave->reason = $request->reason;
+                if ($request->hasFile('file')) {
+                    $leave->path = $path;
+                }
+
                 $leave->days = $days;
                 $leave->leavetype_id = $request->leavetype_id;
                 $leave->user_id = auth()->user()->id;
@@ -584,9 +704,16 @@ class LeaveController extends Controller
             }
 
         } else {
+            if ($request->hasFile('file')) {
+                $path = $request->file('file')->store('public/leaves');
+            }
             $leave = new Leave();
             $leave->start_date = $request->start_date;
             $leave->end_date = $request->end_date;
+            $leave->reason = $request->reason;
+            if ($request->hasFile('file')) {
+                $leave->path = $path;
+            }
             $leave->days = $days;
             $leave->leavetype_id = $request->leavetype_id;
             $leave->user_id = auth()->user()->id;
@@ -620,7 +747,9 @@ class LeaveController extends Controller
      */
     public function show(Leave $leave)
     {
-        //
+
+        // $leavetype = Leavetype::where('id', $leave-)->get();
+        return view('leaves.show', ['leave' => $leave]);
     }
 
     /**
@@ -655,7 +784,8 @@ class LeaveController extends Controller
     public function destroy($id)
     {
         $leave = Leave::find($id);
-
+        $file_path = public_path() . '/storage/leaves/' . basename($leave->path);
+        unlink($file_path);
         $leave->delete();
         return redirect()->route('leaves.index')->with("success", "Leave is canceled");
     }

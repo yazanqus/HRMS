@@ -18,6 +18,7 @@ class Leave extends Model
         'start_date',
         'end_date',
         'leavetype_id',
+        'reason',
     ];
 
     protected static $recordEvents = ['created', 'updated'];
