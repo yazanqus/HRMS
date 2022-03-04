@@ -629,7 +629,7 @@ a.note-dropdown-item:hover {
 .note-modal .note-nav-link {
     display: block;
     padding: 0.5rem 1rem;
-    color: #ff6c00;
+    color: #007bff;
     text-decoration: none;
     background-color: transparent;
     -webkit-text-decoration-skip: objects;
