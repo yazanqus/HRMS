@@ -87,9 +87,12 @@
                                                     <input type="text" id="reason" autocomplete="off" name="reason" placeholder="" class="form-control form-outline " />
 
                                                 </div>
-                                                  <div class="form-group col-sm-6 flex-column d-flex">
-                                                      <label class="form-control-label  px-1" >Attachment <small>(Image or PDF)</small></label>
-                                                      <input  type="file" name="file" id="file" class="form-control-file form-outline" />
+                                                  <div class="form-group {{ $errors->has('file') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
+                                                      <label class="form-control-label  px-1" >Attachment <small>(Image or PDF - 3 MB Max)</small></label>
+                                                      <input  type="file" name="file" id="file" class="form-control-file form-outline {{ $errors->has('file') ? ' is-invalid' : '' }}" />
+                                                      @if ($errors->has('file'))
+                                                 <span id="file-error" class="error text-danger" for="input-file">{{ $errors->first('file') }}</span>
+                                                @endif
 
                                                   </div>
                                           {{-- </div> --}}

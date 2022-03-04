@@ -112,7 +112,7 @@ class LeaveController extends Controller
             'end_date' => 'required|after_or_equal:start_date',
             'leavetype_id' => 'required',
             'reason',
-            'file' => 'nullable|mimes:jpeg,png,jpg,pdf',
+            'file' => 'nullable|mimes:jpeg,png,jpg,pdf|max:3072',
         ]);
 
         $fdate = $request->start_date;
