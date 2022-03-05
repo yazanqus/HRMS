@@ -464,11 +464,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             dd($numapproval);
             @endphp --}}
             @if ($numhrapproval > '0')
-
             <span class="ml-1 badge badge-primary"> {{$numhrapproval}} </span>
         @endif
-        <i class="fas fa-angle-down right"></i>
-      </p>
+    </p>
+    <i class="fas fa-angle-down right"></i>
     </a>
 
 

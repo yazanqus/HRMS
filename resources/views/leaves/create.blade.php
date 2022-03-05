@@ -73,7 +73,7 @@
                                                @endif
                                                 </div>
                                             <div class="form-group  {{ $errors->has('end_date') ? ' has-danger' : '' }}  col-sm-6 flex-column d-flex">
-                                                <label class="form-control-label required px-1">End date</label>
+                                                <label class="form-control-label required px-1">End date <small>(Weekends won't be counted as leaves)</small></label>
                                                  <input class="form-control form-outline {{ $errors->has('end_date') ? ' is-invalid' : '' }}" type="date" name="end_date" id="end_date" placeholder="" >
                                                  @if ($errors->has('end_date'))
                                                  <span id="end_date-error" class="error text-danger" for="input-end_date">{{ $errors->first('end_date') }}</span>
@@ -85,7 +85,7 @@
 
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group  col-sm-6 flex-column d-flex">
-                                                 <label class="form-control-label px-1">Reason/Comment<small>(Optional)</small></label>
+                                                 <label class="form-control-label px-1">Reason/Comment</small></label>
                                                  <input class="form-control form-outline" type="text" id="reason" autocomplete="off" name="reason" placeholder="">
 
                                                 </div>
@@ -101,7 +101,7 @@
                                         </div>
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group  col-sm-4 flex-column d-flex">
-                                                 <label id="labelnumofdays" class="form-control-label  px-1">Number of Days</label>
+                                                 <label id="labelnumofdays" class="form-control-label  px-1">Total Number of Days</label>
                                                  <input class="form-control form-outline " type="text" id="numofdays" readonly name="numofdays" placeholder="Enter Start date and End date...">
                                                 </div>
                                             {{-- <a href="#" id="output" class="btn btn-sm btn-primary"></a> --}}
@@ -162,24 +162,39 @@ $('#leavetype_id').on('change',function(){
     }
 });
 
+
+
 $('#end_date,#start_date').on('change',function(){
+
+
+
 var start = $('#start_date').val();
 var end = $('#end_date').val();
 
 // end - start returns difference in milliseconds
 var startt = new Date(start);
-var endd = new Date (end);
+var endd = new Date(end);
 var diff = endd - startt ;
 // get days
 var days = diff/1000/60/60/24 + 1 || 0;
+if (days > 0) {
+    $("#numofdays").val(days);
+  } else {
+    $("#numofdays").val(0);
+  }
 
 
-$('#numofdays').val(days);
 
 
 });
 
 });
+
+
+// asdasdasdasdasdasd
+
+
+
 </script>
 
 {{-- <script>

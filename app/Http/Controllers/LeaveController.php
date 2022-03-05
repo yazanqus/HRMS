@@ -7,6 +7,8 @@ use App\Models\Leave;
 use App\Models\Leavetype;
 use App\Models\User;
 use Carbon\Carbon;
+use DateInterval;
+use DatePeriod;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -119,9 +121,22 @@ class LeaveController extends Controller
         $ldate = $request->end_date;
         $datetime1 = new DateTime($fdate);
         $datetime2 = new DateTime($ldate);
-        $interval = $datetime1->diff($datetime2);
-        $dayss = $interval->format('%a');
-        $days = $dayss+'1';
+
+        // Applying answer for remooving weekwends
+        $intervalllll = DateInterval::createFromDateString('1 day');
+        $period = new DatePeriod($datetime1, $intervalllll, $datetime2);
+        $busdays = 0;
+
+        foreach ($period as $day) {
+            // $day is not friday nor saturday
+            if (!in_array($day->format('w'), [4, 5])) {
+                $busdays++;
+            }
+        }
+
+        // $interval = $datetime1->diff($datetime2);
+        // $dayss = $interval->format('%a');
+        $days = $busdays+'1';
 
         $datenow = Carbon::now();
         $joineddate = new DateTime($user->joined_date);
