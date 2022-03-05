@@ -23,10 +23,10 @@
                           {{-- <p class="card-category"> Here you can manage users</p> --}}
                         </div>
                         <div class="card-body table-responsive-md">
-                          <div class="row">
 
 
-                        <table class="table table-hover text-nowrap table-Secondar">
+
+                        <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
 
                         <thead>
                             <tr>
@@ -44,15 +44,36 @@
                               <td class="text-center">{{ optional($activity->causer)->name }}</td>
                               <td class="text-center">{{ $activity->properties }}</td>
                               <td class="text-center">{{ $activity->created_at }}</td>
-                              <td>edit</td>
+
                             </tr>
                             @endforeach
                           </tbody>
                       </table>
-                          </div>
+
                         </div>
                       </div>
                   </div>
               </div>
           </div>
  @endsection
+
+
+ @push('scripts')
+
+  <!-- DataTables  & Plugins -->
+
+
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
+
+
+  <script>
+     $(document).ready( function () {
+    $('#table_id').DataTable(
+        {
+            "aLengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+            "order": [[3, "desc" ]]
+        }
+    );
+} );
+  </script>
+@endpush
