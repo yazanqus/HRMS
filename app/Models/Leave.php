@@ -21,7 +21,7 @@ class Leave extends Model
         'reason',
     ];
 
-    protected static $recordEvents = ['created', 'updated'];
+    protected static $recordEvents = ['updated'];
 
     public function getActivitylogOptions(): LogOptions
     {

@@ -147,7 +147,7 @@
                                                 <label class="form-control-label required px-1">Password <small>(Change User Password)</small></label>
                                                 <div class="input-group">
                                                     <input class="form-control form-outline  {{ $errors->has('password') ? ' is-invalid' : '' }} "  type="password" id="password" autocomplete="off"
-                                                    name="password" value="Can't view, Only Reset is possible" autocomplete="new-password" placeholder="">
+                                                    name="password"  autocomplete="new-password" placeholder="Can't view, Only Reset is possible">
                                                     {{-- @if ($errors->has('password'))
                                                  <span id="password-error" class="error text-danger" for="input-password">{{ $errors->first('password') }}</span>
                                                 @endif --}}

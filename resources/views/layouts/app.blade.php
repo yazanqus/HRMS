@@ -512,12 +512,51 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </a>
   </li>
 
-  <li class="nav-item">
-    <a class="nav-link {{ $activePage == 'allactivities' ? ' active' : '' }}" href="{{ route('admin.activity.index') }}">
-        <i class="fas fa-adjust nav-icon"></i>
-        <p>{{ __('All activites') }}</p>
+
+
+
+  <li class="nav-item {{ $activePage == 'leaveactivities'||$activePage == 'overtimeactivities'||$activePage == 'useractivities' ? ' menu-open' : ''  }}">
+    <a href="#" class="nav-link {{ $activePage == 'leaveactivities'||$activePage == 'overtimeactivities'||$activePage == 'useractivities' ? ' active' : '' }} " >
+        <i class="fas fa-check nav-icon"></i>
+      <p>{{ __('Activity Log') }}
+        {{-- @php
+            dd($numapproval);
+            @endphp --}}
+    </p>
+    <i class="fas fa-angle-down right"></i>
     </a>
+
+
+      <ul class="nav nav-treeview">
+        <li class="nav-item" >
+          <a class="nav-link {{ $activePage == 'leaveactivities' ? ' active' : '' }}" href="{{ route('admin.activityleaves.index') }}">
+            <i style="padding-left:20px" class="fas fa-running nav-icon "></i>
+            <p style="padding-left:20px">{{ __('Leave Activity') }}
+
+            </p>
+          </a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link {{ $activePage == 'overtimeactivities' ? ' active' : '' }}" href="{{ route('admin.activityovertimes.index') }}">
+            <i style="padding-left:20px" class="fas fa-adjust nav-icon"></i>
+            <p style="padding-left:20px">{{ __('Overtime Activity') }}
+
+            </p>
+          </a>
+        </li>
+        <li class="nav-item" >
+            <a class="nav-link {{ $activePage == 'useractivities' ? ' active' : '' }}" href="{{ route('admin.activityusers.index') }}">
+              <i style="padding-left:20px" class="fas fa-adjust nav-icon"></i>
+              <p style="padding-left:20px">{{ __('Users Activity') }}
+
+              </p>
+            </a>
+          </li>
+      </ul>
+
   </li>
+
+
 
 
 

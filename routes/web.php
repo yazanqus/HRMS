@@ -49,11 +49,20 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/
         return view('admin.allstaffbalances.index', ['users' => $users]);
     })->name('allstaffbalances.index');
 
-    Route::get('activity', function () {
+    Route::get('activityleaves', function () {
         $allactivity = Activity::all();
+        return view('admin.activitylogleaves.index', ['allactivity' => $allactivity]);
+    })->name('activityleaves.index');
 
-        return view('admin.activitylog.index', ['allactivity' => $allactivity]);
-    })->name('activity.index');
+    Route::get('activityovertimes', function () {
+        $allactivity = Activity::all();
+        return view('admin.activitylogovertime.index', ['allactivity' => $allactivity]);
+    })->name('activityovertimes.index');
+
+    Route::get('activityusers', function () {
+        $allactivity = Activity::all();
+        return view('admin.activitylogusers.index', ['allactivity' => $allactivity]);
+    })->name('activityusers.index');
 
 });
 

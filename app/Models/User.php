@@ -8,7 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Kyslik\ColumnSortable\Sortable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\CausesActivity;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable
 {
@@ -16,12 +18,32 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
     use Sortable;
     use SoftDeletes;
-
+    use LogsActivity;
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
+    protected static $recordEvents = ['created', 'updated'];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['name',
+                'birth_date',
+                'unit',
+                'position',
+                'employee_number',
+                'joined_date',
+                'email',
+                'grade',
+                'linemanager',
+                'usertype_id',
+                'hradmin'])->logOnlyDirty();
+
+        // Chain fluent methods for configuration options
+    }
+
     protected $fillable = [
         'name',
         'birth_date',
