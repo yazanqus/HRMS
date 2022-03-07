@@ -515,13 +515,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
-  <li class="nav-item {{ $activePage == 'leaveactivities'||$activePage == 'overtimeactivities'||$activePage == 'useractivities' ? ' menu-open' : ''  }}">
+  {{-- <li class="nav-item {{ $activePage == 'leaveactivities'||$activePage == 'overtimeactivities'||$activePage == 'useractivities' ? ' menu-open' : ''  }}">
     <a href="#" class="nav-link {{ $activePage == 'leaveactivities'||$activePage == 'overtimeactivities'||$activePage == 'useractivities' ? ' active' : '' }} " >
         <i class="fas fa-check nav-icon"></i>
       <p>{{ __('Activity Log') }}
-        {{-- @php
-            dd($numapproval);
-            @endphp --}}
+
     </p>
     <i class="fas fa-angle-down right"></i>
     </a>
@@ -554,7 +552,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
       </ul>
 
-  </li>
+  </li> --}}
 
 
 
