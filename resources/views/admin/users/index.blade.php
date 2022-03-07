@@ -24,6 +24,7 @@
                                           <a href="{{route('admin.users.create')}}" class="btn btn-sm btn-primary">Create a new user</a>
                                         </div>
                                     </div>
+
                                       <div class="card-body table-responsive-md">
                                           <table id="table_id" class="table table-bordered table-hover text-nowrap table-Secondary table-striped">
                                             <thead>

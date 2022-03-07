@@ -142,8 +142,11 @@ class OvertimeController extends Controller
     public function destroy($id)
     {
         $overtime = Overtime::find($id);
-        $file_path = public_path() . '/storage/overtimes/' . basename($overtime->path);
-        unlink($file_path);
+        if (isset($overtime->path)) {
+            $file_path = public_path() . '/storage/overtimes/' . basename($overtime->path);
+            unlink($file_path);
+        }
+
         $overtime->delete();
         return redirect()->route('overtimes.index');
     }

@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use DateInterval;
 use DatePeriod;
 use DateTime;
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -799,8 +800,11 @@ class LeaveController extends Controller
     public function destroy($id)
     {
         $leave = Leave::find($id);
-        $file_path = public_path() . '/storage/leaves/' . basename($leave->path);
-        unlink($file_path);
+        if (isset($leave->path)) {
+            $file_path = public_path() . '/storage/leaves/' . basename($leave->path);
+            unlink($file_path);
+        }
+
         $leave->delete();
         return redirect()->route('leaves.index')->with("success", "Leave is canceled");
     }

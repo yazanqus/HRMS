@@ -24,10 +24,10 @@
                               <a href="{{route('leaves.create')}}" class="btn btn-sm btn-primary">Submit a new Leave</a>
                             </div>
                         </div>
+
                         <div class="card-body table-responsive-md">
 
-                          <div class="row">
-                        <table class="table table-hover text-nowrap table-Secondary">
+                        <table id="table_id" class="table table-bordered table-hover text-nowrap table-Secondary table-striped">
                         <thead>
                             <tr>
                               <th scope="col">ID</th>
@@ -92,7 +92,7 @@
                             @endforeach
                           </tbody>
                       </table>
-                          </div>
+
                         </div>
                       </div>
                       <!-- Modal -->
@@ -136,9 +136,19 @@
  @push('scripts')
 
  <!-- DataTables  & Plugins -->
+ <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
+
+ <script>
 
 
 
+    $(document).ready( function () {
+    $('#table_id').DataTable({
+        "aLengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+        "order": [[0, "desc" ]],
+    });
+});
+  </script>
 
 <script>
 
