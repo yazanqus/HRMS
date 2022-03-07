@@ -277,6 +277,7 @@ class UserController extends Controller
             // hradminrole?
             // staffrole?
         ]);
+
         // dd($request);
         // $user->password = Hash::make($request->password);
 
@@ -292,7 +293,10 @@ class UserController extends Controller
         $user->joined_date = $request->joined_date;
         $user->hradmin = $request->hradmin;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        if (isset($request->password)) {
+
+            $user->password = Hash::make($request->password);
+        }
 
         $user->save();
 
