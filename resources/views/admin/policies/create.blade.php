@@ -45,7 +45,7 @@
                                                @endif
                                                 </div>
                                             <div class="form-group  {{ $errors->has('desc') ? ' has-danger' : '' }}  col-sm-6 flex-column d-flex">
-                                                <label class="form-control-label required px-1">Description</label>
+                                                <label class="form-control-label px-1">Description</label>
                                                  <input class="form-control form-outline {{ $errors->has('desc') ? ' is-invalid' : '' }}" type="text" name="desc" id="desc" placeholder="" >
                                                  @if ($errors->has('desc'))
                                                  <span id="desc-error" class="error text-danger" for="input-desc">{{ $errors->first('desc') }}</span>
