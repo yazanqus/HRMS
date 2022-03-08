@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Balance;
+use App\Models\Leave;
 use App\Models\Leavetype;
 use App\Models\User;
 use Carbon\Carbon;
@@ -97,17 +98,16 @@ class UserController extends Controller
         $month = date("m", strtotime($user->joined_date));
         $datenow = Carbon::now();
         $yearnow = $datenow->year;
+        // dd($yearnow);
 
         if ($year < $yearnow) {
             $userannualleavebalance = '15';
         } else {
 
-            if ($year) {
-                if ($day < '15') {
+            if ($day < '15') {
 
-                    $userannualleavebalance = (1.25 * (12 - $month + 1));
+                $userannualleavebalance = (1.25 * (12 - $month + 1));
 
-                }
             }
 
             if ($day >= '15') {
@@ -294,6 +294,7 @@ class UserController extends Controller
         $user->joined_date = $request->joined_date;
         $user->hradmin = $request->hradmin;
         $user->email = $request->email;
+
         if (isset($request->password)) {
 
             $user->password = Hash::make($request->password);
@@ -301,26 +302,56 @@ class UserController extends Controller
 
         $user->save();
 
-        $day = date("d", strtotime($user->joined_date));
-        $month = date("m", strtotime($user->joined_date));
-        if ($day < '15') {
+        $checkifuserhasleave = Leave::where([
+            ['user_id', $user->id],
+            ['status', 'Approved']])->get();
 
-            $userannualleavebalance = (1.25 * (12 - $month + 1));
+        // dd($checkifuserhasleave);
 
+        // disable the update of balances when updating user after a while
+        if ($checkifuserhasleave->isEmpty()) {
+
+            $yearr = date("Y", strtotime($user->joined_date));
+            $dayy = date("d", strtotime($user->joined_date));
+            $monthh = date("m", strtotime($user->joined_date));
+            $datenoww = Carbon::now();
+            $yearnoww = $datenoww->year;
+            // dd($yearnoww);
+
+            if ($yearr < $yearnoww) {
+                $userannualleavebalancee = '15';
+            } else {
+
+                if ($dayy < '15') {
+
+                    $userannualleavebalancee = (1.25 * (12 - $monthh + 1));
+
+                }
+
+                if ($dayy >= '15') {
+                    $userannualleavebalancee = ((1.25 * (12 - $monthh)) + 0.5);
+                }
+            }
+
+            $annualleavehalfdayy = $userannualleavebalancee * 2;
+
+            // dd($userannualleavebalancee);
+
+            // $balances = Balance::where('user_id', $user->id)->get();
+            // dd($balances);
+
+            $user->balances()->where('name', 'Annual leave')->update([
+                'value' => $userannualleavebalancee,
+            ]);
+
+            $user->balances()->where('name', 'Annual leave - First half')->update([
+                'value' => $annualleavehalfdayy,
+            ]);
+
+            $user->balances()->where('name', 'Annual leave - Second half')->update([
+                'value' => $annualleavehalfdayy,
+            ]);
         }
-
-        if ($day >= '15') {
-            $userannualleavebalance = ((1.25 * (12 - $month)) + 0.5);
-        }
-
-        // dd($userannualleavebalance);
-
-        // $balances = Balance::where('user_id', $user->id)->get();
-        // dd($balances);
-
-        $user->balances()->where('name', 'Annual leave')->update([
-            'value' => $userannualleavebalance,
-        ]);
 
         // $leavetypes = Leavetype::all();
         // foreach ($leavetypes as $leavetype) {
