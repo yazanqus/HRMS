@@ -86,7 +86,7 @@
                           <tbody>
                             @foreach ($leaves as $leave)
                             <tr>
-                                <td><a href="{{ route('leaves.show', $leave) }}" target="_blank">{{ $leave->id }}</a></td>
+                                <td><a href="{{ route('leaves.show', $leave) }}" >{{ $leave->id }}</a></td>
                               <td>{{ $leave->user->name }}</td>
                               <td class="text-center">{{ $leave->leavetype->name }}</td>
                               <td class="text-center">{{ $leave->start_date }}</td>
@@ -127,7 +127,7 @@
                         <tbody>
                           @foreach ($overtimes as $overtime)
                           <tr>
-                            <td><a href="{{ route('overtimes.show', $overtime) }}" target="_blank">{{ $overtime->id }}</a></td>
+                            <td><a href="{{ route('overtimes.show', $overtime) }}" >{{ $overtime->id }}</a></td>
                             <td>{{ $overtime->user ? $overtime->user->name : 'Deleted User' }}</td>
                             <td class="text-center">{{ $overtime->type }}</td>
                             <td class="text-center">{{ $overtime->date }}</td>

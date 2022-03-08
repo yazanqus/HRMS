@@ -40,7 +40,7 @@
                           <tbody>
                             @foreach ($leaves as $leave)
                             <tr>
-                              <td><a href="{{ route('leaves.show', $leave) }}" target="_blank">{{ $leave->id }}</a></td>
+                              <td><a href="{{ route('leaves.show', $leave) }}" >{{ $leave->id }}</a></td>
                               <td>{{ $leave->user ? $leave->user->name : 'Deleted User' }}</td>
                               <td class="text-center">{{ $leave->leavetype->name }}</td>
                               <td class="text-center">{{ $leave->start_date }}</td>
