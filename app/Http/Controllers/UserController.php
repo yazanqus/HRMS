@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
 use App\Models\Balance;
 use App\Models\Leave;
 use App\Models\Leavetype;
@@ -10,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -588,6 +590,10 @@ class UserController extends Controller
 
         return redirect()->route('admin.users.index');
 
+    }
+    public function export()
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
     }
 
 }

@@ -324,6 +324,7 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
 // });
 
 Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/admin', 'as' => 'admin.'], function () {
+    Route::get('/users/export', [UserController::class, 'export']);
     Route::resource('users', UserController::class);
     Route::get('/users/suspend/{id}', [UserController::class, 'suspend'])->name('users.suspend');
     Route::get('/users/removesuspend/{id}', [UserController::class, 'removesuspend'])->name('users.removesuspend');
