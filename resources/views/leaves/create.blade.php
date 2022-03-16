@@ -171,22 +171,102 @@ $('#end_date,#start_date').on('change',function(){
 var start = $('#start_date').val();
 var end = $('#end_date').val();
 
-// end - start returns difference in milliseconds
-var startt = new Date(start);
-var endd = new Date(end);
-var diff = endd - startt ;
-// get days
-var days = diff/1000/60/60/24 + 1 || 0;
-if (days > 0) {
-    $("#numofdays").val(days);
-  } else {
-    $("#numofdays").val(0);
+// Copy date objects so don't modify originals
+var s = new Date(start);
+var e = new Date(end);
+
+// Set time to midday to avoid dalight saving and browser quirks
+// s.setHours(12,0,0,0);
+// e.setHours(12,0,0,0);
+
+// Get the difference in whole days
+// var daa = Math.round((e - s) / 8.64e7);
+var difff = e - s;
+var daa = difff/1000/60/60/24 + 1 || 0;
+
+// Get the difference in whole weeks
+var wholeWeeks = daa / 7 | 0;
+
+// Estimate business days as number of whole weeks * 5
+if (s.getDay() != 5 && s.getDay() != 6) {
+var days = wholeWeeks * 5 + 1;
+}
+else
+{
+    var days = wholeWeeks * 5;
+}
+if (daa % 7) {
+  s.setDate(s.getDate() + wholeWeeks * 7);
+
+  while (s < e) {
+    s.setDate(s.getDate() + 1);
+
+    // If day isn't a Sunday or Saturday, add to business days
+    if (s.getDay() != 5 && s.getDay() != 6) {
+      ++days;
+    }
   }
+}
+// if (days > 0) {
+    $("#numofdays").val(days);
+//   } else {
+//     $("#numofdays").val(0);
+//   }
+
+
+// end - start returns difference in milliseconds
+// var startt = new Date(start);
+// var endd = new Date(end);
+// var diff = endd - startt ;
+// // get days
+// var days = diff/1000/60/60/24 + 1 || 0;
+// if (days > 0) {
+//     $("#numofdays").val(days);
+//   } else {
+//     $("#numofdays").val(0);
+//   }
 
 
 
 
 });
+
+
+
+// function dateDifference(start, end) {
+
+// // Copy date objects so don't modify originals
+// var s = new Date(+start);
+// var e = new Date(+end);
+
+// // Set time to midday to avoid dalight saving and browser quirks
+// s.setHours(12,0,0,0);
+// e.setHours(12,0,0,0);
+
+// // Get the difference in whole days
+// var totalDays = Math.round((e - s) / 8.64e7);
+
+// // Get the difference in whole weeks
+// var wholeWeeks = totalDays / 7 | 0;
+
+// // Estimate business days as number of whole weeks * 5
+// var days = wholeWeeks * 5;
+
+// // If not even number of weeks, calc remaining weekend days
+// if (totalDays % 7) {
+//   s.setDate(s.getDate() + wholeWeeks * 7);
+
+//   while (s < e) {
+//     s.setDate(s.getDate() + 1);
+
+//     // If day isn't a Sunday or Saturday, add to business days
+//     if (s.getDay() != 0 && s.getDay() != 6) {
+//       ++days;
+//     }
+//   }
+// }
+// return days;
+// }
 
 });
 

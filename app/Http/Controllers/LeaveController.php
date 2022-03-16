@@ -7,6 +7,8 @@ use App\Models\Leave;
 use App\Models\Leavetype;
 use App\Models\User;
 use Carbon\Carbon;
+use DateInterval;
+use DatePeriod;
 use DateTime;
 use File;
 use Illuminate\Http\Request;
@@ -118,8 +120,8 @@ class LeaveController extends Controller
 
         $fdate = $request->start_date;
         $ldate = $request->end_date;
-        $datetime1 = new DateTime($fdate);
-        $datetime2 = new DateTime($ldate);
+        // $datetime1 = new DateTime($fdate);
+        // $datetime2 = new DateTime($ldate);
 
         // Applying answer for remooving weekwends
         // $intervalllll = DateInterval::createFromDateString('1 day');
@@ -133,9 +135,32 @@ class LeaveController extends Controller
         //     }
         // }
 
-        $interval = $datetime1->diff($datetime2);
-        $dayss = $interval->format('%a');
-        $days = $dayss+'1';
+        $start = new DateTime($fdate);
+        $end = new DateTime($ldate);
+        // otherwise the  end date is excluded (bug?)
+        $end->modify('+1 day');
+
+        $interval = $end->diff($start);
+
+        // total days
+        $days = $interval->days;
+
+        // create an iterateable period of date (P1D equates to 1 day)
+        $period = new DatePeriod($start, new DateInterval('P1D'), $end);
+
+        foreach ($period as $dt) {
+            $curr = $dt->format('D');
+
+            // substract if Saturday or Sunday
+            if ($curr == 'Sat' || $curr == 'Fri') {
+                $days--;
+            }
+
+        }
+
+        // $interval = $datetime1->diff($datetime2);
+        // $dayss = $interval->format('%a');
+        // $days = $dayss+'1';
 
         $datenow = Carbon::now();
         $joineddate = new DateTime($user->joined_date);
