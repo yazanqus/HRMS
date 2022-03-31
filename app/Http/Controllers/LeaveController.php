@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\LeavesExport;
 use App\Models\Balance;
 use App\Models\Leave;
 use App\Models\Leavetype;
@@ -13,6 +14,7 @@ use DateTime;
 use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LeaveController extends Controller
 {
@@ -959,5 +961,9 @@ class LeaveController extends Controller
 
         return redirect()->route('leaves.hrapproval');
 
+    }
+    public function export()
+    {
+        return Excel::download(new LeavesExport, 'leaves.xlsx');
     }
 }

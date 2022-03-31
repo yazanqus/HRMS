@@ -20,6 +20,9 @@
                       <div class="card">
                         <div class="card-header card-header-primary">
                           <h4 class="card-title ">All Staff leaves</h4>
+                          <div class="col-12 text-right">
+                            <a href="{{route('admin.leaves.export')}}" class="btn btn-sm ml-2 btn-secondary">Excel <i class="ml-2 fas fa-file-excel"></i> </a>
+                          </div>
                           {{-- <p class="card-category"> Here you can manage users</p> --}}
                         </div>
                         <div class="card-body table-responsive-md">

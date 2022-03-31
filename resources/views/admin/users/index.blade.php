@@ -22,6 +22,7 @@
                                     <h4 class="card-title">All users</h4>
                                         <div class="col-12 text-right">
                                           <a href="{{route('admin.users.create')}}" class="btn btn-sm btn-primary">Create a new user</a>
+                                          <a href="{{route('admin.users.export')}}" class="btn btn-sm ml-2 btn-secondary">Excel <i class="ml-2 fas fa-file-excel"></i> </a>
                                         </div>
                                     </div>
 

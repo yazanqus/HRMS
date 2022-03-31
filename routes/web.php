@@ -33,6 +33,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/admin', 'as' => 'admin.'], function () {
+    Route::get('/leaves/export', [LeaveController::class, 'export'])->name('leaves.export');
+    // Route::get('/overtimes/export', [OeaveController::class, 'export'])->name('overtimes.export');
     Route::get('allstaffleaves', function () {
         $leaves = Leave::all();
         return view('admin.allstaffleaves.index', ['leaves' => $leaves]);
@@ -324,7 +326,7 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
 // });
 
 Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/admin', 'as' => 'admin.'], function () {
-    Route::get('/users/export', [UserController::class, 'export']);
+    Route::get('/users/export', [UserController::class, 'export'])->name('users.export');
     Route::resource('users', UserController::class);
     Route::get('/users/suspend/{id}', [UserController::class, 'suspend'])->name('users.suspend');
     Route::get('/users/removesuspend/{id}', [UserController::class, 'removesuspend'])->name('users.removesuspend');
