@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\OvertimesExport;
 use App\Models\Balance;
 use App\Models\Overtime;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OvertimeController extends Controller
 {
@@ -213,5 +215,10 @@ class OvertimeController extends Controller
 
         return redirect()->route('overtimes.hrapproval');
 
+    }
+
+    public function export()
+    {
+        return Excel::download(new OvertimesExport, 'overtimes.xlsx');
     }
 }

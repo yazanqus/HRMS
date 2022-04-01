@@ -397,7 +397,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <li class="nav-item">
     <a class="nav-link {{ $activePage == 'allstaffovertimes' ? ' active' : '' }}" href="{{ route('admin.allstaffovertimes.index') }}">
         <i class="fas fa-adjust nav-icon"></i>
-        <p>{{ __('All Staff Overtime') }}</p>
+        <p>{{ __('All Staff Overtimes') }}</p>
     </a>
   </li>
 

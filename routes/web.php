@@ -34,7 +34,7 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::get('/leaves/export', [LeaveController::class, 'export'])->name('leaves.export');
-    // Route::get('/overtimes/export', [OeaveController::class, 'export'])->name('overtimes.export');
+    Route::get('/overtimes/export', [OvertimeController::class, 'export'])->name('overtimes.export');
     Route::get('allstaffleaves', function () {
         $leaves = Leave::all();
         return view('admin.allstaffleaves.index', ['leaves' => $leaves]);

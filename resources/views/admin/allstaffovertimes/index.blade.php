@@ -20,6 +20,9 @@
                       <div class="card">
                         <div class="card-header card-header-primary">
                           <h4 class="card-title ">All Staff Overtimes</h4>
+                          <div class="col-12 text-right">
+                            <a href="{{route('admin.overtimes.export')}}" class="btn btn-sm ml-2 btn-secondary">Excel <i class="ml-2 fas fa-file-excel"></i> </a>
+                          </div>
                           {{-- <p class="card-category"> Here you can manage users</p> --}}
                         </div>
                         <div class="card-body table-responsive-sm">
@@ -29,6 +32,7 @@
                                 <th style="width: 3%"scope="col">ID</th>
                                 <th style="width: 10%" scope="col">Name</th>
                                 <th style="width: 10%" class="text-center" scope="col">Type</th>
+                                <th style="width: 10%" class="text-center" scope="col">Date</th>
                                 <th style="width: 10%" class="text-center" scope="col">Start Hour</th>
                                 <th style="width: 10%" class="text-center" scope="col">End Hour</th>
                                 <th style="width: 5%" class="text-center" scope="col">Hours</th>
@@ -44,6 +48,7 @@
                               <td><a href="{{ route('overtimes.show', $overtime) }}" target="_blank">{{ $overtime->id }}</a></td>
                               <td>{{ $overtime->user->name }}</td>
                               <td class="text-center">{{ $overtime->type }}</td>
+                              <td class="text-center">{{ $overtime->date }}</td>
                               <td class="text-center">{{ $overtime->start_hour }}</td>
                               <td class="text-center">{{ $overtime->end_hour }}</td>
                               <td class="text-center">{{ $overtime->hours }}</td>
