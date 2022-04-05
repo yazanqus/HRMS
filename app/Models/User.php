@@ -101,4 +101,9 @@ class User extends Authenticatable
         return $this->belongsTo(Usertype::class);
     }
 
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
+
 }

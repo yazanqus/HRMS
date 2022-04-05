@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Middleware;
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ChangePassword;
 use App\Http\Controllers\HolidayController;
@@ -358,6 +359,10 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
     Route::get('/overtimes/declined/{id}', [OvertimeController::class, 'declined'])->name('overtimes.declined');
     Route::get('/overtimes/hrapproved/{id}', [OvertimeController::class, 'hrapproved'])->name('overtimes.hrapproved');
     Route::get('/overtimes/hrdeclined/{id}', [OvertimeController::class, 'hrdeclined'])->name('overtimes.hrdeclined');
+});
+
+Route::group(['middleware' => ['auth', 'checkstatus']], function () {
+    Route::resource('attendances', AttendanceController::class);
 });
 
 // Route::group(['middleware' => 'auth'], function () {
