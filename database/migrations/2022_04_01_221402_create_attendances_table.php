@@ -15,7 +15,7 @@ class CreateAttendancesTable extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->string('day');
+            $table->string('day')->nullable();
             $table->date('start_hour')->nullable();
             $table->string('end_hour')->unique()->nullable();
             $table->string('sign')->nullable();
@@ -24,9 +24,9 @@ class CreateAttendancesTable extends Migration
             $table->string('month')->nullable();
             $table->string('year')->nullable();
             $table->date('status')->nullable();
-            $table->foreignId('leave_id');
-            $table->foreignId('overtime_id');
-            $table->foreignId('user_id');
+            $table->foreignId('leave_id')->nullable();
+            $table->foreignId('overtime_id')->nullable();
+            $table->foreignId('user_id')->nullable();
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Attendance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AttendanceController extends Controller
 {
@@ -46,8 +47,12 @@ class AttendanceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Attendance $attendance)
-    {
-        //
+    {$user = Auth::user();
+        return view('attendances.show', [
+            'user' => $user,
+            'attendance' => $attendance,
+
+        ]);
     }
 
     /**
