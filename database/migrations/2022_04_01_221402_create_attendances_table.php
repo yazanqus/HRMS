@@ -16,14 +16,14 @@ class CreateAttendancesTable extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
             $table->string('day')->nullable();
-            $table->date('start_hour')->nullable();
-            $table->string('end_hour')->unique()->nullable();
+            $table->string('start_hour')->nullable();
+            $table->string('end_hour')->nullable();
             $table->string('sign')->nullable();
             $table->string('remarks')->nullable();
             $table->string('leave_overtime_id')->nullable();
             $table->string('month')->nullable();
             $table->string('year')->nullable();
-            $table->date('status')->nullable();
+            $table->string('status')->nullable();
             $table->foreignId('leave_id')->nullable();
             $table->foreignId('overtime_id')->nullable();
             $table->foreignId('user_id')->nullable();

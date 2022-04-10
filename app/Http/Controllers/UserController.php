@@ -8,6 +8,7 @@ use App\Models\Leave;
 use App\Models\Leavetype;
 use App\Models\User;
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -159,8 +160,32 @@ class UserController extends Controller
         $setlinemenager = $request->linemanager;
         DB::table('users')->where('name', $setlinemenager)->update(['usertype_id' => '2']);
 
-        return redirect()->route('admin.users.index');
+        $AttendstartDate = $request->joined_date;
+        $AttendendDate = '2022-12-31';
+        $period = CarbonPeriod::create($AttendstartDate, $AttendendDate);
+        foreach ($period as $date) {
+            $dates[] = $date->format('d-m-Y');
+            $ddays[] = $date->format('d');
+            $mmonths[] = $date->format('m');
+            $yyears[] = $date->format('Y');
 
+        }
+
+        // $days = Carbon::parse($dates)->dayName;
+        foreach ($dates as $datesss) {
+            $days[] = Carbon::parse($datesss)->dayName;
+        }
+
+        // dd($mmonths);
+        foreach ($dates as $datess) {
+
+            $user->attendances()->create([
+                'day' => $datess,
+
+            ]);
+        }
+
+        return redirect()->route('admin.users.index');
     }
 
     public function show(User $user)

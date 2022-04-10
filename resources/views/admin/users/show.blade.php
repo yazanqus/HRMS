@@ -84,7 +84,6 @@
                           </div> --}}
                         <div class="row">
                             <div class="col">
-
                                 <strong>Full Name: </strong> {{$user->name}}
                                 <br>
                                 <strong>Birth date: </strong> {{$user->birth_date}}

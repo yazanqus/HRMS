@@ -15,7 +15,8 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        $attendances = Attendance::all();
+
+        $attendances = Attendance::whereNull('user_id')->get();
         return view('attendances.index', ['attendances' => $attendances]);
     }
 
@@ -37,7 +38,7 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -47,12 +48,50 @@ class AttendanceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Attendance $attendance)
-    {$user = Auth::user();
+    {
+
+        $user = Auth::user();
+        if ($attendance->month == 'January') {
+            $search = '-01-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+
+        if ($attendance->month == 'February') {
+            $search = '-02-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+
+        if ($attendance->month == 'March') {
+            $search = '-03-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+
+        if ($attendance->month == 'April') {
+            $search = '-04-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+
+        if ($attendance->month == 'May') {
+            $search = '-05-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+
         return view('attendances.show', [
             'user' => $user,
-            'attendance' => $attendance,
+            'attendances' => $attendances,
 
         ]);
+
     }
 
     /**
@@ -75,7 +114,59 @@ class AttendanceController extends Controller
      */
     public function update(Request $request, Attendance $attendance)
     {
-        //
+        // $user = Auth::user();
+
+        if (!isset($attendance->start_hour)) {
+
+            $request->validate([
+                'start_hour' => 'required',
+                'end_hour' => 'required|after_or_equal:start_hour',
+            ]);
+
+            Attendance::where([
+                ['id', $attendance->id],
+            ])->update([
+                'start_hour' => $request->start_hour,
+                'end_hour' => $request->end_hour,
+                'leave_overtime_id' => $request->leave_overtime_id,
+                'remarks' => $request->remarks,
+            ]);
+
+            return redirect()->back();
+
+        }
+        if (isset($attendance->start_hour)) {
+
+            if (isset($attendance->leave_overtime_id)) {
+                Attendance::where([
+                    ['id', $attendance->id],
+                ])->update([
+                    'remarks' => $request->remarks,
+                ]);
+
+                return redirect()->back();
+
+            } elseif (isset($attendance->remarks)) {
+                Attendance::where([
+                    ['id', $attendance->id],
+                ])->update([
+                    'leave_overtime_id' => $request->leave_overtime_id,
+                ]);
+
+                return redirect()->back();
+
+            } else {
+                Attendance::where([
+                    ['id', $attendance->id],
+                ])->update([
+                    'remarks' => $request->remarks,
+                    'leave_overtime_id' => $request->leave_overtime_id,
+                ]);
+
+                return redirect()->back();
+            }
+
+        }
     }
 
     /**
