@@ -88,7 +88,12 @@
                                              @endif
                                            </td>
                                            <td class="text-center">
-                                             <button type="submit" class="btn bg-gradient-primary btn-block">Submit</button>
+                                               @if (isset($attendance->start_hour))
+                                               <button type="submit" class="btn bg-gradient-primary btn-block">Clear</button>
+                                               @endif
+                                               @if (!isset($attendance->start_hour))
+                                               <button type="submit" class="btn bg-gradient-primary btn-block">Submit</button>
+                                               @endif
                                            </td>
                                         </tr>
                                     </form>
