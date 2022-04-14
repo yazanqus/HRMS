@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendance;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -78,9 +79,50 @@ class AttendanceController extends Controller
                 ['user_id', $user->id],
                 ['day', 'LIKE', '%' . $search . '%']])->get();
         } //end januaury if
-
         if ($attendance->month == 'May') {
             $search = '-05-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+        if ($attendance->month == 'June') {
+            $search = '-06-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+        if ($attendance->month == 'July') {
+            $search = '-07-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+        if ($attendance->month == 'August') {
+            $search = '-08-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+        if ($attendance->month == 'September') {
+            $search = '-09-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+        if ($attendance->month == 'October') {
+            $search = '-10-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+        if ($attendance->month == 'November') {
+            $search = '-11-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+        if ($attendance->month == 'December') {
+            $search = '-12-';
             $attendances = Attendance::where([
                 ['user_id', $user->id],
                 ['day', 'LIKE', '%' . $search . '%']])->get();
@@ -179,4 +221,5 @@ class AttendanceController extends Controller
     {
         //
     }
+
 }

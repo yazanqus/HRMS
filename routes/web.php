@@ -9,6 +9,7 @@ use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\OvertimeController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\UserController;
+use App\Models\Attendance;
 use App\Models\Balance;
 use App\Models\Leave;
 use App\Models\Overtime;
@@ -66,6 +67,50 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/
         $allactivity = Activity::all();
         return view('admin.activitylogusers.index', ['allactivity' => $allactivity]);
     })->name('activityusers.index');
+
+    Route::get('allstaffattendances', function () {
+        $attendances = Attendance::whereNull('user_id')->get();
+        return view('admin.allstaffattendances.index', ['attendances' => $attendances]);
+    })->name('allstaffattendances.index');
+
+    // Route::get('allstaffattendancesshow', function (Attendance $attendance, User $user) {
+
+    //     if ($attendance->month == 'January') {
+    //         $search = '-01-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
+
+    //     if ($attendance->month == 'February') {
+    //         $search = '-02-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
+
+    //     if ($attendance->month == 'March') {
+    //         $search = '-03-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
+
+    //     if ($attendance->month == 'April') {
+    //         $search = '-04-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
+    //     // else {
+    //     //     $search = '-04-';
+    //     //     $attendances = Attendance::where([
+    //     //         ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     // }
+
+    //     return view('admin.allstaffattendances.show', ['user' => $user,
+    //         'attendances' => $attendances]);
+    // })->name('allstaffattendances.show');
 
 });
 
@@ -328,6 +373,8 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
 
 Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::get('/users/export', [UserController::class, 'export'])->name('users.export');
+    Route::get('/users/{user}/allstaffattendance', [UserController::class, 'allstaffattendance'])->name('users.allstaffattendance');
+    Route::get('/users/{user}/staffattendance/{attendance}', [UserController::class, 'staffattendance'])->name('users.staffattendance');
     Route::resource('users', UserController::class);
     Route::get('/users/suspend/{id}', [UserController::class, 'suspend'])->name('users.suspend');
     Route::get('/users/removesuspend/{id}', [UserController::class, 'removesuspend'])->name('users.removesuspend');
@@ -363,6 +410,7 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
 
 Route::group(['middleware' => ['auth', 'checkstatus']], function () {
     Route::resource('attendances', AttendanceController::class);
+
 });
 
 // Route::group(['middleware' => 'auth'], function () {

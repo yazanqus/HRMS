@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'attendnace', 'titlePage' => ('attendnace')])
+@extends('layouts.app', ['activePage' => 'all-users', 'titlePage' => ('all users')])
 
 @section('content')
 
@@ -113,7 +113,45 @@
                           {{-- <a href="{{route('admin.users.balanceedit', $user)}}" role="button" class="btn btn-sm btn-outline-primary">Edit  <i class="ml-2 fas fa-lg fa-user-cog"></i></a> --}}
 
                         </div>
+                        <div class="card-body">
+                            {{-- <div class="row">
+                                <div   div class="col-12 text-right">
+                                  <a href="#" class="btn btn-sm btn-primary">Add Holiday</a>
+                                </div>
+                            </div> --}}
+                          <div class="row">
+                              <div class="col">
+                                  <strong>Annual Leave:</strong>
+                                  <br>
+                                  <strong>Sick leave:</strong>
+                                  <br>
+                                  <strong>Sick leave 30% deduction:</strong>
+                                    <br>
+                                    <strong>Sick leave 20% deduction</strong>
+                                    <br>
+                                  <strong>Marriage leave:</strong>
+                                    <br>
+                                    <strong>Welfare leave:</strong>
+                                </div>
 
+                                <div class="col">
+                                    <strong>Unpaid leave:</strong>
+                                    <br>
+                                    <strong>Maternity leave:</strong>
+                                    <br>
+                                    <strong>Paternity leave:</strong>
+                                    <br>
+                                  <strong>Compassionate - Second degree:</strong>
+                                  <br>
+                                {{-- <strong>Annual Leave:</strong>
+                                  <br> --}}
+                                  <strong>Compassionate - First degree:</strong>
+                                  <br>
+                                  <strong>Compansetion:</strong>
+                                  </div>
+
+                          </div>
+                </div>
             </div>
 
 

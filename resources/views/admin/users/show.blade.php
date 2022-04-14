@@ -198,6 +198,19 @@
                 </div>
             </div>
 
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    {{-- <a href="/storage/files/{{$holiday->name}}.pdf" target="_blank">{{ $holiday->name }}</a> --}}
+                  <h4 class="card-title ">
+
+                <a href="{{route('admin.users.allstaffattendance',$user)}}" target="_blank">Attendances</a>
+
+                    </h4>
+                  <p class="card-category"></p>
+                </div>
+
+    </div>
+
             {{-- <div class="card">
                 <div class="card-header card-header-primary">
                   <h4 class="card-title ">Leaves - Taken</h4>
