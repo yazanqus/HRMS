@@ -710,6 +710,98 @@ class UserController extends Controller
 
     }
 
+    public function mystaffattendance(User $user, Attendance $attendance)
+    {
+
+        if ($attendance->month == 'January') {
+            $search = '-01-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+
+        if ($attendance->month == 'February') {
+            $search = '-02-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+
+        if ($attendance->month == 'March') {
+            $search = '-03-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+
+        if ($attendance->month == 'April') {
+            $search = '-04-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+        if ($attendance->month == 'May') {
+            $search = '-05-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+        if ($attendance->month == 'June') {
+            $search = '-06-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+        if ($attendance->month == 'July') {
+            $search = '-07-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+        if ($attendance->month == 'August') {
+            $search = '-08-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+        if ($attendance->month == 'September') {
+            $search = '-09-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+        if ($attendance->month == 'October') {
+            $search = '-10-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+        if ($attendance->month == 'November') {
+            $search = '-11-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+        if ($attendance->month == 'December') {
+            $search = '-12-';
+            $attendances = Attendance::where([
+                ['user_id', $user->id],
+                ['day', 'LIKE', '%' . $search . '%']])->get();
+        } //end januaury if
+
+        return view('staffleaves.staffattendance', ['user' => $user,
+            'attendances' => $attendances]);
+    }
+
+    public function myallstaffattendance(Attendance $attendance, User $user)
+    {
+
+        $attendances = Attendance::whereNull('user_id')->get();
+        return view('staffleaves.allstaffattendance', ['user' => $user,
+            'attendances' => $attendances]);
+
+    }
+
     public function export()
     {
         return Excel::download(new UsersExport, 'users.xlsx');

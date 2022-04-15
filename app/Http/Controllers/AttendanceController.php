@@ -219,7 +219,16 @@ class AttendanceController extends Controller
      */
     public function destroy(Attendance $attendance)
     {
-        //
+        Attendance::where([
+            ['id', $attendance->id],
+        ])->update([
+            'start_hour' => null,
+            'end_hour' => null,
+            'leave_overtime_id' => null,
+            'remarks' => null,
+        ]);
+
+        return redirect()->back();
     }
 
 }

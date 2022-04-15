@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'attendnace', 'titlePage' => ('attendnace')])
+@extends('layouts.app', ['activePage' => 'all-users', 'titlePage' => ('all users')])
 
 @section('content')
 
@@ -37,7 +37,8 @@
                           <table class="table table-hover text-nowrap table-Secondary ">
                             <thead>
                                 <tr>
-                                    <th class="text-center">Day</th>
+
+                                    <th>Day</th>
                                     <th class="text-center">Check in</th>
                                     <th class="text-center">Check out</th>
                                     <th class="text-center">Leave or Overtime ID</th>
@@ -50,7 +51,6 @@
                                   <form action="{{ route('attendances.update', $attendance) }}" method="POST">
                                     @csrf
                                     @method('PUT')
-
                                   <tr>
                                       <td >
                                           {{ $attendance->day }}
@@ -60,9 +60,7 @@
                                             {{ $attendance->start_hour }}
                                             @endif
                                             @if (!isset($attendance->start_hour))
-                                            <div class="form-group {{ $errors->has('start_hour') ? ' has-danger' : '' }}">
-                                            <input class="form-control form-outline {{ $errors->has('start_hour') ? 'is-invalid' : '' }}" type="time" id="start_hour"  name="start_hour" placeholder="">
-                                            </div>
+                                            <input class="form-control form-outline" type="time" id="start_hour"  name="start_hour" placeholder="">
                                             @endif
                                           </td>
                                           <td class="text-center">
@@ -70,10 +68,8 @@
                                             {{ $attendance->end_hour }}
                                             @endif
                                             @if (!isset($attendance->end_hour))
-                                            <div class="form-group {{ $errors->has('end_hour') ? ' has-danger' : '' }} ">
-                                            <input class="form-control form-outline {{ $errors->has('end_hour') ? 'is-invalid' : '' }}" type="time" id="end_hour"  name="end_hour" placeholder="">
-                                            </div>
-                                            @endif
+                                             <input class="form-control form-outline" type="time" id="end_hour"  name="end_hour" placeholder="">
+                                             @endif
                                            </td>
                                            <td class="text-center">
                                             @if (isset($attendance->leave_overtime_id))
@@ -92,18 +88,7 @@
                                              @endif
                                            </td>
                                            <td class="text-center">
-                                               @if (isset($attendance->start_hour))
-                                               <form action="{{ route('attendances.destroy', $attendance) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                               <button type="submit" class="btn btn-outline-danger btn-block">Clear</button>
-                                               </form>
-                                               @endif
-                                               @if (!isset($attendance->start_hour))
-
-                                               <button type="submit" class="btn btn-outline-primary btn-block">Set</button>
-
-                                               @endif
+                                             <button type="submit" class="btn bg-gradient-primary btn-block">Submit</button>
                                            </td>
                                         </tr>
                                     </form>
@@ -128,7 +113,45 @@
                           {{-- <a href="{{route('admin.users.balanceedit', $user)}}" role="button" class="btn btn-sm btn-outline-primary">Edit  <i class="ml-2 fas fa-lg fa-user-cog"></i></a> --}}
 
                         </div>
+                        <div class="card-body">
+                            {{-- <div class="row">
+                                <div   div class="col-12 text-right">
+                                  <a href="#" class="btn btn-sm btn-primary">Add Holiday</a>
+                                </div>
+                            </div> --}}
+                          <div class="row">
+                              <div class="col">
+                                  <strong>Annual Leave:</strong>
+                                  <br>
+                                  <strong>Sick leave:</strong>
+                                  <br>
+                                  <strong>Sick leave 30% deduction:</strong>
+                                    <br>
+                                    <strong>Sick leave 20% deduction</strong>
+                                    <br>
+                                  <strong>Marriage leave:</strong>
+                                    <br>
+                                    <strong>Welfare leave:</strong>
+                                </div>
 
+                                <div class="col">
+                                    <strong>Unpaid leave:</strong>
+                                    <br>
+                                    <strong>Maternity leave:</strong>
+                                    <br>
+                                    <strong>Paternity leave:</strong>
+                                    <br>
+                                  <strong>Compassionate - Second degree:</strong>
+                                  <br>
+                                {{-- <strong>Annual Leave:</strong>
+                                  <br> --}}
+                                  <strong>Compassionate - First degree:</strong>
+                                  <br>
+                                  <strong>Compansetion:</strong>
+                                  </div>
+
+                          </div>
+                </div>
             </div>
 
 

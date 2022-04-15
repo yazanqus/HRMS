@@ -73,45 +73,6 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/
         return view('admin.allstaffattendances.index', ['attendances' => $attendances]);
     })->name('allstaffattendances.index');
 
-    // Route::get('allstaffattendancesshow', function (Attendance $attendance, User $user) {
-
-    //     if ($attendance->month == 'January') {
-    //         $search = '-01-';
-    //         $attendances = Attendance::where([
-    //             ['user_id', $user->id],
-    //             ['day', 'LIKE', '%' . $search . '%']])->get();
-    //     } //end januaury if
-
-    //     if ($attendance->month == 'February') {
-    //         $search = '-02-';
-    //         $attendances = Attendance::where([
-    //             ['user_id', $user->id],
-    //             ['day', 'LIKE', '%' . $search . '%']])->get();
-    //     } //end januaury if
-
-    //     if ($attendance->month == 'March') {
-    //         $search = '-03-';
-    //         $attendances = Attendance::where([
-    //             ['user_id', $user->id],
-    //             ['day', 'LIKE', '%' . $search . '%']])->get();
-    //     } //end januaury if
-
-    //     if ($attendance->month == 'April') {
-    //         $search = '-04-';
-    //         $attendances = Attendance::where([
-    //             ['user_id', $user->id],
-    //             ['day', 'LIKE', '%' . $search . '%']])->get();
-    //     } //end januaury if
-    //     // else {
-    //     //     $search = '-04-';
-    //     //     $attendances = Attendance::where([
-    //     //         ['day', 'LIKE', '%' . $search . '%']])->get();
-    //     // }
-
-    //     return view('admin.allstaffattendances.show', ['user' => $user,
-    //         'attendances' => $attendances]);
-    // })->name('allstaffattendances.show');
-
 });
 
 Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin']], function () {
@@ -299,6 +260,9 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
         }
 
     })->name('overtimes.approval');
+
+    Route::get('/users/{user}/myallstaffattendance', [UserController::class, 'myallstaffattendance'])->name('my.allstaffattendance');
+    Route::get('/users/{user}/mystaffattendance/{attendance}', [UserController::class, 'mystaffattendance'])->name('my.staffattendance');
 
     Route::get('staffleaves', function () {
 
