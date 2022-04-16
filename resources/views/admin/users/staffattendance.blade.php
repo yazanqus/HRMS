@@ -38,7 +38,8 @@
                             <thead>
                                 <tr>
 
-                                    <th>Day</th>
+                                    <th class="text-center">Day</th>
+                                    <th class="text-center">Date</th>
                                     <th class="text-center">Check in</th>
                                     <th class="text-center">Check out</th>
                                     <th class="text-center">Leave or Overtime ID</th>
@@ -52,7 +53,10 @@
                                     @csrf
                                     @method('PUT')
                                   <tr>
-                                      <td >
+                                    <td class="text-center">
+                                        {{ $attendance->sign }}
+                                      </td>
+                                      <td class="text-center" >
                                           {{ $attendance->day }}
                                         </td>
                                         <td class="text-center">
