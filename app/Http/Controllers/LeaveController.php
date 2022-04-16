@@ -962,6 +962,7 @@ class LeaveController extends Controller
         return redirect()->route('leaves.hrapproval');
 
     }
+
     public function export()
     {
         return Excel::download(new LeavesExport, 'leaves.xlsx');

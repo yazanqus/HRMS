@@ -166,10 +166,6 @@ class UserController extends Controller
         $period = CarbonPeriod::create($AttendstartDate, $AttendendDate);
         foreach ($period as $date) {
             $dates[] = $date->format('d-m-Y');
-            $ddays[] = $date->format('d');
-            $mmonths[] = $date->format('m');
-            $yyears[] = $date->format('Y');
-
         }
 
         // $days = Carbon::parse($dates)->dayName;
@@ -177,14 +173,90 @@ class UserController extends Controller
             $days[] = Carbon::parse($datesss)->dayName;
         }
 
+        $whole = array_map(function ($dates, $days) {
+            return [
+                'date' => $dates,
+                'day' => $days,
+            ];
+        }, $dates, $days);
+
+        // dd($whole);
         // dd($mmonths);
-        foreach ($dates as $datess) {
+        foreach ($whole as $value) {
 
             $user->attendances()->create([
-                'day' => $datess,
 
+                'sign' => $value['day'],
+                'day' => $value['date'],
+                'year' => '2022',
             ]);
         }
+
+        // foreach ($days as $dayss) {
+        //     Attendance::where('user_id', $user->id)
+        //         ->update(['dayname' => $dayss]);
+        // }
+
+        $user->attendances()
+            ->where([
+                ['day', 'LIKE', '%' . '-01-' . '%'],
+            ])
+            ->update(['month' => 'January']);
+        $user->attendances()
+            ->where([
+                ['day', 'LIKE', '%' . '-02-' . '%'],
+            ])
+            ->update(['month' => 'February']);
+        $user->attendances()
+            ->where([
+                ['day', 'LIKE', '%' . '-03-' . '%'],
+            ])
+            ->update(['month' => 'March']);
+        $user->attendances()
+            ->where([
+                ['day', 'LIKE', '%' . '-04-' . '%'],
+            ])
+            ->update(['month' => 'April']);
+        $user->attendances()
+            ->where([
+                ['day', 'LIKE', '%' . '-05-' . '%'],
+            ])
+            ->update(['month' => 'May']);
+        $user->attendances()
+            ->where([
+                ['day', 'LIKE', '%' . '-06-' . '%'],
+            ])
+            ->update(['month' => 'June']);
+        $user->attendances()
+            ->where([
+                ['day', 'LIKE', '%' . '-07-' . '%'],
+            ])
+            ->update(['month' => 'July']);
+        $user->attendances()
+            ->where([
+                ['day', 'LIKE', '%' . '-08-' . '%'],
+            ])
+            ->update(['month' => 'August']);
+        $user->attendances()
+            ->where([
+                ['day', 'LIKE', '%' . '-09-' . '%'],
+            ])
+            ->update(['month' => 'September']);
+        $user->attendances()
+            ->where([
+                ['day', 'LIKE', '%' . '-10-' . '%'],
+            ])
+            ->update(['month' => 'October']);
+        $user->attendances()
+            ->where([
+                ['day', 'LIKE', '%' . '-11-' . '%'],
+            ])
+            ->update(['month' => 'November']);
+        $user->attendances()
+            ->where([
+                ['day', 'LIKE', '%' . '-12-' . '%'],
+            ])
+            ->update(['month' => 'December']);
 
         return redirect()->route('admin.users.index');
     }

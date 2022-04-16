@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendance;
+use App\Models\Leave;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -74,6 +75,7 @@ class AttendanceController extends Controller
         } //end januaury if
 
         if ($attendance->month == 'April') {
+
             $search = '-04-';
             $attendances = Attendance::where([
                 ['user_id', $user->id],
@@ -131,7 +133,6 @@ class AttendanceController extends Controller
         return view('attendances.show', [
             'user' => $user,
             'attendances' => $attendances,
-
         ]);
 
     }
@@ -204,10 +205,8 @@ class AttendanceController extends Controller
                     'remarks' => $request->remarks,
                     'leave_overtime_id' => $request->leave_overtime_id,
                 ]);
-
                 return redirect()->back();
             }
-
         }
     }
 
@@ -229,6 +228,15 @@ class AttendanceController extends Controller
         ]);
 
         return redirect()->back();
+    }
+
+    public function hrdeclined($id)
+    {
+        $leave = Leave::find($id);
+        $leave->status = 'Declined by HR';
+        $leave->save();
+
+        return redirect()->route('leaves.hrapproval');
     }
 
 }

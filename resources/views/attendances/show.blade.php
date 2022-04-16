@@ -12,6 +12,7 @@
                         <h3>
                              <b>{{$user->name}} </b>
                              <br>
+
                              <b>{{$user->employee_number}}</b>
                          </h3>
                         {{-- @endforeach --}}
@@ -25,6 +26,7 @@
                 <div class="container-fluid">
                     <div class="card">
                       <div class="card-header card-header-primary">
+
                         {{-- <h4 class="card-title ">Attendance - <b>{{$attendances->month}}</b></h4> --}}
                       </div>
                       <div class="card-body">
@@ -38,6 +40,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">Day</th>
+                                    <th class="text-center">Date</th>
                                     <th class="text-center">Check in</th>
                                     <th class="text-center">Check out</th>
                                     <th class="text-center">Leave or Overtime ID</th>
@@ -50,9 +53,11 @@
                                   <form action="{{ route('attendances.update', $attendance) }}" method="POST">
                                     @csrf
                                     @method('PUT')
-
                                   <tr>
-                                      <td >
+                                      <td class="text-center">
+                                        {{ $attendance->sign }}
+                                      </td>
+                                      <td class="text-center" >
                                           {{ $attendance->day }}
                                         </td>
                                         <td class="text-center">
@@ -61,7 +66,7 @@
                                             @endif
                                             @if (!isset($attendance->start_hour))
                                             <div class="form-group {{ $errors->has('start_hour') ? ' has-danger' : '' }}">
-                                            <input class="form-control form-outline {{ $errors->has('start_hour') ? 'is-invalid' : '' }}" type="time" id="start_hour"  name="start_hour" placeholder="">
+                                            <input class="form-control form-outline {{ $errors->has('start_hour') ? 'is-invalid' : '' }}" type="time" id="start_hour"  name="start_hour" placeholder="" {{ ($attendance->sign == "Friday" OR $attendance->sign == "Saturday")  ? 'disabled' : '' }}>
                                             </div>
                                             @endif
                                           </td>
@@ -71,7 +76,7 @@
                                             @endif
                                             @if (!isset($attendance->end_hour))
                                             <div class="form-group {{ $errors->has('end_hour') ? ' has-danger' : '' }} ">
-                                            <input class="form-control form-outline {{ $errors->has('end_hour') ? 'is-invalid' : '' }}" type="time" id="end_hour"  name="end_hour" placeholder="">
+                                            <input class="form-control form-outline {{ $errors->has('end_hour') ? 'is-invalid' : '' }}" type="time" id="end_hour"  name="end_hour" placeholder="" {{ ($attendance->sign == "Friday" OR $attendance->sign == "Saturday")  ? 'disabled' : '' }}>
                                             </div>
                                             @endif
                                            </td>
@@ -80,7 +85,7 @@
                                             {{ $attendance->leave_overtime_id }}
                                             @endif
                                             @if (!isset($attendance->leave_overtime_id))
-                                             <input class="form-control form-outline" type="text" id="leave_overtime_id"  name="leave_overtime_id" placeholder="">
+                                             <input class="form-control form-outline" type="text" id="leave_overtime_id"  name="leave_overtime_id" placeholder="" {{ ($attendance->sign == "Friday" OR $attendance->sign == "Saturday")  ? 'disabled' : '' }}>
                                              @endif
                                            </td>
                                            <td class="text-center">
@@ -88,7 +93,7 @@
                                             {{ $attendance->remarks }}
                                             @endif
                                             @if (!isset($attendance->remarks))
-                                             <input class="form-control form-outline" type="text" id="remarks"  name="remarks" placeholder="">
+                                             <input class="form-control form-outline" type="text" id="remarks"  name="remarks" placeholder="" {{ ($attendance->sign == "Friday" OR $attendance->sign == "Saturday")  ? 'disabled' : '' }}>
                                              @endif
                                            </td>
                                            <td class="text-center">
@@ -96,17 +101,18 @@
                                                <form action="{{ route('attendances.destroy', $attendance) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                               <button type="submit" class="btn btn-outline-danger btn-block">Clear</button>
+                                               <button type="submit" class="btn btn-outline-danger btn-block"  >Clear</button>
                                                </form>
                                                @endif
                                                @if (!isset($attendance->start_hour))
 
-                                               <button type="submit" class="btn btn-outline-primary btn-block">Set</button>
+                                               <button type="submit" class="btn btn-outline-primary btn-block" {{ ($attendance->sign == "Friday" OR $attendance->sign == "Saturday")  ? 'disabled' : '' }}>Set</button>
 
                                                @endif
                                            </td>
                                         </tr>
                                     </form>
+
                                     @endforeach
 
                               </tbody>
@@ -121,17 +127,13 @@
 
                     <div class="card">
                         <div class="card-header card-header-primary ">
-                          <h4 class="mt-1 card-title mr-2 ">Leaves - Remaining balance</h4>
+                          <h4 class="mt-1 card-text mr-2 text-center"> <a href="{{ route('attendances.destroy', $attendance) }}">Submit <strong>{{$attendance->month}}</strong> attendance</a> </h4>
                           <div class="col-12 text-left ">
                             {{-- <a href="{{route('admin.users.balanceedit', $user)}}" role="button" class="mb-0 btn btn-sm btn-outline-primary">Edit  <i class="ml-2  fas fa-lg fa-list-ol"></i></a> --}}
                           </div>
                           {{-- <a href="{{route('admin.users.balanceedit', $user)}}" role="button" class="btn btn-sm btn-outline-primary">Edit  <i class="ml-2 fas fa-lg fa-user-cog"></i></a> --}}
-
                         </div>
-
             </div>
-
-
                 </div>
             </div>
         </div>
