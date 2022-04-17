@@ -179,15 +179,9 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
                     ->only(['id'])
                     ->all();
             });
-            // dd($subsets);
-            // $leaves = Leave::whereIn([
-            //     ['user_id', $subsets],
-            //     ['status', 'Pending Approval'],
-            // ])->get();
 
             $leaves = Leave::whereIn('user_id', $subsets)->where('status', 'Pending LM Approval')->get();
-            // $leaves = Leave::where('Status', 'Pending Approval')->get();
-            // dd($leaves);
+
             if (count($leaves)) {
                 return view('approval.leaves.index', ['leaves' => $leaves]);
 
@@ -213,6 +207,45 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
         }
 
     })->name('leaves.approval');
+
+    Route::get('attendances/approval/lm', function () {
+        $user = Auth::user();
+        $staff = User::where('linemanager', $user->name)->get();
+        // dd($staff);
+        if (count($staff)) {
+
+            $subsets = $staff->map(function ($staff) {
+                return collect($staff->toArray())
+
+                    ->only(['id'])
+                    ->all();
+            });
+
+            $attendances = Attendance::whereIn('user_id', $subsets)->where('status', 'Pending LM Approval')->get();
+
+            if (count($attendances)) {
+                return view('approval.attendances.show', ['attendances' => $attendances]);
+
+            } else {
+
+                $attendancess = Attendance::where([
+                    ['user_id', $user->id],
+                    ['status', 'no staff under this line manager'],
+                ])->get();
+
+                return view('approval.attendances.show', ['attendances' => $attendancess]);
+            }
+
+        } else {
+            $attendancess = Attendance::where([
+                ['user_id', $user->id],
+                ['status', 'no staff under this line manager'],
+            ])->get();
+
+            return view('approval.attendances.show', ['attendances' => $attendancess]);
+        }
+
+    })->name('attendances.approval.lm');
 
     Route::get('overtimes/approval', function () {
         $user = Auth::user();
@@ -373,6 +406,8 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
 });
 
 Route::group(['middleware' => ['auth', 'checkstatus']], function () {
+    Route::get('/attendances/submit/{user}/{month}', [AttendanceController::class, 'submit'])->name('attendances.submit');
+    Route::get('/attendances/approval/index', [AttendanceController::class, 'lmapproval'])->name('attendances.lmapproval');
     Route::resource('attendances', AttendanceController::class);
 
 });

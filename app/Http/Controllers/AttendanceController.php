@@ -145,7 +145,23 @@ class AttendanceController extends Controller
      */
     public function edit(Attendance $attendance)
     {
-        //
+
+    }
+
+    public function lmapproval()
+    {
+        $attendances = Attendance::whereNull('user_id')->get();
+        return view('approval.attendances.index', ['attendances' => $attendances]);
+    }
+
+    public function submit($user, $month)
+    {
+
+        Attendance::where([
+            ['user_id', $user],
+            ['month', $month]])->update(['status' => 'Pending LM Approval']);
+
+        return redirect()->back();
     }
 
     /**
