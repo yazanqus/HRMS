@@ -30,7 +30,7 @@
                                           <div class="col-4">
                                               <div class="card text-center ml-4 mb-4  mr-4 " style=" height: 6rem;">
                                                 <div class="card-body card-body-primary align-items-center d-flex justify-content-center"  >
-                                                    <h4 class="card-text "><a href="{{ route('attendances.approval.lm', $attendance) }}" >{{ $attendance->month }}</a></h4>
+                                                    <h4 class="card-text "><a href="{{ route('attendances.approval.lm.staff') }}" >{{ $attendance->month }}</a></h4>
                                                 </div>
                                           </div>
                                           </div>

@@ -209,6 +209,7 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
     })->name('leaves.approval');
 
     Route::get('attendances/approval/lm', function () {
+
         $user = Auth::user();
         $staff = User::where('linemanager', $user->name)->get();
         // dd($staff);
@@ -246,6 +247,20 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
         }
 
     })->name('attendances.approval.lm');
+
+    Route::get('attendances/approval/lm/staff', function () {
+
+        $user = Auth::user();
+
+        $users = User::whereHas('attendances', function ($q) {
+            $q->where('status', 'Pending LM Approval');
+        })->where('linemanager', $user->name)->get();
+
+        // dd($users);
+
+        return view('approval.attendances.staff', ['users' => $users]);
+
+    })->name('attendances.approval.lm.staff');
 
     Route::get('overtimes/approval', function () {
         $user = Auth::user();

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'attendnace', 'titlePage' => __('attendnace')])
+@extends('layouts.app', ['activePage' => 'attendancesapproval', 'titlePage' => __('attendancesapproval')])
 
 @section('content')
 
@@ -18,7 +18,7 @@
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h5 class="card-text ">My Attendance - <strong>2022</strong></h5>
+                            <h5 class="card-text ">Staff - <strong>2022</strong></h5>
                             {{-- <p class="card-category">Here you can see the history of overtimes</p> --}}
                           </div>
 
@@ -109,6 +109,7 @@
 
                                 </div>
                     </div>
+
 
                     {{-- <div class="card">
                         <div class="card-header card-header-primary">
