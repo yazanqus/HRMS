@@ -248,19 +248,48 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
 
     })->name('attendances.approval.lm');
 
-    Route::get('attendances/approval/lm/staff', function () {
+    Route::get('attendances/approval/lm/staff/{attendance}', function ($attendance) {
 
+        // if ($attendance == '5') {
+        //     $monthh = 'May';
+        // }
         $user = Auth::user();
 
         $users = User::whereHas('attendances', function ($q) {
-            $q->where('status', 'Pending LM Approval');
+            $q->where(['status' => 'Pending LM Approval',
+                ['month', 'May'],
+            ]);
         })->where('linemanager', $user->name)->get();
 
-        // dd($users);
+        // dd($users)
 
-        return view('approval.attendances.staff', ['users' => $users]);
+        if ($attendance == '5') {
+            $month = 'May';
+        }
+
+        return view('approval.attendances.staff', ['users' => $users, 'attendance' => $attendance, 'month' => $month]);
 
     })->name('attendances.approval.lm.staff');
+
+    Route::get('attendances/approval/lm/staff/{attendance}/{user}', function ($attendance, $user) {
+
+        if ($attendance == '5') {
+            $search = '-05-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending LM Approval']])->get();
+        } //end januaury if
+
+        $userrr = User::where('id', $user)->get();
+        // dd($userr);
+
+        return view('approval.attendances.show', [
+            'user' => $userrr,
+            'attendances' => $attendances,
+        ]);
+
+    })->name('attendances.approval.lm.staff.show');
 
     Route::get('overtimes/approval', function () {
         $user = Auth::user();
@@ -422,6 +451,8 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
 
 Route::group(['middleware' => ['auth', 'checkstatus']], function () {
     Route::get('/attendances/submit/{user}/{month}', [AttendanceController::class, 'submit'])->name('attendances.submit');
+    Route::get('/attendances/approved/{user}/{month}', [AttendanceController::class, 'approved'])->name('attendances.approved');
+    Route::get('/attendances/declined/{user}/{month}', [AttendanceController::class, 'declined'])->name('attendances.declined');
     Route::get('/attendances/approval/index', [AttendanceController::class, 'lmapproval'])->name('attendances.lmapproval');
     Route::resource('attendances', AttendanceController::class);
 

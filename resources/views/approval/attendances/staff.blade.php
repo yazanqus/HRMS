@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'staffleaves', 'titlePage' => ('staffleaves')])
+@extends('layouts.app', ['activePage' => 'attendancesapproval', 'titlePage' => __('attendancesapproval')])
 
 @section('content')
 
@@ -15,12 +15,10 @@
                 </div>
                 <br>
 
-
-
                 <div class="container-fluid">
                     <div class="card">
                       <div class="card-header card-header-primary">
-                        <h4 class="card-title ">Staff attendances pending approvals</h4>
+                        <h4 class="card-title ">Staff attendances <strong>{{$month}}</strong> pending approvals</h4>
                           {{-- <div class="col-12 text-right">
                             <a href="{{route('leaves.create')}}" class="btn btn-sm btn-primary">Submit a new Leave</a>
                           </div> --}}
@@ -44,7 +42,7 @@
                           @foreach ($users as $user)
                           <tr>
                             <td>
-                                <a href="{{route('my.allstaffattendance',$user)}}" target="_blank">{{ $user->name }}</a>
+                                <a href="{{route('attendances.approval.lm.staff.show',[$attendance,$user])}}" target="_blank">{{ $user->name }}</a>
                             </td>
                             <td>{{ $user->birth_date }}</td>
                             <td class="text-center">{{ $user->email }}</td>

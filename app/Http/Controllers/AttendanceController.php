@@ -164,6 +164,33 @@ class AttendanceController extends Controller
         return redirect()->back();
     }
 
+    public function approved($user, $month)
+    {
+
+        Attendance::where([
+            ['user_id', $user],
+            ['month', $month]])->update(['status' => 'Pending HR Approval']);
+
+        if ($month == 'May') {
+            $attendance = '5';
+        }
+
+        return redirect()->route('attendances.approval.lm.staff', ['attendance' => $attendance]);
+    }
+
+    public function declined($user, $month)
+    {
+
+        Attendance::where([
+            ['user_id', $user],
+            ['month', $month]])->update(['status' => 'Declined by LM']);
+
+        if ($month == 'May') {
+            $attendance = '5';
+        }
+        return redirect()->route('attendances.approval.lm.staff', ['attendance' => $attendance]);return redirect()->back();
+    }
+
     /**
      * Update the specified resource in storage.
      *
