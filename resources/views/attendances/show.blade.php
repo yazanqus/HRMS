@@ -102,7 +102,9 @@
                                            </td>
                                            {{-- submitting button --}}
                                            <td class="text-center">
-                                               @if ($attendance->status !== "Pending LM Approval")
+                                            @if ( $attendance->status !== "Approved")
+                                            @if ($attendance->status !== "Pending LM Approval")
+                                            @if ($attendance->status !== "Pending HR Approval")
                                                @if (isset($attendance->start_hour))
                                                <form action="{{ route('attendances.destroy', $attendance) }}" method="POST">
                                                 @csrf
@@ -114,6 +116,8 @@
 
                                                <button type="submit" class="btn btn-outline-primary btn-block" {{ ($attendance->sign == "Friday" OR $attendance->sign == "Saturday")  ? 'disabled' : '' }}>Set</button>
 
+                                               @endif
+                                               @endif
                                                @endif
                                                @endif
                                            </td>
@@ -134,10 +138,17 @@
 
 
                     {{$attendance->status}}
+                    @if (!isset($attendance->status))
+                        Attendance not submitted yet
+                    @endif
                     <div class="card">
                         <div class="card-header card-header-primary ">
-                            @if ($attendance->status !== "Pending LM Approval" || $attendance->status !== "Approved")
+                            @if ( $attendance->status !== "Approved")
+                            @if ($attendance->status !== "Pending LM Approval")
+                            @if ($attendance->status !== "Pending HR Approval")
                             <h4 class="mt-1 card-text mr-2 text-center"> <a href="{{ route('attendances.submit', ['user'=>$user,'month'=>$attendance->month]) }}">Submit <strong>{{$attendance->month}}</strong> attendance</a> </h4>
+                            @endif
+                            @endif
                             @endif
                           <div class="col-12 text-left ">
                             {{-- <a href="{{route('admin.users.balanceedit', $user)}}" role="button" class="mb-0 btn btn-sm btn-outline-primary">Edit  <i class="ml-2  fas fa-lg fa-list-ol"></i></a> --}}

@@ -187,8 +187,30 @@ class AttendanceController extends Controller
             ['user_id', $user],
             ['month', $month]])->update(['status' => 'Pending HR Approval']);
 
-        if ($month == 'May') {
+        if ($month == 'January') {
+            $attendance = '1';
+        } elseif ($month == 'February') {
+            $attendance = '2';
+        } elseif ($month == 'March') {
+            $attendance = '3';
+        } elseif ($month == 'April') {
+            $attendance = '4';
+        } elseif ($month == 'May') {
             $attendance = '5';
+        } elseif ($month == 'June') {
+            $attendance = '6';
+        } elseif ($month == 'July') {
+            $attendance = '7';
+        } elseif ($month == 'August') {
+            $attendance = '8';
+        } elseif ($month == 'September') {
+            $attendance = '9';
+        } elseif ($month == 'October') {
+            $attendance = '10';
+        } elseif ($month == 'November') {
+            $attendance = '11';
+        } elseif ($month == 'December') {
+            $attendance = '12';
         }
 
         return redirect()->route('attendances.approval.lm.staff', ['attendance' => $attendance]);
@@ -201,8 +223,30 @@ class AttendanceController extends Controller
             ['user_id', $user],
             ['month', $month]])->update(['status' => 'Declined by LM']);
 
-        if ($month == 'May') {
+        if ($month == 'January') {
+            $attendance = '1';
+        } elseif ($month == 'February') {
+            $attendance = '2';
+        } elseif ($month == 'March') {
+            $attendance = '3';
+        } elseif ($month == 'April') {
+            $attendance = '4';
+        } elseif ($month == 'May') {
             $attendance = '5';
+        } elseif ($month == 'June') {
+            $attendance = '6';
+        } elseif ($month == 'July') {
+            $attendance = '7';
+        } elseif ($month == 'August') {
+            $attendance = '8';
+        } elseif ($month == 'September') {
+            $attendance = '9';
+        } elseif ($month == 'October') {
+            $attendance = '10';
+        } elseif ($month == 'November') {
+            $attendance = '11';
+        } elseif ($month == 'December') {
+            $attendance = '12';
         }
         return redirect()->route('attendances.approval.lm.staff', ['attendance' => $attendance]);return redirect()->back();
     }
@@ -214,8 +258,30 @@ class AttendanceController extends Controller
             ['user_id', $user],
             ['month', $month]])->update(['status' => 'Approved']);
 
-        if ($month == 'May') {
+        if ($month == 'January') {
+            $attendance = '1';
+        } elseif ($month == 'February') {
+            $attendance = '2';
+        } elseif ($month == 'March') {
+            $attendance = '3';
+        } elseif ($month == 'April') {
+            $attendance = '4';
+        } elseif ($month == 'May') {
             $attendance = '5';
+        } elseif ($month == 'June') {
+            $attendance = '6';
+        } elseif ($month == 'July') {
+            $attendance = '7';
+        } elseif ($month == 'August') {
+            $attendance = '8';
+        } elseif ($month == 'September') {
+            $attendance = '9';
+        } elseif ($month == 'October') {
+            $attendance = '10';
+        } elseif ($month == 'November') {
+            $attendance = '11';
+        } elseif ($month == 'December') {
+            $attendance = '12';
         }
 
         return redirect()->route('attendances.approval.hr.staff', ['attendance' => $attendance]);
@@ -228,8 +294,30 @@ class AttendanceController extends Controller
             ['user_id', $user],
             ['month', $month]])->update(['status' => 'Declined by HR']);
 
-        if ($month == 'May') {
+        if ($month == 'January') {
+            $attendance = '1';
+        } elseif ($month == 'February') {
+            $attendance = '2';
+        } elseif ($month == 'March') {
+            $attendance = '3';
+        } elseif ($month == 'April') {
+            $attendance = '4';
+        } elseif ($month == 'May') {
             $attendance = '5';
+        } elseif ($month == 'June') {
+            $attendance = '6';
+        } elseif ($month == 'July') {
+            $attendance = '7';
+        } elseif ($month == 'August') {
+            $attendance = '8';
+        } elseif ($month == 'September') {
+            $attendance = '9';
+        } elseif ($month == 'October') {
+            $attendance = '10';
+        } elseif ($month == 'November') {
+            $attendance = '11';
+        } elseif ($month == 'December') {
+            $attendance = '12';
         }
         return redirect()->route('attendances.approval.hr.staff', ['attendance' => $attendance]);return redirect()->back();
     }

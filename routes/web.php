@@ -140,16 +140,90 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin']], function () {
         //     $monthh = 'May';
         // }
 
-        $users = User::whereHas('attendances', function ($q) {
-            $q->where(['status' => 'Pending HR Approval',
-                ['month', 'May'],
-            ]);
-        })->get();
-
-        // dd($users)
-
-        if ($attendance == '5') {
+        if ($attendance == '1') {
+            $month = 'January';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending HR Approval',
+                    ['month', 'January'],
+                ]);
+            })->get();
+        } elseif ($attendance == '2') {
+            $month = 'February';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending HR Approval',
+                    ['month', 'February'],
+                ]);
+            })->get();
+        } elseif ($attendance == '3') {
+            $month = 'March';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending HR Approval',
+                    ['month', 'March'],
+                ]);
+            })->get();
+        } elseif ($attendance == '4') {
+            $month = 'April';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending HR Approval',
+                    ['month', 'April'],
+                ]);
+            })->get();
+        } elseif ($attendance == '5') {
             $month = 'May';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending HR Approval',
+                    ['month', 'May'],
+                ]);
+            })->get();
+        } elseif ($attendance == '6') {
+            $month = 'June';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending HR Approval',
+                    ['month', 'June'],
+                ]);
+            })->get();
+        } elseif ($attendance == '7') {
+            $month = 'July';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending HR Approval',
+                    ['month', 'July'],
+                ]);
+            })->get();
+        } elseif ($attendance == '8') {
+            $month = 'August';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending HR Approval',
+                    ['month', 'August'],
+                ]);
+            })->get();
+        } elseif ($attendance == '9') {
+            $month = 'September';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending HR Approval',
+                    ['month', 'September'],
+                ]);
+            })->get();
+        } elseif ($attendance == '10') {
+            $month = 'October';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending HR Approval',
+                    ['month', 'October'],
+                ]);
+            })->get();
+        } elseif ($attendance == '11') {
+            $month = 'November';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending HR Approval',
+                    ['month', 'November'],
+                ]);
+            })->get();
+        } elseif ($attendance == '12') {
+            $month = 'December';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending HR Approval',
+                    ['month', 'December'],
+                ]);
+            })->get();
         }
 
         return view('hrapproval.attendances.staff', ['users' => $users, 'attendance' => $attendance, 'month' => $month]);
@@ -158,13 +232,73 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin']], function () {
 
     Route::get('attendances/approval/hr/staff/{attendance}/{user}', function ($attendance, $user) {
 
-        if ($attendance == '5') {
-            $search = '-05-';
+        if ($attendance == '1') {
+            $search = '-01-';
             $attendances = Attendance::where([
                 ['user_id', $user],
                 ['day', 'LIKE', '%' . $search . '%'],
                 ['status', 'Pending HR Approval']])->get();
-        } //end januaury if
+        } elseif ($attendance == '2') {
+            $search = '-02-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending HR Approval']])->get();
+        } elseif ($attendance == '3') {
+            $search = '-03-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending HR Approval']])->get();
+        } elseif ($attendance == '4') {
+            $search = '-04-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending HR Approval']])->get();
+        } elseif ($attendance == '6') {
+            $search = '-06-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending HR Approval']])->get();
+        } elseif ($attendance == '7') {
+            $search = '-07-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending HR Approval']])->get();
+        } elseif ($attendance == '8') {
+            $search = '-08-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending HR Approval']])->get();
+        } elseif ($attendance == '9') {
+            $search = '-09-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending HR Approval']])->get();
+        } elseif ($attendance == '10') {
+            $search = '-10-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending HR Approval']])->get();
+        } elseif ($attendance == '11') {
+            $search = '-11-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending HR Approval']])->get();
+        } elseif ($attendance == '12') {
+            $search = '-12-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending HR Approval']])->get();
+        }
 
         $userrr = User::where('id', $user)->get();
         // dd($userr);
@@ -293,22 +427,94 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
 
     Route::get('attendances/approval/lm/staff/{attendance}', function ($attendance) {
 
-        // if ($attendance == '5') {
-        //     $monthh = 'May';
-        // }
         $user = Auth::user();
-
-        $users = User::whereHas('attendances', function ($q) {
-            $q->where(['status' => 'Pending LM Approval',
-                ['month', 'May'],
-            ]);
-        })->where('linemanager', $user->name)->get();
+        if ($attendance == '1') {
+            $month = 'January';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending LM Approval',
+                    ['month', 'January'],
+                ]);
+            })->where('linemanager', $user->name)->get();
+        } elseif ($attendance == '2') {
+            $month = 'February';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending LM Approval',
+                    ['month', 'February'],
+                ]);
+            })->where('linemanager', $user->name)->get();
+        } elseif ($attendance == '3') {
+            $month = 'March';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending LM Approval',
+                    ['month', 'March'],
+                ]);
+            })->where('linemanager', $user->name)->get();
+        } elseif ($attendance == '4') {
+            $month = 'April';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending LM Approval',
+                    ['month', 'April'],
+                ]);
+            })->where('linemanager', $user->name)->get();
+        } elseif ($attendance == '5') {
+            $month = 'May';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending LM Approval',
+                    ['month', 'May'],
+                ]);
+            })->where('linemanager', $user->name)->get();
+        } elseif ($attendance == '6') {
+            $month = 'June';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending LM Approval',
+                    ['month', 'June'],
+                ]);
+            })->where('linemanager', $user->name)->get();
+        } elseif ($attendance == '7') {
+            $month = 'July';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending LM Approval',
+                    ['month', 'July'],
+                ]);
+            })->where('linemanager', $user->name)->get();
+        } elseif ($attendance == '8') {
+            $month = 'August';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending LM Approval',
+                    ['month', 'August'],
+                ]);
+            })->where('linemanager', $user->name)->get();
+        } elseif ($attendance == '9') {
+            $month = 'September';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending LM Approval',
+                    ['month', 'September'],
+                ]);
+            })->where('linemanager', $user->name)->get();
+        } elseif ($attendance == '10') {
+            $month = 'October';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending LM Approval',
+                    ['month', 'October'],
+                ]);
+            })->where('linemanager', $user->name)->get();
+        } elseif ($attendance == '11') {
+            $month = 'November';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending LM Approval',
+                    ['month', 'November'],
+                ]);
+            })->where('linemanager', $user->name)->get();
+        } elseif ($attendance == '12') {
+            $month = 'December';
+            $users = User::whereHas('attendances', function ($q) {
+                $q->where(['status' => 'Pending LM Approval',
+                    ['month', 'December'],
+                ]);
+            })->where('linemanager', $user->name)->get();
+        }
 
         // dd($users)
-
-        if ($attendance == '5') {
-            $month = 'May';
-        }
 
         return view('approval.attendances.staff', ['users' => $users, 'attendance' => $attendance, 'month' => $month]);
 
@@ -316,13 +522,74 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
 
     Route::get('attendances/approval/lm/staff/{attendance}/{user}', function ($attendance, $user) {
 
-        if ($attendance == '5') {
-            $search = '-05-';
+        if ($attendance == '1') {
+            $search = '-01-';
             $attendances = Attendance::where([
                 ['user_id', $user],
                 ['day', 'LIKE', '%' . $search . '%'],
                 ['status', 'Pending LM Approval']])->get();
-        } //end januaury if
+        } elseif ($attendance == '2') {
+            $search = '-02-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending LM Approval']])->get();
+        } elseif ($attendance == '3') {
+            $search = '-03-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending LM Approval']])->get();
+        } elseif ($attendance == '4') {
+            $search = '-04-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending LM Approval']])->get();
+        } elseif ($attendance == '6') {
+            $search = '-06-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending LM Approval']])->get();
+        } elseif ($attendance == '7') {
+            $search = '-07-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending LM Approval']])->get();
+        } elseif ($attendance == '8') {
+            $search = '-08-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending LM Approval']])->get();
+        } elseif ($attendance == '9') {
+            $search = '-09-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending LM Approval']])->get();
+        } elseif ($attendance == '10') {
+            $search = '-10-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending LM Approval']])->get();
+        } elseif ($attendance == '11') {
+            $search = '-11-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending LM Approval']])->get();
+        } elseif ($attendance == '12') {
+            $search = '-12-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending LM Approval']])->get();
+        }
+        //end januaury if
 
         $userrr = User::where('id', $user)->get();
         // dd($userr);
