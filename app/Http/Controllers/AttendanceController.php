@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendance;
-use App\Models\Leave;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,7 +55,6 @@ class AttendanceController extends Controller
         $monthshow = $attendance->month;
         if ($attendance->month == 'January') {
             $search = '-01-';
-
             $attendances = Attendance::where([
                 ['user_id', $user->id],
                 ['day', 'LIKE', '%' . $search . '%']])->get();
@@ -132,11 +130,20 @@ class AttendanceController extends Controller
                 ['day', 'LIKE', '%' . $search . '%']])->get();
         } //end januaury if
 
-        return view('attendances.show', [
-            'user' => $user,
-            'attendances' => $attendances,
-            'month' => $monthshow,
-        ]);
+        if (count($attendances)) {
+
+            return view('attendances.show', [
+                'user' => $user,
+                'attendances' => $attendances,
+                'month' => $monthshow,
+            ]);
+        } else {
+            return view('attendances.notavailable', [
+                'user' => $user,
+
+                'month' => $monthshow,
+            ]);
+        }
 
     }
 
@@ -155,6 +162,12 @@ class AttendanceController extends Controller
     {
         $attendances = Attendance::whereNull('user_id')->get();
         return view('approval.attendances.index', ['attendances' => $attendances]);
+    }
+
+    public function hrapproval()
+    {
+        $attendances = Attendance::whereNull('user_id')->get();
+        return view('hrapproval.attendances.index', ['attendances' => $attendances]);
     }
 
     public function submit($user, $month)
@@ -192,6 +205,33 @@ class AttendanceController extends Controller
             $attendance = '5';
         }
         return redirect()->route('attendances.approval.lm.staff', ['attendance' => $attendance]);return redirect()->back();
+    }
+
+    public function hrapproved($user, $month)
+    {
+
+        Attendance::where([
+            ['user_id', $user],
+            ['month', $month]])->update(['status' => 'Approved']);
+
+        if ($month == 'May') {
+            $attendance = '5';
+        }
+
+        return redirect()->route('attendances.approval.hr.staff', ['attendance' => $attendance]);
+    }
+
+    public function hrdeclined($user, $month)
+    {
+
+        Attendance::where([
+            ['user_id', $user],
+            ['month', $month]])->update(['status' => 'Declined by HR']);
+
+        if ($month == 'May') {
+            $attendance = '5';
+        }
+        return redirect()->route('attendances.approval.hr.staff', ['attendance' => $attendance]);return redirect()->back();
     }
 
     /**
@@ -274,15 +314,6 @@ class AttendanceController extends Controller
         ]);
 
         return redirect()->back();
-    }
-
-    public function hrdeclined($id)
-    {
-        $leave = Leave::find($id);
-        $leave->status = 'Declined by HR';
-        $leave->save();
-
-        return redirect()->route('leaves.hrapproval');
     }
 
 }

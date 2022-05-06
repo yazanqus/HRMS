@@ -134,6 +134,48 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin']], function () {
 
     })->name('overtimes.hrapproval');
 
+    Route::get('attendances/approval/hr/staff/{attendance}', function ($attendance) {
+
+        // if ($attendance == '5') {
+        //     $monthh = 'May';
+        // }
+
+        $users = User::whereHas('attendances', function ($q) {
+            $q->where(['status' => 'Pending HR Approval',
+                ['month', 'May'],
+            ]);
+        })->get();
+
+        // dd($users)
+
+        if ($attendance == '5') {
+            $month = 'May';
+        }
+
+        return view('hrapproval.attendances.staff', ['users' => $users, 'attendance' => $attendance, 'month' => $month]);
+
+    })->name('attendances.approval.hr.staff');
+
+    Route::get('attendances/approval/hr/staff/{attendance}/{user}', function ($attendance, $user) {
+
+        if ($attendance == '5') {
+            $search = '-05-';
+            $attendances = Attendance::where([
+                ['user_id', $user],
+                ['day', 'LIKE', '%' . $search . '%'],
+                ['status', 'Pending HR Approval']])->get();
+        } //end januaury if
+
+        $userrr = User::where('id', $user)->get();
+        // dd($userr);
+
+        return view('hrapproval.attendances.show', [
+            'user' => $userrr,
+            'attendances' => $attendances,
+        ]);
+
+    })->name('attendances.approval.hr.staff.show');
+
 });
 
 Route::get('login/okta', [LoginController::class, 'redirectToProvider'])->name('login-okta');
@@ -208,6 +250,7 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
 
     })->name('leaves.approval');
 
+    // probalby not used
     Route::get('attendances/approval/lm', function () {
 
         $user = Auth::user();
@@ -453,7 +496,10 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
     Route::get('/attendances/submit/{user}/{month}', [AttendanceController::class, 'submit'])->name('attendances.submit');
     Route::get('/attendances/approved/{user}/{month}', [AttendanceController::class, 'approved'])->name('attendances.approved');
     Route::get('/attendances/declined/{user}/{month}', [AttendanceController::class, 'declined'])->name('attendances.declined');
-    Route::get('/attendances/approval/index', [AttendanceController::class, 'lmapproval'])->name('attendances.lmapproval');
+    Route::get('/attendances/hrapproved/{user}/{month}', [AttendanceController::class, 'hrapproved'])->name('attendances.hrapproved');
+    Route::get('/attendances/hrdeclined/{user}/{month}', [AttendanceController::class, 'hrdeclined'])->name('attendances.hrdeclined');
+    Route::get('/attendances/lmapproval/index', [AttendanceController::class, 'lmapproval'])->name('attendances.lmapproval');
+    Route::get('/attendances/hrapproval/index', [AttendanceController::class, 'hrapproval'])->name('attendances.hrapproval');
     Route::resource('attendances', AttendanceController::class);
 
 });

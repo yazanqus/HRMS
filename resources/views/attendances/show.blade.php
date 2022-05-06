@@ -136,7 +136,7 @@
                     {{$attendance->status}}
                     <div class="card">
                         <div class="card-header card-header-primary ">
-                            @if ($attendance->status !== "Pending LM Approval")
+                            @if ($attendance->status !== "Pending LM Approval" || $attendance->status !== "Approved")
                             <h4 class="mt-1 card-text mr-2 text-center"> <a href="{{ route('attendances.submit', ['user'=>$user,'month'=>$attendance->month]) }}">Submit <strong>{{$attendance->month}}</strong> attendance</a> </h4>
                             @endif
                           <div class="col-12 text-left ">

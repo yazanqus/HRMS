@@ -352,8 +352,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </a>
   </li> --}}
 
-  <li class="nav-item {{ $activePage == 'hrleavesapproval'||$activePage == 'hrovertimesapproval' ? ' menu-open' : ''  }}">
-    <a href="#" class="nav-link {{ $activePage == 'hrleavesapproval'||$activePage == 'hrovertimesapproval' ? ' active' : '' }} " >
+  <li class="nav-item {{ $activePage == 'hrleavesapproval'||$activePage == 'hrovertimesapproval'||$activePage == 'attendanceshrapproval' ? ' menu-open' : ''  }}">
+    <a href="#" class="nav-link {{ $activePage == 'hrleavesapproval'||$activePage == 'hrovertimesapproval'||$activePage == 'attendanceshrapproval' ? ' active' : '' }} " >
         <i class="fas fa-check nav-icon"></i>
       <p>{{ __('HR Approvals') }}
         {{-- @php
@@ -389,6 +389,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             @endif</p>
           </a>
         </li>
+
+        <li class="nav-item" >
+            <a class="nav-link {{ $activePage == 'attendanceshrapproval' ? ' active' : '' }}" href="{{ route('attendances.hrapproval') }}">
+              <i style="padding-left:20px" class="fas fa-adjust nav-icon"></i>
+              <p style="padding-left:20px">{{ __('Attendances') }}</p>
+            </a>
+          </li>
       </ul>
 
   </li>
