@@ -13,7 +13,11 @@
                              <b>{{$user->name}} </b>
                              <br>
 
+
                              <b>{{$user->employee_number}}</b>
+                             <br>
+                             {{$month}}
+
                          </h3>
                         {{-- @endforeach --}}
                     </div>
@@ -61,9 +65,9 @@
                                           {{ $attendance->day }}
                                         </td>
                                         <td class="text-center">
-                                            @if (isset($attendance->start_hour))
-                                            {{ $attendance->start_hour }}
-                                            @endif
+                                                @if (isset($attendance->start_hour))
+                                                 {{ $attendance->start_hour }}
+                                                @endif
                                             @if (!isset($attendance->start_hour))
                                             <div class="form-group {{ $errors->has('start_hour') ? ' has-danger' : '' }}">
                                             <input class="form-control form-outline {{ $errors->has('start_hour') ? 'is-invalid' : '' }}" type="time" id="start_hour"  name="start_hour" placeholder="" {{ ($attendance->sign == "Friday" OR $attendance->sign == "Saturday")  ? 'disabled' : '' }}>
@@ -96,7 +100,9 @@
                                              <input class="form-control form-outline" type="text" id="remarks"  name="remarks" placeholder="" {{ ($attendance->sign == "Friday" OR $attendance->sign == "Saturday")  ? 'disabled' : '' }}>
                                              @endif
                                            </td>
+                                           {{-- submitting button --}}
                                            <td class="text-center">
+                                               @if ($attendance->status !== "Pending LM Approval")
                                                @if (isset($attendance->start_hour))
                                                <form action="{{ route('attendances.destroy', $attendance) }}" method="POST">
                                                 @csrf
@@ -109,7 +115,9 @@
                                                <button type="submit" class="btn btn-outline-primary btn-block" {{ ($attendance->sign == "Friday" OR $attendance->sign == "Saturday")  ? 'disabled' : '' }}>Set</button>
 
                                                @endif
+                                               @endif
                                            </td>
+                                           {{-- end submitting button --}}
                                         </tr>
                                     </form>
 
@@ -125,9 +133,12 @@
                     </div>
 
 
+                    {{$attendance->status}}
                     <div class="card">
                         <div class="card-header card-header-primary ">
-                          <h4 class="mt-1 card-text mr-2 text-center"> <a href="{{ route('attendances.submit', ['user'=>$user,'month'=>$attendance->month]) }}">Submit <strong>{{$attendance->month}}</strong> attendance</a> </h4>
+                            @if ($attendance->status !== "Pending LM Approval")
+                            <h4 class="mt-1 card-text mr-2 text-center"> <a href="{{ route('attendances.submit', ['user'=>$user,'month'=>$attendance->month]) }}">Submit <strong>{{$attendance->month}}</strong> attendance</a> </h4>
+                            @endif
                           <div class="col-12 text-left ">
                             {{-- <a href="{{route('admin.users.balanceedit', $user)}}" role="button" class="mb-0 btn btn-sm btn-outline-primary">Edit  <i class="ml-2  fas fa-lg fa-list-ol"></i></a> --}}
                           </div>
@@ -146,5 +157,8 @@
 @endsection
 
 @push('scripts')
+
+
+
 
 @endpush

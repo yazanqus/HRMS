@@ -53,8 +53,10 @@ class AttendanceController extends Controller
     {
 
         $user = Auth::user();
+        $monthshow = $attendance->month;
         if ($attendance->month == 'January') {
             $search = '-01-';
+
             $attendances = Attendance::where([
                 ['user_id', $user->id],
                 ['day', 'LIKE', '%' . $search . '%']])->get();
@@ -133,6 +135,7 @@ class AttendanceController extends Controller
         return view('attendances.show', [
             'user' => $user,
             'attendances' => $attendances,
+            'month' => $monthshow,
         ]);
 
     }
