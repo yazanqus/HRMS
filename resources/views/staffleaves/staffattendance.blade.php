@@ -26,10 +26,8 @@
                         {{-- @foreach ($users as $user) --}}
 
                         <h2>
-
-                             {{$month}}
-
-                         </h2>
+                            {{$month}}
+                        </h2>
                         {{-- @endforeach --}}
                     </div>
                 </div>
