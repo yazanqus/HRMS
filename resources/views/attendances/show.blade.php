@@ -12,19 +12,32 @@
                         <h3>
                              <b>{{$user->name}} </b>
                              <br>
-
-
                              <b>{{$user->employee_number}}</b>
-                             <br>
-                             {{$month}}
 
                          </h3>
+
                         {{-- @endforeach --}}
                     </div>
                 </div>
-
-
             </div>
+                <div class="row">
+                <div class="col">
+                    <div class="text-center">
+                        {{-- @foreach ($users as $user) --}}
+
+                        <h2>
+
+                             {{$month}}
+
+                         </h2>
+                        {{-- @endforeach --}}
+                    </div>
+                </div>
+            </div>
+
+
+
+
             <br>
             <div class="content">
                 <div class="container-fluid">
@@ -137,12 +150,12 @@
                     </div>
 
 
-                    {{$attendance->status}}
-                    @if (!isset($attendance->status))
-                        Attendance not submitted yet
-                    @endif
                     <div class="card">
                         <div class="card-header card-header-primary ">
+                           <h5>Status: <strong>{{$attendance->status}}</strong> </h5>
+                            @if (!isset($attendance->status))
+                                Status: <strong>Attendance not submitted yet</strong>
+                            @endif
                             @if ( $attendance->status !== "Approved")
                             @if ($attendance->status !== "Pending LM Approval")
                             @if ($attendance->status !== "Pending HR Approval")

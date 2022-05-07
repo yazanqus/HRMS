@@ -786,6 +786,7 @@ class UserController extends Controller
     {
 
         if ($attendance->month == 'January') {
+            $monthshow = 'January';
             $search = '-01-';
             $attendances = Attendance::where([
                 ['user_id', $user->id],
@@ -793,6 +794,7 @@ class UserController extends Controller
         } //end januaury if
 
         if ($attendance->month == 'February') {
+            $monthshow = 'February';
             $search = '-02-';
             $attendances = Attendance::where([
                 ['user_id', $user->id],
@@ -800,6 +802,7 @@ class UserController extends Controller
         } //end januaury if
 
         if ($attendance->month == 'March') {
+            $monthshow = 'March';
             $search = '-03-';
             $attendances = Attendance::where([
                 ['user_id', $user->id],
@@ -807,54 +810,63 @@ class UserController extends Controller
         } //end januaury if
 
         if ($attendance->month == 'April') {
+            $monthshow = 'April';
             $search = '-04-';
             $attendances = Attendance::where([
                 ['user_id', $user->id],
                 ['day', 'LIKE', '%' . $search . '%']])->get();
         } //end januaury if
         if ($attendance->month == 'May') {
+            $monthshow = 'May';
             $search = '-05-';
             $attendances = Attendance::where([
                 ['user_id', $user->id],
                 ['day', 'LIKE', '%' . $search . '%']])->get();
         } //end januaury if
         if ($attendance->month == 'June') {
+            $monthshow = 'June';
             $search = '-06-';
             $attendances = Attendance::where([
                 ['user_id', $user->id],
                 ['day', 'LIKE', '%' . $search . '%']])->get();
         } //end januaury if
         if ($attendance->month == 'July') {
+            $monthshow = 'July';
             $search = '-07-';
             $attendances = Attendance::where([
                 ['user_id', $user->id],
                 ['day', 'LIKE', '%' . $search . '%']])->get();
         } //end januaury if
         if ($attendance->month == 'August') {
+            $monthshow = 'August';
             $search = '-08-';
             $attendances = Attendance::where([
                 ['user_id', $user->id],
                 ['day', 'LIKE', '%' . $search . '%']])->get();
         } //end januaury if
         if ($attendance->month == 'September') {
+            $monthshow = 'September';
             $search = '-09-';
             $attendances = Attendance::where([
                 ['user_id', $user->id],
                 ['day', 'LIKE', '%' . $search . '%']])->get();
         } //end januaury if
         if ($attendance->month == 'October') {
+            $monthshow = 'October';
             $search = '-10-';
             $attendances = Attendance::where([
                 ['user_id', $user->id],
                 ['day', 'LIKE', '%' . $search . '%']])->get();
         } //end januaury if
         if ($attendance->month == 'November') {
+            $monthshow = 'November';
             $search = '-11-';
             $attendances = Attendance::where([
                 ['user_id', $user->id],
                 ['day', 'LIKE', '%' . $search . '%']])->get();
         } //end januaury if
         if ($attendance->month == 'December') {
+            $monthshow = 'December';
             $search = '-12-';
             $attendances = Attendance::where([
                 ['user_id', $user->id],
@@ -862,6 +874,7 @@ class UserController extends Controller
         } //end januaury if
 
         return view('staffleaves.staffattendance', ['user' => $user,
+            'month' => $monthshow,
             'attendances' => $attendances]);
     }
 
