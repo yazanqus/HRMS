@@ -760,6 +760,7 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
 });
 
 Route::group(['middleware' => ['auth', 'checkstatus']], function () {
+    Route::get('/attendances/export', [AttendanceController::class, 'export'])->name('attendances.export');
     Route::get('/attendances/submit/{user}/{month}', [AttendanceController::class, 'submit'])->name('attendances.submit');
     Route::get('/attendances/approved/{user}/{month}', [AttendanceController::class, 'approved'])->name('attendances.approved');
     Route::get('/attendances/declined/{user}/{month}', [AttendanceController::class, 'declined'])->name('attendances.declined');

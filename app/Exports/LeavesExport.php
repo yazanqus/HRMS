@@ -24,7 +24,6 @@ class LeavesExport implements FromCollection, WithHeadings, WithMapping
             'Leave Status',
             'Line Manager',
             'Date Requested',
-
         ];
     }
     public function collection()
