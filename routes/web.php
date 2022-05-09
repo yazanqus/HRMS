@@ -745,6 +745,7 @@ Route::group(['middleware' => ['auth', 'checkstatus'], 'prefix' => '/admin', 'as
 Route::group(['middleware' => ['auth', 'checkstatus']], function () {
     Route::resource('leaves', LeaveController::class)->except(['show']);
     Route::get('/leaves/{leave}', [LeaveController::class, 'show'])->name('leaves.show');
+    Route::get('/leaves/onbehalf', [LeaveController::class, 'onbehalf'])->name('leaves.onbehalf');
     Route::get('/leaves/approved/{id}', [LeaveController::class, 'approved'])->name('leaves.approved');
     Route::get('/leaves/declined/{id}', [LeaveController::class, 'declined'])->name('leaves.declined');
     Route::get('/leaves/hrapproved/{id}', [LeaveController::class, 'hrapproved'])->name('leaves.hrapproved');

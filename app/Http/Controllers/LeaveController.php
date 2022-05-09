@@ -967,4 +967,15 @@ class LeaveController extends Controller
     {
         return Excel::download(new LeavesExport, 'leaves.xlsx');
     }
+
+    // public function onbehalf(Request $request)
+    // {
+    //     $leave = Leave::find($id);
+    //     $leave->status = 'Declined by HR';
+    //     $leave->save();
+
+    //     return redirect()->route('leaves.hrapproval');
+
+    // }
+
 }
