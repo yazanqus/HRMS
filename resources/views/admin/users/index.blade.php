@@ -21,10 +21,22 @@
                                 <div class="card-header card-header-primary">
                                     <h4 class="card-title">All users</h4>
                                         <div class="col-12 text-right">
+
                                           <a href="{{route('admin.users.create')}}" class="btn btn-sm btn-primary">Create a new user</a>
-                                          <a href="{{route('admin.users.export')}}" class="btn btn-sm ml-2 btn-secondary">Excel <i class="ml-2 fas fa-file-excel"></i> </a>
+
+                                          <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop1" type="button" class="btn ml-2 btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                              Export <i class="ml-2 fas fa-file-excel"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+                                              <a class="dropdown-item" href="{{route('admin.users.export')}}">All Users </i></a>
+                                              <a class="dropdown-item" href="{{route('attendances.export')}}">All Attendances </i></a>
+                                            </div>
+                                        </div>
+
                                         </div>
                                     </div>
+
 
                                       <div class="card-body table-responsive-md">
                                           <table id="table_id" class="table table-bordered table-hover text-nowrap table-Secondary table-striped">

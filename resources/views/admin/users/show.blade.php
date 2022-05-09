@@ -202,7 +202,7 @@
                 <div class="card-header card-header-primary">
                     {{-- <a href="/storage/files/{{$holiday->name}}.pdf" target="_blank">{{ $holiday->name }}</a> --}}
                   <h4 class="card-title ">
-                    <a href="{{route('attendances.export')}}" class="btn btn-sm ml-2 btn-secondary">Excel <i class="ml-2 fas fa-file-excel"></i> </a>
+
                 <a href="{{route('admin.users.allstaffattendance',$user)}}" target="_blank">Attendances</a>
 
                     </h4>

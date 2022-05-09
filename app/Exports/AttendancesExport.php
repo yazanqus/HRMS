@@ -15,20 +15,26 @@ class AttendancesExport implements FromCollection, WithHeadings, WithMapping
     public function headings(): array
     {
         return [
-            'Leave ID',
-            'Requester',
-            'Leave Type',
-            'Start Date',
-            'End Date',
-            'Days',
-            'Leave Status',
+            'ID',
+            'Staff Name',
+            'Year',
+            'Month',
+
+            'Date',
+            'Day',
+            'Start Hour',
+            'End Hour',
+
+            'Comment',
+            'Leave/Overtime ID',
+            'Status',
             'Line Manager',
-            'Date Requested',
+
         ];
     }
     public function collection()
     {
-        return Attendance::all();
+        return Attendance::where('id', '>=', '13')->get();
     }
 
     public function map($attendnace): array
@@ -36,15 +42,17 @@ class AttendancesExport implements FromCollection, WithHeadings, WithMapping
         return [
             $attendnace->id,
             isset($attendnace->user->name) ? $attendnace->user->name : $attendnace->user_id,
+            $attendnace->year,
+            $attendnace->month,
+
             $attendnace->day,
+            $attendnace->sign,
             $attendnace->start_hour,
             $attendnace->end_hour,
-            $attendnace->sign,
-            $attendnace->status,
+
             $attendnace->remarks,
             $attendnace->leave_overtime_id,
-            $attendnace->month,
-            $attendnace->year,
+            $attendnace->status,
             isset($attendnace->user->linemanager) ? $attendnace->user->linemanager : $attendnace->user_id,
 
         ];
