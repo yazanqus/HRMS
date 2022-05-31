@@ -108,56 +108,6 @@
                     </div>
 
 
-                    <div class="card">
-                        <div class="card-header card-header-primary ">
-                          <h4 class="mt-1 card-title mr-2 ">Leaves - Remaining balance</h4>
-                          <div class="col-12 text-left ">
-                            {{-- <a href="{{route('admin.users.balanceedit', $user)}}" role="button" class="mb-0 btn btn-sm btn-outline-primary">Edit  <i class="ml-2  fas fa-lg fa-list-ol"></i></a> --}}
-                          </div>
-                          {{-- <a href="{{route('admin.users.balanceedit', $user)}}" role="button" class="btn btn-sm btn-outline-primary">Edit  <i class="ml-2 fas fa-lg fa-user-cog"></i></a> --}}
-
-                        </div>
-                        <div class="card-body">
-                            {{-- <div class="row">
-                                <div   div class="col-12 text-right">
-                                  <a href="#" class="btn btn-sm btn-primary">Add Holiday</a>
-                                </div>
-                            </div> --}}
-                          <div class="row">
-                              <div class="col">
-                                  <strong>Annual Leave:</strong>
-                                  <br>
-                                  <strong>Sick leave:</strong>
-                                  <br>
-                                  <strong>Sick leave 30% deduction:</strong>
-                                    <br>
-                                    <strong>Sick leave 20% deduction</strong>
-                                    <br>
-                                  <strong>Marriage leave:</strong>
-                                    <br>
-                                    <strong>Welfare leave:</strong>
-                                </div>
-
-                                <div class="col">
-                                    <strong>Unpaid leave:</strong>
-                                    <br>
-                                    <strong>Maternity leave:</strong>
-                                    <br>
-                                    <strong>Paternity leave:</strong>
-                                    <br>
-                                  <strong>Compassionate - Second degree:</strong>
-                                  <br>
-                                {{-- <strong>Annual Leave:</strong>
-                                  <br> --}}
-                                  <strong>Compassionate - First degree:</strong>
-                                  <br>
-                                  <strong>Compansetion:</strong>
-                                  </div>
-
-                          </div>
-                </div>
-            </div>
-
 
                 </div>
             </div>
