@@ -630,14 +630,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 @endauth
 
   <!-- Main Footer -->
-  <footer class="main-footer">
+  {{-- <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
 
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; 2022 .</strong> All rights reserved.
-  </footer>
+  </footer> --}}
 </div>
 <!-- ./wrapper -->
 

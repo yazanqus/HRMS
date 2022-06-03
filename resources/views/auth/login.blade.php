@@ -5,7 +5,7 @@
         <div class="row align-items-center">
 
       <!-- /.login-logo -->
-      <div class="card card-outline card-primary col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
+      <div class="card card-outline card-primary col-lg-4 col-md-6 col-sm-8 ml-2rem">
         <div class="card-header text-center">
           <a href="#" class="h1" style="font-size:2.3rem;"><b>HR</b>Management</a>
         </div>
