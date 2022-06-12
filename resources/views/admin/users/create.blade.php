@@ -94,7 +94,7 @@
                                       <div class="row justify-content-between text-left">
                                           <div class="form-group col-sm-6 flex-column d-flex">
                                               <label class="form-control-label px-1">Email</label>
-                                               <input class="form-control form-outline"  type="email" id="email"  name="email" autocomplete="off" value="{{ old('email') }}" readonly placeholder="Email is used for Okta sign in (Contact your IT Admin)" >
+                                               <input class="form-control form-outline"  type="email" id="email"  name="email" autocomplete="off" value="{{ old('email') }}" readonly placeholder="Email is used for Okta sign in" >
                                              </div>
                                           <div class="form-group {{ $errors->has('password') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
                                               <label class="form-control-label required  px-1">Password <small>(When signing using Employee ID)</small></label>
