@@ -199,7 +199,7 @@
             </div>
 
             <div class="card">
-                <div class="card-header card-header-primary">
+                <!-- <div class="card-header card-header-primary">
                     {{-- <a href="/storage/files/{{$holiday->name}}.pdf" target="_blank">{{ $holiday->name }}</a> --}}
                   <h4 class="card-title ">
 
@@ -207,7 +207,7 @@
 
                     </h4>
                   <p class="card-category"></p>
-                </div>
+                </div> -->
 
     </div>
 

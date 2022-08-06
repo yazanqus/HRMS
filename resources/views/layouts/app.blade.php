@@ -295,12 +295,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </a>
         </li>
 
-        <li class="nav-item" >
+        <!-- <li class="nav-item" >
             <a class="nav-link {{ $activePage == 'attendancesapproval' ? ' active' : '' }}" href="{{ route('attendances.lmapproval') }}">
               <i style="padding-left:20px" class="fas fa-adjust nav-icon"></i>
               <p style="padding-left:20px">{{ __('Attendances') }}</p>
             </a>
-          </li>
+          </li> -->
       </ul>
 
   </li>
@@ -390,12 +390,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </a>
         </li>
 
-        <li class="nav-item" >
+        <!-- <li class="nav-item" >
             <a class="nav-link {{ $activePage == 'attendanceshrapproval' ? ' active' : '' }}" href="{{ route('attendances.hrapproval') }}">
               <i style="padding-left:20px" class="fas fa-adjust nav-icon"></i>
               <p style="padding-left:20px">{{ __('Attendances') }}</p>
             </a>
-          </li>
+          </li> -->
       </ul>
 
   </li>
@@ -502,12 +502,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <p>{{ __('Overtimes') }}</p>
         </a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link {{ $activePage == 'attendnace' ? ' active' : '' }}" href="{{ route('attendances.index') }}">
             <i class="fas fa-clock nav-icon"></i>
             <p>{{ __('Attendances') }}</p>
         </a>
-      </li>
+      </li> -->
       <div class="dropdown-divider" style="border-color:rgb(77, 77, 77);"></div>
   <li class="nav-item">
     <a class="nav-link {{ $activePage == 'policies' ? ' active' : '' }}" href="{{ route('admin.policies.index') }}">

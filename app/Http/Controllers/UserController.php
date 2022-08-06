@@ -25,37 +25,14 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-
-        // $users = User::sortable();
-
-        // $users = User::query();
-        // if (request('term')) {
-        //     $users->where('name', 'Like', '%' . request('term') . '%');
-        //     $users->orderBy('name', 'DESC')->paginate(10);
-        // }
-
-        // if (request('id')) {
-        //     $users->where('employee_number', 'Like', '%' . request('id') . '%');
-        //     $users->orderBy('name', 'DESC')->paginate(10);
-        // }
-
-        // if (request('position')) {
-        //     $users->where('position', 'Like', '%' . request('position') . '%');
-        //     $users->orderBy('name', 'DESC')->paginate(10);
-        // }
-
-        // User::orderBy('employee_number')->pluck('name', 'position');
-        // $users = User::sortable();
         $users = User::all();
         $variablee = '';
-
         return view('admin.users.index', ['users' => $users, 'variablee' => $variablee]);
     }
 
     public function create()
     {
         $users = User::all();
-
         return view('admin.users.create', ['users' => $users]);
     }
 
@@ -63,7 +40,6 @@ class UserController extends Controller
     {
 
         $request->validate([
-
             'name' => 'required',
             'employee_number' => 'required|unique:users,employee_number',
             'birth_date',
@@ -92,26 +68,18 @@ class UserController extends Controller
 
         $user->save();
 
-        // EmployeeCreated::dispatch($user);
-        // listeners
-        // create employee balance
-        // set line manger
-        //
         $year = date("Y", strtotime($user->joined_date));
         $day = date("d", strtotime($user->joined_date));
         $month = date("m", strtotime($user->joined_date));
         $datenow = Carbon::now();
         $yearnow = $datenow->year;
-        // dd($yearnow);
 
         if ($year < $yearnow) {
             $userannualleavebalance = '15';
         } else {
 
             if ($day < '15') {
-
                 $userannualleavebalance = (1.25 * (12 - $month + 1));
-
             }
 
             if ($day >= '15') {
@@ -120,8 +88,6 @@ class UserController extends Controller
         }
 
         $annualleavehalfday = $userannualleavebalance * 2;
-
-        // dd($userannualleavebalance);
 
         $leavetypes = Leavetype::all();
         foreach ($leavetypes as $leavetype) {
@@ -161,102 +127,95 @@ class UserController extends Controller
         $setlinemenager = $request->linemanager;
         DB::table('users')->where('name', $setlinemenager)->update(['usertype_id' => '2']);
 
-        $AttendstartDate = $request->joined_date;
-        $AttendendDate = '2022-12-31';
-        $period = CarbonPeriod::create($AttendstartDate, $AttendendDate);
-        foreach ($period as $date) {
-            $dates[] = $date->format('d-m-Y');
-        }
-
-        // $days = Carbon::parse($dates)->dayName;
-        foreach ($dates as $datesss) {
-            $days[] = Carbon::parse($datesss)->dayName;
-        }
-
-        $whole = array_map(function ($dates, $days) {
-            return [
-                'date' => $dates,
-                'day' => $days,
-            ];
-        }, $dates, $days);
-
-        // dd($whole);
-        // dd($mmonths);
-        foreach ($whole as $value) {
-
-            $user->attendances()->create([
-
-                'sign' => $value['day'],
-                'day' => $value['date'],
-                'year' => '2022',
-            ]);
-        }
-
-        // foreach ($days as $dayss) {
-        //     Attendance::where('user_id', $user->id)
-        //         ->update(['dayname' => $dayss]);
+        //-------------- start of attendance creation ------------
+        // $AttendstartDate = $request->joined_date;
+        // $AttendendDate = '2022-12-31';
+        // $period = CarbonPeriod::create($AttendstartDate, $AttendendDate);
+        // foreach ($period as $date) {
+        //     $dates[] = $date->format('d-m-Y');
         // }
 
-        $user->attendances()
-            ->where([
-                ['day', 'LIKE', '%' . '-01-' . '%'],
-            ])
-            ->update(['month' => 'January']);
-        $user->attendances()
-            ->where([
-                ['day', 'LIKE', '%' . '-02-' . '%'],
-            ])
-            ->update(['month' => 'February']);
-        $user->attendances()
-            ->where([
-                ['day', 'LIKE', '%' . '-03-' . '%'],
-            ])
-            ->update(['month' => 'March']);
-        $user->attendances()
-            ->where([
-                ['day', 'LIKE', '%' . '-04-' . '%'],
-            ])
-            ->update(['month' => 'April']);
-        $user->attendances()
-            ->where([
-                ['day', 'LIKE', '%' . '-05-' . '%'],
-            ])
-            ->update(['month' => 'May']);
-        $user->attendances()
-            ->where([
-                ['day', 'LIKE', '%' . '-06-' . '%'],
-            ])
-            ->update(['month' => 'June']);
-        $user->attendances()
-            ->where([
-                ['day', 'LIKE', '%' . '-07-' . '%'],
-            ])
-            ->update(['month' => 'July']);
-        $user->attendances()
-            ->where([
-                ['day', 'LIKE', '%' . '-08-' . '%'],
-            ])
-            ->update(['month' => 'August']);
-        $user->attendances()
-            ->where([
-                ['day', 'LIKE', '%' . '-09-' . '%'],
-            ])
-            ->update(['month' => 'September']);
-        $user->attendances()
-            ->where([
-                ['day', 'LIKE', '%' . '-10-' . '%'],
-            ])
-            ->update(['month' => 'October']);
-        $user->attendances()
-            ->where([
-                ['day', 'LIKE', '%' . '-11-' . '%'],
-            ])
-            ->update(['month' => 'November']);
-        $user->attendances()
-            ->where([
-                ['day', 'LIKE', '%' . '-12-' . '%'],
-            ])
-            ->update(['month' => 'December']);
+        // foreach ($dates as $datesss) {
+        //     $days[] = Carbon::parse($datesss)->dayName;
+        // }
+
+        // $whole = array_map(function ($dates, $days) {
+        //     return [
+        //         'date' => $dates,
+        //         'day' => $days,
+        //     ];
+        // }, $dates, $days);
+
+        // foreach ($whole as $value) {
+
+        //     $user->attendances()->create([
+
+        //         'sign' => $value['day'],
+        //         'day' => $value['date'],
+        //         'year' => '2022',
+        //     ]);
+        // }
+
+        // $user->attendances()
+        //     ->where([
+        //         ['day', 'LIKE', '%' . '-01-' . '%'],
+        //     ])
+        //     ->update(['month' => 'January']);
+        // $user->attendances()
+        //     ->where([
+        //         ['day', 'LIKE', '%' . '-02-' . '%'],
+        //     ])
+        //     ->update(['month' => 'February']);
+        // $user->attendances()
+        //     ->where([
+        //         ['day', 'LIKE', '%' . '-03-' . '%'],
+        //     ])
+        //     ->update(['month' => 'March']);
+        // $user->attendances()
+        //     ->where([
+        //         ['day', 'LIKE', '%' . '-04-' . '%'],
+        //     ])
+        //     ->update(['month' => 'April']);
+        // $user->attendances()
+        //     ->where([
+        //         ['day', 'LIKE', '%' . '-05-' . '%'],
+        //     ])
+        //     ->update(['month' => 'May']);
+        // $user->attendances()
+        //     ->where([
+        //         ['day', 'LIKE', '%' . '-06-' . '%'],
+        //     ])
+        //     ->update(['month' => 'June']);
+        // $user->attendances()
+        //     ->where([
+        //         ['day', 'LIKE', '%' . '-07-' . '%'],
+        //     ])
+        //     ->update(['month' => 'July']);
+        // $user->attendances()
+        //     ->where([
+        //         ['day', 'LIKE', '%' . '-08-' . '%'],
+        //     ])
+        //     ->update(['month' => 'August']);
+        // $user->attendances()
+        //     ->where([
+        //         ['day', 'LIKE', '%' . '-09-' . '%'],
+        //     ])
+        //     ->update(['month' => 'September']);
+        // $user->attendances()
+        //     ->where([
+        //         ['day', 'LIKE', '%' . '-10-' . '%'],
+        //     ])
+        //     ->update(['month' => 'October']);
+        // $user->attendances()
+        //     ->where([
+        //         ['day', 'LIKE', '%' . '-11-' . '%'],
+        //     ])
+        //     ->update(['month' => 'November']);
+        // $user->attendances()
+        //     ->where([
+        //         ['day', 'LIKE', '%' . '-12-' . '%'],
+        //     ])
+        //     ->update(['month' => 'December']);
 
         return redirect()->route('admin.users.index');
     }
@@ -690,202 +649,202 @@ class UserController extends Controller
 
     }
 
-    public function staffattendance(User $user, Attendance $attendance)
-    {
+    // public function staffattendance(User $user, Attendance $attendance)
+    // {
 
-        if ($attendance->month == 'January') {
-            $search = '-01-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
+    //     if ($attendance->month == 'January') {
+    //         $search = '-01-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
 
-        if ($attendance->month == 'February') {
-            $search = '-02-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
+    //     if ($attendance->month == 'February') {
+    //         $search = '-02-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
 
-        if ($attendance->month == 'March') {
-            $search = '-03-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
+    //     if ($attendance->month == 'March') {
+    //         $search = '-03-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
 
-        if ($attendance->month == 'April') {
-            $search = '-04-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
-        if ($attendance->month == 'May') {
-            $search = '-05-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
-        if ($attendance->month == 'June') {
-            $search = '-06-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
-        if ($attendance->month == 'July') {
-            $search = '-07-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
-        if ($attendance->month == 'August') {
-            $search = '-08-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
-        if ($attendance->month == 'September') {
-            $search = '-09-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
-        if ($attendance->month == 'October') {
-            $search = '-10-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
-        if ($attendance->month == 'November') {
-            $search = '-11-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
-        if ($attendance->month == 'December') {
-            $search = '-12-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
+    //     if ($attendance->month == 'April') {
+    //         $search = '-04-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
+    //     if ($attendance->month == 'May') {
+    //         $search = '-05-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
+    //     if ($attendance->month == 'June') {
+    //         $search = '-06-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
+    //     if ($attendance->month == 'July') {
+    //         $search = '-07-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
+    //     if ($attendance->month == 'August') {
+    //         $search = '-08-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
+    //     if ($attendance->month == 'September') {
+    //         $search = '-09-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
+    //     if ($attendance->month == 'October') {
+    //         $search = '-10-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
+    //     if ($attendance->month == 'November') {
+    //         $search = '-11-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
+    //     if ($attendance->month == 'December') {
+    //         $search = '-12-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
 
-        return view('admin.users.staffattendance', ['user' => $user,
-            'attendances' => $attendances]);
-    }
+    //     return view('admin.users.staffattendance', ['user' => $user,
+    //         'attendances' => $attendances]);
+    // }
 
-    public function allstaffattendance(Attendance $attendance, User $user)
-    {
+    // public function allstaffattendance(Attendance $attendance, User $user)
+    // {
 
-        $attendances = Attendance::whereNull('user_id')->get();
-        return view('admin.users.allstaffattendance', ['user' => $user,
-            'attendances' => $attendances]);
+    //     $attendances = Attendance::whereNull('user_id')->get();
+    //     return view('admin.users.allstaffattendance', ['user' => $user,
+    //         'attendances' => $attendances]);
 
-    }
+    // }
 
-    public function mystaffattendance(User $user, Attendance $attendance)
-    {
+    // public function mystaffattendance(User $user, Attendance $attendance)
+    // {
 
-        if ($attendance->month == 'January') {
-            $monthshow = 'January';
-            $search = '-01-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
+    //     if ($attendance->month == 'January') {
+    //         $monthshow = 'January';
+    //         $search = '-01-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
 
-        if ($attendance->month == 'February') {
-            $monthshow = 'February';
-            $search = '-02-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
+    //     if ($attendance->month == 'February') {
+    //         $monthshow = 'February';
+    //         $search = '-02-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
 
-        if ($attendance->month == 'March') {
-            $monthshow = 'March';
-            $search = '-03-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
+    //     if ($attendance->month == 'March') {
+    //         $monthshow = 'March';
+    //         $search = '-03-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
 
-        if ($attendance->month == 'April') {
-            $monthshow = 'April';
-            $search = '-04-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
-        if ($attendance->month == 'May') {
-            $monthshow = 'May';
-            $search = '-05-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
-        if ($attendance->month == 'June') {
-            $monthshow = 'June';
-            $search = '-06-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
-        if ($attendance->month == 'July') {
-            $monthshow = 'July';
-            $search = '-07-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
-        if ($attendance->month == 'August') {
-            $monthshow = 'August';
-            $search = '-08-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
-        if ($attendance->month == 'September') {
-            $monthshow = 'September';
-            $search = '-09-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
-        if ($attendance->month == 'October') {
-            $monthshow = 'October';
-            $search = '-10-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
-        if ($attendance->month == 'November') {
-            $monthshow = 'November';
-            $search = '-11-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
-        if ($attendance->month == 'December') {
-            $monthshow = 'December';
-            $search = '-12-';
-            $attendances = Attendance::where([
-                ['user_id', $user->id],
-                ['day', 'LIKE', '%' . $search . '%']])->get();
-        } //end januaury if
+    //     if ($attendance->month == 'April') {
+    //         $monthshow = 'April';
+    //         $search = '-04-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
+    //     if ($attendance->month == 'May') {
+    //         $monthshow = 'May';
+    //         $search = '-05-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
+    //     if ($attendance->month == 'June') {
+    //         $monthshow = 'June';
+    //         $search = '-06-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
+    //     if ($attendance->month == 'July') {
+    //         $monthshow = 'July';
+    //         $search = '-07-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
+    //     if ($attendance->month == 'August') {
+    //         $monthshow = 'August';
+    //         $search = '-08-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
+    //     if ($attendance->month == 'September') {
+    //         $monthshow = 'September';
+    //         $search = '-09-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
+    //     if ($attendance->month == 'October') {
+    //         $monthshow = 'October';
+    //         $search = '-10-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
+    //     if ($attendance->month == 'November') {
+    //         $monthshow = 'November';
+    //         $search = '-11-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
+    //     if ($attendance->month == 'December') {
+    //         $monthshow = 'December';
+    //         $search = '-12-';
+    //         $attendances = Attendance::where([
+    //             ['user_id', $user->id],
+    //             ['day', 'LIKE', '%' . $search . '%']])->get();
+    //     } //end januaury if
 
-        return view('staffleaves.staffattendance', ['user' => $user,
-            'month' => $monthshow,
-            'attendances' => $attendances]);
-    }
+    //     return view('staffleaves.staffattendance', ['user' => $user,
+    //         'month' => $monthshow,
+    //         'attendances' => $attendances]);
+    // }
 
-    public function myallstaffattendance(Attendance $attendance, User $user)
-    {
+    // public function myallstaffattendance(Attendance $attendance, User $user)
+    // {
 
-        $attendances = Attendance::whereNull('user_id')->get();
-        return view('staffleaves.allstaffattendance', ['user' => $user,
-            'attendances' => $attendances]);
+    //     $attendances = Attendance::whereNull('user_id')->get();
+    //     return view('staffleaves.allstaffattendance', ['user' => $user,
+    //         'attendances' => $attendances]);
 
-    }
+    // }
 
     public function export()
     {

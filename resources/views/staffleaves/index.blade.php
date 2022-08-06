@@ -20,7 +20,7 @@
                 <div class="container-fluid">
                     <div class="card">
                       <div class="card-header card-header-primary">
-                        <h4 class="card-title ">My Staff attendances</h4>
+                        <h4 class="card-title ">My Staff</h4>
                           {{-- <div class="col-12 text-right">
                             <a href="{{route('leaves.create')}}" class="btn btn-sm btn-primary">Submit a new Leave</a>
                           </div> --}}
@@ -44,7 +44,7 @@
                           @foreach ($users as $user)
                           <tr>
                             <td>
-                                <a href="{{route('my.allstaffattendance',$user)}}" target="_blank">{{ $user->name }}</a>
+                                {{ $user->name }}
                             </td>
                             <td>{{ $user->birth_date }}</td>
                             <td class="text-center">{{ $user->email }}</td>

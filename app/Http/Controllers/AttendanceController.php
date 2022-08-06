@@ -18,7 +18,6 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-
         $attendances = Attendance::whereNull('user_id')->get();
         return view('attendances.index', ['attendances' => $attendances]);
     }
