@@ -62,6 +62,16 @@
             @if($errors->any())
             <div class="alert " style="color:red; font-weight:bold; padding-bottom: 0.2rem;"  >{{$errors->first()}}</></div>
 @endif
+
+<div class="form-group row">
+                              <div class="col">
+                                  <div class="checkbox">
+                                      <label>
+                                          <a href="{{ route('forget.password.get') }}">Reset Password</a>
+                                      </label>
+                                  </div>
+                              </div>
+                          </div>
             {{-- @if ($errors->has('employee_number'))
                                     <div id="employee_number-error" class="mb-2 error text-danger mr-3 pl-3" for="employee_number"
                                         style="display: block;">
@@ -162,6 +172,17 @@
                                     </span>
                                 </label>
                             </div>
+
+                            <div class="form-group row">
+                              <div class="col-md-6 offset-md-4">
+                                  <div class="checkbox">
+                                      <label>
+                                          <a href="{{ route('forget.password.get') }}">Reset Password</a>
+                                      </label>
+                                  </div>
+                              </div>
+                          </div>
+
                         </div>
                         <div class="card-footer justify-content-center">
                             <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Lets Go') }}</button>

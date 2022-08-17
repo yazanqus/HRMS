@@ -3,6 +3,7 @@ namespace App\Http\Middleware;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Mail\Mailable;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ChangePassword;
 use App\Http\Controllers\HolidayController;
@@ -778,10 +779,7 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
 
 });
 
-// Route::group(['middleware' => 'auth'], function () {
-//     Route::resource('overtimes', OvertimeController::class);
-//     // Route::get('/leaves/approved/{id}', [LeaveController::class, 'approved'])->name('leaves.approved');
-//     // Route::get('/leaves/declined/{id}', [LeaveController::class, 'declined'])->name('leaves.declined');
-// });
-
-// Route::resource('leaves', LeaveController::class);
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
