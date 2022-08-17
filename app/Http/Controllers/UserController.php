@@ -10,9 +10,11 @@ use App\Models\Leavetype;
 use App\Models\User;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use App\Mail\Leave as MailLeave;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
@@ -67,6 +69,9 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
 
         $user->save();
+
+
+       
 
         $year = date("Y", strtotime($user->joined_date));
         $day = date("d", strtotime($user->joined_date));

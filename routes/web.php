@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Middleware;
-
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\Mailable;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ChangePassword;
@@ -9,12 +10,14 @@ use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\OvertimeController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\UserController;
+use App\Mail\Leave as MailLeave;
 use App\Models\Attendance;
 use App\Models\Balance;
 use App\Models\Leave;
 use App\Models\Overtime;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Route;
 use Spatie\Activitylog\Models\Activity;
 
@@ -29,6 +32,7 @@ use Spatie\Activitylog\Models\Activity;
 |
  */
 Route::get('/', function () {
+    
     return redirect('welcome');
 })->name('home');
 
@@ -320,6 +324,7 @@ Route::get('/logout', [LoginController::class, 'logout']);
 Route::group(['middleware' => ['auth', 'checkstatus']], function () {
 
     Route::get('welcome', function () {
+       
         $user = Auth::user();
         $balances = Balance::where('user_id', $user->id)->get();
         $subsets = $balances->map(function ($balance) {

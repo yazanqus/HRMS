@@ -14,6 +14,8 @@ use DateTime;
 use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Leave as MailLeave;
 use Maatwebsite\Excel\Facades\Excel;
 
 class LeaveController extends Controller
@@ -194,13 +196,33 @@ class LeaveController extends Controller
                     if (!isset($user->linemanager)) {
                         $leave->status = 'Pending HR Approval';
 
+
+
+
                     } else {
 
                         $leave->status = 'Pending LM Approval';
+
+
+                        $linemanageremail = User::where('name',$user->linemanager)->value('email');
+
+                        // dd($linemanageremail);
+                        $details = [
+                            'requestername' => $user->name,
+                            'linemanagername' => $user->linemanager,
+                            'linemanageremail' => $linemanageremail,
+                            'title' => 'Leave Request Approval - Annual Leave',
+                            'body' => 'Access to HR System is now available'
+                        ];
+                       
+                        Mail::to($linemanageremail)->send(new MailLeave($details));
+
+                        
                     }
 
                     $leave->save();
                     // $user->notify(new EmailNotification($leave));
+                    
 
                     return redirect()->route('leaves.index');
                 } else {
@@ -238,6 +260,18 @@ class LeaveController extends Controller
                 } else {
 
                     $leave->status = 'Pending LM Approval';
+                    $linemanageremail = User::where('name',$user->linemanager)->value('email');
+
+                        // dd($linemanageremail);
+                        $details = [
+                            'requestername' => $user->name,
+                            'linemanagername' => $user->linemanager,
+                            'linemanageremail' => $linemanageremail,
+                            'title' => 'Leave Request Approval - Sick Leave',
+                            'body' => 'Access to HR System is now available'
+                        ];
+                       
+                        Mail::to($linemanageremail)->send(new MailLeave($details));
                 }
 
                 $leave->save();
@@ -275,6 +309,18 @@ class LeaveController extends Controller
                 } else {
 
                     $leave->status = 'Pending LM Approval';
+                    $linemanageremail = User::where('name',$user->linemanager)->value('email');
+
+                        // dd($linemanageremail);
+                        $details = [
+                            'requestername' => $user->name,
+                            'linemanagername' => $user->linemanager,
+                            'linemanageremail' => $linemanageremail,
+                            'title' => 'Leave Request Approval - Sick Leave 30% deduction',
+                            'body' => 'Access to HR System is now available'
+                        ];
+                       
+                        Mail::to($linemanageremail)->send(new MailLeave($details));
                 }
 
                 $leave->save();
@@ -312,6 +358,18 @@ class LeaveController extends Controller
                 } else {
 
                     $leave->status = 'Pending LM Approval';
+                    $linemanageremail = User::where('name',$user->linemanager)->value('email');
+
+                        // dd($linemanageremail);
+                        $details = [
+                            'requestername' => $user->name,
+                            'linemanagername' => $user->linemanager,
+                            'linemanageremail' => $linemanageremail,
+                            'title' => 'Leave Request Approval - Sick Leave 20% deduction',
+                            'body' => 'Access to HR System is now available'
+                        ];
+                       
+                        Mail::to($linemanageremail)->send(new MailLeave($details));
                 }
 
                 $leave->save();
@@ -350,6 +408,18 @@ class LeaveController extends Controller
                     } else {
 
                         $leave->status = 'Pending LM Approval';
+                        $linemanageremail = User::where('name',$user->linemanager)->value('email');
+
+                        // dd($linemanageremail);
+                        $details = [
+                            'requestername' => $user->name,
+                            'linemanagername' => $user->linemanager,
+                            'linemanageremail' => $linemanageremail,
+                            'title' => 'Leave Request Approval - Marriage Leave',
+                            'body' => 'Access to HR System is now available'
+                        ];
+                       
+                        Mail::to($linemanageremail)->send(new MailLeave($details));
                     }
 
                     $leave->save();
@@ -391,6 +461,18 @@ class LeaveController extends Controller
                     } else {
 
                         $leave->status = 'Pending LM Approval';
+                        $linemanageremail = User::where('name',$user->linemanager)->value('email');
+
+                        // dd($linemanageremail);
+                        $details = [
+                            'requestername' => $user->name,
+                            'linemanagername' => $user->linemanager,
+                            'linemanageremail' => $linemanageremail,
+                            'title' => 'Leave Request Approval - Maternity Leave',
+                            'body' => 'Access to HR System is now available'
+                        ];
+                       
+                        Mail::to($linemanageremail)->send(new MailLeave($details));
                     }
 
                     $leave->save();
@@ -510,6 +592,18 @@ class LeaveController extends Controller
                     } else {
 
                         $leave->status = 'Pending LM Approval';
+                        $linemanageremail = User::where('name',$user->linemanager)->value('email');
+
+                        // dd($linemanageremail);
+                        $details = [
+                            'requestername' => $user->name,
+                            'linemanagername' => $user->linemanager,
+                            'linemanageremail' => $linemanageremail,
+                            'title' => 'Leave Request Approval - Welfare Leave',
+                            'body' => 'Access to HR System is now available'
+                        ];
+                       
+                        Mail::to($linemanageremail)->send(new MailLeave($details));
                     }
 
                     $leave->save();
@@ -552,6 +646,19 @@ class LeaveController extends Controller
                     } else {
 
                         $leave->status = 'Pending LM Approval';
+
+                        $linemanageremail = User::where('name',$user->linemanager)->value('email');
+
+                        // dd($linemanageremail);
+                        $details = [
+                            'requestername' => $user->name,
+                            'linemanagername' => $user->linemanager,
+                            'linemanageremail' => $linemanageremail,
+                            'title' => 'Leave Request Approval - Annual Halfday Leave',
+                            'body' => 'Access to HR System is now available'
+                        ];
+                       
+                        Mail::to($linemanageremail)->send(new MailLeave($details));
                     }
 
                     $leave->save();
@@ -590,6 +697,18 @@ class LeaveController extends Controller
                 } else {
 
                     $leave->status = 'Pending LM Approval';
+                    $linemanageremail = User::where('name',$user->linemanager)->value('email');
+
+                        // dd($linemanageremail);
+                        $details = [
+                            'requestername' => $user->name,
+                            'linemanagername' => $user->linemanager,
+                            'linemanageremail' => $linemanageremail,
+                            'title' => 'Leave Request Approval - Compensation Leave',
+                            'body' => 'Access to HR System is now available'
+                        ];
+                       
+                        Mail::to($linemanageremail)->send(new MailLeave($details));
                 }
 
                 $leave->save();
@@ -628,6 +747,19 @@ class LeaveController extends Controller
                     } else {
 
                         $leave->status = 'Pending LM Approval';
+
+                        $linemanageremail = User::where('name',$user->linemanager)->value('email');
+
+                        // dd($linemanageremail);
+                        $details = [
+                            'requestername' => $user->name,
+                            'linemanagername' => $user->linemanager,
+                            'linemanageremail' => $linemanageremail,
+                            'title' => 'Leave Request Approval - Paternity Leave',
+                            'body' => 'Access to HR System is now available'
+                        ];
+                       
+                        Mail::to($linemanageremail)->send(new MailLeave($details));
                     }
 
                     $leave->save();
@@ -669,6 +801,19 @@ class LeaveController extends Controller
                     } else {
 
                         $leave->status = 'Pending LM Approval';
+
+                        $linemanageremail = User::where('name',$user->linemanager)->value('email');
+
+                        // dd($linemanageremail);
+                        $details = [
+                            'requestername' => $user->name,
+                            'linemanagername' => $user->linemanager,
+                            'linemanageremail' => $linemanageremail,
+                            'title' => 'Leave Request Approval - Unpaid Halfday Leave',
+                            'body' => 'Access to HR System is now available'
+                        ];
+                       
+                        Mail::to($linemanageremail)->send(new MailLeave($details));
                     }
 
                     $leave->save();
@@ -707,6 +852,19 @@ class LeaveController extends Controller
                 } else {
 
                     $leave->status = 'Pending LM Approval';
+
+                    $linemanageremail = User::where('name',$user->linemanager)->value('email');
+
+                        // dd($linemanageremail);
+                        $details = [
+                            'requestername' => $user->name,
+                            'linemanagername' => $user->linemanager,
+                            'linemanageremail' => $linemanageremail,
+                            'title' => 'Leave Request Approval',
+                            'body' => 'Access to HR System is now available'
+                        ];
+                       
+                        Mail::to($linemanageremail)->send(new MailLeave($details));
                 }
 
                 $leave->save();
@@ -743,6 +901,19 @@ class LeaveController extends Controller
                 } else {
 
                     $leave->status = 'Pending LM Approval';
+
+                    $linemanageremail = User::where('name',$user->linemanager)->value('email');
+
+                        // dd($linemanageremail);
+                        $details = [
+                            'requestername' => $user->name,
+                            'linemanagername' => $user->linemanager,
+                            'linemanageremail' => $linemanageremail,
+                            'title' => 'Leave Request Approval',
+                            'body' => 'Access to HR System is now available'
+                        ];
+                       
+                        Mail::to($linemanageremail)->send(new MailLeave($details));
                 }
 
                 $leave->save();
@@ -772,6 +943,19 @@ class LeaveController extends Controller
             } else {
 
                 $leave->status = 'Pending LM Approval';
+
+                $linemanageremail = User::where('name',$user->linemanager)->value('email');
+
+                        // dd($linemanageremail);
+                        $details = [
+                            'requestername' => $user->name,
+                            'linemanagername' => $user->linemanager,
+                            'linemanageremail' => $linemanageremail,
+                            'title' => 'Leave Request Approval - Unpaid Leave',
+                            'body' => 'Access to HR System is now available'
+                        ];
+                       
+                        Mail::to($linemanageremail)->send(new MailLeave($details));
             }
 
             $leave->save();
@@ -846,6 +1030,19 @@ class LeaveController extends Controller
     {
         $leave = Leave::find($id);
         $leave->status = 'Pending HR Approval';
+
+        $requester=$leave->user;
+
+                        $details = [
+                            'requestername' => $requester->name,
+                            'linemanagername' => '',
+                            'linemanageremail' => '',
+                            'title' => 'Leave Request Approved',
+                            'body' => 'Access to HR System is now available'
+                        ];
+                       
+                        Mail::to($requester->email)->send(new MailLeave($details));
+
         $leave->save();
 
         return redirect()->route('leaves.approval');
@@ -856,6 +1053,19 @@ class LeaveController extends Controller
     {
         $leave = Leave::find($id);
         $leave->status = 'Declined by LM';
+
+        $requester=$leave->user;
+
+        $details = [
+            'requestername' => $requester->name,
+            'linemanagername' => '',
+            'linemanageremail' => '',
+            'title' => 'Leave Request Rejected',
+            'body' => 'Access to HR System is now available'
+        ];
+       
+        Mail::to($requester->email)->send(new MailLeave($details));
+        
         $leave->save();
 
         return redirect()->route('leaves.approval');
@@ -866,6 +1076,19 @@ class LeaveController extends Controller
     {
         $leave = Leave::find($id);
         $leave->status = 'Approved';
+
+        $requester=$leave->user;
+
+        $details = [
+            'requestername' => $requester->name,
+            'linemanagername' => '',
+            'linemanageremail' => '',
+            'title' => 'Leave Request Fully Approved',
+            'body' => 'Access to HR System is now available'
+        ];
+       
+        Mail::to($requester->email)->send(new MailLeave($details));
+
         $leave->save();
 
         if ($leave->leavetype_id == '13' || $leave->leavetype_id == '14') {
@@ -957,6 +1180,21 @@ class LeaveController extends Controller
     {
         $leave = Leave::find($id);
         $leave->status = 'Declined by HR';
+
+
+        $requester=$leave->user;
+
+        $details = [
+            'requestername' => $requester->name,
+            'linemanagername' => '',
+            'linemanageremail' => '',
+            'title' => 'Leave Request Rejected by HR',
+            'body' => 'Access to HR System is now available'
+        ];
+       
+        Mail::to($requester->email)->send(new MailLeave($details));
+
+
         $leave->save();
 
         return redirect()->route('leaves.hrapproval');
