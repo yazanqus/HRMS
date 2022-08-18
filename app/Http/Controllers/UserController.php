@@ -11,6 +11,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use App\Mail\Leave as MailLeave;
+use App\Models\UserOffice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -35,7 +36,8 @@ class UserController extends Controller
     public function create()
     {
         $users = User::all();
-        return view('admin.users.create', ['users' => $users]);
+        $useroffices = UserOffice::all();
+        return view('admin.users.create', ['users' => $users, 'useroffices'=>$useroffices]);
     }
 
     public function store(Request $request)

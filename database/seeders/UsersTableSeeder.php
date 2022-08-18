@@ -19,6 +19,7 @@ class UsersTableSeeder extends Seeder
             'birth_date' => '2022-01-01',
             'employee_number' => '1001',
             'usertype_id' => '2',
+            'useroffice_id' => '1',
             'position' => 'HR Manager',
             'unit' => 'HR',
             'grade' => '9',

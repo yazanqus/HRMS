@@ -46,6 +46,7 @@
                                               <th scope="col">Name</th>
                                               <th scope="col">Employee ID</th>
                                               <th scope="col">Position</th>
+                                              <th scope="col">Office</th>
                                               <th scope="col">Join Date</th>
                                               <th scope="col">Line Manager</th>
                                               <th class="text-center" scope="col">Admin<small> (on HR System)</small></th>
@@ -64,6 +65,27 @@
                                                     </td>
                                                   <td>{{ $user->employee_number }}</td>
                                                   <td>{{ $user->position }}</td>
+                                                  @php
+                                    if ($user->useroffice_id == "1") {
+                                      $useroffice = "AO2";
+                                    }
+                                    elseif ($user->useroffice_id == "2") {
+                                      $useroffice = "AO3";
+                                    }
+                                    elseif ($user->useroffice_id == "3") {
+                                      $useroffice = "AO4";
+                                    }
+                                    elseif ($user->useroffice_id == "4") {
+                                      $useroffice = "AO6";
+                                    }
+                                    elseif ($user->useroffice_id == "5") {
+                                      $useroffice = "AO7";
+                                    }
+                                    else {
+                                      $useroffice = "";
+                                    }
+                                    @endphp
+                                    <td>{{ $useroffice }}</td>
                                                   <td>{{ $user->joined_date }}</td>
                                                   <td>{{ $user->linemanager }}</td>
                                                   <td class="text-center" >{{ $user->hradmin }}</td>
@@ -77,6 +99,7 @@
                                             <th scope="col">Name</th>
                                             <th scope="col">Employee ID</th>
                                             <th scope="col">Position</th>
+                                            <th scope="col">Office</th>
                                             <th scope="col">Join Date</th>
                                             <th scope="col">Line Manager</th>
                                             <th class="text-center" scope="col">Admin<small> (on HR System)</small></th>

@@ -50,7 +50,39 @@
                                             </div>
                                       </div>
                                       <div class="row justify-content-between text-left">
-                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Position</label> <input class="form-control form-outline" type="text" id="position"  value="{{ old('position') }}" name="position" placeholder="" > </div>
+                                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Position</label> <input class="form-control form-outline" type="text" id="position"  value="{{ old('position') }}" name="position" placeholder="" > </div>
+                                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="dropdown form-control-label px-1">Office</label>
+                                        <select class="form-control form-outline" name="useroffice_id" aria-label="Default select example" >
+                                          
+                                          <option value selected disabled ="">Choose office..</option>
+                                        
+                                          <option  value="1">AO2</option>
+                                          <option  value="2">AO3</option>
+                                          <option  value="3">AO4</option>
+                                          <option  value="4">AO6</option>
+                                          <option  value="5">AO7</option>
+                                          
+                                        </select>
+                                        </div>
+                                        <!-- <div class="form-group col-sm-6 flex-column d-flex "> 
+                                        <label class="dropdown form-control-label px-1">Office</label>  
+                                        <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Choose Office..
+                                          </button>
+                                          <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                                            @foreach ($useroffices as $office)
+                                            <a class="dropdown-item" href="#">{{ $office->name }}</a>
+                                            @endforeach
+                                          </div>
+                                    <input class="form-control form-outline" type="text" list="FavoriteColor" id="color" placeholder="Choose Office.."
+                                          
+                                            name="useroffice_id" value="{{ old('useroffice_id') }}" autocomplete="off">
+                                        <datalist id="FavoriteColor">
+                                            @foreach ($useroffices as $office)
+                                                <option value="{{ $office->name }}"> </option>
+                                            @endforeach
+                                        </datalist>
+                                     </div> -->
                                           <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Grade</label> <input class="form-control form-outline" type="text" id="grade"  value="{{ old('grade') }}" name="grade" placeholder="" > </div>
                                       </div>
                                       <div class="row justify-content-between text-left">
