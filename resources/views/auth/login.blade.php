@@ -49,13 +49,23 @@
 
             <div class="row">
               {{-- <div class="col-2"> --}}
-                <div class="container d-flex justify-content-start">
-                    <div class="check-primary  pwd">
+                <div class="container ">
+                    <div class="check-primary text-left  pwd">
                       <input type="checkbox" class="reveal">
                       <label>
                         Show password
                       </label>
+                      
                     </div>
+                    <div class=" text-right">
+                              <div class="col-12">
+                                  <div class="checkbox ">
+                                      <label >
+                                          <a href="{{ route('forget.password.get') }}">Forgot your Password?</a>
+                                      </label>
+                                  </div>
+                              </div>
+                          </div>
                 </div>
               {{-- </div> --}}
             </div>
@@ -63,15 +73,15 @@
             <div class="alert " style="color:red; font-weight:bold; padding-bottom: 0.2rem;"  >{{$errors->first()}}</></div>
 @endif
 
-<div class="form-group row">
+                          <!-- <div class="form-group row">
                               <div class="col">
                                   <div class="checkbox">
                                       <label>
-                                          <a href="{{ route('forget.password.get') }}">Reset Password</a>
+                                          <a href="{{ route('forget.password.get') }}">Forgot your Password?</a>
                                       </label>
                                   </div>
                               </div>
-                          </div>
+                          </div> -->
             {{-- @if ($errors->has('employee_number'))
                                     <div id="employee_number-error" class="mb-2 error text-danger mr-3 pl-3" for="employee_number"
                                         style="display: block;">
