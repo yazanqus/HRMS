@@ -83,42 +83,95 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/
 Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin']], function () {
     Route::get('leaves/hrapproval', function () {
 
-        // dd($staff);
+      // $user = Auth::user();
+        // $staff = User::where('linemanager', $user->name)->get();
+        // // dd($staff);
+        // if (count($staff)) {
+        //     $subsets = $staff->map(function ($staff) {
+        //         return collect($staff->toArray())
+        //             ->only(['id'])
+        //             ->all();
+        //     });
+        //     $leaves = Leave::whereIn('user_id', $subsets)->where('status', 'Pending LM Approval')->get();
+        //     if (count($leaves)) {
+        //         return view('approval.leaves.index', ['leaves' => $leaves]);
+        //     } else {
+        //         $leavess = Leave::where([
+        //             ['user_id', $user->id],
+        //             ['status', 'no staff under this line manager'],
+        //         ])->get();
+        //         // dd($leavess);
+        //         return view('approval.leaves.index', ['leaves' => $leavess]);
+        //     }
+    //  else {
+    //     $leavess = Leave::where([
+    //         ['user_id', $user->id],
+    //         ['status', 'no staff under this line manager'],
+    //     ])->get();
+    //     // dd($leavess);
 
-        // dd($subsets);
-        // $leaves = Leave::whereIn([
-        //     ['user_id', $subsets],
-        //     ['status', 'Pending Approval'],
-        // ])->get();
+    //     return view('approval.leaves.index', ['leaves' => $leavess]);
+    // }
 
-        $leaves = Leave::where('status', 'Pending HR Approval')->get();
-        // $leaves = Leave::where('Status', 'Pending Approval')->get();
-        // dd($leaves);
-        if (count($leaves)) {
-            return view('hrapproval.leaves.index', ['leaves' => $leaves]);
+        $hrcurrentuser = Auth::user();
+        
+        
+        if($hrcurrentuser->office == "AO2")
+        {
+            $leaves = Leave::where('status', 'Pending HR Approval')->get();
+            
+            if (count($leaves)) {
+                return view('hrapproval.leaves.index', ['leaves' => $leaves]);
+            } else {
+                $leavess = Leave::where([
+                    ['status', 'no staff under this line manager'],
+                ])->get();    
+                return view('hrapproval.leaves.index', ['leaves' => $leavess]);
+            }
+        }
+        else
+        {
+            $staffwithsameoffice = User::where('office',$hrcurrentuser->office)->get();
+            if (count($staffwithsameoffice)) {
+                $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
+                            return collect($staffwithsameoffice->toArray())
+                                ->only(['id'])
+                                ->all();
+                        });
+                        $leaves = Leave::whereIn('user_id', $hrsubsets)->where('status', 'Pending HR Approval')->get();
+                            if (count($leaves)) {
+                                return view('hrapproval.leaves.index', ['leaves' => $leaves]);
+                            } else {
+                                $leavess = Leave::where([
+                                    ['user_id', 'fake'],
+                                    ['status', 'no staff under this line manager'],
+                                ])->get();
+                                
+                                return view('hrapproval.leaves.index', ['leaves' => $leavess]);
+                            }
+            }
 
-        } else {
-
-            $leavess = Leave::where([
-
-                ['status', 'no staff under this line manager'],
-            ])->get();
-            // dd($leavess);
-
-            return view('hrapproval.leaves.index', ['leaves' => $leavess]);
+            else
+            {
+                $leavess = Leave::where([
+                            ['user_id', 'fake'],
+                            ['status', 'no staff under this line manager'],
+                        ])->get();
+                        // dd($leavess);
+                
+                        return view('hrapproval.leaves.index', ['leaves' => $leavess]);
+                    }
+            }
         }
 
-    })->name('leaves.hrapproval');
+        
+
+    )->name('leaves.hrapproval');
 
     Route::get('overtimes/hrapproval', function () {
 
-        // dd($staff);
 
-        // dd($subsets);
-        // $leaves = Leave::whereIn([
-        //     ['user_id', $subsets],
-        //     ['status', 'Pending Approval'],
-        // ])->get();
+        
 
         $overtimes = Overtime::where('status', 'Pending HR Approval')->get();
         // $leaves = Leave::where('Status', 'Pending Approval')->get();

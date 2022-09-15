@@ -36,6 +36,8 @@
                                 <strong>Email: </strong> {{$user->email}}
                                 <br>
                                 <strong>Employee ID: </strong> {{$user->employee_number}}
+                                <br>
+                                <strong>Office: </strong> {{$user->office}}
                               </div>
                               <div class="col">
 

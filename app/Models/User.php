@@ -101,10 +101,7 @@ class User extends Authenticatable
         return $this->belongsTo(Usertype::class);
     }
 
-    public function UserOffice()
-    {
-        return $this->belongsTo(UserOffice::class);
-    }
+
 
     public function attendances()
     {

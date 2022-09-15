@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->date('birth_date')->nullable();
             $table->string('employee_number')->unique()->nullable();
             $table->string('position')->nullable();
+            $table->string('office')->nullable();
             $table->string('unit')->nullable();
             $table->string('grade')->nullable();
             $table->string('linemanager')->nullable();
@@ -31,7 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->text('token')->nullable();
             $table->foreignId('usertype_id')->nullable();
-            $table->foreignId('useroffice_id')->nullable();
+  
             $table->rememberToken();
             $table->timestamps();
         });

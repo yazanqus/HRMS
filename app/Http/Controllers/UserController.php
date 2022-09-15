@@ -11,8 +11,9 @@ use App\Models\User;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use App\Mail\Leave as MailLeave;
-use App\Models\UserOffice;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -28,16 +29,46 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::all();
-        $variablee = '';
-        return view('admin.users.index', ['users' => $users, 'variablee' => $variablee]);
+        $currentuser = Auth::user();
+        if ($currentuser->office == "AO3")
+        {
+            $users = User::where('office','AO3')->get();
+            $variablee = '';
+            return view('admin.users.index', ['users' => $users, 'variablee' => $variablee]);
+        }
+
+        elseif ($currentuser->office == "AO4")
+        {
+            $users = User::where('office','AO4')->get();
+            $variablee = '';
+            return view('admin.users.index', ['users' => $users, 'variablee' => $variablee]);
+        }
+        elseif ($currentuser->office == "AO6")
+        {
+            $users = User::where('office','AO6')->get();
+            $variablee = '';
+            return view('admin.users.index', ['users' => $users, 'variablee' => $variablee]);
+        }
+        elseif ($currentuser->office == "AO7")
+        {
+            $users = User::where('office','AO7')->get();
+            $variablee = '';
+            return view('admin.users.index', ['users' => $users, 'variablee' => $variablee]);
+        }
+        else 
+        {
+            $users = User::all();
+            $variablee = '';
+            return view('admin.users.index', ['users' => $users, 'variablee' => $variablee]);
+        }
+  
     }
 
     public function create()
     {
         $users = User::all();
-        $useroffices = UserOffice::all();
-        return view('admin.users.create', ['users' => $users, 'useroffices'=>$useroffices]);
+     
+        return view('admin.users.create', ['users' => $users]);
     }
 
     public function store(Request $request)
@@ -51,6 +82,7 @@ class UserController extends Controller
             'grade',
             // 'unit' => 'required',
             'joined_date' => 'required',
+            'office' => 'required',
             'linemanager',
             'hradmin' => 'required',
             'email',
@@ -62,6 +94,7 @@ class UserController extends Controller
         $user->employee_number = $request->employee_number;
         $user->birth_date = $request->birth_date;
         $user->position = $request->position;
+        $user->office = $request->office;
         $user->unit = $request->unit;
         $user->grade = $request->grade;
         $user->linemanager = $request->linemanager;
@@ -335,6 +368,7 @@ class UserController extends Controller
             // 'employee_number' => 'required',
             'birth_date',
             'position',
+            'office' => 'required',
             // 'unit' => 'required',
             'grade',
             'joined_date' => 'required',
@@ -354,6 +388,7 @@ class UserController extends Controller
         $user->employee_number = $request->employee_number;
         $user->birth_date = $request->birth_date;
         $user->position = $request->position;
+        $user->office = $request->office;
         // $user->unit = $request->unit;
         $user->grade = $request->grade;
         $user->linemanager = $request->linemanager;

@@ -91,28 +91,9 @@
                                 <strong>Email: </strong> {{$user->email}}
                                 <br>
                                 <strong>Employee ID: </strong> {{$user->employee_number}}
-                                @php
-                                    if ($user->useroffice_id == "1") {
-                                      $useroffice = "AO2";
-                                    }
-                                    elseif ($user->useroffice_id == "2") {
-                                      $useroffice = "AO3";
-                                    }
-                                    elseif ($user->useroffice_id == "3") {
-                                      $useroffice = "AO4";
-                                    }
-                                    elseif ($user->useroffice_id == "4") {
-                                      $useroffice = "AO6";
-                                    }
-                                    elseif ($user->useroffice_id == "5") {
-                                      $useroffice = "AO7";
-                                    }
-                                    else {
-                                      $useroffice = "";
-                                    }
-                                    @endphp
                                 <br>
-                                <strong>Office: </strong> {{$useroffice}}
+                                <strong>Office: </strong> {{$user->office}}
+                                
                               </div>
                               <div class="col">
                                 <strong>Position: </strong> {{$user->position}}
@@ -173,10 +154,16 @@
                       <div class="card">
                         <div class="card-header card-header-primary ">
                           <h4 class="mt-1 card-title mr-2 ">Leaves - Remaining balance</h4>
-                          <div class="col-12 text-left ">
-                            <a href="{{route('admin.users.balanceedit', $user)}}" role="button" class="mb-0 btn btn-sm btn-outline-primary">Edit  <i class="ml-2  fas fa-lg fa-list-ol"></i></a>
-                          </div>
-                          {{-- <a href="{{route('admin.users.balanceedit', $user)}}" role="button" class="btn btn-sm btn-outline-primary">Edit  <i class="ml-2 fas fa-lg fa-user-cog"></i></a> --}}
+
+                          
+                          @if ($authuser->office == "AO2")
+                          
+                            <div class="col-12 text-left ">
+                              <a href="{{route('admin.users.balanceedit', $user)}}" role="button" class="mb-0 btn btn-sm btn-outline-primary">Edit  <i class="ml-2  fas fa-lg fa-list-ol"></i></a>
+                            </div>
+                          
+                          @endif
+           
 
                         </div>
                         <div class="card-body">

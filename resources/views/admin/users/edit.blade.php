@@ -48,6 +48,24 @@
                                         </div>
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Position</label> <input class="form-control form-outline" type="text" id="position" value="{{$user->position}}" name="position" placeholder="" > </div>
+
+                                            <div class="form-group col-sm-6 flex-column d-flex {{ $errors->has('office') ? ' has-danger' : '' }}"> <label class="dropdown form-control-label required px-1 {{ $errors->has('joined_date') ? ' is-invalid' : '' }}">Office</label>
+                                        <select class="form-control form-outline"  id="office" name="office" aria-label="Default select example" >
+                                          
+                                          <option value selected disabled ="">Choose office..</option>
+                                        
+                                          <option value="AO2" @if ($user->office == "AO2") {{ 'selected' }} @endif>AO2</option>
+                                          <option value="AO3" @if ($user->office == "AO3") {{ 'selected' }} @endif>AO3</option>
+                                          <option value="AO4" @if ($user->office == "AO4") {{ 'selected' }} @endif>AO4</option>
+                                          <option value="AO6" @if ($user->office == "AO6") {{ 'selected' }} @endif>AO6</option>
+                                          <option value="AO7" @if ($user->office == "AO7") {{ 'selected' }} @endif>AO7</option>
+                                          
+                                        </select>
+                                        @if ($errors->has('office'))
+                                                <span id="office-error" class="error text-danger" for="input-office">{{ $errors->first('office') }}</span>
+                                               @endif
+                                        </div>
+
                                             <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Grade</label> <input class="form-control form-outline" type="text" id="grade" value="{{$user->grade}}" name="grade" placeholder="" > </div>
                                         </div>
                                         <div class="row justify-content-between text-left">
@@ -80,7 +98,7 @@
 
                                         </div>
                                         <div class="row justify-content-between text-left">
-                                            {{-- <div class="form-group col-sm-6 flex-column d-flex">
+                                            <!-- {{-- <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-1">Line Manager</label>
                                                 <input type="text" list="FavoriteColor" id="linemanager"  value="{{$user->linemanager}}" name="linemanager" placeholder="" autocomplete="off">
                                                         <datalist id="FavoriteColor">
@@ -89,8 +107,8 @@
                                                             @endforeach
                                                         </datalist>
                                                         </p>
-                                        </div> --}}
-                                        @php
+                                        </div> --}} -->
+                                        <!-- @php
                                         if ($user->usertype_id == "2") {
                                       $role = "Line Manager";
                                     }
@@ -112,7 +130,7 @@
                                                       Line Manager
                                                     </label>
                                                   </div>
-                                            </div>
+                                            </div> -->
                                         @php
                                         if ($user->hradmin == "yes") {
                                       $admin = "Admin";
