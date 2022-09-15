@@ -43,13 +43,50 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/
     Route::get('/leaves/export', [LeaveController::class, 'export'])->name('leaves.export');
     Route::get('/overtimes/export', [OvertimeController::class, 'export'])->name('overtimes.export');
     Route::get('allstaffleaves', function () {
-        $leaves = Leave::all();
-        return view('admin.allstaffleaves.index', ['leaves' => $leaves]);
+        $hruser = Auth::user();
+        if ($hruser->office == "AO2") {
+            $leaves = Leave::all();
+            return view('admin.allstaffleaves.index', ['leaves' => $leaves]);
+        }
+        else
+        {  
+            $staffwithsameoffice = User::where('office',$hruser->office)->get();
+            if (count($staffwithsameoffice))
+            {
+                $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
+                    return collect($staffwithsameoffice->toArray())
+                        ->only(['id'])
+                        ->all();
+                });
+                $hrleaves = Leave::wherein('user_id', $hrsubsets)->get();
+                return view('admin.allstaffleaves.index', ['leaves' => $hrleaves]);
+            }            
+
+        }
     })->name('allstaffleaves.index');
 
     Route::get('allstaffovertimes', function () {
-        $overtimes = Overtime::all();
-        return view('admin.allstaffovertimes.index', ['overtimes' => $overtimes]);
+ 
+        $hruser = Auth::user();
+        if ($hruser->office == "AO2") {
+            $overtimes = Overtime::all();
+            return view('admin.allstaffovertimes.index', ['overtimes' => $overtimes]);
+        }
+        else
+        {  
+            $staffwithsameoffice = User::where('office',$hruser->office)->get();
+            if (count($staffwithsameoffice))
+            {
+                $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
+                    return collect($staffwithsameoffice->toArray())
+                        ->only(['id'])
+                        ->all();
+                });
+                $hrovertimes = Overtime::wherein('user_id', $hrsubsets)->get();
+                return view('admin.allstaffovertimes.index', ['overtimes' => $hrovertimes]);
+            }            
+
+        }
     })->name('allstaffovertimes.index');
 
     Route::get('allstaffbalances', function () {
