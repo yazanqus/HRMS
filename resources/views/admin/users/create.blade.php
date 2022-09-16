@@ -96,6 +96,12 @@
                                             @endforeach
                                         </datalist>
                                      </div>
+                                     @php
+                                $authuser = Auth::user();
+                                @endphp
+                                    
+                                     @if ($authuser->office == "AO2")
+
                                           <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">HR admin <small>(Permission on HRMS)</small></label> <div class="form-check">
                                             <input  class="btn-check" type="radio" name="hradmin" Value="no" id="test1" checked>
                                             <label class="form-check-label" for="test1">
@@ -107,7 +113,10 @@
                                             <label class="form-check-label" for="test2">
                                               Admin
                                             </label>
-                                          </div> </div>
+                                          </div> 
+                                        </div>
+                                        @endif
+
                                       </div>
                                       <div class="row justify-content-between text-left">
                                           <div class="form-group col-sm-6 flex-column d-flex">

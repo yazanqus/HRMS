@@ -25,6 +25,8 @@
                                     $sus='2';
                                 }
                                 @endphp
+
+                                @if ($authuser->office == "AO2")
                                 {{-- @if ($authuser->id !== $userid) --}}
                                 @if ($userstatus == 'suspended')
 
@@ -39,6 +41,7 @@
                                     <i class="ml-2 fas fa-lg fa-minus-circle"></i>
                                 </a>
                                 @endif
+                                @endif
 
 
 
@@ -48,6 +51,8 @@
                     </div>
                 </div>
 
+                @if ($authuser->office == "AO2")
+                @if ($sus =='1')
                 <div class="col ml-3">
                     <div class="mr-2 text-right">
                         {{-- @foreach ($users as $user) --}}
@@ -63,7 +68,8 @@
                         {{-- @endforeach --}}
                     </div>
                 </div>
-
+                @endif
+@endif
 
 
 
