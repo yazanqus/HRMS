@@ -215,7 +215,7 @@ class LeaveController extends Controller
                             'body' => 'Access to HR System is now available'
                         ];
                        
-                        Mail::to($linemanageremail)->send(new MailLeave($details));
+                        Mail::to($linemanageremail)->later(5, new MailLeave($details));
 
                         
                     }
