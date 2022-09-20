@@ -207,7 +207,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Brand Logo -->
 <a href="{{ route('welcome') }}" class="text-center brand-link">
   {{-- <img src="{{ asset('adminlte') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
-  <span class="brand-text">HR</span> <span class="brand-text font-weight-light">Management</span>
+  <p class="h1 mb-0" style="font-size:2.3rem;"> <img class="mb-0 ml-0" src="{{url('/hr360-3-noBG2.png')}}"  alt="" style="width:130px;height:40px;"></p>
 </a>
 
 <!-- Sidebar -->
@@ -221,7 +221,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <a href="#" class="d-block">Alexander Pierce</a>
     </div>
   </div> --}}
-  <br>
+
 
   <!-- SidebarSearch Form -->
   {{-- <div class="form-inline">

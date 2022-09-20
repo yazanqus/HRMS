@@ -7,10 +7,10 @@
       <!-- /.login-logo -->
       <div class="card card-outline card-primary col-lg-4 col-md-6 col-sm-8 ml-2rem">
         <div class="card-header text-center">
-          <a href="#" class="h1" style="font-size:2.3rem;"><b>HR</b>Management</a>
+          <p class="h1 mb-0" style="font-size:2.3rem;"> <img class="mb-0 ml-0" src="{{url('/hr360-3-noBG.png')}}"  alt="" style=" width:150px;height:50px;"></p>
         </div>
         <div class="card-body text-center">
-          <p class="login-box-msg">Sign in to start your session</p>
+          <p class="login-box-msg pr-0 pb-3 pl-0">Sign in to start your session</p>
 
           <form action="{{ route('login') }}" method="post">
             @csrf
