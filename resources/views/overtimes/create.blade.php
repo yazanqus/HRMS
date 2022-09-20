@@ -58,13 +58,42 @@
                                               </div>
                                             </div>
 
-                                          <div class="form-group {{ $errors->has('date') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
+                                          <div class="form-group  {{ $errors->has('date') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex" >
                                               <label for="date" class="form-control-label required px-1" >Date</label>
-                                              <input id="date" name="date" type="date" autocomplete="off" class="form-control form-outline {{ $errors->has('date') ? ' is-invalid' : '' }}" />
+                                              <div class="input-group">
+                                              <input   onkeydown="event.preventDefault()" id="datepicker" name="date" type="text" autocomplete="off" class="form-control form-outline {{ $errors->has('date') ? ' is-invalid' : '' }}" />
+                                              <div class="input-group-append">
+                                                  <div class="input-group-text ">
+                                                    <i class="fas fa-calendar-alt"></i>
+                                                  </div>
+                                                </div>
+                                              </div>
                                               @if ($errors->has('date'))
                                                  <span id="date-error" class="error text-danger" for="input-date">{{ $errors->first('date') }}</span>
                                                 @endif
                                           </div>
+
+
+
+
+                                          <!-- <section class="container">
+  <h2 class="py-2">Datepicker in Bootstrap 5</h2>
+  <form class="row">
+    <label for="date" class="col-1 col-form-label">Date</label>
+    <div class="col-5">
+      <div class="input-group date" id="datepicker">
+        <input type="text" name="date" class="form-control" id="date"/>
+        <span class="input-group-append">
+          <span class="input-group-text bg-light d-block">
+            <i class="fa fa-calendar"></i>
+          </span>
+        </span>
+      </div>
+    </div>
+  </form>
+</section>                                           -->
+
+
 
                                           {{-- <div class="row justify-content-between text-left"> --}}
                                               <div class="form-group {{ $errors->has('start_hour') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
@@ -97,6 +126,7 @@
                                                 @endif
 
                                                   </div>
+                                                  
                                           {{-- </div> --}}
                                         </div>
                                         <br>
@@ -128,56 +158,71 @@
 
 @push('scripts')
 
-  <!-- DataTables  & Plugins -->
-{{--class="datepicker"
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script> -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+<script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"
+    ></script>
+<script>
 
-  {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script> --}}
 
-  {{-- <script>
+$(document).ready(function() {
 
-// $(document).ready(function() {
-
-//     // else if  (this.value == 'weekday')
-//     // {
-
-//     // }
-//   });
-// });
-
-$(document).ready(function(){
-$(".datepicker").datepicker("update", new Date());
-// $("input[type=radio][name=type]").change (function() {
-      var date_input=$('input[name="date"]'); //our date input has the name "date"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-
-// if  (this.value == 'weekday') {
-    var options={
-        format: 'yyyy/mm/dd',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-        weekStart: 0,
-    // daysOfWeekDisabled: "5,6",
-    // daysOfWeekHighlighted: "5,6"
-      };
-// }
-
-// else if (this.value == 'weekend')
-// {
-//     var options={
-//         format: 'dd/mm/yyyy',
-//         container: container,
-//         todayHighlight: true,
-//         autoclose: true,
-//         weekStart: 0,
-//     daysOfWeekDisabled: "0,1,2,3,4",
-//     daysOfWeekHighlighted: "0,1,2,3,4"
-//       };
-// }
-date_input.datepicker(options);
-
-    // });
+  $('#datepicker').datepicker({
+    // format: 'dd/mm/yyyy',
+    format: 'yyyy-mm-dd',
+    weekStart: 0,
+    clearBtn: true,
+    autoclose: true,
+    todayHighlight: true
+  });
+  
+$('input[type="radio"]').on('change',function(){
+    if ($(this).val() == 'weekday') {
+      $('#datepicker').datepicker({
+    // format: 'dd/mm/yyyy',
+    format: 'yyyy-mm-dd',
+    weekStart: 0,
+    clearBtn: true,
+    autoclose: true,
+    todayHighlight: true,
+daysOfWeekDisabled: "5,6"
+  });
+    }
+    if ($(this).val() == 'week-end') {
+      $('#datepicker').datepicker({
+    // format: 'dd/mm/yyyy',
+    format: 'yyyy-mm-dd',
+    weekStart: 1,
+    clearBtn: true,
+    autoclose: true,
+    todayHighlight: true,
+daysOfWeekDisabled: "5,6"
+  });
+    }
+    
+   if ($(this).val() == 'holiday') {
+      $('#datepicker').datepicker({
+    // format: 'dd/mm/yyyy',
+    format: 'yyyy-mm-dd',
+    weekStart: 2,
+    clearBtn: true,
+    autoclose: true,
+    todayHighlight: true,
+daysOfWeekDisabled: "5,6"
+  });
+    }
 });
-</script> --}}
+
+
+
+
+
+
+});
+
+    </script>
+
 @endpush
