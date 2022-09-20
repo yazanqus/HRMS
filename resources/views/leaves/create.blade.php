@@ -73,7 +73,7 @@
                                                @endif
                                                 </div>
                                             <div class="form-group  {{ $errors->has('end_date') ? ' has-danger' : '' }}  col-sm-6 flex-column d-flex">
-                                                <label class="form-control-label required px-1">End date <small>(Weekends won't be counted as leaves)</small></label>
+                                                <label class="form-control-label required px-1">End date</label>
                                                  <input class="form-control form-outline {{ $errors->has('end_date') ? ' is-invalid' : '' }}" type="date" name="end_date" id="end_date" placeholder="" >
                                                  @if ($errors->has('end_date'))
                                                  <span id="end_date-error" class="error text-danger" for="input-end_date">{{ $errors->first('end_date') }}</span>
@@ -120,6 +120,7 @@
                         </div>
                     </div>
                 </div>
+                <br>
                 <style>
                     .required:after {
                       content:" *";
