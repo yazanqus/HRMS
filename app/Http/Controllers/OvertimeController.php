@@ -48,7 +48,7 @@ class OvertimeController extends Controller
             'date' => 'required',
             'start_hour' => 'required',
             'end_hour' => 'required|after:start_hour',
-            'reason',
+            'reason' => 'required',
             'file' => 'nullable|mimes:jpeg,png,jpg,pdf|max:3072',
 
         ]);
@@ -75,6 +75,7 @@ class OvertimeController extends Controller
         $overtime->date = $request->date;
         $overtime->start_hour = $request->start_hour;
         $overtime->end_hour = $request->end_hour;
+        $overtime->reason = $request->reason;
         $overtime->hours = $last;
         if ($request->hasFile('file')) {
             $overtime->path = $path;

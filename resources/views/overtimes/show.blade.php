@@ -35,13 +35,13 @@
                                 <br>
                                 <strong>Overtime Date: </strong> {{$overtime->date}}
                                 <br>
-                                <strong>Overtime Start Date: </strong> {{$overtime->start_hour}}
+                                <strong>Overtime Start Hour: </strong> {{$overtime->start_hour}}
                                 <br>
-                                <strong>Overtime End Date: </strong> {{$overtime->end_hour}}
+                                <strong>Overtime End Hour: </strong> {{$overtime->end_hour}}
                               </div>
                               <div class="col">
 
-                                <strong>Overtime Days: </strong> {{$overtime->hours}}
+                                <strong>Overtime hours: </strong> {{$overtime->hours}}
                                   <br>
                                   <strong>Overtime Type: </strong> {{$overtime->type}}
                                   <br>
