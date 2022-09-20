@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
             'usertype_id' => '2',
             'position' => 'HR Manager',
             'office' => 'AO2',
-            'unit' => 'HR',
+            'department' => 'HR',
             'grade' => '9',
             'hradmin' => 'yes',
             'joined_date' => '2021-01-03',

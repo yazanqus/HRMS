@@ -82,10 +82,12 @@
                                                 @endif
                                                 </div>
                                                 {{-- new row --}}
-                                                <div class="form-group  col-sm-6 flex-column d-flex">
-                                                    <label class="form-control-label  px-1" >Reason/Comment<small>(Optional)</small></label>
-                                                    <input type="text" id="reason" autocomplete="off" name="reason" placeholder="" class="form-control form-outline " />
-
+                                                <div class="form-group {{ $errors->has('reason') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
+                                                    <label class="form-control-label required px-1" >Reason/Comment</label>
+                                                    <input type="text" id="reason" autocomplete="off" name="reason" placeholder="" class="form-control form-outline {{ $errors->has('reason') ? ' is-invalid' : '' }} " />
+                                                    @if ($errors->has('reason'))
+                                                 <span id="reason-error" class="error text-danger" for="input-reason">{{ $errors->first('reason') }}</span>
+                                                @endif
                                                 </div>
                                                   <div class="form-group {{ $errors->has('file') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
                                                       <label class="form-control-label  px-1" >Attachment <small>(Image or PDF - 3 MB Max)</small></label>
