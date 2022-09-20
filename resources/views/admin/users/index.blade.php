@@ -30,7 +30,7 @@
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
                                               <a class="dropdown-item" href="{{route('admin.users.export')}}">All Users </i></a>
-                                              <a class="dropdown-item" href="{{route('attendances.export')}}">All Attendances </i></a>
+                                              <!-- <a class="dropdown-item" href="{{route('attendances.export')}}">All Attendances </i></a> -->
                                             </div>
                                         </div>
 

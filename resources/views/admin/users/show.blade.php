@@ -106,6 +106,8 @@
                                 <br>
                                 <strong>Grade: </strong> {{$user->grade}}
                                 <br>
+                                <strong>Department: </strong> {{$user->department}}
+                                <br>
                                 <strong>Joined Date: </strong> {{$user->joined_date}}
                                 <br>
                               <strong>Line Manager: </strong> {{$user->linemanager}}

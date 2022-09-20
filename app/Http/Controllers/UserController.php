@@ -80,7 +80,7 @@ class UserController extends Controller
             'birth_date',
             'position',
             'grade',
-            // 'unit' => 'required',
+            'department',
             'joined_date' => 'required',
             'office' => 'required',
             'linemanager',
@@ -95,7 +95,7 @@ class UserController extends Controller
         $user->birth_date = $request->birth_date;
         $user->position = $request->position;
         $user->office = $request->office;
-        $user->unit = $request->unit;
+        $user->department = $request->department;
         $user->grade = $request->grade;
         $user->linemanager = $request->linemanager;
         $user->joined_date = $request->joined_date;
@@ -369,7 +369,7 @@ class UserController extends Controller
             'birth_date',
             'position',
             'office' => 'required',
-            // 'unit' => 'required',
+            'department',
             'grade',
             'joined_date' => 'required',
             'linemanager',
@@ -389,7 +389,7 @@ class UserController extends Controller
         $user->birth_date = $request->birth_date;
         $user->position = $request->position;
         $user->office = $request->office;
-        // $user->unit = $request->unit;
+        $user->department = $request->department;
         $user->grade = $request->grade;
         $user->linemanager = $request->linemanager;
         $user->joined_date = $request->joined_date;
