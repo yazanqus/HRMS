@@ -36,10 +36,10 @@
                                       <form action="{{ route('overtimes.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="row justify-content-between text-left">
-                                            <div class="form-group col-sm-6 flex-column d-flex">
+                                            <div id="type" class="form-group col-sm-6 flex-column d-flex">
                                                  <label class="form-control-label px-1">Overtime Type</label>
                                                  <div class="form-check">
-                                                <input  class="btn-check"  type="radio" name="type" id="weekday" Value="weekday" checked>
+                                                <input  class="btn-check"  type="radio" name="type" id="weekday" Value="weekday">
                                                 <label class="form-check-label" for="weekday">
                                                   Weekday <small>(Sun to Thu)</small>
                                                 </label>
@@ -61,7 +61,7 @@
                                           <div class="form-group  {{ $errors->has('date') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex" >
                                               <label for="date" class="form-control-label required px-1" >Date</label>
                                               <div class="input-group">
-                                              <input   onkeydown="event.preventDefault()" id="datepicker" name="date" type="text" autocomplete="off" class="form-control form-outline {{ $errors->has('date') ? ' is-invalid' : '' }}" />
+                                              <input   onkeydown="event.preventDefault()" id="datepicker" placeholder="Choose Overtime Type first" name="date" type="text" autocomplete="off" class="form-control form-outline {{ $errors->has('date') ? ' is-invalid' : '' }}" />
                                               <div class="input-group-append">
                                                   <div class="input-group-text ">
                                                     <i class="fas fa-calendar-alt"></i>
@@ -74,9 +74,7 @@
                                           </div>
 
 
-
-
-                                          <!-- <section class="container">
+<!-- <section class="container">
   <h2 class="py-2">Datepicker in Bootstrap 5</h2>
   <form class="row">
     <label for="date" class="col-1 col-form-label">Date</label>
@@ -91,7 +89,7 @@
       </div>
     </div>
   </form>
-</section>                                           -->
+</section> -->
 
 
 
@@ -171,19 +169,31 @@
 
 $(document).ready(function() {
 
-  $('#datepicker').datepicker({
-    // format: 'dd/mm/yyyy',
-    format: 'yyyy-mm-dd',
-    weekStart: 0,
-    clearBtn: true,
-    autoclose: true,
-    todayHighlight: true
-  });
+
+
+  // $("#type").click(function () {
+  //       // event.preventDefault();
+  //       $('#pass-start-date').datepicker("setDate", "+0");
+  //       $('#pass-end-date').datepicker("setDate", "+30");
+  //       $( "#ui-datepicker-div" ).hide(); // This line removes the date picker
+  //   });
+
+
+
+
+//   // $('#datepicker').datepicker({
+
+//   //   format: 'yyyy-mm-dd',
+//   //   weekStart: 0,
+//   //   clearBtn: true,
+//   //   autoclose: true,
+//   //   todayHighlight: true,
+//   //   daysOfWeekDisabled: "5,6"
+//   // });
   
-$('input[type="radio"]').on('change',function(){
-    if ($(this).val() == 'weekday') {
-      $('#datepicker').datepicker({
-    // format: 'dd/mm/yyyy',
+$('input:radio[name=type]').on('change',function(){
+    if (this.value == 'weekday') {
+      $('#datepicker').datepicker({ 
     format: 'yyyy-mm-dd',
     weekStart: 0,
     clearBtn: true,
@@ -192,34 +202,56 @@ $('input[type="radio"]').on('change',function(){
 daysOfWeekDisabled: "5,6"
   });
     }
-    if ($(this).val() == 'week-end') {
+   else if (this.value == 'week-end') {
       $('#datepicker').datepicker({
-    // format: 'dd/mm/yyyy',
-    format: 'yyyy-mm-dd',
-    weekStart: 1,
-    clearBtn: true,
-    autoclose: true,
-    todayHighlight: true,
-daysOfWeekDisabled: "5,6"
-  });
-    }
     
-   if ($(this).val() == 'holiday') {
-      $('#datepicker').datepicker({
-    // format: 'dd/mm/yyyy',
     format: 'yyyy-mm-dd',
-    weekStart: 2,
+    weekStart: 3,
     clearBtn: true,
     autoclose: true,
     todayHighlight: true,
 daysOfWeekDisabled: "5,6"
   });
     }
-});
+    else if (this.value == 'holiday')
+    {
+      $('#datepicker').datepicker({
+    format: 'yyyy-mm-dd',
+    weekStart: 5,
+    clearBtn: true,
+    autoclose: true,
+    todayHighlight: true,
+daysOfWeekDisabled: "5,6"
+  });
+    }
+
+  });
 
 
-
-
+// //     if ($(this).val() == 'week-end') {
+// //       $('#datepicker').datepicker({
+// //     // format: 'dd/mm/yyyy',
+// //     format: 'yyyy-mm-dd',
+// //     weekStart: 1,
+// //     clearBtn: true,
+// //     autoclose: true,
+// //     todayHighlight: true,
+// // daysOfWeekDisabled: "5,6"
+// //   });
+// //     }
+    
+// //    if ($(this).val() == 'holiday') {
+// //       $('#datepicker').datepicker({
+// //     // format: 'dd/mm/yyyy',
+// //     format: 'yyyy-mm-dd',
+// //     weekStart: 2,
+// //     clearBtn: true,
+// //     autoclose: true,
+// //     todayHighlight: true,
+// // daysOfWeekDisabled: "5,6"
+// //   });
+// //     }
+// });
 
 
 });

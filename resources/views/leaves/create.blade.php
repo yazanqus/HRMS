@@ -156,6 +156,7 @@ $('#leavetype_id').on('change',function(){
         $('#labelnumofdays').show();
     }
     if ($('#end_date').is('[readonly]')) {
+      //make the text in end_date the same as start_date
    var myInput = $('#start_date');
    myInput.change(function() {
        $('#end_date').val(myInput.val());
