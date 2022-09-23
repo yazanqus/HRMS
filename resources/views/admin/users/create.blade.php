@@ -147,6 +147,7 @@
                                        <br>
                                       <div class="row justify-content-center">
                                           <div class="form-group col-sm-3"> <button type="submit" class="btn bg-gradient-primary btn-block">Create</button> </div>
+                                          <div class="form-group col-sm-3"> <a class="btn btn-outline-danger" href="{{route('admin.users.index')}}" >Cancel</a> </div>
                                       </div>
                                   </form>
                                   </div>
