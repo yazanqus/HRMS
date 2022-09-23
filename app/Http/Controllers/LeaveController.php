@@ -147,6 +147,7 @@ class LeaveController extends Controller
         $interval = $end->diff($start);
 
         // total days
+        $sickpercentagedays = $interval->days;
         $days = $interval->days;
 
         // create an iterateable period of date (P1D equates to 1 day)
@@ -300,7 +301,7 @@ class LeaveController extends Controller
                     $leave->path = $path;
                 }
 
-                $leave->days = $days;
+                $leave->days = $sickpercentagedays;
                 $leave->leavetype_id = $request->leavetype_id;
                 $leave->user_id = auth()->user()->id;
                 if (!isset($user->linemanager)) {
@@ -349,7 +350,7 @@ class LeaveController extends Controller
                     $leave->path = $path;
                 }
 
-                $leave->days = $days;
+                $leave->days = $sickpercentagedays;
                 $leave->leavetype_id = $request->leavetype_id;
                 $leave->user_id = auth()->user()->id;
                 if (!isset($user->linemanager)) {

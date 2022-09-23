@@ -145,16 +145,32 @@
 
 <script>
 $(document).ready(function() {
+
+  var sickpercentage;
+
 $('#leavetype_id').on('change',function(){
-    if ($(this).val() == '13' || $(this).val() == '14' || $(this).val() == '16' || $(this).val() == '17' || $(this).val() == '19'  ) {
+
+  // $('#leavetype_id').prop("disabled", true); 
+  // $('#leavetype_id').prop('disabled', 'disabled');
+  $('.dropdown-toggle').prop('disabled', true);
+  
+  
+  if ($(this).val() == '3' || $(this).val() == '4')
+  {
+    sickpercentage = "yes";
+  }
+
+    else if ($(this).val() == '13' || $(this).val() == '14' || $(this).val() == '16' || $(this).val() == '17' || $(this).val() == '19'  ) {
         $('#end_date').prop('readonly',true);
         $('#numofdays').hide();
         $('#labelnumofdays').hide();
+        sickpercentage = "no";
     }
     else {
         $('#end_date').prop('readonly',false);
         $('#numofdays').show();
         $('#labelnumofdays').show();
+        sickpercentage = "no";
     }
     if ($('#end_date').is('[readonly]')) {
       //make the text in end_date the same as start_date
@@ -210,8 +226,17 @@ if (daa % 7) {
     }
   }
 }
-// if (days > 0) {
+
+if (sickpercentage == 'yes')
+{ 
+  $("#numofdays").val(daa);
+}
+  else {
     $("#numofdays").val(days);
+  }
+// if (days > 0) {
+    
+    
 //   } else {
 //     $("#numofdays").val(0);
 //   }
