@@ -40,19 +40,19 @@
                                                  <label class="form-control-label px-1">Overtime Type</label>
                                                  <div class="form-check">
                                                 <input  class="btn-check"  type="radio" name="type" id="weekday" Value="weekday">
-                                                <label class="form-check-label" for="weekday">
+                                                <label class="form-check-label" id="weekdaylabel" for="weekday">
                                                   Weekday <small>(Sun to Thu)</small>
                                                 </label>
                                               </div>
                                               <div class="form-check">
                                                 <input  class="btn-check" type="radio" name="type" id="weekend" Value="week-end"  >
-                                                <label class="form-check-label" for="weekend">
+                                                <label class="form-check-label" id="weekendlabel" for="weekend">
                                                   Week-end <small>(Fri or Sat)</small>
                                                 </label>
                                               </div>
                                               <div class="form-check">
                                                 <input  class="btn-check" type="radio" name="type" id="holiday" Value="holiday"  >
-                                                <label class="form-check-label" for="holiday">
+                                                <label class="form-check-label" id="holidaylabel" for="holiday">
                                                   Holiday
                                                 </label>
                                               </div>
@@ -156,7 +156,7 @@
 @endsection
 
 @push('scripts')
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script> -->
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
@@ -167,91 +167,63 @@
 <script>
 
 
+
 $(document).ready(function() {
 
-
-
-  // $("#type").click(function () {
-  //       // event.preventDefault();
-  //       $('#pass-start-date').datepicker("setDate", "+0");
-  //       $('#pass-end-date').datepicker("setDate", "+30");
-  //       $( "#ui-datepicker-div" ).hide(); // This line removes the date picker
-  //   });
-
-
-
-
-//   // $('#datepicker').datepicker({
-
-//   //   format: 'yyyy-mm-dd',
-//   //   weekStart: 0,
-//   //   clearBtn: true,
-//   //   autoclose: true,
-//   //   todayHighlight: true,
-//   //   daysOfWeekDisabled: "5,6"
-//   // });
   
-$('input:radio[name=type]').on('change',function(){
-    if (this.value == 'weekday') {
+
+ 
+
+var weekday;
+  
+$("input[name=type]:radio").change(function(){
+    if ($("#weekday").prop("checked")) {
+      $('#weekend').hide();
+      $('#weekendlabel').hide();
+      $('#holiday').hide();
+      $('#holidaylabel').hide();
+      weekday = "5,6";
       $('#datepicker').datepicker({ 
     format: 'yyyy-mm-dd',
     weekStart: 0,
     clearBtn: true,
     autoclose: true,
     todayHighlight: true,
-daysOfWeekDisabled: "5,6"
+daysOfWeekDisabled: weekday
   });
     }
-   else if (this.value == 'week-end') {
+   else if ($("#weekend").prop("checked")) {
+     weekday = "0,1,2,3,4";
+     $('#weekday').hide();
+      $('#weekdaylabel').hide();
+      $('#holiday').hide();
+      $('#holidaylabel').hide();
       $('#datepicker').datepicker({
-    
     format: 'yyyy-mm-dd',
-    weekStart: 3,
+    weekStart: 0,
     clearBtn: true,
     autoclose: true,
     todayHighlight: true,
-daysOfWeekDisabled: "5,6"
+daysOfWeekDisabled: weekday
   });
     }
-    else if (this.value == 'holiday')
+    else if ($("#holiday").prop("checked"))
     {
+      $('#weekday').hide();
+      $('#weekdaylabel').hide();
+      $('#weekend').hide();
+      $('#weekendlabel').hide();
       $('#datepicker').datepicker({
     format: 'yyyy-mm-dd',
-    weekStart: 5,
+    weekStart: 0,
     clearBtn: true,
     autoclose: true,
     todayHighlight: true,
-daysOfWeekDisabled: "5,6"
+
   });
     }
 
   });
-
-
-// //     if ($(this).val() == 'week-end') {
-// //       $('#datepicker').datepicker({
-// //     // format: 'dd/mm/yyyy',
-// //     format: 'yyyy-mm-dd',
-// //     weekStart: 1,
-// //     clearBtn: true,
-// //     autoclose: true,
-// //     todayHighlight: true,
-// // daysOfWeekDisabled: "5,6"
-// //   });
-// //     }
-    
-// //    if ($(this).val() == 'holiday') {
-// //       $('#datepicker').datepicker({
-// //     // format: 'dd/mm/yyyy',
-// //     format: 'yyyy-mm-dd',
-// //     weekStart: 2,
-// //     clearBtn: true,
-// //     autoclose: true,
-// //     todayHighlight: true,
-// // daysOfWeekDisabled: "5,6"
-// //   });
-// //     }
-// });
 
 
 });
