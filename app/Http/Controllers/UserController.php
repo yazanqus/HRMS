@@ -84,7 +84,7 @@ class UserController extends Controller
             'joined_date' => 'required',
             'office' => 'required',
             'linemanager',
-            'hradmin' => 'required',
+            'hradmin',
             'email',
             'password' => 'required',
         ]);

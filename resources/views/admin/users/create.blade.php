@@ -101,7 +101,7 @@
                                 $authuser = Auth::user();
                                 @endphp
                                     
-                                     @if ($authuser->office == "AO2")
+                                @if ($authuser->superadmin == "yes")
 
                                           <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">HR admin <small>(Permission on HRMS)</small></label> <div class="form-check">
                                             <input  class="btn-check" type="radio" name="hradmin" Value="no" id="test1" checked>

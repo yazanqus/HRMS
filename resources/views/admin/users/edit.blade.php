@@ -141,7 +141,7 @@
                                     }
                                             @endphp
 
-                                            @if ($user->office == "AO2")
+                                            @if ($user->superadmin == "yes")
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-1">Role <small>(Currently: {{$admin}})</small></label>
                                                 <div class="form-check">
