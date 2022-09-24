@@ -88,7 +88,7 @@ class LeaveController extends Controller
         }
 
         //balance of comp half day is from comp
-        elseif ($request->leavetype_id == '19') {
+        elseif ($request->leavetype_id == '18' || $request->leavetype_id == '19') {
 
             $balances = Balance::where('user_id', $user->id)->get();
             $subsets = $balances->map(function ($balance) {
@@ -690,6 +690,53 @@ class LeaveController extends Controller
                 }
 
                 $leave->days = '0.5';
+                $leave->leavetype_id = $request->leavetype_id;
+                $leave->user_id = auth()->user()->id;
+                if (!isset($user->linemanager)) {
+                    $leave->status = 'Pending HR Approval';
+
+                } else {
+
+                    $leave->status = 'Pending LM Approval';
+                    $linemanageremail = User::where('name',$user->linemanager)->value('email');
+
+                        // dd($linemanageremail);
+                        $details = [
+                            'requestername' => $user->name,
+                            'linemanagername' => $user->linemanager,
+                            'linemanageremail' => $linemanageremail,
+                            'title' => 'Leave Request Approval - Compensation Leave',
+                            'body' => 'Access to HR System is now available'
+                        ];
+                       
+                        Mail::to($linemanageremail)->send(new MailLeave($details));
+                }
+
+                $leave->save();
+
+                return redirect()->route('leaves.index');
+            } else {
+                return redirect()->back()->with("error", "Leave remaining balance is not enough");
+            }
+
+        }
+
+        elseif ($request->leavetype_id == '18') {
+
+            if ($comphalfleavebalance >= '0.5') {
+
+                if ($request->hasFile('file')) {
+                    $path = $request->file('file')->store('public/leaves');
+                }
+                $leave = new Leave();
+                $leave->start_date = $request->start_date;
+                $leave->end_date = $request->end_date;
+                $leave->reason = $request->reason;
+                if ($request->hasFile('file')) {
+                    $leave->path = $path;
+                }
+
+                $leave->days = $days;
                 $leave->leavetype_id = $request->leavetype_id;
                 $leave->user_id = auth()->user()->id;
                 if (!isset($user->linemanager)) {
