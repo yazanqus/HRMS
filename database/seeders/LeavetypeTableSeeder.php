@@ -156,8 +156,8 @@ class LeavetypeTableSeeder extends Seeder
 
         // id=19
         DB::table('leavetypes')->insert([
-            'name' => 'Compansetion - half day',
-            'value' => '100',
+            'name' => 'Compansetion - hours',
+            'value' => '0',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

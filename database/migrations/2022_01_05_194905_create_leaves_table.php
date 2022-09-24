@@ -19,6 +19,7 @@ class CreateLeavesTable extends Migration
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->string('days')->nullable();
+            $table->string('hours')->nullable();
             $table->string('reason')->nullable();
             $table->string('path')->nullable();
             $table->date('cancelled_date')->nullable();

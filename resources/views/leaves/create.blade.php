@@ -79,8 +79,34 @@
                                                  <span id="end_date-error" class="error text-danger" for="input-end_date">{{ $errors->first('end_date') }}</span>
                                                 @endif
                                                 </div>
-                                            {{-- <a href="#" id="output" class="btn btn-sm btn-primary"></a> --}}
 
+                                                <div class="form-group col-sm-4 flex-column d-flex">
+                                                    <label  id="hourslabel" class="form-control-label required px-1">Hours <small>(Between 1 and 7)</small></label>
+                                                    <span  id="minus" class="minus">-</span>
+                                                    <input  type="text" id="hours" name="hours" required readonly value="1"/>
+                                                    <span  class="plus" id="plus">+</span>
+                                                    
+                                                    <!-- <select
+                                                    class="form-control selectpicker" data-size="7" data-style="btn btn-outline-secondary"
+                                                    name="hours" id="hours" type="text"
+                                                    required>
+                                                   
+                                                        <option value="0.125"> 1 Hour </option>
+                                                        <option value="0.25"> 2 Hours </option>
+                                                        <option value="0.375"> 3 Hours </option>
+                                                        <option value="0.5"> 4 Hours </option>
+                                                        <option value="0.625"> 5 Hours </option>
+                                                        <option value="0.75"> 6 Hours </option>
+                                                        <option value="0.875"> 7 Hours </option>
+                                                    
+                                                </select> -->
+                                                </div>
+
+                                                <!-- <div class="number">
+                                                    
+                                                  </div> -->
+
+                                                
                                         </div>
 
                                         <div class="row justify-content-between text-left">
@@ -127,7 +153,27 @@
                       content:" *";
                       color: red;
                     }
+
+                    	span {cursor:pointer; }
+		.number{
+			margin:20px;
+		}
+		.minus, .plus{
+			width:40px;
+			height:20px;
+			background:#CFD1D4;
+			border-radius:4px;
+			padding:0px 0px 0px 0px;
+			border:0px solid #ddd;
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+		}
+		
+			
                   </style>
+
+                  
 
 
 
@@ -145,6 +191,10 @@
 
 <script>
 $(document).ready(function() {
+  $('#hourslabel').hide();
+        $('#hours').hide();
+        $('#minus').hide();
+        $('#plus').hide();
 
   var sickpercentage;
 
@@ -154,22 +204,40 @@ $('#leavetype_id').on('change',function(){
   // $('#leavetype_id').prop('disabled', 'disabled');
   $('.dropdown-toggle').prop('disabled', true);
   
+
   
   if ($(this).val() == '3' || $(this).val() == '4')
   {
     sickpercentage = "yes";
+    
+
   }
 
-    else if ($(this).val() == '13' || $(this).val() == '14' || $(this).val() == '16' || $(this).val() == '17' || $(this).val() == '19'  ) {
+    else if ($(this).val() == '13' || $(this).val() == '14' || $(this).val() == '16' || $(this).val() == '17' ) {
         $('#end_date').prop('readonly',true);
         $('#numofdays').hide();
         $('#labelnumofdays').hide();
         sickpercentage = "no";
     }
+//19 is the comensation hour leave
+    else if ($(this).val() == '19') {
+      $('#end_date').prop('readonly',true);
+        $('#numofdays').hide();
+        $('#labelnumofdays').hide();
+        sickpercentage = "no";
+        $('#hourslabel').show();
+        $('#hours').show();
+        $('#minus').show();
+        $('#plus').show();
+    }
     else {
         $('#end_date').prop('readonly',false);
         $('#numofdays').show();
         $('#labelnumofdays').show();
+        $('#hourslabel').hide();
+        $('#hours').hide();
+        $('#minus').hide();
+        $('#plus').hide();
         sickpercentage = "no";
     }
     if ($('#end_date').is('[readonly]')) {
@@ -260,7 +328,26 @@ if (sickpercentage == 'yes')
 });
 
 
-
+$('.minus').click(function () {
+				var $input = $(this).parent().find('input');
+				var count = parseInt($input.val()) - 1;
+				count = count < 1 ? 1 : count;
+				$input.val(count);
+				$input.change();
+				return false;
+			});
+			$('.plus').click(function () {
+				var $input = $(this).parent().find('input');
+				$input.val(parseInt($input.val()) + 1);
+        if ($input.val() == '8')
+        {
+          alert('Sorry, the maximum value was reached');
+          $("plus").prop('disabled', true);
+          $input.val(7);
+        }
+				$input.change();
+				return false;
+			});
 // function dateDifference(start, end) {
 
 // // Copy date objects so don't modify originals

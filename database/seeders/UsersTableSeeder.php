@@ -24,6 +24,7 @@ class UsersTableSeeder extends Seeder
             'department' => 'HR',
             'grade' => '9',
             'hradmin' => 'yes',
+            'superadmin' => 'yes',
             'joined_date' => '2021-01-03',
             'email' => 'Hr.test@nrc.no',
             'email_verified_at' => now(),

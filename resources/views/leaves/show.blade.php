@@ -41,6 +41,8 @@
 
                                 <strong>Leave Days: </strong> {{$leave->days}}
                                   <br>
+                                  <strong>Leave Hours: </strong> {{$leave->hours}}
+                                  <br>
                                   <strong>Leave Type: </strong> {{$leave->leavetype->name}}
                                   <br>
                                   <strong>Leave Creation Date: </strong> {{$leave->created_at}}

@@ -119,9 +119,12 @@ class LeaveController extends Controller
             'end_date' => 'required|after_or_equal:start_date',
             'leavetype_id' => 'required',
             'reason',
+            'hours',
             'file' => 'nullable|mimes:jpeg,png,jpg,pdf|max:3072',
         ]);
 
+        $hours = $request->hours ;
+        
         $fdate = $request->start_date;
         $ldate = $request->end_date;
         // $datetime1 = new DateTime($fdate);
@@ -172,6 +175,8 @@ class LeaveController extends Controller
         $dateenow = new DateTime($datenow);
         $intervall = $joineddate->diff($dateenow);
         $probationdays = $intervall->format('%a');
+
+    
 
         // Annual leave conditions
         if ($request->leavetype_id == '1') {
@@ -673,10 +678,10 @@ class LeaveController extends Controller
             }
         }
 
-        // comp leave halfday coditions
+        // comp leave hours coditions
         elseif ($request->leavetype_id == '19') {
 
-            if ($comphalfleavebalance >= '0.5') {
+            if ($comphalfleavebalance >= '0.125') {
 
                 if ($request->hasFile('file')) {
                     $path = $request->file('file')->store('public/leaves');
@@ -689,7 +694,7 @@ class LeaveController extends Controller
                     $leave->path = $path;
                 }
 
-                $leave->days = '0.5';
+                $leave->hours = $hours;
                 $leave->leavetype_id = $request->leavetype_id;
                 $leave->user_id = auth()->user()->id;
                 if (!isset($user->linemanager)) {
@@ -720,10 +725,10 @@ class LeaveController extends Controller
             }
 
         }
-
+//compensation full day
         elseif ($request->leavetype_id == '18') {
 
-            if ($comphalfleavebalance >= '0.5') {
+            if ($comphalfleavebalance >= '1') {
 
                 if ($request->hasFile('file')) {
                     $path = $request->file('file')->store('public/leaves');
@@ -1193,7 +1198,7 @@ class LeaveController extends Controller
             $finalfinal = $final['value'];
             $currentbalanceforannual = $finalfinal;
 
-            $newbalance = $currentbalanceforannual - $leave->days;
+            $newbalance = $currentbalanceforannual - ($leave->hours / 8);
 
             Balance::where([
                 ['user_id', $leave->user->id],
