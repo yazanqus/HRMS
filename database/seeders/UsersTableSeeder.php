@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'HR Test',
             'birth_date' => '2022-01-01',
             'employee_number' => '1001',
+            'contract' => 'Regular',
             'usertype_id' => '2',
             'position' => 'HR Manager',
             'office' => 'AO2',

@@ -40,9 +40,22 @@ class LeaveController extends Controller
      */
     public function create()
     {
-        $leavetypes = Leavetype::all();
 
-        return view('leaves.create', ['leavetypes' => $leavetypes]);
+        $user = Auth::user();
+        $leavesIds = [1,13,14,15,16,17];
+        if ($user->contract == "Service")
+        {
+            $leavetypes = Leavetype::whereIn('id', $leavesIds)->get();
+            return view('leaves.create', ['leavetypes' => $leavetypes]);
+
+        }
+
+        else
+        {
+            
+            $leavetypes = Leavetype::all();
+            return view('leaves.create', ['leavetypes' => $leavetypes]);
+        }
     }
 
     /**

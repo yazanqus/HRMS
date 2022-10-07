@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->date('birth_date')->nullable();
             $table->string('employee_number')->unique()->nullable();
+            $table->string('contract')->nullable();
             $table->string('position')->nullable();
             $table->string('office')->nullable();
             $table->string('department')->nullable();

@@ -91,7 +91,14 @@ class OvertimeController extends Controller
         }
         if ($overtime->type == 'weekday') {
             $overtime->value = $last * 1.5;
-        } else {
+        }
+        
+        else if ($overtime->type == 'SC-overtime')
+        {
+            $overtime->value = $last * 1;
+        }
+        //holiday and weekends overtimes:
+        else {
             $overtime->value = $last * 2;
         }
 

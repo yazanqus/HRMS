@@ -36,8 +36,33 @@
                                       <form action="{{ route('overtimes.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="row justify-content-between text-left">
-                                            <div id="type" class="form-group col-sm-6 flex-column d-flex">
-                                                 <label class="form-control-label px-1">Overtime Type</label>
+                                        <div id="type" class="form-group col-sm-6 flex-column d-flex">
+                                        <label class="form-control-label px-1">Overtime Type</label>
+                                        @php
+                                        $user = Auth::user();
+                                        if($user->contract == "Service")
+                                        {
+                                          $contract='service';
+                                        }
+                                        else
+                                        {
+                                          $contract='notservice';
+                                        }
+
+                                        @endphp
+                                        @if ($contract=='service')
+                                        <div class="form-check">
+                                                <input  class="btn-check" type="radio" name="type" id="holiday" Value="SC-overtime"  >
+                                                <label class="form-check-label" id="holidaylabel" for="holiday">
+                                                  Service Contract Overtime
+                                                </label>
+                                              </div>
+                                        @endif
+                                        @if ($contract=='notservice')
+                                          
+                                        
+                                            
+                                                 
                                                  <div class="form-check">
                                                 <input  class="btn-check"  type="radio" name="type" id="weekday" Value="weekday">
                                                 <label class="form-check-label" id="weekdaylabel" for="weekday">
@@ -56,6 +81,7 @@
                                                   Holiday
                                                 </label>
                                               </div>
+                                              @endif
                                             </div>
 
                                           <div class="form-group  {{ $errors->has('date') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex" >

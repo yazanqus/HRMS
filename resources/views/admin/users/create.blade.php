@@ -100,10 +100,8 @@
                                      @php
                                 $authuser = Auth::user();
                                 @endphp
-                                    
                                 @if ($authuser->superadmin == "yes")
-
-                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">HR admin <small>(Permission on HRMS)</small></label> <div class="form-check">
+                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label  px-1">HR admin <small>(Permission on HRMS)</small></label> <div class="form-check">
                                             <input  class="btn-check" type="radio" name="hradmin" Value="no" id="test1" checked>
                                             <label class="form-check-label" for="test1">
                                               Not Admin
@@ -117,6 +115,26 @@
                                           </div> 
                                         </div>
                                         @endif
+
+                                        <div class="form-group {{ $errors->has('contract') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex"> <label class="form-control-label required px-1">Contract Type</label> <div class="form-check">
+                                            <input  class="btn-check" type="radio" name="contract" Value="Regular" id="regular" @if (old('contract') == "Regular") {{ 'checked' }} @endif>
+                                            <label class="form-check-label" for="regular">
+                                              Regular Contract
+                                            </label>
+                                          </div>
+                                          <div class="form-check">
+                                            <input  class="btn-check" type="radio" name="contract" Value="Service" id="sc" @if (old('contract') == "Service") {{ 'checked' }} @endif>
+                                            <label class="form-check-label" for="sc">
+                                              Service Contract
+                                            </label>
+                                          </div> 
+                                          <div class="form-check">
+                                            <input  class="btn-check" type="radio" name="contract" Value="NA" id="na" @if (old('contract') == "NA") {{ 'checked' }} @endif>
+                                            <label class="form-check-label" for="na">
+                                              Not Available
+                                            </label>
+                                          </div> 
+                                        </div>
 
                                       </div>
                                       <div class="row justify-content-between text-left">

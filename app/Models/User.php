@@ -50,6 +50,7 @@ class User extends Authenticatable
         'department',
         'position',
         'employee_number',
+        'contract',
         'joined_date',
         'email',
         'grade',

@@ -77,6 +77,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'employee_number' => 'required|unique:users,employee_number',
+            'contract',
             'birth_date',
             'position',
             'grade',
@@ -92,6 +93,7 @@ class UserController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->employee_number = $request->employee_number;
+        $user->contract = $request->contract;
         $user->birth_date = $request->birth_date;
         $user->position = $request->position;
         $user->office = $request->office;
@@ -114,16 +116,35 @@ class UserController extends Controller
         $datenow = Carbon::now();
         $yearnow = $datenow->year;
 
-        if ($year < $yearnow) {
-            $userannualleavebalance = '15';
-        } else {
-
-            if ($day < '15') {
-                $userannualleavebalance = (1.25 * (12 - $month + 1));
+        if ($user->contract == "Service")
+        {
+            if ($year < $yearnow) {
+                $userannualleavebalance = '21';
+            } else {
+    
+                if ($day < '15') {
+                    $userannualleavebalance = (1.75 * (12 - $month + 1));
+                }
+    
+                if ($day >= '15') {
+                    $userannualleavebalance = ((1.75 * (12 - $month)) + 0.5);
+                }
             }
+        }
 
-            if ($day >= '15') {
-                $userannualleavebalance = ((1.25 * (12 - $month)) + 0.5);
+        else{
+
+            if ($year < $yearnow) {
+                $userannualleavebalance = '15';
+            } else {
+    
+                if ($day < '15') {
+                    $userannualleavebalance = (1.25 * (12 - $month + 1));
+                }
+    
+                if ($day >= '15') {
+                    $userannualleavebalance = ((1.25 * (12 - $month)) + 0.5);
+                }
             }
         }
 
@@ -167,7 +188,7 @@ class UserController extends Controller
         $setlinemenager = $request->linemanager;
         DB::table('users')->where('name', $setlinemenager)->update(['usertype_id' => '2']);
 
-        //-------------- start of attendance creation ------------
+        //-------------- start of attendance creation - commented for prod lunch of HR leave manamgenet ------------
         // $AttendstartDate = $request->joined_date;
         // $AttendendDate = '2022-12-31';
         // $period = CarbonPeriod::create($AttendstartDate, $AttendendDate);
@@ -366,6 +387,7 @@ class UserController extends Controller
             'name' => 'required',
             'employee_number' => 'required|unique:users,employee_number,' . $user->id,
             // 'employee_number' => 'required',
+            'contract',
             'birth_date',
             'position',
             'office' => 'required',
@@ -387,6 +409,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->employee_number = $request->employee_number;
         $user->birth_date = $request->birth_date;
+        $user->contract = $request->contract;
         $user->position = $request->position;
         $user->office = $request->office;
         $user->department = $request->department;
@@ -419,21 +442,46 @@ class UserController extends Controller
             $yearnoww = $datenoww->year;
             // dd($yearnoww);
 
-            if ($yearr < $yearnoww) {
-                $userannualleavebalancee = '15';
-            } else {
 
-                if ($dayy < '15') {
-
-                    $userannualleavebalancee = (1.25 * (12 - $monthh + 1));
-
-                }
-
-                if ($dayy >= '15') {
-                    $userannualleavebalancee = ((1.25 * (12 - $monthh)) + 0.5);
+            if ($user->contract == "Service")
+            {
+                if ($yearr < $yearnoww) {
+                    $userannualleavebalancee = '21';
+                } else {
+    
+                    if ($dayy < '15') {
+    
+                        $userannualleavebalancee = (1.75 * (12 - $monthh + 1));
+    
+                    }
+    
+                    if ($dayy >= '15') {
+                        $userannualleavebalancee = ((1.75 * (12 - $monthh)) + 0.5);
+                    }
                 }
             }
 
+            else
+            {
+                if ($yearr < $yearnoww) {
+                    $userannualleavebalancee = '15';
+                } else {
+    
+                    if ($dayy < '15') {
+    
+                        $userannualleavebalancee = (1.25 * (12 - $monthh + 1));
+    
+                    }
+    
+                    if ($dayy >= '15') {
+                        $userannualleavebalancee = ((1.25 * (12 - $monthh)) + 0.5);
+                    }
+                }
+    
+            }
+            
+
+           
             $annualleavehalfdayy = $userannualleavebalancee * 2;
 
             // dd($userannualleavebalancee);

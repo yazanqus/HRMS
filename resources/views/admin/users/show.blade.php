@@ -98,6 +98,8 @@
                                 <br>
                                 <strong>Employee ID: </strong> {{$user->employee_number}}
                                 <br>
+                                <strong>Contract Type: </strong> {{$user->contract}}
+                                <br>
                                 <strong>Office: </strong> {{$user->office}}
                                 
                               </div>
