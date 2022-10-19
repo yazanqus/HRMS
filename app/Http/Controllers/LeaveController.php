@@ -198,6 +198,24 @@ class LeaveController extends Controller
 
                 if ($days <= $currentbalance) {
 
+
+                    $leavessubmitted = Leave::where([
+                        ['user_id', $user->id],
+                        ['leavetype_id', $request->leavetype_id],
+                        ['start_date', $request->start_date],
+                        ])->get();
+
+                    $counted = count($leavessubmitted);
+
+
+                    if($counted > 0)
+                    {
+                        return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                    }
+
+                    else
+                    {                    
+                        
                     if ($request->hasFile('file')) {
                         $path = $request->file('file')->store('public/leaves');
                     }
@@ -214,9 +232,6 @@ class LeaveController extends Controller
                     $leave->user_id = auth()->user()->id;
                     if (!isset($user->linemanager)) {
                         $leave->status = 'Pending HR Approval';
-
-
-
 
                     } else {
 
@@ -240,10 +255,11 @@ class LeaveController extends Controller
                     }
 
                     $leave->save();
-                    // $user->notify(new EmailNotification($leave));
-                    
-
                     return redirect()->route('leaves.index');
+
+                    }
+  
+
                 } else {
                     return redirect()->back()->with("error", "Leave remaining balance is not enough");
                 }
@@ -262,6 +278,29 @@ class LeaveController extends Controller
                 if ($days > '1' and $request->hasFile('file') == null) {
                     return redirect()->back()->with("error", "Attachement is missing");
                 }
+
+
+
+                $leavessubmitted = Leave::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', $request->leavetype_id],
+                    ['start_date', $request->start_date],
+                    ])->get();
+
+                $counted = count($leavessubmitted);
+
+
+                if($counted > 0)
+                {
+                    return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                }
+
+
+                else
+
+                {
+
+                
                 $leave = new Leave();
                 $leave->start_date = $request->start_date;
                 $leave->end_date = $request->end_date;
@@ -297,6 +336,8 @@ class LeaveController extends Controller
                 // $user->notify(new EmailNotification($leave));
 
                 return redirect()->route('leaves.index');
+            }
+
             } else {
                 return redirect()->back()->with("error", "Leave remaining balance is not enough");
             }
@@ -311,6 +352,26 @@ class LeaveController extends Controller
                 } else {
                     return redirect()->back()->with("error", "Attachement is missing");
                 }
+
+
+                $leavessubmitted = Leave::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', $request->leavetype_id],
+                    ['start_date', $request->start_date],
+                    ])->get();
+
+                $counted = count($leavessubmitted);
+
+                if($counted > 0)
+                {
+                    return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                }
+
+
+                else
+                {
+
+                
                 $leave = new Leave();
                 $leave->start_date = $request->start_date;
                 $leave->end_date = $request->end_date;
@@ -346,6 +407,9 @@ class LeaveController extends Controller
                 // $user->notify(new EmailNotification($leave));
 
                 return redirect()->route('leaves.index');
+
+            }
+
             } else {
                 return redirect()->back()->with("error", "Leave remaining balance is not enough");
             }
@@ -360,6 +424,26 @@ class LeaveController extends Controller
                 } else {
                     return redirect()->back()->with("error", "Attachement is missing");
                 }
+
+                $leavessubmitted = Leave::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', $request->leavetype_id],
+                    ['start_date', $request->start_date],
+                    ])->get();
+
+                $counted = count($leavessubmitted);
+
+
+                if($counted > 0)
+                {
+                    return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                }
+
+
+                else
+                {
+
+                
                 $leave = new Leave();
                 $leave->start_date = $request->start_date;
                 $leave->end_date = $request->end_date;
@@ -395,6 +479,8 @@ class LeaveController extends Controller
                 // $user->notify(new EmailNotification($leave));
 
                 return redirect()->route('leaves.index');
+
+            }
             } else {
                 return redirect()->back()->with("error", "Leave remaining balance is not enough");
             }
@@ -410,6 +496,27 @@ class LeaveController extends Controller
                     if ($request->hasFile('file')) {
                         $path = $request->file('file')->store('public/leaves');
                     }
+
+
+                    $leavessubmitted = Leave::where([
+                        ['user_id', $user->id],
+                        ['leavetype_id', $request->leavetype_id],
+                        ['start_date', $request->start_date],
+                        ])->get();
+    
+                    $counted = count($leavessubmitted);
+    
+    
+                    if($counted > 0)
+                    {
+                        return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                    }
+
+                    else
+
+                    {
+
+                    
                     $leave = new Leave();
                     $leave->start_date = $request->start_date;
                     $leave->end_date = $request->end_date;
@@ -444,6 +551,8 @@ class LeaveController extends Controller
                     $leave->save();
 
                     return redirect()->route('leaves.index');
+
+                    }
                 } else {
                     return redirect()->back()->with("error", "Leave remaining balance is not enough");
                 }
@@ -463,6 +572,30 @@ class LeaveController extends Controller
                     if ($request->hasFile('file')) {
                         $path = $request->file('file')->store('public/leaves');
                     }
+
+
+                    $leavessubmitted = Leave::where([
+                        ['user_id', $user->id],
+                        ['leavetype_id', $request->leavetype_id],
+                        ['start_date', $request->start_date],
+                        ])->get();
+    
+                    $counted = count($leavessubmitted);
+    
+    
+                    if($counted > 0)
+                    {
+                        return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                    }
+
+
+
+                    else
+
+                    {
+                    
+
+
                     $leave = new Leave();
                     $leave->start_date = $request->start_date;
                     $leave->end_date = $request->end_date;
@@ -497,6 +630,7 @@ class LeaveController extends Controller
                     $leave->save();
 
                     return redirect()->route('leaves.index');
+                }
                 } else {
                     return redirect()->back()->with("error", "Leave remaining balance is not enough");
                 }
@@ -515,6 +649,29 @@ class LeaveController extends Controller
                     if ($request->hasFile('file')) {
                         $path = $request->file('file')->store('public/leaves');
                     }
+
+
+                    $leavessubmitted = Leave::where([
+                        ['user_id', $user->id],
+                        ['leavetype_id', $request->leavetype_id],
+                        ['start_date', $request->start_date],
+                        ])->get();
+    
+                    $counted = count($leavessubmitted);
+    
+    
+                    if($counted > 0)
+                    {
+                        return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                    }
+
+
+                    else
+
+                    {
+
+
+                    
                     $leave = new Leave();
                     $leave->start_date = $request->start_date;
                     $leave->end_date = $request->end_date;
@@ -537,6 +694,7 @@ class LeaveController extends Controller
                     $leave->save();
 
                     return redirect()->route('leaves.index');
+                }
                 } else {
                     return redirect()->back()->with("error", "Leave remaining balance is not enough");
                 }
@@ -555,6 +713,31 @@ class LeaveController extends Controller
                     if ($request->hasFile('file')) {
                         $path = $request->file('file')->store('public/leaves');
                     }
+
+
+
+
+                    
+                    $leavessubmitted = Leave::where([
+                        ['user_id', $user->id],
+                        ['leavetype_id', $request->leavetype_id],
+                        ['start_date', $request->start_date],
+                        ])->get();
+    
+                    $counted = count($leavessubmitted);
+    
+    
+                    if($counted > 0)
+                    {
+                        return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                    }
+
+                    else
+
+                    {
+
+
+                    
                     $leave = new Leave();
                     $leave->start_date = $request->start_date;
                     $leave->end_date = $request->end_date;
@@ -577,6 +760,8 @@ class LeaveController extends Controller
                     $leave->save();
 
                     return redirect()->route('leaves.index');
+
+                }
                 } else {
                     return redirect()->back()->with("error", "Leave remaining balance is not enough");
                 }
@@ -594,6 +779,28 @@ class LeaveController extends Controller
                     if ($request->hasFile('file')) {
                         $path = $request->file('file')->store('public/leaves');
                     }
+
+
+                    $leavessubmitted = Leave::where([
+                        ['user_id', $user->id],
+                        ['leavetype_id', $request->leavetype_id],
+                        ['start_date', $request->start_date],
+                        ])->get();
+    
+                    $counted = count($leavessubmitted);
+    
+    
+                    if($counted > 0)
+                    {
+                        return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                    }
+
+                    else
+
+                    {
+
+
+                    
                     $leave = new Leave();
                     $leave->start_date = $request->start_date;
                     $leave->end_date = $request->end_date;
@@ -628,6 +835,7 @@ class LeaveController extends Controller
                     $leave->save();
 
                     return redirect()->route('leaves.index');
+                }
 
                 } else {
                     return redirect()->back()->with("error", "Can't submit more than 3 days leave of this type");
@@ -648,6 +856,29 @@ class LeaveController extends Controller
                     if ($request->hasFile('file')) {
                         $path = $request->file('file')->store('public/leaves');
                     }
+
+
+                    $leavessubmitted = Leave::where([
+                        ['user_id', $user->id],
+                        ['leavetype_id', $request->leavetype_id],
+                        ['start_date', $request->start_date],
+                        ])->get();
+    
+                    $counted = count($leavessubmitted);
+    
+    
+                    if($counted > 0)
+                    {
+                        return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                    }
+
+                    else
+
+                    {
+
+
+                    
+
                     $leave = new Leave();
                     $leave->start_date = $request->start_date;
                     $leave->end_date = $request->end_date;
@@ -683,6 +914,8 @@ class LeaveController extends Controller
                     $leave->save();
 
                     return redirect()->route('leaves.index');
+
+                }
                 } else {
                     return redirect()->back()->with("error", "Leave remaining balance is not enough");
                 }
@@ -746,6 +979,28 @@ class LeaveController extends Controller
                 if ($request->hasFile('file')) {
                     $path = $request->file('file')->store('public/leaves');
                 }
+
+                $leavessubmitted = Leave::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', $request->leavetype_id],
+                    ['start_date', $request->start_date],
+                    ])->get();
+
+                $counted = count($leavessubmitted);
+
+
+                if($counted > 0)
+                {
+                    return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                }
+
+
+                else
+
+                {
+
+
+                
                 $leave = new Leave();
                 $leave->start_date = $request->start_date;
                 $leave->end_date = $request->end_date;
@@ -780,6 +1035,7 @@ class LeaveController extends Controller
                 $leave->save();
 
                 return redirect()->route('leaves.index');
+            }
             } else {
                 return redirect()->back()->with("error", "Leave remaining balance is not enough");
             }
@@ -796,6 +1052,26 @@ class LeaveController extends Controller
                     if ($request->hasFile('file')) {
                         $path = $request->file('file')->store('public/leaves');
                     }
+
+                    $leavessubmitted = Leave::where([
+                        ['user_id', $user->id],
+                        ['leavetype_id', $request->leavetype_id],
+                        ['start_date', $request->start_date],
+                        ])->get();
+    
+                    $counted = count($leavessubmitted);
+    
+    
+                    if($counted > 0)
+                    {
+                        return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                    }
+
+                    else
+                    {
+
+
+                  
                     $leave = new Leave();
                     $leave->start_date = $request->start_date;
                     $leave->end_date = $request->end_date;
@@ -831,6 +1107,8 @@ class LeaveController extends Controller
                     $leave->save();
 
                     return redirect()->route('leaves.index');
+
+                }
                 } else {
                     return redirect()->back()->with("error", "Leave remaining balance is not enough");
                 }
@@ -850,6 +1128,26 @@ class LeaveController extends Controller
                     if ($request->hasFile('file')) {
                         $path = $request->file('file')->store('public/leaves');
                     }
+
+                    $leavessubmitted = Leave::where([
+                        ['user_id', $user->id],
+                        ['leavetype_id', $request->leavetype_id],
+                        ['start_date', $request->start_date],
+                        ])->get();
+    
+                    $counted = count($leavessubmitted);
+    
+    
+                    if($counted > 0)
+                    {
+                        return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                    }
+
+                    else
+                    {
+
+
+                    
                     $leave = new Leave();
                     $leave->start_date = $request->start_date;
                     $leave->end_date = $request->end_date;
@@ -885,6 +1183,8 @@ class LeaveController extends Controller
                     $leave->save();
 
                     return redirect()->route('leaves.index');
+
+                }
                 } else {
                     return redirect()->back()->with("error", "Leave remaining balance is not enough");
                 }
@@ -901,6 +1201,31 @@ class LeaveController extends Controller
                 if ($request->hasFile('file')) {
                     $path = $request->file('file')->store('public/leaves');
                 }
+
+
+                
+                $leavessubmitted = Leave::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', $request->leavetype_id],
+                    ['start_date', $request->start_date],
+                    ])->get();
+
+                $counted = count($leavessubmitted);
+
+
+                if($counted > 0)
+                {
+                    return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                }
+
+
+                else
+
+                {
+
+
+                
+
                 $leave = new Leave();
                 $leave->start_date = $request->start_date;
                 $leave->end_date = $request->end_date;
@@ -936,6 +1261,7 @@ class LeaveController extends Controller
                 $leave->save();
 
                 return redirect()->route('leaves.index');
+            }
             } else {
                 return redirect()->back()->with("error", "Can't submit more than 5 days leave of this type");
             }
@@ -950,6 +1276,28 @@ class LeaveController extends Controller
                 if ($request->hasFile('file')) {
                     $path = $request->file('file')->store('public/leaves');
                 }
+
+
+                $leavessubmitted = Leave::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', $request->leavetype_id],
+                    ['start_date', $request->start_date],
+                    ])->get();
+
+                $counted = count($leavessubmitted);
+
+
+                if($counted > 0)
+                {
+                    return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                }
+                
+
+                else
+                {
+
+
+                
                 $leave = new Leave();
                 $leave->start_date = $request->start_date;
                 $leave->end_date = $request->end_date;
@@ -985,6 +1333,7 @@ class LeaveController extends Controller
                 $leave->save();
 
                 return redirect()->route('leaves.index');
+            }
             } else {
                 return redirect()->back()->with("error", "Can't submit more than 3 days leave of this type");
             }
@@ -993,6 +1342,27 @@ class LeaveController extends Controller
             if ($request->hasFile('file')) {
                 $path = $request->file('file')->store('public/leaves');
             }
+
+            
+            $leavessubmitted = Leave::where([
+                ['user_id', $user->id],
+                ['leavetype_id', $request->leavetype_id],
+                ['start_date', $request->start_date],
+                ])->get();
+
+            $counted = count($leavessubmitted);
+
+
+            if($counted > 0)
+            {
+                return redirect()->back()->with("error", "You have already submitted a leave on this day");
+            }
+
+            else
+            {
+
+            
+
             $leave = new Leave();
             $leave->start_date = $request->start_date;
             $leave->end_date = $request->end_date;
@@ -1034,6 +1404,7 @@ class LeaveController extends Controller
             // });
 
             return redirect()->route('leaves.index');
+        }
         }
 
     }
