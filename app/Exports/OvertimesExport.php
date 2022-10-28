@@ -3,6 +3,8 @@
 namespace App\Exports;
 
 use App\Models\Overtime;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -14,7 +16,25 @@ class OvertimesExport implements FromCollection, WithHeadings, WithMapping
      */
     public function collection()
     {
-        return Overtime::all();
+
+        $hruser = Auth::user();
+        if ($hruser->office == "AO2")
+        {
+            return Overtime::all();
+
+        }
+        else
+        $staffwithsameoffice = User::where('office',$hruser->office)->get();
+            if (count($staffwithsameoffice))
+            {
+                $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
+                    return collect($staffwithsameoffice->toArray())
+                        ->only(['id'])
+                        ->all();
+                });
+                return Overtime::wherein('user_id', $hrsubsets)->get(); 
+    
+    }
     }
 
     public function headings(): array
@@ -22,6 +42,7 @@ class OvertimesExport implements FromCollection, WithHeadings, WithMapping
         return [
             'Overtime ID',
             'Requester',
+            'Office',
             'Overtime Type',
             'Date',
             'Start Hour',
@@ -39,6 +60,7 @@ class OvertimesExport implements FromCollection, WithHeadings, WithMapping
         return [
             $overtime->id,
             $overtime->user->name,
+            $overtime->user->office,
             $overtime->type,
             $overtime->date,
             $overtime->start_hour,

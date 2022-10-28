@@ -3,6 +3,8 @@
 namespace App\Exports;
 
 use App\Models\Leave;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -29,9 +31,25 @@ class LeavesExport implements FromCollection, WithHeadings, WithMapping
     }
     public function collection()
     {
-        return Leave::all();
-    }
+        $hruser = Auth::user();
+        if ($hruser->office == "AO2")
+        {
+            return Leave::all();
 
+        }
+        else
+        $staffwithsameoffice = User::where('office',$hruser->office)->get();
+            if (count($staffwithsameoffice))
+            {
+                $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
+                    return collect($staffwithsameoffice->toArray())
+                        ->only(['id'])
+                        ->all();
+                });
+                return Leave::wherein('user_id', $hrsubsets)->get(); 
+    
+    }
+    }
     public function map($leave): array
     {
         return [

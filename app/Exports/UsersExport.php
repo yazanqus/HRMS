@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -14,9 +15,24 @@ class UsersExport implements FromCollection, WithHeadings, WithMapping
      */
     public function collection()
     {
+        $hruser = Auth::user();
+        if ($hruser->office == "AO2")
+        {
+            return User::all();
 
-        return User::all();
+        }
+        else
+        $staffwithsameoffice = User::where('office',$hruser->office)->get();
+            if (count($staffwithsameoffice))
+            {
+                $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
+                    return collect($staffwithsameoffice->toArray())
+                        ->only(['id'])
+                        ->all();
+                });
+                return User::wherein('id', $hrsubsets)->get(); 
     }
+}
 
     public function map($user): array
     {
@@ -25,6 +41,7 @@ class UsersExport implements FromCollection, WithHeadings, WithMapping
             $user->name,
             $user->birth_date,
             $user->employee_number,
+            $user->office,
             $user->position,
             $user->department,
             $user->grade,
@@ -44,6 +61,7 @@ class UsersExport implements FromCollection, WithHeadings, WithMapping
             'Name',
             'Birth Date',
             'Employee Number',
+            'office',
             'Position',
             'Department',
             'Grade',
