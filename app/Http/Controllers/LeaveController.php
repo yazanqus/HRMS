@@ -1465,8 +1465,10 @@ class LeaveController extends Controller
 
     public function approved($id)
     {
+        $lmuser = Auth::user();
         $leave = Leave::find($id);
         $leave->status = 'Pending HR Approval';
+        $leave->lmapprover = $lmuser->name;
 
         $requester=$leave->user;
 
@@ -1488,8 +1490,10 @@ class LeaveController extends Controller
 
     public function declined($id)
     {
+        $lmuser = Auth::user();
         $leave = Leave::find($id);
         $leave->status = 'Declined by LM';
+        $leave->lmapprover = $lmuser->name;
 
         $requester=$leave->user;
 
@@ -1511,8 +1515,10 @@ class LeaveController extends Controller
 
     public function hrapproved($id)
     {
+        $hruser = Auth::user();
         $leave = Leave::find($id);
         $leave->status = 'Approved';
+        $leave->hrapprover = $hruser->name;
 
         $requester=$leave->user;
 
@@ -1615,8 +1621,11 @@ class LeaveController extends Controller
 
     public function hrdeclined($id)
     {
+        $hruser = Auth::user();
         $leave = Leave::find($id);
         $leave->status = 'Declined by HR';
+        $leave->hrapprover = $hruser->name;
+
 
 
         $requester=$leave->user;

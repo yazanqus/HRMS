@@ -21,6 +21,8 @@ class CreateLeavesTable extends Migration
             $table->string('days')->nullable();
             $table->string('hours')->nullable();
             $table->string('reason')->nullable();
+            $table->string('lmapprover')->nullable();
+            $table->string('hrapprover')->nullable();
             $table->string('path')->nullable();
             $table->date('cancelled_date')->nullable();
             $table->foreignId('leavetype_id');

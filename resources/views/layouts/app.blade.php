@@ -635,7 +635,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- To the right -->
     
     <!-- Default to the left -->
-    <p style="background-color: #f4f6f9;" class=" text-right mb-0"> Powered by <strong >ICT &copy; </strong></p>
+    <p style="background-color: #f4f6f9;" class=" text-right mb-0"> Powered by <strong >ICT Syria &copy; </strong></p>
    
   </footer>
   @endauth

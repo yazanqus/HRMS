@@ -101,6 +101,28 @@
 
     </div>
 
+    <div class="card">
+                        <div class="card-header card-header-primary">
+                          <h4 class="card-title ">Approval workflow - Current status: <strong>{{$leave->status}}</strong></h4>
+                          <p class="card-category"></p>
+                        </div>
+                        <div class="card-body">
+                    
+                          <div class="row">
+                              <div class="col">
+                                  Submitted by: <strong>{{$leave->user->name}}</strong>
+                                  <br>
+                                  Approved/Declined by Line manager: <strong>{{$leave->lmapprover}}</strong>
+                                  <br>
+                                  Approved/Declined by HR: <strong>{{$leave->hrapprover}}</strong>
+                                </div>
+
+                          </div>
+                </div>
+            </div>
+
+    
+
             {{-- <div class="card">
                 <div class="card-header card-header-primary">
                   <h4 class="card-title ">Leaves - Taken</h4>

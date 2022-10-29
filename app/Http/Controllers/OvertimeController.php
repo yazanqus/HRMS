@@ -163,8 +163,10 @@ class OvertimeController extends Controller
 
     public function approved($id)
     {
+        $lmuser = Auth::user();
         $overtime = Overtime::find($id);
         $overtime->status = 'Pending HR Approval';
+        $overtime->lmapprover = $lmuser->name;
         $overtime->save();
 
         return redirect()->route('overtimes.approval');
@@ -173,8 +175,10 @@ class OvertimeController extends Controller
 
     public function declined($id)
     {
+        $lmuser = Auth::user();
         $overtime = Overtime::find($id);
         $overtime->status = 'Declined by LM';
+        $overtime->lmapprover = $lmuser->name;
         $overtime->save();
 
         return redirect()->route('overtimes.approval');
@@ -183,8 +187,10 @@ class OvertimeController extends Controller
 
     public function hrapproved($id)
     {
+        $hruser = Auth::user();
         $overtime = Overtime::find($id);
         $overtime->status = 'Approved';
+        $overtime->hrapprover = $hruser->name;
         $overtime->save();
 
         if ($overtime->type == 'week-end') {
@@ -217,8 +223,10 @@ class OvertimeController extends Controller
 
     public function hrdeclined($id)
     {
+        $hruser = Auth::user();
         $overtime = Overtime::find($id);
         $overtime->status = 'Declined by HR';
+        $overtime->hrapprover = $hruser->name;
         $overtime->save();
 
         return redirect()->route('overtimes.hrapproval');
