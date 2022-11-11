@@ -154,7 +154,7 @@ class LeavetypeTableSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        // id=19
+        // id=19 just for having it as an option when submitting leaves, the balance is irreveleant as it should be from id18
         DB::table('leavetypes')->insert([
             'name' => 'Compansetion - hours',
             'value' => '0',

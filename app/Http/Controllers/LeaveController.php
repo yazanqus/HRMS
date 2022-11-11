@@ -69,14 +69,14 @@ class LeaveController extends Controller
         // getting the balance for the user for the inserted leave type
         $user = Auth::user();
 
-        //balance of annual half first and second is from annual leavea
+        //balance of annual half first and second half (13) + (14) is from annual leave (1)
         if ($request->leavetype_id == '13' || $request->leavetype_id == '14') {
 
             $balances = Balance::where('user_id', $user->id)->get();
             $subsets = $balances->map(function ($balance) {
                 return collect($balance->toArray())
 
-                    ->only(['value', 'leavetype_id'])
+                    ->only(['value', 'leavetype_id'])  
                     ->all();
             });
             $final = $subsets->firstwhere('leavetype_id', '1');
@@ -84,7 +84,7 @@ class LeaveController extends Controller
             $annualleavebalance = $finalfinal;
 
         }
-        //balance of unpaid half first and second is from unpaid leavea
+        //balance of unpaid half first and second (16) + (17) is from unpaid leave (15)
         elseif ($request->leavetype_id == '16' || $request->leavetype_id == '17') {
 
             $balances = Balance::where('user_id', $user->id)->get();
@@ -100,8 +100,8 @@ class LeaveController extends Controller
 
         }
 
-        //balance of comp half day is from comp
-        elseif ($request->leavetype_id == '18' || $request->leavetype_id == '19') {
+        //balance of comp hour (19) is from comp (18) after multiplying by 8
+        elseif ($request->leavetype_id == '19') {
 
             $balances = Balance::where('user_id', $user->id)->get();
             $subsets = $balances->map(function ($balance) {
@@ -112,7 +112,7 @@ class LeaveController extends Controller
             });
             $final = $subsets->firstwhere('leavetype_id', '18');
             $finalfinal = $final['value'];
-            $comphalfleavebalance = $finalfinal;
+            $comphalfleavebalance = $finalfinal * 8;
 
         } else {
             $balances = Balance::where('user_id', $user->id)->get();
@@ -210,7 +210,7 @@ class LeaveController extends Controller
 
                     if($counted > 0)
                     {
-                        return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                        return redirect()->back()->with("error", "You have already submitted a leave starting this day");
                     }
 
                     else
@@ -292,7 +292,7 @@ class LeaveController extends Controller
 
                 if($counted > 0)
                 {
-                    return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                    return redirect()->back()->with("error", "You have already submitted a leave starting this day");
                 }
 
 
@@ -364,7 +364,7 @@ class LeaveController extends Controller
 
                 if($counted > 0)
                 {
-                    return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                    return redirect()->back()->with("error", "You have already submitted a leave starting this day");
                 }
 
 
@@ -436,7 +436,7 @@ class LeaveController extends Controller
 
                 if($counted > 0)
                 {
-                    return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                    return redirect()->back()->with("error", "You have already submitted a leave starting this day");
                 }
 
 
@@ -509,7 +509,7 @@ class LeaveController extends Controller
     
                     if($counted > 0)
                     {
-                        return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                        return redirect()->back()->with("error", "You have already submitted a leave starting this day");
                     }
 
                     else
@@ -585,7 +585,7 @@ class LeaveController extends Controller
     
                     if($counted > 0)
                     {
-                        return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                        return redirect()->back()->with("error", "You have already submitted a leave starting this day");
                     }
 
 
@@ -662,7 +662,7 @@ class LeaveController extends Controller
     
                     if($counted > 0)
                     {
-                        return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                        return redirect()->back()->with("error", "You have already submitted a leave starting this day");
                     }
 
 
@@ -729,7 +729,7 @@ class LeaveController extends Controller
     
                     if($counted > 0)
                     {
-                        return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                        return redirect()->back()->with("error", "You have already submitted a leave starting this day");
                     }
 
                     else
@@ -792,7 +792,7 @@ class LeaveController extends Controller
     
                     if($counted > 0)
                     {
-                        return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                        return redirect()->back()->with("error", "You have already submitted a leave starting this day");
                     }
 
                     else
@@ -838,7 +838,7 @@ class LeaveController extends Controller
                 }
 
                 } else {
-                    return redirect()->back()->with("error", "Can't submit more than 3 days leave of this type");
+                    return redirect()->back()->with("error", "Can't submit more than 3 days welfare per week");
                 }
             } else {
                 return redirect()->back()->with("error", "Leave remaining balance is not enough");
@@ -869,7 +869,7 @@ class LeaveController extends Controller
     
                     if($counted > 0)
                     {
-                        return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                        return redirect()->back()->with("error", "You have already submitted a leave starting this day");
                     }
 
                     else
@@ -927,7 +927,8 @@ class LeaveController extends Controller
         // comp leave hours coditions
         elseif ($request->leavetype_id == '19') {
 
-            if ($comphalfleavebalance >= '0.125') {
+            
+            if ($hours <= $comphalfleavebalance) {
 
                 if ($request->hasFile('file')) {
                     $path = $request->file('file')->store('public/leaves');
@@ -974,7 +975,9 @@ class LeaveController extends Controller
 //compensation full day
         elseif ($request->leavetype_id == '18') {
 
-            if ($comphalfleavebalance >= '1') {
+            // $days <= $currentbalance
+
+            if ($days <= $currentbalance) {
 
                 if ($request->hasFile('file')) {
                     $path = $request->file('file')->store('public/leaves');
@@ -991,7 +994,7 @@ class LeaveController extends Controller
 
                 if($counted > 0)
                 {
-                    return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                    return redirect()->back()->with("error", "You have already submitted a leave starting this day");
                 }
 
 
@@ -1064,7 +1067,7 @@ class LeaveController extends Controller
     
                     if($counted > 0)
                     {
-                        return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                        return redirect()->back()->with("error", "You have already submitted a leave starting this day");
                     }
 
                     else
@@ -1140,7 +1143,7 @@ class LeaveController extends Controller
     
                     if($counted > 0)
                     {
-                        return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                        return redirect()->back()->with("error", "You have already submitted a leave starting this day");
                     }
 
                     else
@@ -1215,7 +1218,7 @@ class LeaveController extends Controller
 
                 if($counted > 0)
                 {
-                    return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                    return redirect()->back()->with("error", "You have already submitted a leave starting this day");
                 }
 
 
@@ -1263,12 +1266,12 @@ class LeaveController extends Controller
                 return redirect()->route('leaves.index');
             }
             } else {
-                return redirect()->back()->with("error", "Can't submit more than 5 days leave of this type");
+                return redirect()->back()->with("error", "Can't submit more than 5 days leave of this type per request");
             }
 
         }
 
-        //second degree days should be less than 5 days
+        //second degree days should be less than 3 days
         elseif ($request->leavetype_id == '7') {
 
             if ($days <= '3') {
@@ -1289,7 +1292,7 @@ class LeaveController extends Controller
 
                 if($counted > 0)
                 {
-                    return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                    return redirect()->back()->with("error", "You have already submitted a leave starting this day");
                 }
                 
 
@@ -1335,7 +1338,7 @@ class LeaveController extends Controller
                 return redirect()->route('leaves.index');
             }
             } else {
-                return redirect()->back()->with("error", "Can't submit more than 3 days leave of this type");
+                return redirect()->back()->with("error", "Can't submit more than 3 days leave of this type per request");
             }
 
         } else {
@@ -1517,6 +1520,10 @@ class LeaveController extends Controller
     {
         $hruser = Auth::user();
         $leave = Leave::find($id);
+
+
+
+
         $leave->status = 'Approved';
         $leave->hrapprover = $hruser->name;
 
@@ -1534,6 +1541,7 @@ class LeaveController extends Controller
 
         $leave->save();
 
+        // annual half days leaves
         if ($leave->leavetype_id == '13' || $leave->leavetype_id == '14') {
 
             $balances = Balance::where('user_id', $leave->user->id)->get();
@@ -1554,6 +1562,8 @@ class LeaveController extends Controller
                 ['user_id', $leave->user->id],
                 ['leavetype_id', '1'],
             ])->update(['value' => $newbalance]);
+
+            // unpaid half days leaves
         } elseif ($leave->leavetype_id == '16' || $leave->leavetype_id == '17') {
 
             $balances = Balance::where('user_id', $leave->user->id)->get();
@@ -1574,6 +1584,9 @@ class LeaveController extends Controller
                 ['user_id', $leave->user->id],
                 ['leavetype_id', '15'],
             ])->update(['value' => $newbalance]);
+
+            
+
         } elseif ($leave->leavetype_id == '19') {
 
             $balances = Balance::where('user_id', $leave->user->id)->get();

@@ -194,8 +194,8 @@ class OvertimeController extends Controller
         $overtime->save();
 
         if ($overtime->type == 'week-end') {
-            $partialstoannua = $overtime->hours / 8;
-            $partialstoannual = round($partialstoannua, 2);
+            $partialstoannual = $overtime->hours / 8;
+           
 
             $balances = Balance::where('user_id', $overtime->user->id)->get();
             $subsets = $balances->map(function ($balance) {
@@ -216,6 +216,7 @@ class OvertimeController extends Controller
                 ['leavetype_id', '18'],
             ])->update(['value' => $newbalance]);
         }
+        
 
         return redirect()->route('overtimes.hrapproval');
 
