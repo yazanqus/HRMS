@@ -54,7 +54,7 @@
                               <td class="text-center">{{ $overtime->hours }}</td>
                               <td class="text-center">{{ $overtime->value }}</td>
                               <td class="text-center">{{ $overtime->status }}</td>
-                              <td class="text-center">{{ $overtime->user->linemanager }}</td>
+                              <td class="text-center">{{ $overtime->lmapprover }}</td>
                               <td class="text-center">{{ $overtime->created_at }}</td>
                               {{-- <td>edit</td> --}}
                             </tr>

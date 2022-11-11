@@ -50,7 +50,7 @@
                               <td class="text-center">{{ $leave->end_date }}</td>
                               <td class="text-center">{{ $leave->days }}</td>
                               <td class="text-center">{{ $leave->status }}</td>
-                              <td class="text-center">{{ $leave->user ? $leave->user->linemanager : '-' }}</td>
+                              <td class="text-center">{{ $leave->user ? $leave->lmapprover : '-' }}</td>
                               <td class="text-center">{{ $leave->created_at }}</td>
                               {{-- <td>edit</td> --}}
                             </tr>

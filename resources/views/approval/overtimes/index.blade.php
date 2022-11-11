@@ -28,6 +28,7 @@
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Name</th>
+                                    <th class="text-center" scope="col">Type</th>
                                     <th class="text-center" scope="col">Date</th>
                                     <th class="text-center" scope="col">Start Hour</th>
                                     <th class="text-center" scope="col">End Hour</th>
@@ -42,6 +43,7 @@
                                 <tr>
                                     <td><a href="{{ route('overtimes.show', $overtime) }}" >{{ $overtime->id }}</a></td>
                                   <td>{{ $overtime->user->name }}</td>
+                                  <td class="text-center">{{ $overtime->type }}</td>
                                   <td class="text-center">{{ $overtime->date }}</td>
                                   <td class="text-center">{{ $overtime->start_hour }}</td>
                                   <td class="text-center">{{ $overtime->end_hour }}</td>
