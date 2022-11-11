@@ -291,57 +291,57 @@ class UserController extends Controller
                 ->all();
         });
         $leave1 = $subsets->firstwhere('leavetype_id', '1');
-        $balance1 = $leave1['value'];
+        $balance1 = round($leave1['value'],3);
 
         $leave2 = $subsets->firstwhere('leavetype_id', '2');
-        $balance2 = $leave2['value'];
+        $balance2 = round($leave2['value'],3);
 
         $leave3 = $subsets->firstwhere('leavetype_id', '3');
-        $balance3 = $leave3['value'];
+        $balance3 = round($leave3['value'],3);
 
         $leave4 = $subsets->firstwhere('leavetype_id', '4');
-        $balance4 = $leave4['value'];
+        $balance4 = round($leave4['value'],3);
 
         $leave5 = $subsets->firstwhere('leavetype_id', '5');
-        $balance5 = $leave5['value'];
+        $balance5 = round($leave5['value'],3);
 
         $leave6 = $subsets->firstwhere('leavetype_id', '6');
-        $balance6 = $leave6['value'];
+        $balance6 = round($leave6['value'],3);
 
         $leave7 = $subsets->firstwhere('leavetype_id', '7');
-        $balance7 = $leave7['value'];
+        $balance7 = round($leave7['value'],3);
 
         $leave8 = $subsets->firstwhere('leavetype_id', '8');
-        $balance8 = $leave8['value'];
+        $balance8 = round($leave8['value'],3);
 
         $leave9 = $subsets->firstwhere('leavetype_id', '9');
-        $balance9 = $leave9['value'];
+        $balance9 = round($leave9['value'],3);
 
         $leave10 = $subsets->firstwhere('leavetype_id', '10');
-        $balance10 = $leave10['value'];
+        $balance10 = round($leave10['value'],3);
 
         $leave11 = $subsets->firstwhere('leavetype_id', '11');
-        $balance11 = $leave11['value'];
+        $balance11 = round($leave11['value'],3);
 
         $leave12 = $subsets->firstwhere('leavetype_id', '12');
-        $balance12 = $leave12['value'];
+        $balance12 = round($leave12['value'],3);
 
         // $leave13 = $subsets->firstwhere('leavetype_id', '13');
-        // $balance13 = $leave13['value'];
+        // $balance13 = round($leave13['value'],3);
 
         // $leave14 = $subsets->firstwhere('leavetype_id', '14');
-        // $balance14 = $leave14['value'];
+        // $balance14 = round($leave14['value'],3);
 
         $leave15 = $subsets->firstwhere('leavetype_id', '15');
-        $balance15 = $leave15['value'];
+        $balance15 = round($leave15['value'],3);
 
         // $leave16 = $subsets->firstwhere('leavetype_id', '16');
-        // $balance16 = $leave16['value'];
+        // $balance16 = round($leave16['value'],3);
 
         // $leave17 = $subsets->firstwhere('leavetype_id', '17');
-        // $balance17 = $leave17['value'];
+        // $balance17 = round($leave17['value'],3);
         $leave18 = $subsets->firstwhere('leavetype_id', '18');
-        $balance18 = $leave18['value'];
+        $balance18 = round($leave18['value'],3);
 
         return view('admin.users.show', [
             'user' => $user,
