@@ -202,7 +202,7 @@ class LeaveController extends Controller
 
                     $leavessubmitted = Leave::where([
                         ['user_id', $user->id],
-                        ['leavetype_id', $request->leavetype_id],
+                        
                         ['start_date', $request->start_date],
                         ])->get();
 
@@ -284,7 +284,7 @@ class LeaveController extends Controller
 
                 $leavessubmitted = Leave::where([
                     ['user_id', $user->id],
-                    ['leavetype_id', $request->leavetype_id],
+                    
                     ['start_date', $request->start_date],
                     ])->get();
 
@@ -357,7 +357,7 @@ class LeaveController extends Controller
 
                 $leavessubmitted = Leave::where([
                     ['user_id', $user->id],
-                    ['leavetype_id', $request->leavetype_id],
+                    
                     ['start_date', $request->start_date],
                     ])->get();
 
@@ -428,7 +428,7 @@ class LeaveController extends Controller
 
                 $leavessubmitted = Leave::where([
                     ['user_id', $user->id],
-                    ['leavetype_id', $request->leavetype_id],
+                    
                     ['start_date', $request->start_date],
                     ])->get();
 
@@ -501,7 +501,7 @@ class LeaveController extends Controller
 
                     $leavessubmitted = Leave::where([
                         ['user_id', $user->id],
-                        ['leavetype_id', $request->leavetype_id],
+                        
                         ['start_date', $request->start_date],
                         ])->get();
     
@@ -577,7 +577,7 @@ class LeaveController extends Controller
 
                     $leavessubmitted = Leave::where([
                         ['user_id', $user->id],
-                        ['leavetype_id', $request->leavetype_id],
+                        
                         ['start_date', $request->start_date],
                         ])->get();
     
@@ -654,7 +654,7 @@ class LeaveController extends Controller
 
                     $leavessubmitted = Leave::where([
                         ['user_id', $user->id],
-                        ['leavetype_id', $request->leavetype_id],
+                        
                         ['start_date', $request->start_date],
                         ])->get();
     
@@ -721,7 +721,7 @@ class LeaveController extends Controller
                     
                     $leavessubmitted = Leave::where([
                         ['user_id', $user->id],
-                        ['leavetype_id', $request->leavetype_id],
+                        
                         ['start_date', $request->start_date],
                         ])->get();
     
@@ -784,7 +784,7 @@ class LeaveController extends Controller
 
                     $leavessubmitted = Leave::where([
                         ['user_id', $user->id],
-                        ['leavetype_id', $request->leavetype_id],
+                        
                         ['start_date', $request->start_date],
                         ])->get();
     
@@ -986,7 +986,7 @@ class LeaveController extends Controller
 
                 $leavessubmitted = Leave::where([
                     ['user_id', $user->id],
-                    ['leavetype_id', $request->leavetype_id],
+                    
                     ['start_date', $request->start_date],
                     ])->get();
 
@@ -1059,7 +1059,7 @@ class LeaveController extends Controller
 
                     $leavessubmitted = Leave::where([
                         ['user_id', $user->id],
-                        ['leavetype_id', $request->leavetype_id],
+                        
                         ['start_date', $request->start_date],
                         ])->get();
     
@@ -1210,7 +1210,7 @@ class LeaveController extends Controller
                 
                 $leavessubmitted = Leave::where([
                     ['user_id', $user->id],
-                    ['leavetype_id', $request->leavetype_id],
+                    
                     ['start_date', $request->start_date],
                     ])->get();
 
@@ -1284,7 +1284,7 @@ class LeaveController extends Controller
 
                 $leavessubmitted = Leave::where([
                     ['user_id', $user->id],
-                    ['leavetype_id', $request->leavetype_id],
+                    
                     ['start_date', $request->start_date],
                     ])->get();
 
@@ -1350,7 +1350,7 @@ class LeaveController extends Controller
             
             $leavessubmitted = Leave::where([
                 ['user_id', $user->id],
-                ['leavetype_id', $request->leavetype_id],
+                
                 ['start_date', $request->start_date],
                 ])->get();
 
