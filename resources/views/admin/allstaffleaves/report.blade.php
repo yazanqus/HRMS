@@ -40,8 +40,8 @@ tr:nth-child(even) {
                     
                     </div>
                 </div>
-                <div class="col-xs-8 text-right">
-<img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/hr360-2.jpg'))) }}"  alt="" width="300" height="150">
+                <div class="col-xs-7 text-right">
+<img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/hr360-2.jpg'))) }}"  alt="" width="200" height="100">
 
 </div>
 
@@ -100,6 +100,8 @@ tr:nth-child(even) {
                     
                     </div>
                 </div>
+
+
 
 </body>
 </html>
