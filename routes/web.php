@@ -15,6 +15,7 @@ use App\Mail\Leave as MailLeave;
 use App\Models\Attendance;
 use App\Models\Balance;
 use App\Models\Leave;
+use App\Models\Leavetype;
 use App\Models\Overtime;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +42,28 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::get('/leaves/export', [LeaveController::class, 'export'])->name('leaves.export');
+    Route::get('leavespdf', function ()
+    {
+        $users = User::all();
+        $leaves = Leave::all();
+        $leavestypes = Leavetype::all();
+        return view('admin.allstaffleaves.reportconditions', ['leaves' => $leaves, 'users' => $users, 'leavestypes' => $leavestypes]);
+
+    })->name('leaves.pdf');
+    Route::post('/leaves/pdf/show', [LeaveController::class, 'pdf'])->name('leaves.pdfshow');
+
+    
     Route::get('/overtimes/export', [OvertimeController::class, 'export'])->name('overtimes.export');
+    Route::get('overtimespdf', function ()
+    {
+        $users = User::all();
+        $overtimes = Overtime::all();
+       
+        return view('admin.allstaffovertimes.reportconditions', ['overtimes' => $overtimes, 'users' => $users]);
+
+    })->name('overtimes.pdf');
+
+    Route::post('/overtimes/pdf/show', [OvertimeController::class, 'pdf'])->name('overtimes.pdfshow');
     Route::get('allstaffleaves', function () {
         $hruser = Auth::user();
         if ($hruser->office == "AO2") {

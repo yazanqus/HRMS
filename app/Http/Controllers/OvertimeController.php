@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Exports\OvertimesExport;
 use App\Models\Balance;
 use App\Models\Overtime;
+use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class OvertimeController extends Controller
 {
@@ -237,5 +240,44 @@ class OvertimeController extends Controller
     public function export()
     {
         return Excel::download(new OvertimesExport, 'overtimes.xlsx');
+    }
+
+
+    public function pdf(Request $request)
+    {
+        $request->validate([
+            'start_date' => 'required',
+            'end_date' => 'required|after_or_equal:start_date',
+            // 'leavetype' => 'required',
+            'name'=> 'required',
+           
+        ]);
+
+        $name= $request->name;
+        $start_date=$request->start_date;
+        $end_date=$request->end_date;
+        // $leavetype=$request->leavetype;
+
+        
+        $userid = User::where('name',$name)->value('id');
+         
+        $overtimes = Overtime::where([
+
+            ['user_id', $userid],
+            ['date', '>=', $start_date],
+            ['created_at', '<=', $end_date],
+
+
+        ])->get();
+
+        $hruser = Auth::user();
+        $date = Carbon::now();
+
+
+        $pdf = Pdf::loadView('admin.allstaffovertimes.report', ['name'=>$name,'hruser'=>$hruser,'date'=>$date, 'start_date'=>$start_date,'end_date'=>$end_date,'overtimes'=>$overtimes])->setOptions(['defaultFont' => 'sans-serif', 'isHtml5ParserEnabled'=> 'true', 'isRemoteEnabled'=> 'true', 'isPhpEnabled'=> 'true'])->setpaper('a4','portrait');
+
+        return $pdf->stream();
+
+
     }
 }

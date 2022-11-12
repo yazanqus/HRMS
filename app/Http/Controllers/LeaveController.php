@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Leave as MailLeave;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class LeaveController extends Controller
 {
@@ -1663,6 +1664,47 @@ class LeaveController extends Controller
     public function export()
     {
         return Excel::download(new LeavesExport, 'leaves.xlsx');
+    }
+
+    public function pdf(Request $request)
+    {
+        $request->validate([
+            'start_date' => 'required',
+            'end_date' => 'required|after_or_equal:start_date',
+            // 'leavetype' => 'required',
+            'name'=> 'required',
+           
+        ]);
+
+        $name= $request->name;
+        $start_date=$request->start_date;
+        $end_date=$request->end_date;
+        // $leavetype=$request->leavetype;
+
+        
+        $userid = User::where('name',$name)->value('id');
+        
+  
+ 
+        $leaves = Leave::where([
+
+            ['user_id', $userid],
+            ['start_date', '>=', $start_date],
+            ['end_date', '<=', $end_date],
+
+
+        ])->get();
+
+
+        $hruser = Auth::user();
+        $date = Carbon::now();
+
+        
+
+        $pdf = Pdf::loadView('admin.allstaffleaves.report', ['name'=>$name,'hruser'=>$hruser,'date'=>$date, 'start_date'=>$start_date,'end_date'=>$end_date,'leaves'=>$leaves])->setOptions(['defaultFont' => 'sans-serif', 'isHtml5ParserEnabled'=> 'true', 'isRemoteEnabled'=> 'true', 'isPhpEnabled'=> 'true'])->setpaper('a4','portrait');
+        return $pdf->stream();
+
+
     }
 
     // public function onbehalf(Request $request)
