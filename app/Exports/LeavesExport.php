@@ -61,7 +61,7 @@ class LeavesExport implements FromCollection, WithHeadings, WithMapping
             $leave->end_date,
             $leave->days,
             $leave->status,
-            $leave->user->linemanager,
+            $leave->lmapprover,
             $leave->created_at,
 
         ];

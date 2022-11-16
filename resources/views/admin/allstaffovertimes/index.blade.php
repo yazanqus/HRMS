@@ -83,7 +83,7 @@
     $('#table_id').DataTable(
         {
             "aLengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
-            "order": [[9, "desc" ]]
+            "order": [[10, "desc" ]]
         }
     );
 } );

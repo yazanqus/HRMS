@@ -39,18 +39,18 @@
 
 
                                       <div class="card-body table-responsive-md">
-                                          <table id="table_id" class="table table-bordered table-hover text-nowrap table-Secondary table-striped">
+                                          <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                                             <thead>
                                               <tr>
-                                              {{-- <th scope="col"> @sortablelink('name')</th> --}}
-                                              <th scope="col">Name</th>
-                                              <th scope="col">Employee ID</th>
-                                              <th scope="col">Position</th>
-                                              <th scope="col">Office</th>
-                                              <th scope="col">Join Date</th>
-                                              <th scope="col">Line Manager</th>
-                                              <th class="text-center" scope="col">Admin<small> (on HR System)</small></th>
-                                              <th class="text-center" scope="col">Date Created</th>
+                                              
+                                              <th style="width: 20%" scope="col">Name</th>
+                                              <th style="width: 10%" scope="col">Employee ID</th>
+                                              <th style="width: 10%" scope="col">Position</th>
+                                              <th style="width: 10%" scope="col">Office</th>
+                                              <th style="width: 10%" scope="col">Join Date</th>
+                                              <th style="width: 20%" scope="col">Line Manager</th>
+                                              <th class="text-center" style="width: 10%" scope="col">Admin<small> (on HR System)</small></th>
+                                              <th class="text-center" style="width: 10%" scope="col">Date Created</th>
                                               </tr>
                                             </thead>
                                             <tbody>
@@ -75,14 +75,14 @@
                                             </tbody>
                                             <tfoot>
                                               <tr>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Employee ID</th>
-                                            <th scope="col">Position</th>
-                                            <th scope="col">Office</th>
-                                            <th scope="col">Join Date</th>
-                                            <th scope="col">Line Manager</th>
-                                            <th class="text-center" scope="col">Admin<small> (on HR System)</small></th>
-                                            <th class="text-center" scope="col">Date Created</th>
+                                              <th style="width: 20%" scope="col">Name</th>
+                                              <th style="width: 10%" scope="col">Employee ID</th>
+                                              <th style="width: 10%" scope="col">Position</th>
+                                              <th style="width: 10%" scope="col">Office</th>
+                                              <th style="width: 10%" scope="col">Join Date</th>
+                                              <th style="width: 20%" scope="col">Line Manager</th>
+                                              <th class="text-center" style="width: 10%" scope="col">Admin<small> (on HR System)</small></th>
+                                              <th class="text-center" style="width: 10%" scope="col">Date Created</th>
 
                                               </tr>
                                             </tfoot>
@@ -164,7 +164,7 @@
     $(document).ready( function () {
     $('#table_id').DataTable({
         "aLengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
-        "order": [[6, "desc" ]],
+        "order": [[7, "desc" ]],
     });
 });
   </script>

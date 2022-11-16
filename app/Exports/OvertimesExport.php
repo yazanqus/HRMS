@@ -68,7 +68,7 @@ class OvertimesExport implements FromCollection, WithHeadings, WithMapping
             $overtime->hours,
             $overtime->value,
             $overtime->status,
-            $overtime->user->linemanager,
+            $overtime->lmapprover,
             $overtime->created_at,
 
         ];
