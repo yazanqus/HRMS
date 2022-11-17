@@ -50,7 +50,7 @@
                               <td class="text-center">{{ $leave->status }}</td>
                               <td class="text-center">
                                   @php
-                                  if ($leave->status == 'Approved' || $leave->status == 'Declined by HR' || $leave->status == 'Cancelled' || $leave->status == 'Submitted by HR')
+                                  if ($leave->status == 'Approved' || $leave->status == 'Declined by HR' || $leave->status == 'Cancelled' || $leave->status == 'Submitted by HR' || $leave->status == 'Declined by LM')
                                   {
                                       $variable='disabled';
                                   }

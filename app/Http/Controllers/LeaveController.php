@@ -205,9 +205,12 @@ class LeaveController extends Controller
 
                     $leavessubmitted = Leave::where([
                         ['user_id', $user->id],
-                        
                         ['start_date', $request->start_date],
-                        ])->get();
+                        ])->where(function($query) {
+                            $query->where('status','Pending LM Approval')
+                                        ->orWhere('status','Pending HR Approval')
+                                        ->orWhere('status','Approved');
+                })->get();
 
                     $counted = count($leavessubmitted);
 
@@ -292,9 +295,12 @@ class LeaveController extends Controller
 
                 $leavessubmitted = Leave::where([
                     ['user_id', $user->id],
-                    
                     ['start_date', $request->start_date],
-                    ])->get();
+                    ])->where(function($query) {
+                        $query->where('status','Pending LM Approval')
+                                    ->orWhere('status','Pending HR Approval')
+                                    ->orWhere('status','Approved');
+            })->get();
 
                 $counted = count($leavessubmitted);
 
@@ -370,9 +376,12 @@ class LeaveController extends Controller
 
                 $leavessubmitted = Leave::where([
                     ['user_id', $user->id],
-                    
                     ['start_date', $request->start_date],
-                    ])->get();
+                    ])->where(function($query) {
+                        $query->where('status','Pending LM Approval')
+                                    ->orWhere('status','Pending HR Approval')
+                                    ->orWhere('status','Approved');
+            })->get();
 
                 $counted = count($leavessubmitted);
 
@@ -446,9 +455,12 @@ class LeaveController extends Controller
 
                 $leavessubmitted = Leave::where([
                     ['user_id', $user->id],
-                    
                     ['start_date', $request->start_date],
-                    ])->get();
+                    ])->where(function($query) {
+                        $query->where('status','Pending LM Approval')
+                                    ->orWhere('status','Pending HR Approval')
+                                    ->orWhere('status','Approved');
+            })->get();
 
                 $counted = count($leavessubmitted);
 
@@ -524,9 +536,12 @@ class LeaveController extends Controller
 
                     $leavessubmitted = Leave::where([
                         ['user_id', $user->id],
-                        
                         ['start_date', $request->start_date],
-                        ])->get();
+                        ])->where(function($query) {
+                            $query->where('status','Pending LM Approval')
+                                        ->orWhere('status','Pending HR Approval')
+                                        ->orWhere('status','Approved');
+                })->get();
     
                     $counted = count($leavessubmitted);
     
@@ -605,9 +620,12 @@ class LeaveController extends Controller
 
                     $leavessubmitted = Leave::where([
                         ['user_id', $user->id],
-                        
                         ['start_date', $request->start_date],
-                        ])->get();
+                        ])->where(function($query) {
+                            $query->where('status','Pending LM Approval')
+                                        ->orWhere('status','Pending HR Approval')
+                                        ->orWhere('status','Approved');
+                })->get();
     
                     $counted = count($leavessubmitted);
     
@@ -687,9 +705,12 @@ class LeaveController extends Controller
 
                     $leavessubmitted = Leave::where([
                         ['user_id', $user->id],
-                        
                         ['start_date', $request->start_date],
-                        ])->get();
+                        ])->where(function($query) {
+                            $query->where('status','Pending LM Approval')
+                                        ->orWhere('status','Pending HR Approval')
+                                        ->orWhere('status','Approved');
+                })->get();
     
                     $counted = count($leavessubmitted);
     
@@ -754,9 +775,12 @@ class LeaveController extends Controller
                     
                     $leavessubmitted = Leave::where([
                         ['user_id', $user->id],
-                        
                         ['start_date', $request->start_date],
-                        ])->get();
+                        ])->where(function($query) {
+                            $query->where('status','Pending LM Approval')
+                                        ->orWhere('status','Pending HR Approval')
+                                        ->orWhere('status','Approved');
+                })->get();
     
                     $counted = count($leavessubmitted);
     
@@ -817,9 +841,12 @@ class LeaveController extends Controller
 
                     $leavessubmitted = Leave::where([
                         ['user_id', $user->id],
-                        
                         ['start_date', $request->start_date],
-                        ])->get();
+                        ])->where(function($query) {
+                            $query->where('status','Pending LM Approval')
+                                        ->orWhere('status','Pending HR Approval')
+                                        ->orWhere('status','Approved');
+                })->get();
     
                     $counted = count($leavessubmitted);
     
@@ -901,7 +928,11 @@ class LeaveController extends Controller
                         ['user_id', $user->id],
                         ['leavetype_id', $request->leavetype_id],
                         ['start_date', $request->start_date],
-                        ])->get();
+                        ])->where(function($query) {
+                            $query->where('status','Pending LM Approval')
+                                        ->orWhere('status','Pending HR Approval')
+                                        ->orWhere('status','Approved');
+                })->get();
     
                     $counted = count($leavessubmitted);
     
@@ -1034,9 +1065,12 @@ class LeaveController extends Controller
 
                 $leavessubmitted = Leave::where([
                     ['user_id', $user->id],
-                    
                     ['start_date', $request->start_date],
-                    ])->get();
+                    ])->where(function($query) {
+                        $query->where('status','Pending LM Approval')
+                                    ->orWhere('status','Pending HR Approval')
+                                    ->orWhere('status','Approved');
+            })->get();
 
                 $counted = count($leavessubmitted);
 
@@ -1112,9 +1146,12 @@ class LeaveController extends Controller
 
                     $leavessubmitted = Leave::where([
                         ['user_id', $user->id],
-                        
                         ['start_date', $request->start_date],
-                        ])->get();
+                        ])->where(function($query) {
+                            $query->where('status','Pending LM Approval')
+                                        ->orWhere('status','Pending HR Approval')
+                                        ->orWhere('status','Approved');
+                })->get();
     
                     $counted = count($leavessubmitted);
     
@@ -1195,7 +1232,11 @@ class LeaveController extends Controller
                         ['user_id', $user->id],
                         ['leavetype_id', $request->leavetype_id],
                         ['start_date', $request->start_date],
-                        ])->get();
+                        ])->where(function($query) {
+                            $query->where('status','Pending LM Approval')
+                                        ->orWhere('status','Pending HR Approval')
+                                        ->orWhere('status','Approved');
+                })->get();
     
                     $counted = count($leavessubmitted);
     
@@ -1273,9 +1314,12 @@ class LeaveController extends Controller
                 
                 $leavessubmitted = Leave::where([
                     ['user_id', $user->id],
-                    
                     ['start_date', $request->start_date],
-                    ])->get();
+                    ])->where(function($query) {
+                        $query->where('status','Pending LM Approval')
+                                    ->orWhere('status','Pending HR Approval')
+                                    ->orWhere('status','Approved');
+            })->get();
 
                 $counted = count($leavessubmitted);
 
@@ -1352,9 +1396,12 @@ class LeaveController extends Controller
 
                 $leavessubmitted = Leave::where([
                     ['user_id', $user->id],
-                    
                     ['start_date', $request->start_date],
-                    ])->get();
+                    ])->where(function($query) {
+                        $query->where('status','Pending LM Approval')
+                                    ->orWhere('status','Pending HR Approval')
+                                    ->orWhere('status','Approved');
+            })->get();
 
                 $counted = count($leavessubmitted);
 
@@ -1423,9 +1470,12 @@ class LeaveController extends Controller
             
             $leavessubmitted = Leave::where([
                 ['user_id', $user->id],
-                
                 ['start_date', $request->start_date],
-                ])->get();
+                ])->where(function($query) {
+                    $query->where('status','Pending LM Approval')
+                                ->orWhere('status','Pending HR Approval')
+                                ->orWhere('status','Approved');
+        })->get();
 
             $counted = count($leavessubmitted);
 
