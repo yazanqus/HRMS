@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\LogOptions;
+use illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Overtime extends Model
 {
     use HasFactory;
     use LogsActivity;
-
+    use SoftDeletes;
     protected static $recordEvents = ['updated'];
 
     public function getActivitylogOptions(): LogOptions

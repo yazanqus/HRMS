@@ -7,12 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use illuminate\Database\Eloquent\SoftDeletes;
 
 class Leave extends Model
 {
     use LogsActivity;
     use HasFactory;
     use Notifiable;
+    use SoftDeletes;
     // use SoftDeletes;
     protected $fillable = [
         'start_date',

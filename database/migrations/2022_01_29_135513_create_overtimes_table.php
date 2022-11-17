@@ -27,6 +27,7 @@ class CreateOvertimesTable extends Migration
             $table->string('path')->nullable();
             $table->string('value')->nullable();
             $table->date('cancelled_date')->nullable();
+            $table->softDeletes();
             // $table->foreignId('overtimetype_id');
             $table->foreignId('user_id');
             $table->timestamps();

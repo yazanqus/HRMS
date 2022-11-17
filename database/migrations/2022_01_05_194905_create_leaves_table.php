@@ -25,6 +25,7 @@ class CreateLeavesTable extends Migration
             $table->string('hrapprover')->nullable();
             $table->string('path')->nullable();
             $table->date('cancelled_date')->nullable();
+            $table->softDeletes();
             $table->foreignId('leavetype_id');
             $table->foreignId('user_id');
             $table->timestamps();
