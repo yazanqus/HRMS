@@ -190,7 +190,10 @@ class LeaveController extends Controller
         $intervall = $joineddate->diff($dateenow);
         $probationdays = $intervall->format('%a');
 
-    
+        $startdayname = Carbon::parse($fdate)->format('l');
+        $enddayname = Carbon::parse($ldate)->format('l');
+
+  
 
         // Annual leave conditions
         if ($request->leavetype_id == '1') {
@@ -247,10 +250,15 @@ class LeaveController extends Controller
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
                             'title' => 'Leave Request Approval - Annual Leave',
-                            'body' => 'Access to HR System is now available'
+                            'startdayname' => $startdayname,
+                            'start_date' => $leave->start_date,
+                            'enddayname' => $enddayname,
+                            'end_date' =>  $leave->end_date,
+                            'days' => $leave->days,
+                            'comment' =>  $leave->reason
                         ];
                        
-                        Mail::to($linemanageremail)->later(5, new MailLeave($details));
+                        Mail::to($linemanageremail)->send(new MailLeave($details));
 
                         
                     }
@@ -326,8 +334,13 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Sick Leave',
-                            'body' => 'Access to HR System is now available'
+                            'title' => 'Leave Request Approval - Annual Leave',
+                            'startdayname' => $startdayname,
+                            'start_date' => $leave->start_date,
+                            'enddayname' => $enddayname,
+                            'end_date' =>  $leave->end_date,
+                            'days' => $leave->days,
+                            'comment' =>  $leave->reason
                         ];
                        
                         Mail::to($linemanageremail)->send(new MailLeave($details));
@@ -397,8 +410,13 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Sick Leave 30% deduction',
-                            'body' => 'Access to HR System is now available'
+                            'title' => 'Leave Request Approval - Annual Leave',
+                            'startdayname' => $startdayname,
+                            'start_date' => $leave->start_date,
+                            'enddayname' => $enddayname,
+                            'end_date' =>  $leave->end_date,
+                            'days' => $leave->days,
+                            'comment' =>  $leave->reason
                         ];
                        
                         Mail::to($linemanageremail)->send(new MailLeave($details));
@@ -469,8 +487,13 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Sick Leave 20% deduction',
-                            'body' => 'Access to HR System is now available'
+                            'title' => 'Leave Request Approval - Annual Leave',
+                            'startdayname' => $startdayname,
+                            'start_date' => $leave->start_date,
+                            'enddayname' => $enddayname,
+                            'end_date' =>  $leave->end_date,
+                            'days' => $leave->days,
+                            'comment' =>  $leave->reason
                         ];
                        
                         Mail::to($linemanageremail)->send(new MailLeave($details));
@@ -542,8 +565,13 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Marriage Leave',
-                            'body' => 'Access to HR System is now available'
+                            'title' => 'Leave Request Approval - Annual Leave',
+                            'startdayname' => $startdayname,
+                            'start_date' => $leave->start_date,
+                            'enddayname' => $enddayname,
+                            'end_date' =>  $leave->end_date,
+                            'days' => $leave->days,
+                            'comment' =>  $leave->reason
                         ];
                        
                         Mail::to($linemanageremail)->send(new MailLeave($details));
@@ -621,8 +649,13 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Maternity Leave',
-                            'body' => 'Access to HR System is now available'
+                            'title' => 'Leave Request Approval - Annual Leave',
+                            'startdayname' => $startdayname,
+                            'start_date' => $leave->start_date,
+                            'enddayname' => $enddayname,
+                            'end_date' =>  $leave->end_date,
+                            'days' => $leave->days,
+                            'comment' =>  $leave->reason
                         ];
                        
                         Mail::to($linemanageremail)->send(new MailLeave($details));
@@ -826,8 +859,13 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Welfare Leave',
-                            'body' => 'Access to HR System is now available'
+                            'title' => 'Leave Request Approval - Annual Leave',
+                            'startdayname' => $startdayname,
+                            'start_date' => $leave->start_date,
+                            'enddayname' => $enddayname,
+                            'end_date' =>  $leave->end_date,
+                            'days' => $leave->days,
+                            'comment' =>  $leave->reason
                         ];
                        
                         Mail::to($linemanageremail)->send(new MailLeave($details));
@@ -905,8 +943,13 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Annual Halfday Leave',
-                            'body' => 'Access to HR System is now available'
+                            'title' => 'Leave Request Approval - Annual Leave',
+                            'startdayname' => $startdayname,
+                            'start_date' => $leave->start_date,
+                            'enddayname' => $enddayname,
+                            'end_date' =>  $leave->end_date,
+                            'days' => $leave->days,
+                            'comment' =>  $leave->reason
                         ];
                        
                         Mail::to($linemanageremail)->send(new MailLeave($details));
@@ -958,8 +1001,13 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Compensation Leave',
-                            'body' => 'Access to HR System is now available'
+                            'title' => 'Leave Request Approval - Annual Leave',
+                            'startdayname' => $startdayname,
+                            'start_date' => $leave->start_date,
+                            'enddayname' => $enddayname,
+                            'end_date' =>  $leave->end_date,
+                            'days' => $leave->days,
+                            'comment' =>  $leave->reason
                         ];
                        
                         Mail::to($linemanageremail)->send(new MailLeave($details));
@@ -1029,8 +1077,13 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Compensation Leave',
-                            'body' => 'Access to HR System is now available'
+                            'title' => 'Leave Request Approval - Annual Leave',
+                            'startdayname' => $startdayname,
+                            'start_date' => $leave->start_date,
+                            'enddayname' => $enddayname,
+                            'end_date' =>  $leave->end_date,
+                            'days' => $leave->days,
+                            'comment' =>  $leave->reason
                         ];
                        
                         Mail::to($linemanageremail)->send(new MailLeave($details));
@@ -1101,8 +1154,13 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Paternity Leave',
-                            'body' => 'Access to HR System is now available'
+                            'title' => 'Leave Request Approval - Annual Leave',
+                            'startdayname' => $startdayname,
+                            'start_date' => $leave->start_date,
+                            'enddayname' => $enddayname,
+                            'end_date' =>  $leave->end_date,
+                            'days' => $leave->days,
+                            'comment' =>  $leave->reason
                         ];
                        
                         Mail::to($linemanageremail)->send(new MailLeave($details));
@@ -1177,8 +1235,13 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Unpaid Halfday Leave',
-                            'body' => 'Access to HR System is now available'
+                            'title' => 'Leave Request Approval - Annual Leave',
+                            'startdayname' => $startdayname,
+                            'start_date' => $leave->start_date,
+                            'enddayname' => $enddayname,
+                            'end_date' =>  $leave->end_date,
+                            'days' => $leave->days,
+                            'comment' =>  $leave->reason
                         ];
                        
                         Mail::to($linemanageremail)->send(new MailLeave($details));
@@ -1255,8 +1318,13 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval',
-                            'body' => 'Access to HR System is now available'
+                            'title' => 'Leave Request Approval - Annual Leave',
+                            'startdayname' => $startdayname,
+                            'start_date' => $leave->start_date,
+                            'enddayname' => $enddayname,
+                            'end_date' =>  $leave->end_date,
+                            'days' => $leave->days,
+                            'comment' =>  $leave->reason
                         ];
                        
                         Mail::to($linemanageremail)->send(new MailLeave($details));
@@ -1327,8 +1395,13 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval',
-                            'body' => 'Access to HR System is now available'
+                            'title' => 'Leave Request Approval - Annual Leave',
+                            'startdayname' => $startdayname,
+                            'start_date' => $leave->start_date,
+                            'enddayname' => $enddayname,
+                            'end_date' =>  $leave->end_date,
+                            'days' => $leave->days,
+                            'comment' =>  $leave->reason
                         ];
                        
                         Mail::to($linemanageremail)->send(new MailLeave($details));
@@ -1391,8 +1464,13 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Unpaid Leave',
-                            'body' => 'Access to HR System is now available'
+                            'title' => 'Leave Request Approval - Annual Leave',
+                            'startdayname' => $startdayname,
+                            'start_date' => $leave->start_date,
+                            'enddayname' => $enddayname,
+                            'end_date' =>  $leave->end_date,
+                            'days' => $leave->days,
+                            'comment' =>  $leave->reason
                         ];
                        
                         Mail::to($linemanageremail)->send(new MailLeave($details));
