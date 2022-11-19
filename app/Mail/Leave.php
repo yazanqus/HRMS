@@ -32,7 +32,7 @@ class Leave extends Mailable implements ShouldQueue
     {
         return $this
         ->from('hr360@nrc.no')
-        ->subject('Your leave has been approved')
+        ->subject('Leave Request Approval')
         ->markdown('emails.leave');
     }
 }
