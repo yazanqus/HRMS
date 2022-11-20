@@ -16,6 +16,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Leave as MailLeave;
+use App\Mail\Leaveafterlm as MailLeaveafterlm;
+use App\Mail\Leavefinal as MailLeavefinal;
+use App\Mail\Leaverejected as MailLeaverejected;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -252,7 +255,8 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Annual Leave',
+                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
+                            'leavetype' => $leave->leavetype->name,
                             'startdayname' => $startdayname,
                             'start_date' => $leave->start_date,
                             'enddayname' => $enddayname,
@@ -340,7 +344,8 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Annual Leave',
+                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
+                            'leavetype' => $leave->leavetype->name,
                             'startdayname' => $startdayname,
                             'start_date' => $leave->start_date,
                             'enddayname' => $enddayname,
@@ -419,7 +424,8 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Annual Leave',
+                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
+                            'leavetype' => $leave->leavetype->name,
                             'startdayname' => $startdayname,
                             'start_date' => $leave->start_date,
                             'enddayname' => $enddayname,
@@ -499,7 +505,8 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Annual Leave',
+                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
+                            'leavetype' => $leave->leavetype->name,
                             'startdayname' => $startdayname,
                             'start_date' => $leave->start_date,
                             'enddayname' => $enddayname,
@@ -580,7 +587,8 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Annual Leave',
+                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
+                            'leavetype' => $leave->leavetype->name,
                             'startdayname' => $startdayname,
                             'start_date' => $leave->start_date,
                             'enddayname' => $enddayname,
@@ -667,7 +675,8 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Annual Leave',
+                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
+                            'leavetype' => $leave->leavetype->name,
                             'startdayname' => $startdayname,
                             'start_date' => $leave->start_date,
                             'enddayname' => $enddayname,
@@ -886,7 +895,8 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Annual Leave',
+                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
+                            'leavetype' => $leave->leavetype->name,
                             'startdayname' => $startdayname,
                             'start_date' => $leave->start_date,
                             'enddayname' => $enddayname,
@@ -974,7 +984,8 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Annual Leave',
+                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
+                            'leavetype' => $leave->leavetype->name,
                             'startdayname' => $startdayname,
                             'start_date' => $leave->start_date,
                             'enddayname' => $enddayname,
@@ -1032,7 +1043,8 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Annual Leave',
+                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
+                            'leavetype' => $leave->leavetype->name,
                             'startdayname' => $startdayname,
                             'start_date' => $leave->start_date,
                             'enddayname' => $enddayname,
@@ -1111,7 +1123,8 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Annual Leave',
+                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
+                            'leavetype' => $leave->leavetype->name,
                             'startdayname' => $startdayname,
                             'start_date' => $leave->start_date,
                             'enddayname' => $enddayname,
@@ -1191,7 +1204,8 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Annual Leave',
+                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
+                            'leavetype' => $leave->leavetype->name,
                             'startdayname' => $startdayname,
                             'start_date' => $leave->start_date,
                             'enddayname' => $enddayname,
@@ -1276,7 +1290,8 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Annual Leave',
+                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
+                            'leavetype' => $leave->leavetype->name,
                             'startdayname' => $startdayname,
                             'start_date' => $leave->start_date,
                             'enddayname' => $enddayname,
@@ -1362,7 +1377,8 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Annual Leave',
+                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
+                            'leavetype' => $leave->leavetype->name,
                             'startdayname' => $startdayname,
                             'start_date' => $leave->start_date,
                             'enddayname' => $enddayname,
@@ -1442,7 +1458,8 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Annual Leave',
+                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
+                            'leavetype' => $leave->leavetype->name,
                             'startdayname' => $startdayname,
                             'start_date' => $leave->start_date,
                             'enddayname' => $enddayname,
@@ -1514,7 +1531,8 @@ class LeaveController extends Controller
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
                             'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - Annual Leave',
+                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
+                            'leavetype' => $leave->leavetype->name,
                             'startdayname' => $startdayname,
                             'start_date' => $leave->start_date,
                             'enddayname' => $enddayname,
@@ -1602,17 +1620,29 @@ class LeaveController extends Controller
         $leave->status = 'Pending HR Approval';
         $leave->lmapprover = $lmuser->name;
 
-        $requester=$leave->user;
+        $startdayname = Carbon::parse($leave->start_date)->format('l');
+        $enddayname = Carbon::parse($leave->end_date)->format('l');
 
-                        $details = [
-                            'requestername' => $requester->name,
-                            'linemanagername' => '',
-                            'linemanageremail' => '',
-                            'title' => 'Leave Request Approved',
-                            'body' => 'Access to HR System is now available'
-                        ];
-                       
-                        Mail::to($requester->email)->send(new MailLeave($details));
+
+        $requester=$leave->user;
+        // $linemanageremail = User::where('name',$requester->linemanager)->value('email');
+
+        // dd($linemanageremail);
+        $details = [
+            'requestername' => $requester->name,
+            'linemanagername' => $requester->linemanager,
+            // 'linemanageremail' => $linemanageremail,
+            'title' => 'Leave Request - '.$leave->leavetype->name. ' - Approved by Line Manager',
+            'startdayname' => $startdayname,
+            'start_date' => $leave->start_date,
+            'enddayname' => $enddayname,
+            'end_date' =>  $leave->end_date,
+            'days' => $leave->days,
+            'status' => $leave->status,
+            'comment' =>  $leave->reason
+        ];
+       
+        Mail::to($requester->email)->send(new MailLeaveafterlm($details));
 
         $leave->save();
 
@@ -1626,18 +1656,29 @@ class LeaveController extends Controller
         $leave = Leave::find($id);
         $leave->status = 'Declined by LM';
         $leave->lmapprover = $lmuser->name;
+        $startdayname = Carbon::parse($leave->start_date)->format('l');
+        $enddayname = Carbon::parse($leave->end_date)->format('l');
+
 
         $requester=$leave->user;
+        // $linemanageremail = User::where('name',$requester->linemanager)->value('email');
 
+        // dd($linemanageremail);
         $details = [
             'requestername' => $requester->name,
-            'linemanagername' => '',
-            'linemanageremail' => '',
-            'title' => 'Leave Request Rejected',
-            'body' => 'Access to HR System is now available'
+            'linemanagername' => $requester->linemanager,
+            // 'linemanageremail' => $linemanageremail,
+            'title' => 'Leave Request - '.$leave->leavetype->name. ' - Declined by Line Manager',
+            'startdayname' => $startdayname,
+            'start_date' => $leave->start_date,
+            'enddayname' => $enddayname,
+            'end_date' =>  $leave->end_date,
+            'days' => $leave->days,
+            'status' => $leave->status,
+            'comment' =>  $leave->reason
         ];
        
-        Mail::to($requester->email)->send(new MailLeave($details));
+        Mail::to($requester->email)->send(new MailLeaveafterlm($details));
         
         $leave->save();
 
@@ -1736,17 +1777,27 @@ class LeaveController extends Controller
                     $leave->status = 'Approved';
                     $leave->hrapprover = $hruser->name;
             
+                    $startdayname = Carbon::parse($leave->start_date)->format('l');
+                    $enddayname = Carbon::parse($leave->end_date)->format('l');
+                    
                     $requester=$leave->user;
-            
+
                     $details = [
                         'requestername' => $requester->name,
-                        'linemanagername' => '',
-                        'linemanageremail' => '',
-                        'title' => 'Leave Request Fully Approved',
-                        'body' => 'Access to HR System is now available'
+                        'linemanagername' => $requester->linemanager,
+                        'hrname' => $leave->hrapprover,
+                        'title' => 'Leave Request - '.$leave->leavetype->name. ' - Approved by HR',
+                        'startdayname' => $startdayname,
+                        'start_date' => $leave->start_date,
+                        'enddayname' => $enddayname,
+                        'end_date' =>  $leave->end_date,
+                        'days' => $leave->days,
+                        'status' => $leave->status,
+                        'comment' =>  $leave->reason,
+                        'newbalance' => $newbalance
                     ];
                    
-                    Mail::to($requester->email)->send(new MailLeave($details));
+                    Mail::to($requester->email)->send(new MailLeavefinal($details));
             
                     $leave->save();
             
@@ -1852,18 +1903,26 @@ class LeaveController extends Controller
         $leave->hrapprover = $hruser->name;
 
 
-
+        $startdayname = Carbon::parse($leave->start_date)->format('l');
+        $enddayname = Carbon::parse($leave->end_date)->format('l');
+        
         $requester=$leave->user;
 
         $details = [
             'requestername' => $requester->name,
-            'linemanagername' => '',
-            'linemanageremail' => '',
-            'title' => 'Leave Request Rejected by HR',
-            'body' => 'Access to HR System is now available'
+            'linemanagername' => $requester->linemanager,
+            'hrname' => $leave->hrapprover,
+            'title' => 'Leave Request - '.$leave->leavetype->name. ' - Declined by HR',
+            'startdayname' => $startdayname,
+            'start_date' => $leave->start_date,
+            'enddayname' => $enddayname,
+            'end_date' =>  $leave->end_date,
+            'days' => $leave->days,
+            'status' => $leave->status,
+            'comment' =>  $leave->reason,
         ];
        
-        Mail::to($requester->email)->send(new MailLeave($details));
+        Mail::to($requester->email)->send(new MailLeaverejected($details));
 
 
         $leave->save();

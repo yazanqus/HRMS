@@ -2,13 +2,12 @@
 
 namespace App\Mail;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class Leave extends Mailable implements ShouldQueue
+class Leavefinal extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -32,7 +31,7 @@ class Leave extends Mailable implements ShouldQueue
     {
         return $this
         ->from('hr360@nrc.no')
-        ->subject('Leave Request - Pending your Approval')
-        ->markdown('emails.leave');
+        ->subject('Leave Request - Approved')
+        ->markdown('emails.leavefinal');
     }
 }
