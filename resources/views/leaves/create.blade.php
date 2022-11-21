@@ -135,7 +135,7 @@
                                         </div>
 
                                         <div class="row justify-content-center">
-                                            <div class="justify-content-center form-group col-sm-2"> <button type="submit" class="btn bg-gradient-primary btn-block">Submit</button> </div>
+                                            <div class="justify-content-center form-group col-sm-2"> <button type="submit" class=" disable btn bg-gradient-primary btn-block">Submit</button> </div>
                                             <div class="form-group col-sm-3"> <a class="btn btn-outline-danger" href="{{route('leaves.index')}}" >Cancel</a> </div>
                                         </div>
                                       </form>
@@ -197,6 +197,14 @@ $(document).ready(function() {
         $('#plus').hide();
 
   var sickpercentage;
+//   $('.disable').click(function(){
+//    $(this).prop('disabled', true);
+// });
+
+$('form').submit(function(){
+  $(this).find(':submit').attr('disabled','disabled');
+});
+
 
 $('#leavetype_id').on('change',function(){
 

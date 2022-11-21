@@ -199,7 +199,9 @@ $(document).ready(function() {
 
   
 
- 
+  $('form').submit(function(){
+  $(this).find(':submit').attr('disabled','disabled');
+});
 
 var weekday;
   
@@ -212,6 +214,7 @@ $("input[name=type]:radio").change(function(){
       weekday = "5,6";
       $('#datepicker').datepicker({ 
     format: 'yyyy-mm-dd',
+    
     weekStart: 0,
     clearBtn: true,
     autoclose: true,

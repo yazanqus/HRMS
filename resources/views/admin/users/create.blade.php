@@ -197,6 +197,17 @@
 @push('scripts')
 
 <script>
+
+$(document).ready(function() {
+
+  
+
+$('form').submit(function(){
+$(this).find(':submit').attr('disabled','disabled');
+});
+
+});
+
   $("#eye1").on('click',function() {
 
 if($(this).hasClass('fa-eye-slash')){
@@ -217,5 +228,7 @@ if($(this).hasClass('fa-eye-slash')){
 }
 });
 </script>
+
+
 
 @endpush

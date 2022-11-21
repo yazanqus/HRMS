@@ -48,11 +48,11 @@
                                   <td class="text-center">{{ $leave->days }}</td>
                                   <td class="text-center">{{ $leave->status }}</td>
                                   <td class="text-center">
-                                      <a class="btn btn-success"
+                                      <a id="buttonSelector" class="btn btn-success"
                                       href="{{route('leaves.approved',$leave->id)}}">Approve</a>
                                     </td>
                                     <td class="text-center">
-                                        <a class="btn btn-danger" href="{{route('leaves.declined',$leave->id)}}">Decline</a>
+                                        <a id="buttonSelector" class="btn btn-danger" href="{{route('leaves.declined',$leave->id)}}">Decline</a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -65,3 +65,20 @@
               </div>
           </div>
  @endsection
+ @push('scripts')
+
+<script>
+
+$(document).ready(function() {
+
+  
+
+    $(document).on('click', '#buttonSelector', function () {
+    $(this).addClass('disabled');
+});
+
+});
+
+</script>
+
+@endpush
