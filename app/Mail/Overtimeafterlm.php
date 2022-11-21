@@ -30,7 +30,7 @@ class Overtimeafterlm extends Mailable implements ShouldQueue
     public function build()
     {
         return $this
-        ->from('hr360@nrc.no')
+        ->from('hr360@systems.nrc.no')
         ->subject('Overtime Request - Workflow update')
         ->markdown('emails.overtimeafterlm');
     }
