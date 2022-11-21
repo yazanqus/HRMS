@@ -6,7 +6,7 @@
 {{asset('storage/hr360-3-noBG.png')}}
 {{url('/hr360-3-noBG.png')}} -->
 @else
-<img src="{{url('/hr360-3-noBG.png')}}" style=" width:150px;height:50px;" class="logo" alt="Logo">
+<img src="{{ asset('/hr360-3-noBG.png') }}" style=" width:150px;height:50px;" class="logo" alt="Logo">
 {{ $slot }}
 @endif
 </a>
