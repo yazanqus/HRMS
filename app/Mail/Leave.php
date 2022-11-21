@@ -31,7 +31,7 @@ class Leave extends Mailable implements ShouldQueue
     public function build()
     {
         return $this
-        ->from('hr360@systems.nrc.no')
+        ->from('hr360@systems.nrc.no', 'HR 360')
         ->subject('Leave Request - Pending your Approval')
         ->markdown('emails.leave');
     }
