@@ -73,14 +73,14 @@
                               
                                       <div class="row justify-content-between text-left">
                                         <div class="form-group {{ $errors->has('start_date') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
-                                            <label class="form-control-label required px-1">Start Date</label>
+                                            <label class="form-control-label required px-1">Leave Start Date</label>
                                             <input class="form-control form-outline {{ $errors->has('start_date') ? ' is-invalid' : '' }}" type="date" value="{{ old('start_date') }}" name="start_date" id="start_date" placeholder="" >
                                             @if ($errors->has('start_date'))
                                                 <span id="start_date-error" class="error text-danger" for="input-start_date">{{ $errors->first('start_date') }}</span>
                                                @endif
                                         </div>
                                         <div class="form-group {{ $errors->has('end_date') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
-                                            <label class="form-control-label required px-1">End Date</label>
+                                            <label class="form-control-label required px-1">Leave End Date</label>
                                             <input class="form-control form-outline {{ $errors->has('end_date') ? ' is-invalid' : '' }}" type="date" value="{{ old('end_date') }}" name="end_date" id="end_date" placeholder="" >
                                             @if ($errors->has('end_date'))
                                                 <span id="end_date-error" class="error text-danger" for="input-end_date">{{ $errors->first('end_date') }}</span>
