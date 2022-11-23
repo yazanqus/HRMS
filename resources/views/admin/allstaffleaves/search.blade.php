@@ -19,11 +19,9 @@
                   <div class="container-fluid">
                       <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">All Staff leaves</h4>
+                          <h4 class="card-title ">All <strong>{{$name}}</strong> leaves - Advanced Search Results</h4>
                           <div class="col-12 text-right">
-                            <a href="{{route('admin.allleavessearch.cond')}}" class="btn btn-sm ml-2 btn-success">Advanced Search <i class="ml-2 fas fa-search"></i> </a>
-                            <a href="{{route('admin.leaves.pdf')}}" class="btn btn-sm ml-2 btn-primary">PDF report <i class="ml-2 fas fa-file-pdf"></i> </a>
-                            <a href="{{route('admin.leaves.export')}}" class="btn btn-sm ml-2 btn-secondary">Excel <i class="ml-2 fas fa-file-excel"></i> </a>
+                            Between <strong>{{$start_date}}</strong> and <strong>{{$end_date}}</strong>
                           </div>
                           {{-- <p class="card-category"> Here you can manage users</p> --}}
                         </div>

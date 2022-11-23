@@ -44,10 +44,37 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/
     Route::get('/leaves/export', [LeaveController::class, 'export'])->name('leaves.export');
     Route::get('leavespdf', function ()
     {
-        $users = User::all();
-        $leaves = Leave::all();
-        $leavestypes = Leavetype::all();
-        return view('admin.allstaffleaves.reportconditions', ['leaves' => $leaves, 'users' => $users, 'leavestypes' => $leavestypes]);
+
+
+        $hruser = Auth::user();
+
+        if ($hruser->office == "AO2") {
+            $users = User::all();
+            $leaves = Leave::all();
+            return view('admin.allstaffleaves.reportconditions', ['leaves' => $leaves,'users' => $users]);
+        }
+        else
+        {  
+            $staffwithsameoffice = User::where('office',$hruser->office)->get();
+            if (count($staffwithsameoffice))
+            {
+                $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
+                    return collect($staffwithsameoffice->toArray())
+                        ->only(['id'])
+                        ->all();
+                });
+                $hrleaves = Leave::wherein('user_id', $hrsubsets)->get();
+
+                return view('admin.allstaffleaves.reportconditions', ['leaves' => $hrleaves,'users' => $staffwithsameoffice]);
+            }            
+
+        }
+
+
+        // $users = User::all();
+        // $leaves = Leave::all();
+        // $leavestypes = Leavetype::all();
+        // return view('admin.allstaffleaves.reportconditions', ['leaves' => $leaves, 'users' => $users, 'leavestypes' => $leavestypes]);
 
     })->name('leaves.pdf');
     Route::post('/leaves/pdf/show', [LeaveController::class, 'pdf'])->name('leaves.pdfshow');
@@ -86,6 +113,34 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/
 
         }
     })->name('allstaffleaves.index');
+
+    Route::get('allleavessearch', function () {
+        $hruser = Auth::user();
+
+        if ($hruser->office == "AO2") {
+            $users = User::all();
+            $leaves = Leave::all();
+            return view('admin.allstaffleaves.searchconditions', ['leaves' => $leaves,'users' => $users]);
+        }
+        else
+        {  
+            $staffwithsameoffice = User::where('office',$hruser->office)->get();
+            if (count($staffwithsameoffice))
+            {
+                $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
+                    return collect($staffwithsameoffice->toArray())
+                        ->only(['id'])
+                        ->all();
+                });
+                $hrleaves = Leave::wherein('user_id', $hrsubsets)->get();
+
+                return view('admin.allstaffleaves.searchconditions', ['leaves' => $hrleaves,'users' => $staffwithsameoffice]);
+            }            
+
+        }
+    })->name('allleavessearch.cond');
+
+    Route::post('/leaves/search', [LeaveController::class, 'search'])->name('leaves.search');
 
     Route::get('allstaffovertimes', function () {
  
