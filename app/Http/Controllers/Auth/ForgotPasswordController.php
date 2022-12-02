@@ -38,10 +38,12 @@ class ForgotPasswordController extends Controller
           $token = Str::random(64);
           
           $name = User::where('email',$request->email)->value('name');
+          $employee =  User::where('email',$request->email)->value('employee_number');
 
           $details = [
             'token' => $token,
-            'name' => $name
+            'name' => $name,
+            'employee' => $employee
         ];
   
           DB::table('password_resets')->insert([
