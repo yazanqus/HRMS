@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\UsersExport;
+use App\Imports\UsersImport;
 use App\Models\Attendance;
 use App\Models\Balance;
 use App\Models\Leave;
@@ -106,6 +107,8 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
 
         $user->save();
+
+
 
 
        
@@ -940,5 +943,66 @@ class UserController extends Controller
     {
         return Excel::download(new UsersExport, 'users.xlsx');
     }
+
+    public function import(Request $request)
+    {
+        $file = $request->file('file');
+
+    Excel::import(new UsersImport, $request->file('file'));
+       
+    }
+
+    public function importshow()
+    {
+        return view('admin.users.importshow');
+    }
+
+    public function createbalance()
+    {
+        $users = User::all();
+
+        $leavetypes = Leavetype::all();
+
+        foreach ($users as $user)
+        {
+            foreach ($leavetypes as $leavetype) {
+
+                if ($leavetype->name == "Annual leave") {
+                    $user->balances()->create([
+    
+                        'name' => $leavetype->name,
+                        'value' => '15',
+                        'leavetype_id' => $leavetype->id,
+                    ]);
+    
+                } elseif ($leavetype->name == "Annual leave - First half") {
+                    $user->balances()->create([
+    
+                        'name' => $leavetype->name,
+                        'value' => '15',
+                        'leavetype_id' => $leavetype->id,
+                    ]);
+    
+                } elseif ($leavetype->name == "Annual leave - Second half") {
+                    $user->balances()->create([
+    
+                        'name' => $leavetype->name,
+                        'value' => '15',
+                        'leavetype_id' => $leavetype->id,
+                    ]);
+                } else {
+                    $user->balances()->create([
+                        'name' => $leavetype->name,
+                        'value' => $leavetype->value,
+                        'leavetype_id' => $leavetype->id,
+                    ]);
+                }
+            }
+        }
+
+        return redirect()->route('admin.users.index');
+        
+    }
+
 
 }

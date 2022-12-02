@@ -897,6 +897,9 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
 
 Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::get('/users/export', [UserController::class, 'export'])->name('users.export');
+    Route::post('/users/import', [UserController::class, 'import'])->name('users.import');
+    Route::get('/users/import/show', [UserController::class, 'importshow'])->name('users.importshow');
+    Route::get('/users/createbalance', [UserController::class, 'createbalance'])->name('users.createbalance');
     Route::get('/users/{user}/allstaffattendance', [UserController::class, 'allstaffattendance'])->name('users.allstaffattendance');
     Route::get('/users/{user}/staffattendance/{attendance}', [UserController::class, 'staffattendance'])->name('users.staffattendance');
     Route::resource('users', UserController::class);
