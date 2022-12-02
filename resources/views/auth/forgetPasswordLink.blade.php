@@ -5,6 +5,11 @@
   <div class="cotainer">
       <div class="row justify-content-center">
           <div class="col">
+          @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
               <div class="card">
                   <div class="card-header">Reset Password</div>
                   <div class="card-body">

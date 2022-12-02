@@ -28,12 +28,12 @@
                       <div class="card-body table-responsive-md">
 
                         <div class="row">
-                      <table class="table table-hover text-nowrap table-Secondary">
+                      <table class="table table-hover table-responsive text-nowrap table-Secondary">
                       <thead>
                           <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Birth Date</th>
-                            <th class="text-center" scope="col">Email</th>
+                            <th style="width: 10%" scope="col">Name</th>
+                            <th style="width: 10%" scope="col">Birth Date</th>
+                            <th style="width: 10%" class="text-center" scope="col">Email</th>
                             <th class="text-center" scope="col">Employee Number</th>
                             <th class="text-center" scope="col">Position</th>
                             <th class="text-center" scope="col">Joined Date</th>

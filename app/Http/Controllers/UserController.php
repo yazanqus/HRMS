@@ -379,7 +379,8 @@ class UserController extends Controller
         // $finalfinal = $final['value'];
         // return view('admin.users.edit', ['user' => $user, 'balance' => $finalfinal]);
         $userss = User::all();
-        return view('admin.users.edit', ['user' => $user, 'userss' => $userss]);
+        $hruser = Auth::user();
+        return view('admin.users.edit', ['user' => $user,  'hruser'=> $hruser, 'userss' => $userss]);
 
     }
 

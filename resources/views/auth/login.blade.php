@@ -6,8 +6,15 @@
 
       <!-- /.login-logo -->
       <div class="card card-outline card-primary col-lg-4 col-md-6 col-sm-8 ml-2rem">
+     
         <div class="card-header text-center">
           <p class="h1 mb-0" style="font-size:2.3rem;"> <img class="mb-0 ml-0" src="{{url('/hr360-3-noBG.png')}}"  alt="" style=" width:150px;height:50px;"></p>
+          @if (session('success'))
+          <br>
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
         </div>
         <div class="card-body text-center">
           <p class="login-box-msg pr-0 pb-3 pl-0">Sign in to start your session</p>
@@ -73,7 +80,7 @@
             <div class="alert " style="color:red; font-weight:bold; padding-bottom: 0.2rem;"  >{{$errors->first()}}</></div>
 @endif
 
-                          <!-- <div class="form-group row">
+                          <div class="form-group row">
                               <div class="col">
                                   <div class="checkbox">
                                       <label>
@@ -81,7 +88,7 @@
                                       </label>
                                   </div>
                               </div>
-                          </div> -->
+                          </div>
             {{-- @if ($errors->has('employee_number'))
                                     <div id="employee_number-error" class="mb-2 error text-danger mr-3 pl-3" for="employee_number"
                                         style="display: block;">

@@ -65,7 +65,7 @@
                                                 <span id="office-error" class="error text-danger" for="input-office">{{ $errors->first('office') }}</span>
                                                @endif
                                         </div>
-                                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Department</label> <input class="form-control form-outline" type="text" id="department"  value="{{ old('department') }}" name="department" placeholder="" > </div>
+                                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Department</label> <input class="form-control form-outline" type="text" id="department"  value="{{ $user->department }}" name="department" placeholder="" > </div>
                                             <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Grade</label> <input class="form-control form-outline" type="text" id="grade" value="{{$user->grade}}" name="grade" placeholder="" > </div>
                                         </div>
                                         <div class="row justify-content-between text-left">
@@ -141,7 +141,7 @@
                                     }
                                             @endphp
 
-                                            @if ($user->superadmin == "yes")
+                                            @if ($hruser->superadmin == "yes")
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-1">Role <small>(Currently: {{$admin}})</small></label>
                                                 <div class="form-check">

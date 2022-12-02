@@ -10,18 +10,22 @@
         <div class="card-header text-center">
           <p class="h1 mb-0" style="font-size:2.3rem;"> <img class="mb-0 ml-0" src="{{url('/hr360-3-noBG.png')}}"  alt="" style=" width:150px;height:50px;"></p>
         </div>
-        <div class="card-body text-center">
+        <div  class="card-body text-center">
         @if (Session::has('message'))
-                         <div class="alert alert-success" role="alert">
+                         <div id="message" class="alert alert-success" role="alert">
+                            
                             {{ Session::get('message') }}
                         </div>
                     @endif
-          <p class="login-box-msg pr-0 pb-3 pl-0">Reset your password</p>
+
+
+                    
+          <p id="box1" class="login-box-msg pr-0 pb-3 pl-0">Reset your password</p>
 
           <form action="{{ route('forget.password.post') }}" method="post">
             @csrf
 
-            <div class="bmd-form-group">
+            <div id="box" class=" bmd-form-group">
                 <div class="input-group mb-3">
                   <input type="text" id="email_address" name="email" required autofocus  class="form-control"
                     placeholder="E-Mail Address" >
@@ -42,7 +46,7 @@
                                   @endif
                 
             </div>
-            <div class=" text-right">
+            <div id="box2" class=" text-right">
                               <div class="col-12">
                                   <div class="checkbox ">
                                       <label >
@@ -52,7 +56,7 @@
                               </div>
                           </div>
               <!-- /.col -->
-              <div class="row">
+              <div id="box3" class="row">
                   <div class="col-12">
                     <button type="submit" class="btn bg-gradient-primary btn-block">Send Password Reset Link</button>
                   </div>
@@ -113,3 +117,35 @@
   </div>
 </main> -->
 @endsection
+
+@push('scripts')
+<script src="{{ asset('select/js/bootstrap-select.min.js')}}"></script>
+
+
+
+<script>
+$(document).ready(function() {
+    if ($("#message").text().length < 1) {
+     $('#box').show();
+     $('#box1').show();
+     $('#box2').show();
+     $('#box3').show();
+   }  
+
+   if ($("#message").text().length > 1) {
+     $('#box').hide();
+     $('#box1').hide();
+     $('#box2').hide();
+     $('#box3').hide();
+
+   }  
+
+});
+
+
+
+
+</script>
+
+
+@endpush

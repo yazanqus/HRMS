@@ -46,12 +46,12 @@
                                               
                                               <th style="width: 20%" scope="col">Name</th>
                                               <th style="width: 10%" scope="col">Employee ID</th>
-                                              <th style="width: 10%" scope="col">Position</th>
+                                              <th style="width: 20%" scope="col">Position</th>
                                               <th style="width: 10%" scope="col">Office</th>
                                               <th style="width: 10%" scope="col">Join Date</th>
                                               <th style="width: 20%" scope="col">Line Manager</th>
-                                              <th class="text-center" style="width: 10%" scope="col">Admin<small> (on HR System)</small></th>
-                                              <th class="text-center" style="width: 10%" scope="col">Date Created</th>
+                                         
+                                             
                                               </tr>
                                             </thead>
                                             <tbody>
@@ -68,8 +68,8 @@
                                                   <td>{{ $user->office }}</td>
                                                   <td>{{ $user->joined_date }}</td>
                                                   <td>{{ $user->linemanager }}</td>
-                                                  <td class="text-center" >{{ $user->hradmin }}</td>
-                                                  <td class="text-center" >{{ $user->created_at }}</td>
+                                               
+                                              
 
                                                 </tr>
                                                 @endforeach
@@ -82,8 +82,8 @@
                                               <th style="width: 10%" scope="col">Office</th>
                                               <th style="width: 10%" scope="col">Join Date</th>
                                               <th style="width: 20%" scope="col">Line Manager</th>
-                                              <th class="text-center" style="width: 10%" scope="col">Admin<small> (on HR System)</small></th>
-                                              <th class="text-center" style="width: 10%" scope="col">Date Created</th>
+                                              
+                                            
 
                                               </tr>
                                             </tfoot>
@@ -165,7 +165,7 @@
     $(document).ready( function () {
     $('#table_id').DataTable({
         "aLengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
-        "order": [[7, "desc" ]],
+        "order": [[1, "desc" ]],
     });
 });
   </script>
