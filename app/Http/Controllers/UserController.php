@@ -86,7 +86,7 @@ class UserController extends Controller
             'office' => 'required',
             'linemanager',
             'hradmin',
-            'email'  => 'required|unique:users,email',
+            'email'  => 'email|unique:users,email',
             'password' => 'required',
         ]);
 
