@@ -182,7 +182,10 @@
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-1">Email</label>
-                                                <input class="form-control form-outline" readonly type="email" id="email" value="{{$user->email}}" name="email" autocomplete="off" placeholder="Email is used for Okta sign in"  >
+                                                <input class="form-control form-outline {{ $errors->has('email') ? ' is-invalid' : '' }}" type="email" id="email" value="{{$user->email}}" name="email" autocomplete="off" placeholder=""  >
+                                               @if ($errors->has('email'))
+                                                 <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
+                                                @endif
                                             </div>
                                             <div class="form-group  {{ $errors->has('password') ? ' has-danger' : '' }}  col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label required px-1">Password <small>(Change User Password)</small></label>
