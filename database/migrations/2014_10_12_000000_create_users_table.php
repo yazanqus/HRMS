@@ -22,7 +22,6 @@ class CreateUsersTable extends Migration
             $table->string('position')->nullable();
             $table->string('office')->nullable();
             $table->string('department')->nullable();
-            $table->string('grade')->nullable();
             $table->string('linemanager')->nullable();
             $table->string('hradmin')->nullable();
             $table->string('superadmin')->nullable();

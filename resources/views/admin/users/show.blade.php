@@ -106,8 +106,6 @@
                               <div class="col">
                                 <strong>Position: </strong> {{$user->position}}
                                 <br>
-                                <strong>Grade: </strong> {{$user->grade}}
-                                <br>
                                 <strong>Department: </strong> {{$user->department}}
                                 <br>
                                 <strong>Joined Date: </strong> {{$user->joined_date}}

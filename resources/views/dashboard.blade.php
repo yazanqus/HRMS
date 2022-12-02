@@ -45,8 +45,6 @@
 
                                 <strong>Position: </strong> {{$user->position}}
                                   <br>
-                                  <strong>Grade: </strong> {{$user->grade}}
-                                  <br>
                                   <strong>Joined Date: </strong> {{$user->joined_date}}
                                   <br>
                                 <strong>Line Manager: </strong> {{$user->linemanager}}

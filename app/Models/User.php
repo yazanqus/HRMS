@@ -36,7 +36,6 @@ class User extends Authenticatable
                 'employee_number',
                 'joined_date',
                 'email',
-                'grade',
                 'linemanager',
                 'usertype_id',
                 'hradmin'])->logOnlyDirty();
@@ -53,7 +52,6 @@ class User extends Authenticatable
         'contract',
         'joined_date',
         'email',
-        'grade',
         'office',
         'password',
         'linemanager',

@@ -81,7 +81,6 @@ class UserController extends Controller
             'contract',
             'birth_date',
             'position',
-            'grade',
             'department',
             'joined_date' => 'required',
             'office' => 'required',
@@ -99,7 +98,6 @@ class UserController extends Controller
         $user->position = $request->position;
         $user->office = $request->office;
         $user->department = $request->department;
-        $user->grade = $request->grade;
         $user->linemanager = $request->linemanager;
         $user->joined_date = $request->joined_date;
         $user->hradmin = $request->hradmin;
@@ -396,7 +394,6 @@ class UserController extends Controller
             'position',
             'office' => 'required',
             'department',
-            'grade',
             'joined_date' => 'required',
             'linemanager',
             'hradmin',
@@ -417,7 +414,6 @@ class UserController extends Controller
         $user->position = $request->position;
         $user->office = $request->office;
         $user->department = $request->department;
-        $user->grade = $request->grade;
         $user->linemanager = $request->linemanager;
         $user->joined_date = $request->joined_date;
         $user->hradmin = $request->hradmin;
@@ -668,7 +664,6 @@ class UserController extends Controller
             // 'birth_date',
             // 'position',
             // // 'unit' => 'required',
-            // 'grade',
             // 'joined_date' => 'required',
             // 'linemanager',
             // 'hradmin',
