@@ -58,10 +58,10 @@
                         {{-- @foreach ($users as $user) --}}
                         <br>
                         <h3>
-<!-- 
+
                                 <a href="{{route('admin.users.edit', $user)}}" role="button" data-toggle="modal" data-target="#myModal{{$user->id}}" class="btn btn-sm btn-outline-danger">Delete
                                     <i class="ml-2 fas fa-lg fa-user-times"></i>
-                                </a> -->
+                                </a>
 
                             </b>
                          </h3>
