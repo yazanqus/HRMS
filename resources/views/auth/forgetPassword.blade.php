@@ -6,7 +6,7 @@
         <div class="row align-items-center">
 
       <!-- /.login-logo -->
-      <div class="card card-outline card-primary col-lg-4 col-md-6 col-sm-8 ml-2rem">
+      <div style = "background-color: #ffffffbd;" class="card card-outline card-primary col-lg-4 col-md-6 col-sm-8 ml-2rem">
         <div class="card-header text-center">
           <p class="h1 mb-0" style="font-size:2.3rem;"> <img class="mb-0 ml-0" src="{{url('/hr360-3-noBG.png')}}"  alt="" style=" width:150px;height:50px;"></p>
         </div>

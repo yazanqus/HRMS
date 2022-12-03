@@ -175,15 +175,14 @@
 
                         </div>
                         <div class="card-body">
-                            {{-- <div class="row">
-                                <div   div class="col-12 text-right">
-                                  <a href="#" class="btn btn-sm btn-primary">Add Holiday</a>
-                                </div>
-                            </div> --}}
+               
                           <div class="row">
                               <div class="col">
                                   <strong>Annual Leave:</strong> {{$balance1}}
+                                  @if ($user->contract !== "Service")
                                   <br>
+                                  
+
                                   <strong>Sick leave:</strong> {{$balance2}}
                                   <br>
                                   <strong>Sick leave 30% deduction:</strong> {{$balance3}}
@@ -204,12 +203,12 @@
                                     <br>
                                   <strong>Compassionate - Second degree:</strong> {{$balance7}}
                                   <br>
-                                {{-- <strong>Annual Leave:</strong> {{$balance1}}
-                                  <br> --}}
+                              
                                   <strong>Compassionate - First degree:</strong> {{$balance6}}
                                   <br>
                                   <strong>Compansetion:</strong> {{$balance18}}
                                   </div>
+                                  @endif
 
                           </div>
                 </div>
