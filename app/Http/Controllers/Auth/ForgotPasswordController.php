@@ -61,7 +61,7 @@ class ForgotPasswordController extends Controller
               
           // });
   
-          return back()->with('message', 'We have sent you a reset-password email, open the link in the email to continue');
+          return back()->with('message', 'We have sent you a reset-password email, open the link in the email to continue, you can close this page now.');
       }
       /**
        * Write code on Method
@@ -100,7 +100,10 @@ class ForgotPasswordController extends Controller
                       ->update(['password' => Hash::make($request->password)]);
  
           DB::table('password_resets')->where(['email'=> $request->email])->delete();
-  
+          
+          User::where('email', $request->email)
+          ->update(['email_verified_at' => Carbon::now()]);
+
           return redirect('/login')->with("success", "Your password has been changed!");
       }
 }
