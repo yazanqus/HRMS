@@ -3,7 +3,7 @@
 return [
 
     'allStaffOvertimes' => 'الأوقات الإضافية لجميع الموظفين' ,
-    'pdfReport' => ' pdfتقرير بصيغة ' ,
+    'pdfReport' => ' pdf تقرير بصيغة ' ,
     'excel' => 'اكسل' ,
     'show' => 'عرض' ,
     'entries' => 'المدخلات',

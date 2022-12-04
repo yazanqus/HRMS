@@ -4,7 +4,7 @@ return [
 
     'allStaffLeaves' => 'مغادرات جميع الموظفين' ,
     'advancedSearch' => 'بحث متقدم' ,
-    'pdfReport' => ' pdfتقرير بصيغة ' ,
+    'pdfReport' => ' pdf تقرير بصيغة ' ,
     'excel' => 'اكسل' ,
     'show' => 'عرض' ,
     'entries' => 'المدخلات',
