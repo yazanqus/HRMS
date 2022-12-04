@@ -398,4 +398,37 @@ class OvertimeController extends Controller
 
 
     }
+
+
+    public function search(Request $request)
+    {
+        $request->validate([
+            'start_date' => 'required',
+            'end_date' => 'required|after_or_equal:start_date',
+            // 'leavetype' => 'required',
+            'name'=> 'required',
+           
+        ]);
+
+        $name= $request->name;
+        $start_date=$request->start_date;
+        $end_date=$request->end_date;
+        // $leavetype=$request->leavetype;
+
+        
+        $userid = User::where('name',$name)->value('id');
+        
+  
+ 
+        $overtimes = Overtime::where([
+
+            ['user_id', $userid],
+            ['date', '>=', $start_date],
+            ['date', '<=', $end_date],
+
+
+        ])->get();
+
+        return view('admin.allstaffovertimes.search', ['overtimes' => $overtimes, 'name'=>$name,'start_date' =>$start_date, 'end_date'=>$end_date]);
+    }
 }

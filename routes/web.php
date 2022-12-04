@@ -150,7 +150,36 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/
         }
     })->name('allleavessearch.cond');
 
-    Route::post('/leaves/search', [LeaveController::class, 'search'])->name('leaves.search');
+    Route::post('/overtimes/search', [LeaveController::class, 'search'])->name('overtimes.search');
+
+
+    Route::get('allovertimessearch', function () {
+        $hruser = Auth::user();
+
+        if ($hruser->office == "AO2") {
+            $users = User::all();
+            $overtimes = Overtime::all();
+            return view('admin.allstaffovertimes.searchconditions', ['overtimes' => $overtimes,'users' => $users]);
+        }
+        else
+        {  
+            $staffwithsameoffice = User::where('office',$hruser->office)->get();
+            if (count($staffwithsameoffice))
+            {
+                $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
+                    return collect($staffwithsameoffice->toArray())
+                        ->only(['id'])
+                        ->all();
+                });
+                $hrovertimes = Overtime::wherein('user_id', $hrsubsets)->get();
+
+                return view('admin.allstaffovertimes.searchconditions', ['overtimes' => $hrovertimes,'users' => $staffwithsameoffice]);
+            }            
+
+        }
+    })->name('allovertimessearch.cond');
+
+    Route::post('/overtimes/search', [OvertimeController::class, 'search'])->name('overtimes.search');
 
     Route::get('allstaffovertimes', function () {
  

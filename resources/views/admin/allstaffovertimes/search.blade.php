@@ -14,24 +14,22 @@
                     </div>
                 </div>
                 <br>
-                
+
 
                   <div class="container-fluid">
                       <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">{{__('allStaffOvertimes.allStaffOvertimes')}}</h4>
+                          <h4 class="card-title ">All <strong>{{$name}}</strong> overtimes - Advanced Search Results</h4>
                           <div class="col-12 text-right">
-                          <a href="{{route('admin.allovertimessearch.cond')}}" class="btn btn-sm ml-2 btn-success">{{__('allStaffLeaves.advancedSearch')}} <i class="ml-2 fas fa-search"></i> </a>
-                          <a href="{{route('admin.overtimes.pdf')}}" class="btn btn-sm ml-2 btn-primary">{{__('allStaffOvertimes.pdfReport')}}<i class="ml-2 fas fa-file-pdf"></i> </a>  
-                          <a href="{{route('admin.overtimes.export')}}" class="btn btn-sm ml-2 btn-secondary">{{__('allStaffOvertimes.excel')}}<i class="ml-2 fas fa-file-excel"></i> </a>
+                            Between <strong>{{$start_date}}</strong> and <strong>{{$end_date}}</strong>
                           </div>
                           {{-- <p class="card-category"> Here you can manage users</p> --}}
                         </div>
-                        <div class="card-body table-responsive-sm">
-                        <table  id="table_id" class="table table-bordered  table-responsive table-hover text-nowrap table-Secondary table-striped " >
+                        <div class="card-body table-responsive-md">
+                        <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                         <thead>
                             <tr>
-                                <th style="width: 3%"scope="col">{{__('allStaffOvertimes.id')}}</th>
+                            <th style="width: 3%"scope="col">{{__('allStaffOvertimes.id')}}</th>
                                 <th style="width: 10%" scope="col">{{__('allStaffOvertimes.name')}}</th>
                                 <th style="width: 10%" class="text-center" scope="col">{{__('allStaffOvertimes.type')}}</th>
                                 <th style="width: 10%" class="text-center" scope="col">{{__('allStaffOvertimes.date')}}</th>
@@ -45,7 +43,7 @@
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach ($overtimes as $overtime)
+                          @foreach ($overtimes as $overtime)
                             <tr>
                               <td><a href="{{ route('overtimes.show', $overtime) }}" target="_blank">{{ $overtime->id }}</a></td>
                               <td>{{ $overtime->user->name }}</td>
@@ -84,7 +82,7 @@
     $('#table_id').DataTable(
         {
             "aLengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
-            "order": [[10, "desc" ]]
+            "order": [[8, "desc" ]]
         }
     );
 } );
