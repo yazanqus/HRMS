@@ -2,8 +2,8 @@
 
 return [
 
-    'allUsers' => 'جميع المستخدمين' ,
-    'createNewUser' => 'انشاء مستخدم جديد' ,
+    'allUsers' => 'جميع الموظفين' ,
+    'createNewUser' => 'إنشاء حساب جديد' ,
     'export' => 'تصدير',
     'name' => 'الاسم',
     'employeeId' => 'رقم الموظف',

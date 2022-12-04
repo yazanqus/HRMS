@@ -8,7 +8,7 @@ return [
     'overTimeApproval' => 'موافقات الإضافي',
     'myStaff' => 'الكادر المسؤول عنه',
     'users' => "الموظفون",
-    'createNewUser' => 'انشاء موظف جديد' ,
+    'createNewUser' => 'إنشاء حساب جديد' ,
     'allUsers' => 'جميع الموظفين' ,
     'hrApprovals' => 'موافقات الموارد البشرية',
     'allStaffLeaves' => 'مغادرات جميع الموظفين' ,

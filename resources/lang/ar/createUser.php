@@ -2,7 +2,7 @@
 
 return [
 
-    'createNewUser' => 'انشاء موظف جديد' ,
+    'createNewUser' => 'إنشاء حساب جديد' ,
     'userInformation' => 'معلومات الموظف' ,
     'fullName' => 'الاسم الكامل',
     'birthDate' => 'تاريخ الميلاد' ,
