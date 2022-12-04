@@ -20,7 +20,7 @@
                 <div class="container-fluid">
                     <div class="card">
                       <div class="card-header card-header-primary">
-                        <h4 class="card-title ">My Staff</h4>
+                        <h4 class="card-title ">{{__('staffleaves.myStaff')}}</h4>
                           {{-- <div class="col-12 text-right">
                             <a href="{{route('leaves.create')}}" class="btn btn-sm btn-primary">Submit a new Leave</a>
                           </div> --}}
@@ -31,12 +31,12 @@
                       <table class="table table-hover table-responsive text-nowrap table-Secondary">
                       <thead>
                           <tr>
-                            <th style="width: 10%" scope="col">Name</th>
-                            <th style="width: 10%" scope="col">Birth Date</th>
-                            <th style="width: 10%" class="text-center" scope="col">Email</th>
-                            <th class="text-center" scope="col">Employee Number</th>
-                            <th class="text-center" scope="col">Position</th>
-                            <th class="text-center" scope="col">Joined Date</th>
+                            <th style="width: 10%" scope="col">{{__('staffleaves.name')}}</th>
+                            <th style="width: 10%" scope="col">{{__('staffleaves.birthDate')}}</th>
+                            <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.email')}}</th>
+                            <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.employeeNumber')}}</th>
+                            <th style="width: 30%" class="text-center" scope="col">{{__('staffleaves.position')}}</th>
+                            <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.joinedDate')}}</th>
 
                           </tr>
                         </thead>
@@ -67,7 +67,7 @@
                   <div class="container-fluid">
                       <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">My staff leaves</h4>
+                          <h4 class="card-title ">{{__('staffleaves.myStaffLeaves')}}</h4>
                           {{-- <p class="card-category"> Here you can manage users</p> --}}
                         </div>
                         <div class="card-body table-responsive-md">
@@ -75,14 +75,14 @@
                         <table id="table_id" class="table table-bordered table-hover text-nowrap table-Secondary table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Name</th>
-                                <th class="text-center" scope="col">Leave type</th>
-                                <th class="text-center" scope="col">Start date</th>
-                                <th  class="text-center"scope="col">End date</th>
-                                <th class="text-center" scope="col">Days</th>
-                                <th class="text-center" scope="col">Status</th>
-                                <th class="text-center" scope="col">Date Created</th>
+                            <th scope="col">{{__('staffleaves.id-Leave')}}</th>
+                                <th scope="col">{{__('staffleaves.name')}}</th>
+                                <th class="text-center" scope="col">{{__('staffleaves.leaveType')}}</th>
+                                <th class="text-center" scope="col">{{__('staffleaves.startDate')}}</th>
+                                <th  class="text-center"scope="col">{{__('staffleaves.endDate')}}</th>
+                                <th class="text-center" scope="col">{{__('staffleaves.days')}}</th>
+                                <th class="text-center" scope="col">{{__('staffleaves.status')}}</th>
+                                <th class="text-center" scope="col">{{__('staffleaves.dateCreated')}}</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -107,7 +107,7 @@
                   <div class="container-fluid">
                     <div class="card">
                       <div class="card-header card-header-primary">
-                        <h4 class="card-title ">My staff overtimes</h4>
+                        <h4 class="card-title ">{{__('staffleaves.myStaffOvertime')}}</h4>
                         {{-- <p class="card-category"> Here you can manage users</p> --}}
                       </div>
                       <div class="card-body table-responsive-md">
@@ -115,15 +115,15 @@
                       <table id="table_idd" class="table table-bordered table-hover text-nowrap table-Secondary table-striped">
                       <thead>
                           <tr>
-                              <th scope="col">ID</th>
-                              <th scope="col">Name</th>
-                              <th class="text-center" scope="col">Overtime type</th>
-                              <th class="text-center" scope="col">Date</th>
-                              <th  class="text-center"scope="col">Start Hour</th>
-                              <th class="text-center" scope="col">End Hour</th>
-                              <th class="text-center" scope="col">Hours</th>
-                              <th class="text-center" scope="col">Status</th>
-                              <th class="text-center" scope="col">Date Created</th>
+                          <th scope="col">{{__('staffleaves.id-Overtime')}}</th>
+                              <th scope="col">{{__('staffleaves.name')}}</th>
+                              <th class="text-center" scope="col">{{__('staffleaves.overtimeType')}}</th>
+                              <th class="text-center" scope="col">{{__('staffleaves.date')}}</th>
+                              <th  class="text-center"scope="col">{{__('staffleaves.startHour')}}</th>
+                              <th class="text-center" scope="col">{{__('staffleaves.endHour')}}</th>
+                              <th class="text-center" scope="col">{{__('staffleaves.hours')}}</th>
+                              <th class="text-center" scope="col">{{__('staffleaves.status')}}</th>
+                              <th class="text-center" scope="col">{{__('staffleaves.dateCreated')}}</th>
                           </tr>
                         </thead>
                         <tbody>

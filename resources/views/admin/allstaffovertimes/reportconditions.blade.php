@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="card-header card-header-primary">
                     
-                        <h4 class="card-title "> <i class="mr-2 fas fa-file-pdf"></i>Create a report for staff overtimes</h4>
+                        <h4 class="card-title "> <i class="mr-2 fas fa-file-pdf"></i>{{__('overtimePDF.createReportForStaffOvertimes')}}</h4>
                       </div>
 
                     <div class="card-body table-responsive-md">
@@ -36,7 +36,7 @@
 
                                       <div class="row justify-content-between text-left">
                                       <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
-                                        <label class="form-control-label required px-1">Staff Name</label>
+                                        <label class="form-control-label required px-1">{{__('overtimePDF.staffName')}}</label>
                                         <input class="form-control form-outline {{ $errors->has('name') ? ' is-invalid' : '' }}" type="text" list="FavoriteColor" id="color" placeholder="Choose Staff Name.."
                                             name="name" value="{{ old('name') }}" autocomplete="off">
                                             @if ($errors->has('name'))
@@ -73,14 +73,14 @@
                               
                                       <div class="row justify-content-between text-left">
                                         <div class="form-group {{ $errors->has('start_date') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
-                                            <label class="form-control-label required px-1">Start Date</label>
+                                            <label class="form-control-label required px-1">{{__('overtimePDF.startDate')}}</label>
                                             <input class="form-control form-outline {{ $errors->has('start_date') ? ' is-invalid' : '' }}" type="date" value="{{ old('start_date') }}" name="start_date" id="start_date" placeholder="" >
                                             @if ($errors->has('start_date'))
                                                 <span id="start_date-error" class="error text-danger" for="input-start_date">{{ $errors->first('start_date') }}</span>
                                                @endif
                                         </div>
                                         <div class="form-group {{ $errors->has('end_date') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
-                                            <label class="form-control-label required px-1">End Date</label>
+                                            <label class="form-control-label required px-1">{{__('overtimePDF.endDate')}}</label>
                                             <input class="form-control form-outline {{ $errors->has('end_date') ? ' is-invalid' : '' }}" type="date" value="{{ old('end_date') }}" name="end_date" id="end_date" placeholder="" >
                                             @if ($errors->has('end_date'))
                                                 <span id="end_date-error" class="error text-danger" for="input-end_date">{{ $errors->first('end_date') }}</span>
@@ -92,8 +92,8 @@
                                       {{-- MUST ADD requirepd for radio check --}}
                                        <br>
                                       <div class="row justify-content-center">
-                                          <div class="form-group col-sm-3"> <button type="submit" class="btn bg-gradient-primary btn-block">View</button> </div>
-                                          <div class="form-group col-sm-3"> <a class="btn btn-outline-danger" href="{{route('admin.users.index')}}" >Cancel</a> </div>
+                                          <div class="form-group col-sm-3"> <button type="submit" class="btn bg-gradient-primary btn-block">{{__('overtimePDF.view')}}</button> </div>
+                                          <div class="form-group col-sm-3"> <a class="btn btn-outline-danger" href="{{route('admin.users.index')}}" >{{__('overtimePDF.cancel')}}</a> </div>
                                       </div>
                                   </form>
                                   </div>

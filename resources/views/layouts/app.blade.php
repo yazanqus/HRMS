@@ -181,6 +181,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </a>
   </li> --}}
   <li class="nav-item dropdown">
+    <a class="nav-link" href="" id="navbarDropdownLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-globe-africa"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+     
+      <a class="dropdown-item" href="{{ route('locale',['locale'=>'en']) }}">English</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="{{ route('locale',['locale'=>'ar']) }}" >العربية</a>
+    </div>
+  </li>
+  <li class="nav-item dropdown">
     <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-user-alt"></i>
       {{-- <p class="d-lg-none d-md-block">
@@ -192,12 +203,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
       {{$user->name}}
     </a>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-      {{-- <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a> --}}
-      <a class="dropdown-item" href="{{ route('changePasswordGet') }}">{{ __('Change Password') }}</a>
+     
+      <a class="dropdown-item" href="{{ route('changePasswordGet') }}">{{ __('sidebar.changepassword') }}</a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Log out') }}</a>
+      <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('sidebar.logout') }}</a>
     </div>
   </li>
+
+
 </ul>
 </nav>
 <!-- /.navbar -->
@@ -244,7 +257,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
            <li class="nav-item">
             <a class="nav-link {{ $activePage == 'dashboard' ? ' active' : '' }}" href="{{ route('welcome') }}">
                 <i class="fas fa-address-card nav-icon"></i>
-                <p>{{ __('Welcome') }}</p>
+                <p>{{ __('sidebar.welcome') }}</p>
             </a>
           </li>
           <div class="dropdown-divider" style="border-color:rgb(77, 77, 77);"></div>
@@ -259,7 +272,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
  <li class="nav-item {{ $activePage == 'leavesapproval'||$activePage == 'overtimesapproval'||$activePage == 'attendancesapproval' ? ' menu-open' : ''  }}">
     <a href="#" class="nav-link {{ $activePage == 'leavesapproval'||$activePage == 'overtimesapproval'||$activePage == 'attendancesapproval' ? ' active' : '' }} " >
         <i class="fas fa-check nav-icon"></i>
-      <p>{{ __('Approvals') }}
+      <p>{{ __('sidebar.approvals') }}
         {{-- @php
             dd($numapproval);
             @endphp --}}
@@ -276,7 +289,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <li class="nav-item" >
           <a class="nav-link {{ $activePage == 'leavesapproval' ? ' active' : '' }}" href="{{ route('leaves.approval') }}">
             <i style="padding-left:20px" class="fas fa-running nav-icon "></i>
-            <p style="padding-left:20px">{{ __('Leave Approval') }}
+            <p style="padding-left:20px">{{ __('sidebar.leaveApproval') }}
                 @if ($numleaveapproval > '0')
 
             <span class="ml-1 badge badge-primary"> {{$numleaveapproval}} </span>
@@ -288,7 +301,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <li class="nav-item" >
           <a class="nav-link {{ $activePage == 'overtimesapproval' ? ' active' : '' }}" href="{{ route('overtimes.approval') }}">
             <i style="padding-left:20px" class="fas fa-adjust nav-icon"></i>
-            <p style="padding-left:20px">{{ __('Overtime Approval') }}
+            <p style="padding-left:20px">{{ __('sidebar.overTimeApproval') }}
                 @if ($numoverapproval > '0')
                 <span class="ml-1 badge badge-primary"> {{$numoverapproval}} </span>
             @endif</p>
@@ -310,7 +323,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <li class="nav-item">
 <a class="nav-link {{ $activePage == 'staffleaves' ? ' active' : '' }}" href="{{ route('staffleaves') }}">
     <i class="fas fa-paste nav-icon"></i>
-    <p>{{ __('My Staff') }}</p>
+    <p>{{ __('sidebar.myStaff') }}</p>
 </a>
 </li>
 
@@ -322,7 +335,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <li class="nav-item {{ $activePage == 'createuser'||$activePage == 'all-users' ? ' menu-open' : ''  }}">
     <a href="#" class="nav-link {{ $activePage == 'createuser'||$activePage == 'all-users' ? ' active' : '' }}" >
         <i class="fas fa-users nav-icon"></i>
-      <p>{{ __('Users') }}
+      <p>{{ __('sidebar.users') }}
         <i class="fas fa-angle-down right"></i>
       </p>
     </a>
@@ -332,13 +345,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <li class="nav-item" >
           <a class="nav-link {{ $activePage == 'createuser' ? ' active' : '' }}" href="{{ route('admin.users.create') }}">
             <i style="padding-left:20px" class="fas fa-user-plus nav-icon"></i>
-            <p style="padding-left:20px">{{ __('Create new user') }}</p>
+            <p style="padding-left:20px">{{ __('sidebar.createNewUser') }}</p>
           </a>
         </li>
         <li class="nav-item" >
           <a class="nav-link {{ $activePage == 'all-users' ? ' active' : '' }}" href="{{ route('admin.users.index') }}">
             <i style="padding-left:20px" class="fas fa-address-book nav-icon"></i>
-            <p style="padding-left:20px">{{ __('All users') }}</p>
+            <p style="padding-left:20px">{{ __('sidebar.allUsers') }}</p>
           </a>
         </li>
       </ul>
@@ -355,7 +368,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <li class="nav-item {{ $activePage == 'hrleavesapproval'||$activePage == 'hrovertimesapproval'||$activePage == 'attendanceshrapproval' ? ' menu-open' : ''  }}">
     <a href="#" class="nav-link {{ $activePage == 'hrleavesapproval'||$activePage == 'hrovertimesapproval'||$activePage == 'attendanceshrapproval' ? ' active' : '' }} " >
         <i class="fas fa-check nav-icon"></i>
-      <p>{{ __('HR Approvals') }}
+      <p>{{ __('sidebar.hrApprovals') }}
         {{-- @php
             dd($numapproval);
             @endphp --}}
@@ -371,7 +384,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <li class="nav-item" >
           <a class="nav-link {{ $activePage == 'hrleavesapproval' ? ' active' : '' }}" href="{{ route('leaves.hrapproval') }}">
             <i style="padding-left:20px" class="fas fa-running nav-icon "></i>
-            <p style="padding-left:20px">{{ __('Leave Approval') }}
+            <p style="padding-left:20px">{{ __('sidebar.leaveApproval') }}
                 @if ($numleavehrapproval > '0')
 
             <span class="ml-1 badge badge-primary"> {{$numleavehrapproval}} </span>
@@ -383,7 +396,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <li class="nav-item" >
           <a class="nav-link {{ $activePage == 'hrovertimesapproval' ? ' active' : '' }}" href="{{ route('overtimes.hrapproval') }}">
             <i style="padding-left:20px" class="fas fa-adjust nav-icon"></i>
-            <p style="padding-left:20px">{{ __('Overtime Approval') }}
+            <p style="padding-left:20px">{{ __('sidebar.overTimeApproval') }}
                 @if ($numoverhrapproval > '0')
                 <span class="ml-1 badge badge-primary"> {{$numoverhrapproval}} </span>
             @endif</p>
@@ -404,14 +417,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <li class="nav-item">
     <a class="nav-link {{ $activePage == 'allstaffleaves' ? ' active' : '' }}" href="{{ route('admin.allstaffleaves.index') }}">
         <i class="fas fa-paste nav-icon"></i>
-        <p>{{ __('All Staff leaves') }}</p>
+        <p>{{ __('sidebar.allStaffLeaves') }}</p>
     </a>
   </li>
 
   <li class="nav-item">
     <a class="nav-link {{ $activePage == 'allstaffovertimes' ? ' active' : '' }}" href="{{ route('admin.allstaffovertimes.index') }}">
         <i class="fas fa-adjust nav-icon"></i>
-        <p>{{ __('All Staff Overtimes') }}</p>
+        <p>{{ __('sidebar.allStaffOverTimes') }}</p>
     </a>
   </li>
 
@@ -470,7 +483,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
            <li class="nav-item">
             <a class="nav-link {{ $activePage == 'my-leaves' ? ' active' : '' }}" href="{{ route('leaves.index') }}">
                 <i class="fas fa-running nav-icon"></i>
-                <p>{{ __('Leaves') }}</p>
+                <p>{{ __('sidebar.leaves') }}</p>
             </a>
           </li>
       {{-- <li class="nav-item">
@@ -499,7 +512,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <li class="nav-item">
         <a class="nav-link {{ $activePage == 'overtime' ? ' active' : '' }}" href="{{ route('overtimes.index') }}">
             <i class="fas fa-adjust nav-icon"></i>
-            <p>{{ __('Overtimes') }}</p>
+            <p>{{ __('sidebar.overtimes') }}</p>
         </a>
       </li>
       <!-- <li class="nav-item">
@@ -512,14 +525,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <li class="nav-item">
     <a class="nav-link {{ $activePage == 'policies' ? ' active' : '' }}" href="{{ route('admin.policies.index') }}">
         <i class="fas fa-file-alt nav-icon"></i>
-        <p>{{ __('HR Policies') }}</p>
+        <p>{{ __('sidebar.hrPolicies') }}</p>
     </a>
   </li>
 
   <li class="nav-item">
     <a class="nav-link {{ $activePage == 'holidays' ? ' active' : '' }}" href="{{ route('admin.holidays.index') }}">
         <i class="fas fa-umbrella-beach nav-icon"></i>
-        <p>{{ __('Holidays') }}</p>
+        <p>{{ __('sidebar.holidays') }}</p>
     </a>
   </li>
 

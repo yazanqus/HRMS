@@ -18,10 +18,10 @@
                   <div class="container-fluid">
                       <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">My overtimes</h4>
+                          <h4 class="card-title ">{{__('overtimesIndex.myOvertimes')}}</h4>
                           {{-- <p class="card-category">Here you can see the history of overtimes</p> --}}
                           <div class="col-12 text-right">
-                            <a href="{{route('overtimes.create')}}" class="btn btn-sm btn-primary">Submit a new Overtime</a>
+                            <a href="{{route('overtimes.create')}}" class="btn btn-sm btn-primary">{{__('overtimesIndex.submitNewOvertime')}}</a>
                           </div>
                         </div>
                         <div class="card-body table-responsive-md">
@@ -30,14 +30,14 @@
                         <table id="table_id" class="table table-bordered table-hover text-nowrap table-Secondary table-striped">
                             <thead>
                             <tr>
-                                <th scope="col">ID</th>
-                              <th scope="col">Type</th>
-                              <th class="text-center" scope="col">Date</th>
-                              <th class="text-center" scope="col">Start Hour</th>
-                              <th class="text-center" scope="col">End Hour</th>
-                              <th class="text-center" scope="col">Hours</th>
-                              <th class="text-center" scope="col">Status</th>
-                              <th class="text-center" scope="col">Action</th>
+                            <th scope="col">{{__('overtimesIndex.id')}}</th>
+                              <th scope="col">{{__('overtimesIndex.type')}}</th>
+                              <th class="text-center" scope="col">{{__('overtimesIndex.date')}}</th>
+                              <th class="text-center" scope="col">{{__('overtimesIndex.starthour')}}</th>
+                              <th class="text-center" scope="col">{{__('overtimesIndex.endhour')}}</th>
+                              <th class="text-center" scope="col">{{__('overtimesIndex.hours')}}</th>
+                              <th class="text-center" scope="col">{{__('overtimesIndex.status')}}</th>
+                              <th class="text-center" scope="col">{{__('overtimesIndex.action')}}</th>
                             </tr>
                           </thead>
                           <tbody>

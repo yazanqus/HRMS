@@ -19,18 +19,20 @@
                           <div class="container-fluid">
                                 <div class="card">
                                 <div class="card-header card-header-primary">
-                                    <h4 class="card-title">All users</h4>
+                                    <h4 class="card-title">{{__('allUsers.allUsers')}}</h4>
                                         <div class="col-12 text-right">
 
-                                          <a href="{{route('admin.users.create')}}" class="btn btn-sm btn-primary">Create a new user</a>
+                                          <a href="{{route('admin.users.create')}}" class="btn btn-sm btn-primary">{{__('allUsers.createNewUser')}}</a>
+                                          @if ($user->name == "HR Test")
                                           <a href="{{route('admin.users.importshow')}}" class="btn btn-sm ml-2 btn-success">Import <i class="ml-2 fas fa-file-excel"></i> </a>
                                           <a href="{{route('admin.users.createbalance')}}" class="btn btn-sm ml-2 btn-success">Create Balance <i class="ml-2 fas fa-file-excel"></i> </a>
+                                          @endif
                                           <div class="btn-group" role="group">
                                             <button id="btnGroupDrop1" type="button" class="btn ml-2 btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                               Export <i class="ml-2 fas fa-file-excel"></i>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="{{route('admin.users.export')}}">All Users </i></a>
+                                              <a class="dropdown-item" href="{{route('admin.users.export')}}">{{__('allUsers.allUsers')}}</i></a>
                                               <!-- <a class="dropdown-item" href="{{route('attendances.export')}}">All Attendances </i></a> -->
                                             </div>
                                         </div>
@@ -44,12 +46,12 @@
                                             <thead>
                                               <tr>
                                               
-                                              <th style="width: 20%" scope="col">Name</th>
-                                              <th style="width: 10%" scope="col">Employee ID</th>
-                                              <th style="width: 20%" scope="col">Position</th>
-                                              <th style="width: 10%" scope="col">Office</th>
-                                              <th style="width: 10%" scope="col">Join Date</th>
-                                              <th style="width: 20%" scope="col">Line Manager</th>
+                                              <th style="width: 20%" scope="col">{{__('allUsers.name')}}</th>
+                                              <th style="width: 10%" scope="col">{{__('allUsers.employeeId')}}</th>
+                                              <th style="width: 10%" scope="col">{{__('allUsers.position')}}</th>
+                                              <th style="width: 10%" scope="col">{{__('allUsers.office')}}</th>
+                                              <th style="width: 10%" scope="col">{{__('allUsers.joinDate')}}</th>
+                                              <th style="width: 20%" scope="col">{{__('allUsers.lineManager')}}</th>
                                          
                                              
                                               </tr>
@@ -76,12 +78,12 @@
                                             </tbody>
                                             <tfoot>
                                               <tr>
-                                              <th style="width: 20%" scope="col">Name</th>
-                                              <th style="width: 10%" scope="col">Employee ID</th>
-                                              <th style="width: 10%" scope="col">Position</th>
-                                              <th style="width: 10%" scope="col">Office</th>
-                                              <th style="width: 10%" scope="col">Join Date</th>
-                                              <th style="width: 20%" scope="col">Line Manager</th>
+                                              <th style="width: 20%" scope="col">{{__('allUsers.name')}}</th>
+                                              <th style="width: 10%" scope="col">{{__('allUsers.employeeId')}}</th>
+                                              <th style="width: 10%" scope="col">{{__('allUsers.position')}}</th>
+                                              <th style="width: 10%" scope="col">{{__('allUsers.office')}}</th>
+                                              <th style="width: 10%" scope="col">{{__('allUsers.joinDate')}}</th>
+                                              <th style="width: 20%" scope="col">{{__('allUsers.lineManager')}}</th>
                                               
                                             
 

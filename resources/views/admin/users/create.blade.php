@@ -22,7 +22,7 @@
 
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">Create new user</h4>
+                        <h4 class="card-title ">{{__('createUser.createNewUser')}}</h4>
                         {{-- <p class="card-category"> Here you can manage users</p> --}}
                       </div>
 
@@ -32,30 +32,30 @@
                               <div class="col-12 col-lg-10 col-xl-10">
                                 <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                                   <div class="card-body p-4 p-md-5">
-                                    <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">User information</h3>
+                                    <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">{{__('createUser.userInformation')}}</h3>
                                   <form class="form-outline" autocomplete="off" action="{{ route('admin.users.store') }}" method="POST">
                                       @csrf
 
                                       <div class="row justify-content-between text-left">
                                           <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
-                                              <label class="form-control-label required px-1">Full Name</label>
+                                              <label class="form-control-label required px-1">{{__('createUser.fullName')}}</label>
                                               <input class="form-control form-outline {{ $errors->has('name') ? ' is-invalid' : '' }} " type="text" id="name"  value="{{ old('name') }}" name="name" placeholder="">
                                                @if ($errors->has('name'))
                                                 <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
                                                @endif
                                             </div>
                                           <div class="form-group col-sm-6 flex-column d-flex">
-                                              <label class="form-control-label px-1">Birth Date</label>
+                                              <label class="form-control-label px-1">{{__('createUser.birthDate')}}</label>
                                               <input class="form-control form-outline" type="date" value="{{ old('birth_date') }}" name="birth_date" id="birth_date" placeholder="" >
                                             </div>
                                       </div>
                                       <div class="row justify-content-between text-left">
-                                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Position</label> <input class="form-control form-outline" type="text" id="position"  value="{{ old('position') }}" name="position" placeholder="" > </div>
+                                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">{{__('createUser.position')}}</label> <input class="form-control form-outline" type="text" id="position"  value="{{ old('position') }}" name="position" placeholder="" > </div>
                    
-                                        <div class="form-group col-sm-6 flex-column d-flex {{ $errors->has('office') ? ' has-danger' : '' }}"> <label class="dropdown form-control-label required px-1 {{ $errors->has('joined_date') ? ' is-invalid' : '' }}">Office</label>
+                                        <div class="form-group col-sm-6 flex-column d-flex {{ $errors->has('office') ? ' has-danger' : '' }}"> <label class="dropdown form-control-label required px-1 {{ $errors->has('joined_date') ? ' is-invalid' : '' }}">{{__('createUser.office')}}</label>
                                         <select class="form-control form-outline" id="office" name="office" aria-label="Default select example" >
                                           
-                                          <option value selected disabled ="">Choose office..</option>
+                                          <option value selected disabled ="">{{__('createUser.choose')}} {{__('createUser.office')}}..</option>
                                         
                                           <option value="AO2" @if (old('office') == "AO2") {{ 'selected' }} @endif >AO2</option>
                                           <option value="AO3" @if (old('office') == "AO3") {{ 'selected' }} @endif>AO3</option>
@@ -69,19 +69,19 @@
                                                @endif
                                         </div>
 
-                                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Department</label> <input class="form-control form-outline" type="text" id="department"  value="{{ old('department') }}" name="department" placeholder="" > </div>
+                                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">{{__('createUser.department')}}</label> <input class="form-control form-outline" type="text" id="department"  value="{{ old('department') }}" name="department" placeholder="" > </div>
                       
                                       </div>
                                       <div class="row justify-content-between text-left">
                                         <div class="form-group {{ $errors->has('joined_date') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
-                                            <label class="form-control-label required px-1">Join Date</label>
+                                            <label class="form-control-label required px-1">{{__('createUser.joinDate')}}</label>
                                             <input class="form-control form-outline {{ $errors->has('joined_date') ? ' is-invalid' : '' }}" type="date" value="{{ old('joined_date') }}" name="joined_date" id="joined_date" placeholder="" >
                                             @if ($errors->has('joined_date'))
                                                 <span id="joined_date-error" class="error text-danger" for="input-joined_date">{{ $errors->first('joined_date') }}</span>
                                                @endif
                                         </div>
                                         <div class="form-group {{ $errors->has('employee_number') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
-                                            <label class="form-control-label required px-1">Employee ID</label>
+                                            <label class="form-control-label required px-1">{{__('createUser.employeeId')}}</label>
                                             <input class="form-control form-outline {{ $errors->has('employee_number') ? ' is-invalid' : '' }}" type="text" value="{{ old('employee_number') }}" name= "employee_number" autocomplete="Employee ID" id="employee_number"  placeholder="" >
                                             @if ($errors->has('employee_number'))
                                                 <span id="employee_number-error" class="error text-danger" for="input-employee_number">{{ $errors->first('employee_number') }}</span>
@@ -89,7 +89,7 @@
                                         </div>
                                       </div>
                                       <div class="row justify-content-between text-left">
-                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">Line Manager</label><input class="form-control form-outline" type="text" list="FavoriteColor" id="color" placeholder="Choose Manager Name.."
+                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">{{__('createUser.lineManager')}}</label><input class="form-control form-outline" type="text" list="FavoriteColor" id="color" placeholder="Choose Manager Name.."
                                             name="linemanager" value="{{ old('linemanager') }}" autocomplete="off">
                                         <datalist id="FavoriteColor">
                                             @foreach ($users as $user)
@@ -101,10 +101,10 @@
                                 $authuser = Auth::user();
                                 @endphp
                                 @if ($authuser->superadmin == "yes")
-                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label  px-1">HR admin <small>(Permission on HRMS)</small></label> <div class="form-check">
+                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label  px-1">{{__('createUser.hrAdmin')}}<small>({{__('createUser.permissionOnHrms')}})</small></label> <div class="form-check">
                                             <input  class="btn-check" type="radio" name="hradmin" Value="no" id="test1" checked>
                                             <label class="form-check-label" for="test1">
-                                              Not Admin
+                                            {{__('createUser.notAdmin')}}
                                             </label>
                                           </div>
                                           <div class="form-check">
@@ -116,22 +116,22 @@
                                         </div>
                                         @endif
 
-                                        <div class="form-group {{ $errors->has('contract') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex"> <label class="form-control-label required px-1">Contract Type</label> <div class="form-check">
+                                        <div class="form-group {{ $errors->has('contract') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex"> <label class="form-control-label required px-1">{{__('createUser.contractType')}}</label> <div class="form-check">
                                             <input  class="btn-check" type="radio" name="contract" Value="Regular" id="regular" @if (old('contract') == "Regular") {{ 'checked' }} @endif>
                                             <label class="form-check-label" for="regular">
-                                              Regular Contract
+                                            {{__('createUser.reqularContract')}}
                                             </label>
                                           </div>
                                           <div class="form-check">
                                             <input  class="btn-check" type="radio" name="contract" Value="Service" id="sc" @if (old('contract') == "Service") {{ 'checked' }} @endif>
                                             <label class="form-check-label" for="sc">
-                                              Service Contract
+                                            {{__('createUser.serviceContract')}}
                                             </label>
                                           </div> 
                                           <div class="form-check">
                                             <input  class="btn-check" type="radio" name="contract" Value="NA" id="na" @if (old('contract') == "NA") {{ 'checked' }} @endif>
                                             <label class="form-check-label" for="na">
-                                              Not Available
+                                            {{__('createUser.notAvaillable')}}
                                             </label>
                                           </div> 
                                         </div>
@@ -139,11 +139,11 @@
                                       </div>
                                       <div class="row justify-content-between text-left">
                                           <div class="form-group col-sm-6 flex-column d-flex">
-                                              <label class="form-control-label px-1">Email</label>
+                                              <label class="form-control-label px-1">{{__('createUser.email')}}</label>
                                                <input class="form-control form-outline"  type="email" id="email"  name="email" autocomplete="off" value="{{ old('email') }}" placeholder="" >
                                              </div>
                                           <div class="form-group {{ $errors->has('password') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
-                                              <label class="form-control-label required  px-1">Password <small>(When signing using Employee ID)</small></label>
+                                              <label class="form-control-label required  px-1">{{__('createUser.password')}} <small>({{__('createUser.whenSigningUsingEmployeeId')}})</small></label>
                                                <div class="input-group">
                                                    <input class="form-control form-outline  {{ $errors->has('password') ? ' is-invalid' : '' }} "  type="password" readonly onfocus="this.removeAttribute('readonly');" id="password" autocomplete="off"
                                                    name="password" autocomplete="new-password" placeholder="">
@@ -164,8 +164,8 @@
                                       {{-- MUST ADD requirepd for radio check --}}
                                        <br>
                                       <div class="row justify-content-center">
-                                          <div class="form-group col-sm-3"> <button type="submit" class="btn bg-gradient-primary btn-block">Create</button> </div>
-                                          <div class="form-group col-sm-3"> <a class="btn btn-outline-danger" href="{{route('admin.users.index')}}" >Cancel</a> </div>
+                                          <div class="form-group col-sm-3"> <button type="submit" class="btn bg-gradient-primary btn-block">{{__('createUser.create')}}</button> </div>
+                                          <div class="form-group col-sm-3"> <a class="btn btn-outline-danger" href="{{route('admin.users.index')}}" >{{__('createUser.cancel')}}</a> </div>
                                       </div>
                                   </form>
                                   </div>

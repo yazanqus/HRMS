@@ -33,7 +33,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->text('token')->nullable();
             $table->foreignId('usertype_id')->nullable();
-  
+            $table->string('preflang')->nullable()->default('en');
             $table->rememberToken();
             $table->timestamps();
         });

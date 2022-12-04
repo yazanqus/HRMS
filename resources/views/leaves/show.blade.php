@@ -18,7 +18,7 @@
                 <div class="container-fluid">
                     <div class="card">
                       <div class="card-header card-header-primary">
-                        <h4 class="card-title ">Leave Details</h4>
+                        <h4 class="card-title ">{{__('leaveShow.leaveDetails')}}</h4>
                         <p class="card-category"></p>
                       </div>
                       <div class="card-body">
@@ -29,23 +29,23 @@
                           </div> --}}
                         <div class="row">
                             <div class="col">
-                                <strong>Leave ID: </strong> {{$leave->id}}
+                            <strong>{{__('leaveShow.leaveId')}}: </strong> {{$leave->id}}
                                 <br>
-                                <strong>Leave Status: </strong> {{$leave->status}}
+                                <strong>{{__('leaveShow.leaveStatus')}}: </strong> {{$leave->status}}
                                 <br>
-                                <strong>Leave Start Date: </strong> {{$leave->start_date}}
+                                <strong>{{__('leaveShow.leaveStartDate')}}: </strong> {{$leave->start_date}}
                                 <br>
-                                <strong>Leave End Date: </strong> {{$leave->end_date}}
+                                <strong>{{__('leaveShow.leaveEndDate')}}: </strong> {{$leave->end_date}}
                               </div>
                               <div class="col">
 
-                                <strong>Leave Days: </strong> {{$leave->days}}
+                                <strong>{{__('leaveShow.leaveDays')}}: </strong> {{$leave->days}}
                                   <br>
-                                  <strong>Leave Hours: </strong> {{$leave->hours}}
+                                  <strong>{{__('leaveShow.leaveHours')}}: </strong> {{$leave->hours}}
                                   <br>
-                                  <strong>Leave Type: </strong> {{$leave->leavetype->name}}
+                                  <strong>{{__('leaveShow.leaveType')}}: </strong> {{$leave->leavetype->name}}
                                   <br>
-                                  <strong>Leave Creation Date: </strong> {{$leave->created_at}}
+                                  <strong>{{__('leaveShow.leaveCreationDate')}}: </strong> {{$leave->created_at}}
 
                               </div>
                         </div>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">Leave reason</h4>
+                          <h4 class="card-title ">{{__('leaveShow.leaveReason')}}</h4>
                           <p class="card-category"></p>
                         </div>
                         <div class="card-body">
@@ -90,10 +90,10 @@
                 @endphp
                 @if ($variableee=='1')
 
-                <a href="/storage/leaves/{{basename($leave->path)}}" target="_blank">Attachement</a>
+                <a href="/storage/leaves/{{basename($leave->path)}}" target="_blank">{{__('leaveShow.attachment')}}</a>
                 @endif
                 @if ($variableee == '2')
-                No Attachement
+                {{__('leaveShow.noAttachment')}}
                 @endif
                     </h4>
                   <p class="card-category"></p>
@@ -102,19 +102,19 @@
     </div>
 
     <div class="card">
-                        <div class="card-header card-header-primary">
-                          <h4 class="card-title ">Approval workflow - Current status: <strong>{{$leave->status}}</strong></h4>
+    <div class="card-header card-header-primary">
+                          <h4 class="card-title ">{{__('leaveShow.approvalWorlflowCurrentStatus')}}: <strong>{{$leave->status}}</strong></h4>
                           <p class="card-category"></p>
                         </div>
                         <div class="card-body">
                     
                           <div class="row">
                               <div class="col">
-                                  Submitted by: <strong>{{$leave->user->name}}</strong>
+                              {{__('leaveShow.submittedBy')}}: <strong>{{$leave->user->name}}</strong>
                                   <br>
-                                  Approved/Declined by Line manager: <strong>{{$leave->lmapprover}}</strong>
+                                  {{__('leaveShow.approved')}}/{{__('leaveShow.declined')}} {{__('leaveShow.by')}} {{__('leaveShow.lineManager')}}: <strong>{{$leave->lmapprover}}</strong>
                                   <br>
-                                  Approved/Declined by HR: <strong>{{$leave->hrapprover}}</strong>
+                                  {__('leaveShow.approved')}}/{{__('leaveShow.declined')}} {{__('leaveShow.by')}} {{__('leaveShow.hr')}}: <strong>{{$leave->hrapprover}}</strong>
                                 </div>
 
                           </div>

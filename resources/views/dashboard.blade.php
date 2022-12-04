@@ -18,7 +18,7 @@
                 <div class="container-fluid">
                     <div class="card">
                       <div class="card-header card-header-primary">
-                        <h4 class="card-title ">Personal information</h4>
+                        <h4 class="card-title ">{{__('welcome.personalInformation')}}</h4>
                         <p class="card-category"></p>
                       </div>
                       <div class="card-body">
@@ -29,25 +29,25 @@
                           </div> --}}
                         <div class="row">
                             <div class="col">
-                                <strong>Full Name: </strong> {{$user->name}}
+                            <strong>{{__('welcome.fullName')}}: </strong> {{$user->name}}
                                 <br>
-                                <strong>Birth date: </strong> {{$user->birth_date}}
+                                <strong>{{__('welcome.birthDate')}}: </strong> {{$user->birth_date}}
                                 <br>
-                                <strong>Email: </strong> {{$user->email}}
+                                <strong>{{__('welcome.email')}}: </strong> {{$user->email}}
                                 <br>
-                                <strong>Employee ID: </strong> {{$user->employee_number}}
+                                <strong>{{__('welcome.employeeId')}}: </strong> {{$user->employee_number}}
                                 <br>
-                                <strong>Contract Type: </strong> {{$user->contract}}
+                                <strong>{{__('welcome.contractType')}}: </strong> {{$user->contract}}
                                 <br>
-                                <strong>Office: </strong> {{$user->office}}
+                                <strong>{{__('welcome.office')}}: </strong> {{$user->office}}
                               </div>
                               <div class="col">
 
-                                <strong>Position: </strong> {{$user->position}}
+                                <strong>{{__('welcome.position')}}: </strong> {{$user->position}}
                                   <br>
-                                  <strong>Joined Date: </strong> {{$user->joined_date}}
+                                  <strong>{{__('welcome.joinedDate')}}: </strong> {{$user->joined_date}}
                                   <br>
-                                <strong>Line Manager: </strong> {{$user->linemanager}}
+                                <strong>{{__('welcome.lineManager')}}: </strong> {{$user->linemanager}}
                               </div>
                         </div>
                         {{-- <iframe src="{{url('/storage/files/0j7YmC2IIpwwkvLLhg23zidqXYRGwhYpSGNWZklb.pdf')}}" width="100%" height="600"></iframe> --}}
@@ -55,7 +55,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">Leaves - Remaining balance</h4>
+                          <h4 class="card-title ">{{__('welcome.leaves')}} - {{__('welcome.remainingBalance')}}</h4>
                           <p class="card-category"></p>
                         </div>
                         <div class="card-body">
@@ -66,11 +66,11 @@
                             </div> --}}
                           <div class="row">
                               <div class="col">
-                                  <strong>Annual Leave:</strong> {{$balance1}}
+                                  <strong>{{__('welcome.annualLeave')}}:</strong> {{$balance1}}
                                   <br>
-                                  <strong>Sick leave:</strong> {{$balance2}}
+                                  <strong>{{__('welcome.sickLeave')}}:</strong> {{$balance2}}
                                   <br>
-                                  <strong>Compensation leave days:</strong> {{$balance18}}
+                                <strong>{{__('welcome.compensationLeaveDays')}}:</strong> {{$balance18}}
 
                                 </div>
 

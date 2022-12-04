@@ -22,7 +22,7 @@
                 <div class="container-fluid">
                     <div class="card">
                       <div class="card-header card-header-primary">
-                        <h4 class="card-title ">New Overtime</h4>
+                        <h4 class="card-title ">{{__('createOvertime.newOvertime')}}</h4>
                     </div>
 
 
@@ -32,12 +32,12 @@
                                 <div class="col-12 col-lg-10 col-xl-10">
                                   <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                                     <div class="card-body p-4 p-md-5">
-                                      <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">New Overtime</h3>
+                                      <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">{{__('createOvertime.newOvertime')}}</h3>
                                       <form action="{{ route('overtimes.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="row justify-content-between text-left">
                                         <div id="type" class="form-group col-sm-6 flex-column d-flex">
-                                        <label class="form-control-label px-1">Overtime Type</label>
+                                        <label class="form-control-label px-1">{{__('createOvertime.overtimeType')}}</label>
                                         @php
                                         $user = Auth::user();
                                         if($user->contract == "Service")
@@ -54,7 +54,7 @@
                                         <div class="form-check">
                                                 <input  class="btn-check" type="radio" name="type" id="holiday" Value="SC-overtime"  >
                                                 <label class="form-check-label" id="holidaylabel" for="holiday">
-                                                  Service Contract Overtime
+                                                {{__('createOvertime.ServiceContractOvertime')}}
                                                 </label>
                                               </div>
                                         @endif
@@ -66,28 +66,28 @@
                                                  <div class="form-check">
                                                 <input  class="btn-check"  type="radio" name="type" id="weekday" Value="weekday">
                                                 <label class="form-check-label" id="weekdaylabel" for="weekday">
-                                                  Weekday <small>(Sun to Thu)</small>
+                                                {{__('createOvertime.Weekday')}} <small> {{__('createOvertime.suntothu')}}</small>
                                                 </label>
                                               </div>
                                               <div class="form-check">
                                                 <input  class="btn-check" type="radio" name="type" id="weekend" Value="week-end"  >
                                                 <label class="form-check-label" id="weekendlabel" for="weekend">
-                                                  Week-end <small>(Fri or Sat)</small>
+                                                {{__('createOvertime.Week-end')}} <small>{{__('createOvertime.friorsat')}}</small>
                                                 </label>
                                               </div>
                                               <div class="form-check">
                                                 <input  class="btn-check" type="radio" name="type" id="holiday" Value="holiday"  >
                                                 <label class="form-check-label" id="holidaylabel" for="holiday">
-                                                  Holiday
+                                                {{__('createOvertime.Holiday')}}
                                                 </label>
                                               </div>
                                               @endif
                                             </div>
 
                                           <div class="form-group  {{ $errors->has('date') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex" >
-                                              <label for="date" class="form-control-label required px-1" >Date</label>
+                                              <label for="date" class="form-control-label required px-1" >{{__('createOvertime.Date')}}</label>
                                               <div class="input-group">
-                                              <input   onkeydown="event.preventDefault()" id="datepicker" placeholder="Choose Overtime Type first" name="date" type="text" autocomplete="off" class="form-control form-outline {{ $errors->has('date') ? ' is-invalid' : '' }}" />
+                                              <input   onkeydown="event.preventDefault()" id="datepicker" placeholder="{{__('createOvertime.message')}}" name="date" type="text" autocomplete="off" class="form-control form-outline {{ $errors->has('date') ? ' is-invalid' : '' }}" />
                                               <div class="input-group-append">
                                                   <div class="input-group-text ">
                                                     <i class="fas fa-calendar-alt"></i>
@@ -121,14 +121,14 @@
 
                                           {{-- <div class="row justify-content-between text-left"> --}}
                                               <div class="form-group {{ $errors->has('start_hour') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
-                                                  <label class="form-control-label required px-1" >Start Hour</label>
+                                                  <label class="form-control-label required px-1" >{{__('createOvertime.starthour')}}</label>
                                                   <input type="time" name="start_hour" class="form-control form-outline {{ $errors->has('start_hour') ? ' is-invalid' : '' }}" />
                                                   @if ($errors->has('start_hour'))
                                                  <span id="start_hour-error" class="error text-danger" for="input-start_hour">{{ $errors->first('start_hour') }}</span>
                                                 @endif
                                               </div>
                                                 <div class="form-group {{ $errors->has('end_hour') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
-                                                    <label class="form-control-label required px-1" >End Hour</label>
+                                                    <label class="form-control-label required px-1" >{{__('createOvertime.endhour')}}</label>
                                                     <input type="time" name="end_hour" class="form-control form-outline {{ $errors->has('end_hour') ? ' is-invalid' : '' }}" />
                                                     @if ($errors->has('end_hour'))
                                                  <span id="end_hour-error" class="error text-danger" for="input-end_hour">{{ $errors->first('end_hour') }}</span>
@@ -136,14 +136,14 @@
                                                 </div>
                                                 {{-- new row --}}
                                                 <div class="form-group {{ $errors->has('reason') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
-                                                    <label class="form-control-label required px-1" >Reason/Comment</label>
+                                                    <label class="form-control-label required px-1" >{{__('createOvertime.reason')}}/{{__('createOvertime.comment')}}</label>
                                                     <input type="text" id="reason" autocomplete="off" name="reason" placeholder="" class="form-control form-outline {{ $errors->has('reason') ? ' is-invalid' : '' }} " />
                                                     @if ($errors->has('reason'))
                                                  <span id="reason-error" class="error text-danger" for="input-reason">{{ $errors->first('reason') }}</span>
                                                 @endif
                                                 </div>
                                                   <div class="form-group {{ $errors->has('file') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
-                                                      <label class="form-control-label  px-1" >Attachment <small>(Image or PDF - 3 MB Max)</small></label>
+                                                      <label class="form-control-label  px-1" >{{__('createOvertime.attachment')}} <small>(Image or PDF - 3 MB Max)</small></label>
                                                       <input  type="file" name="file" id="file" class="form-control-file form-outline {{ $errors->has('file') ? ' is-invalid' : '' }}" />
                                                       @if ($errors->has('file'))
                                                  <span id="file-error" class="error text-danger" for="input-file">{{ $errors->first('file') }}</span>
@@ -155,8 +155,8 @@
                                         </div>
                                         <br>
                                         <div class="row justify-content-center">
-                                            <div class="justify-content-center form-group col-sm-2"> <button type="submit" class="btn bg-gradient-primary btn-block">Submit</button> </div>
-                                            <div class="form-group col-sm-3"> <a class="btn btn-outline-danger" href="{{route('leaves.index')}}" >Cancel</a> </div>
+                                            <div class="justify-content-center form-group col-sm-2"> <button type="submit" class="btn bg-gradient-primary btn-block">{{__('createOvertime.submit')}}</button> </div>
+                                            <div class="form-group col-sm-3"> <a class="btn btn-outline-danger" href="{{route('leaves.index')}}" >{{__('createOvertime.cancel')}}</a> </div>
                                         </div>
                                       </form>
                                     </div>

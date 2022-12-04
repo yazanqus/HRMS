@@ -35,32 +35,32 @@ class UserController extends Controller
         {
             $users = User::where('office','AO3')->get();
             $variablee = '';
-            return view('admin.users.index', ['users' => $users, 'variablee' => $variablee]);
+            return view('admin.users.index', ['users' => $users, 'variablee' => $variablee, 'user' => $currentuser]);
         }
 
         elseif ($currentuser->office == "AO4")
         {
             $users = User::where('office','AO4')->get();
             $variablee = '';
-            return view('admin.users.index', ['users' => $users, 'variablee' => $variablee]);
+            return view('admin.users.index', ['users' => $users, 'variablee' => $variablee, 'user' => $currentuser]);
         }
         elseif ($currentuser->office == "AO6")
         {
             $users = User::where('office','AO6')->get();
             $variablee = '';
-            return view('admin.users.index', ['users' => $users, 'variablee' => $variablee]);
+            return view('admin.users.index', ['users' => $users, 'variablee' => $variablee, 'user' => $currentuser]);
         }
         elseif ($currentuser->office == "AO7")
         {
             $users = User::where('office','AO7')->get();
             $variablee = '';
-            return view('admin.users.index', ['users' => $users, 'variablee' => $variablee]);
+            return view('admin.users.index', ['users' => $users, 'variablee' => $variablee, 'user' => $currentuser]);
         }
         else 
         {
             $users = User::all();
             $variablee = '';
-            return view('admin.users.index', ['users' => $users, 'variablee' => $variablee]);
+            return view('admin.users.index', ['users' => $users, 'variablee' => $variablee, 'user' => $currentuser]);
         }
   
     }

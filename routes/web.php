@@ -19,7 +19,7 @@ use App\Models\Leavetype;
 use App\Models\Overtime;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Spatie\Activitylog\Models\Activity;
 
@@ -37,6 +37,16 @@ Route::get('/', function () {
     
     return redirect('welcome');
 })->name('home');
+
+
+Route::get('/change-language/{locale}', function ($locale) {
+    if (!in_array($locale, ['en', 'ar'])) {        
+        abort(404);
+    }
+    DB::table('users')->where('id' , Auth::user()->id)->update(
+        ['preflang' => $locale]); 
+    return redirect()->back();
+  })->middleware(\App\Http\Middleware\Localization::class)->name('locale');
 
 Auth::routes();
 

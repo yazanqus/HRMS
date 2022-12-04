@@ -18,13 +18,13 @@
                   <div class="container-fluid">
                       <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">HR Policies</h4>
+                          <h4 class="card-title ">{{__('hrPolicies.hrPolicies')}}</h4>
                           @php
                           $user = Auth::user()
                       @endphp
                       @if ($user->hradmin == 'yes')
                              <div   div class="col-12 text-right">
-                                <a href="{{route('admin.policies.create')}}" class="btn btn-sm btn-primary">Add Policy</a>
+                                <a href="{{route('admin.policies.create')}}" class="btn btn-sm btn-primary">{{__('hrPolicies.addPolicy')}}</a>
                              </div>
                       @endif
                         </div>
@@ -34,12 +34,12 @@
                         <table class="table table-hover text-nowrap table-Secondary">
                         <thead>
                             <tr>
-                              <th class="text-center" scope="col">Name</th>
-                              <th class="text-center" scope="col">Description</th>
-                              <th class="text-center" scope="col">Created date</th>
-                              <th class="text-center" scope="col">Last updated</th>
+                              <th class="text-center" scope="col">{{__('hrPolicies.name')}}</th>
+                              <th class="text-center" scope="col">{{__('hrPolicies.description')}}</th>
+                              <th class="text-center" scope="col">{{__('hrPolicies.createdDate')}}</th>
+                              <th class="text-center" scope="col">{{__('hrPolicies.lastUpdate')}}</th>
                               @if ($user->hradmin == 'yes')
-                              <th class="text-center" scope="col">Action</th>
+                              <th class="text-center" scope="col">{{__('hrPolicies.action')}}</th>
                               @endif
                             </tr>
                           </thead>

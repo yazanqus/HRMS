@@ -18,7 +18,7 @@
                   <div class="container-fluid">
                           <div class="card">
                             <div class="card-header card-header-primary">
-                              <h4 class="card-title ">Leaves pending your approval</h4>
+                              <h4 class="card-title ">{{__('leaveApproval.leavesPendingYourApproval')}}</h4>
                               {{-- <p class="card-category"> Here you can manage users</p> --}}
                             </div>
                             <div class="card-body table-responsive-md ">
@@ -26,15 +26,15 @@
                             <table class="table table-hover text-nowrap table-Secondary ">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Name</th>
-                                    <th class="text-center" scope="col">Leave type</th>
-                                    <th class="text-center" scope="col">Start date</th>
-                                    <th class="text-center" scope="col">End date</th>
-                                    <th  class="text-center"scope="col">Days</th>
-                                    <th class="text-center" scope="col">Status</th>
-                                    <th class="text-center" scope="col ">Approve</th>
-                                    <th class="text-center" scope="col">Decline</th>
+                                <th scope="col">{{__('leaveApproval.id')}}</th>
+                                    <th scope="col">{{__('leaveApproval.name')}}</th>
+                                    <th class="text-center" scope="col">{{__('leaveApproval.leaveType')}}</th>
+                                    <th class="text-center" scope="col">{{__('leaveApproval.startDate')}}</th>
+                                    <th class="text-center" scope="col">{{__('leaveApproval.endDate')}}</th>
+                                    <th  class="text-center"scope="col">{{__('leaveApproval.days')}}</th>
+                                    <th class="text-center" scope="col">{{__('leaveApproval.status')}}</th>
+                                    <th class="text-center" scope="col ">{{__('leaveApproval.approve')}}</th>
+                                    <th class="text-center" scope="col">{{__('leaveApproval.decline')}}</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -49,10 +49,10 @@
                                   <td class="text-center">{{ $leave->status }}</td>
                                   <td class="text-center">
                                       <a id="buttonSelector" class="btn btn-success"
-                                      href="{{route('leaves.approved',$leave->id)}}">Approve</a>
+                                      href="{{route('leaves.approved',$leave->id)}}">{{__('leaveApproval.approve')}}</a>
                                     </td>
                                     <td class="text-center">
-                                        <a id="buttonSelector" class="btn btn-danger" href="{{route('leaves.declined',$leave->id)}}">Decline</a>
+                                        <a id="buttonSelector" class="btn btn-danger" href="{{route('leaves.declined',$leave->id)}}">{{__('leaveApproval.decline')}}</a>
                                     </td>
                                 </tr>
                                 @endforeach

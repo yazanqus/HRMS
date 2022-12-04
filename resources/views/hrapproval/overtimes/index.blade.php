@@ -18,7 +18,7 @@
                   <div class="container-fluid">
                           <div class="card">
                             <div class="card-header card-header-primary">
-                              <h4 class="card-title ">Overtimes pending HR approval</h4>
+                              <h4 class="card-title ">{{__('hrApprovalOvertime.overtimesPendingHrApproval')}}</h4>
                               {{-- <p class="card-category"> Here you can manage users</p> --}}
                             </div>
                             <div class="card-body table-responsive-md ">
@@ -26,16 +26,16 @@
                             <table class="table table-hover text-nowrap table-Secondary ">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Name</th>
-                                    <th class="text-center" scope="col">Type</th>
-                                    <th class="text-center" scope="col">Date</th>
-                                    <th class="text-center" scope="col">Start Hour</th>
-                                    <th class="text-center" scope="col">End Hour</th>
-                                    <th  class="text-center"scope="col">Hours</th>
-                                    <th class="text-center" scope="col">Status</th>
-                                    <th class="text-center" scope="col ">Approve</th>
-                                    <th class="text-center" scope="col">Decline</th>
+                                <th scope="col">{{__('hrApprovalOvertime.id')}}</th>
+                                    <th scope="col">{{__('hrApprovalOvertime.name')}}</th>
+                                    <th class="text-center" scope="col">{{__('hrApprovalOvertime.type')}}</th>
+                                    <th class="text-center" scope="col">{{__('hrApprovalOvertime.date')}}</th>
+                                    <th class="text-center" scope="col">{{__('hrApprovalOvertime.startHour')}}</th>
+                                    <th class="text-center" scope="col">{{__('hrApprovalOvertime.endHour')}}</th>
+                                    <th  class="text-center"scope="col">{{__('hrApprovalOvertime.hours')}}</th>
+                                    <th class="text-center" scope="col">{{__('hrApprovalOvertime.status')}}</th>
+                                    <th class="text-center" scope="col ">{{__('hrApprovalOvertime.approve')}}</th>
+                                    <th class="text-center" scope="col">{{__('hrApprovalOvertime.decline')}}</th>
                                 </tr>
                               </thead>
                               <tbody>

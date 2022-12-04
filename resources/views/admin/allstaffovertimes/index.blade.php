@@ -19,10 +19,10 @@
                   <div class="container-fluid">
                       <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">All Staff Overtimes</h4>
+                          <h4 class="card-title ">{{__('allStaffOvertimes.allStaffOvertimes')}}</h4>
                           <div class="col-12 text-right">
-                          <a href="{{route('admin.overtimes.pdf')}}" class="btn btn-sm ml-2 btn-primary">PDF report <i class="ml-2 fas fa-file-pdf"></i> </a>  
-                          <a href="{{route('admin.overtimes.export')}}" class="btn btn-sm ml-2 btn-secondary">Excel <i class="ml-2 fas fa-file-excel"></i> </a>
+                          <a href="{{route('admin.overtimes.pdf')}}" class="btn btn-sm ml-2 btn-primary">{{__('allStaffOvertimes.pdfReport')}}<i class="ml-2 fas fa-file-pdf"></i> </a>  
+                          <a href="{{route('admin.overtimes.export')}}" class="btn btn-sm ml-2 btn-secondary">{{__('allStaffOvertimes.excel')}}<i class="ml-2 fas fa-file-excel"></i> </a>
                           </div>
                           {{-- <p class="card-category"> Here you can manage users</p> --}}
                         </div>
@@ -30,17 +30,17 @@
                         <table  id="table_id" class="table table-bordered  table-responsive table-hover text-nowrap table-Secondary table-striped " >
                         <thead>
                             <tr>
-                                <th style="width: 3%"scope="col">ID</th>
-                                <th style="width: 10%" scope="col">Name</th>
-                                <th style="width: 10%" class="text-center" scope="col">Type</th>
-                                <th style="width: 10%" class="text-center" scope="col">Date</th>
-                                <th style="width: 10%" class="text-center" scope="col">Start Hour</th>
-                                <th style="width: 10%" class="text-center" scope="col">End Hour</th>
-                                <th style="width: 5%" class="text-center" scope="col">Hours</th>
-                                <th style="width: 5%" class="text-center" scope="col">Hours <small>(Value)</small></th>
-                                <th style="width: 10%" class="text-center" scope="col">Status</th>
-                                <th style="width: 10%" class="text-center" scope="col">Line Manager</th>
-                                <th style="width: 10%" class="text-center" scope="col">Date Created</th>
+                                <th style="width: 3%"scope="col">{{__('allStaffOvertimes.id')}}</th>
+                                <th style="width: 10%" scope="col">{{__('allStaffOvertimes.name')}}</th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('allStaffOvertimes.type')}}</th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('allStaffOvertimes.date')}}</th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('allStaffOvertimes.startHour')}}</th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('allStaffOvertimes.endHour')}}</th>
+                                <th style="width: 5%" class="text-center" scope="col">{{__('allStaffOvertimes.hours')}}</th>
+                                <th style="width: 5%" class="text-center" scope="col">{{__('allStaffOvertimes.hours')}}<small>({{__('allStaffOvertimes.value')}})</small></th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('allStaffOvertimes.status')}}</th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('allStaffOvertimes.lineManager')}}</th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('allStaffOvertimes.dateCreated')}}</th>
                             </tr>
                           </thead>
                           <tbody>

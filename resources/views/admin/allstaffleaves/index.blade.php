@@ -19,11 +19,11 @@
                   <div class="container-fluid">
                       <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">All Staff leaves</h4>
+                          <h4 class="card-title ">{{__('allStaffLeaves.allStaffLeaves')}}</h4>
                           <div class="col-12 text-right">
-                            <a href="{{route('admin.allleavessearch.cond')}}" class="btn btn-sm ml-2 btn-success">Advanced Search <i class="ml-2 fas fa-search"></i> </a>
-                            <a href="{{route('admin.leaves.pdf')}}" class="btn btn-sm ml-2 btn-primary">PDF report <i class="ml-2 fas fa-file-pdf"></i> </a>
-                            <a href="{{route('admin.leaves.export')}}" class="btn btn-sm ml-2 btn-secondary">Excel <i class="ml-2 fas fa-file-excel"></i> </a>
+                            <a href="{{route('admin.allleavessearch.cond')}}" class="btn btn-sm ml-2 btn-success">{{__('allStaffLeaves.advancedSearch')}} <i class="ml-2 fas fa-search"></i> </a>
+                            <a href="{{route('admin.leaves.pdf')}}" class="btn btn-sm ml-2 btn-primary">{{__('allStaffLeaves.pdfReport')}} <i class="ml-2 fas fa-file-pdf"></i> </a>
+                            <a href="{{route('admin.leaves.export')}}" class="btn btn-sm ml-2 btn-secondary">{{__('allStaffLeaves.excel')}} <i class="ml-2 fas fa-file-excel"></i> </a>
                           </div>
                           {{-- <p class="card-category"> Here you can manage users</p> --}}
                         </div>
@@ -31,15 +31,15 @@
                         <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                         <thead>
                             <tr>
-                                <th style="width: 3%" scope="col">ID</th>
-                                <th style="width: 10%" scope="col">Name</th>
-                                <th style="width: 10%" class="text-center" scope="col">Leave type</th>
-                                <th style="width: 10%" class="text-center" scope="col">Start date</th>
-                                <th style="width: 10%" class="text-center" scope="col">End date</th>
-                                <th style="width: 3%" class="text-center" scope="col">Days</th>
-                                <th style="width: 10%" class="text-center" scope="col">Status</th>
-                                <th style="width: 10%" class="text-center" scope="col">Line Manager</th>
-                                <th style="width: 10%" class="text-center" scope="col">Date Created</th>
+                                <th style="width: 3%" scope="col">{{__('allStaffLeaves.id')}}</th>
+                                <th style="width: 10%" scope="col">{{__('allStaffLeaves.name')}}</th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('allStaffLeaves.leaveType')}}</th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('allStaffLeaves.startDate')}}</th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('allStaffLeaves.endDate')}}</th>
+                                <th style="width: 3%" class="text-center" scope="col">{{__('allStaffLeaves.days')}}</th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('allStaffLeaves.status')}}</th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('allStaffLeaves.lineManager')}}</th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('allStaffLeaves.dateCreated')}}</th>
                             </tr>
                           </thead>
                           <tbody>

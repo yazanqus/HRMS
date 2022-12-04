@@ -1,0 +1,41 @@
+<?php
+
+return [
+    
+    'edit' => 'Edit' ,
+    'personalInformation' => 'Personal Information' ,
+    'fullName' => 'Full Name',
+    'birthDate' => 'Birh Date' ,
+    'email' => 'Email',
+    'employeeId' => 'Employee ID',
+    'contractType' => 'Contract Type',
+    'office' => 'Office' ,
+    'position' => 'Position' ,
+    'grade' => 'Grade',
+    'department' => 'Department' ,
+    'joinedDate' => 'Joined Date' ,
+    'lineManager' => 'Line Manager' ,
+    'additionlInformation' => 'Additionl information' ,
+    'role' => 'Role' ,
+    'staffOrLineManager' => 'Staff or Line Manger' ,
+    'permissionInHrSystem' => 'Permission in HR System' ,
+    'status' => 'Status' ,
+    'userCreatedOnSystemAt' => 'User Created on System at' ,
+    'infoLastUpdated' => 'Info last updated',
+    'leaves' => 'Leaves' ,
+    'remainingBalance' => 'Remaining Balance',
+    'annualLeave' => 'Annual Leave' ,
+    'sickLeave' => 'Sick Leave' ,
+    'sickLeave30%Deduction' => 'Sick Leave 30% Deduction' ,
+    'sickLeave20%Deduction' => 'Sick Leave 20% Deduction' ,
+    'marriageLeave' => 'Marriage Leave' ,
+    'welfareLeave' => 'Welfare Leave' ,
+    'unpaidLeave' => 'Unpaid Leave' ,
+    'maternityLeave' => 'Maternity Leave' ,
+    'paternityLeave' => 'Paternity leave' ,
+    'compassionateFirstDegree' => 'Compassionate - Second degree' ,
+    'compassionateSecondDegree' => 'Compassionate - Second degree' ,    
+    'compansetion' => 'Compansetion' ,    
+
+    
+];

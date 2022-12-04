@@ -32,7 +32,7 @@
                   <div class="container-fluid">
                           <div class="card">
                             <div class="card-header card-header-primary">
-                              <h4 class="card-title ">Leaves pending HR approval</h4>
+                              <h4 class="card-title ">{{__('hrApprovalLeave.leavesPendinHrApproval')}}</h4>
                               {{-- <p class="card-category"> Here you can manage users</p> --}}
                             </div>
                             <div class="card-body table-responsive-md ">
@@ -40,15 +40,15 @@
                             <table class="table table-hover text-nowrap table-Secondary ">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Name</th>
-                                    <th class="text-center" scope="col">Leave type</th>
-                                    <th class="text-center" scope="col">Start date</th>
-                                    <th class="text-center" scope="col">End date</th>
-                                    <th  class="text-center"scope="col">Days</th>
-                                    <th class="text-center" scope="col">Status</th>
-                                    <th class="text-center" scope="col">Approve</th>
-                                    <th class="text-center" scope="col">Decline</th>
+                                <th scope="col">{{__('hrApprovalLeave.id')}}</th>
+                                    <th scope="col">{{__('hrApprovalLeave.name')}}</th>
+                                    <th class="text-center" scope="col">{{__('hrApprovalLeave.leaveType')}}</th>
+                                    <th class="text-center" scope="col">{{__('hrApprovalLeave.startDate')}}</th>
+                                    <th class="text-center" scope="col">{{__('hrApprovalLeave.endDate')}}</th>
+                                    <th  class="text-center"scope="col">{{__('hrApprovalLeave.days')}}</th>
+                                    <th class="text-center" scope="col">{{__('hrApprovalLeave.status')}}</th>
+                                    <th class="text-center" scope="col">{{__('hrApprovalLeave.approve')}}</th>
+                                    <th class="text-center" scope="col">{{__('hrApprovalLeave.decline')}}</th>
                                 </tr>
                               </thead>
                               <tbody>

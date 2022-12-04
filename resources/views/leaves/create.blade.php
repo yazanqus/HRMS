@@ -33,7 +33,7 @@
                 <div class="container-fluid">
                     <div class="card">
                       <div class="card-header card-header-primary">
-                        <h4 class="card-title ">New Leave</h4>
+                        <h4 class="card-title ">{{__('createLeave.newLeave')}}</h4>
                       </div>
 
 
@@ -43,21 +43,21 @@
                                 <div class="col-12 col-lg-10 col-xl-10">
                                   <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                                     <div class="card-body p-4 p-md-5">
-                                      <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">New Leave</h3>
+                                      <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">{{__('createLeave.newLeave')}}</h3>
                                       <form action="{{ route('leaves.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
 
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <div class="form-outline">
-                                                    <label class="form-control-label px-1">Leave type</label>
+                                                    <label class="form-control-label px-1">{{__('createLeave.leaveType')}}</label>
                                                     <select
                                                     class="form-control selectpicker" data-size="5" data-style="btn btn-outline-secondary"
                                                     name="leavetype_id" id="leavetype_id" type="text"
                                                     placeholder="{{ __('Leave Type') }}"
                                                     required>
                                                     @foreach ($leavetypes as $leavetype)
-                                                        <option value="{{ $leavetype->id }}"> {{$leavetype->name}} </option>
+                                                        <option value="{{ $leavetype->id }}"> {{__("databaseLeaves.$leavetype->name")}} </option>
                                                     @endforeach
                                                 </select>
                                                 </div>
@@ -66,14 +66,14 @@
 
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group {{ $errors->has('start_date') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
-                                                 <label class="form-control-label required px-1">Start date</label>
+                                                 <label class="form-control-label required px-1">{{__('createLeave.startDate')}}</label>
                                                  <input class="form-control form-outline  {{ $errors->has('start_date') ? ' is-invalid' : '' }} " type="date" id="start_date"  name="start_date" placeholder="">
                                                  @if ($errors->has('start_date'))
                                                 <span id="start_date-error" class="error text-danger" for="input-start_date">{{ $errors->first('start_date') }}</span>
                                                @endif
                                                 </div>
                                             <div class="form-group  {{ $errors->has('end_date') ? ' has-danger' : '' }}  col-sm-6 flex-column d-flex">
-                                                <label class="form-control-label required px-1">End date</label>
+                                                <label class="form-control-label required px-1">{{__('createLeave.endDate')}}</label>
                                                  <input class="form-control form-outline {{ $errors->has('end_date') ? ' is-invalid' : '' }}" type="date" name="end_date" id="end_date" placeholder="" >
                                                  @if ($errors->has('end_date'))
                                                  <span id="end_date-error" class="error text-danger" for="input-end_date">{{ $errors->first('end_date') }}</span>
@@ -81,7 +81,7 @@
                                                 </div>
 
                                                 <div class="form-group col-sm-4 flex-column d-flex">
-                                                    <label  id="hourslabel" class="form-control-label required px-1">Hours <small>(Between 1 and 7)</small></label>
+                                                    <label  id="hourslabel" class="form-control-label required px-1">{{__('createLeave.hours')}}<small>({{__('createLeave.between')}} 1 {{__('createLeave.and')}} 7)</small></label>
                                                     <span  id="minus" class="minus">-</span>
                                                     <input  type="text" id="hours" name="hours" required readonly value="1"/>
                                                     <span  class="plus" id="plus">+</span>
@@ -111,12 +111,12 @@
 
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group  col-sm-6 flex-column d-flex">
-                                                 <label class="form-control-label px-1">Reason/Comment</small></label>
+                                                 <label class="form-control-label px-1">{{__('createLeave.reason')}}/{{__('createLeave.comment')}}</small></label>
                                                  <input class="form-control form-outline" type="text" id="reason" autocomplete="off" name="reason" placeholder="">
 
                                                 </div>
                                             <div class="form-group {{ $errors->has('file') ? ' has-danger' : '' }}  col-sm-6 flex-column d-flex">
-                                                <label class="form-control-label px-1">Attachment <small>(Image or PDF - 3 MB Max)</small></label>
+                                                <label class="form-control-label px-1">{{__('createLeave.attachment')}} <small>(Image or PDF - 3 MB Max)</small></label>
                                                  <input class="form-control-file form-outline {{ $errors->has('file') ? ' is-invalid' : '' }}" type="file" name="file" id="file" placeholder="" >
                                                  @if ($errors->has('file'))
                                                  <span id="file-error" class="error text-danger" for="input-file">{{ $errors->first('file') }}</span>
@@ -127,16 +127,16 @@
                                         </div>
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group  col-sm-4 flex-column d-flex">
-                                                 <label id="labelnumofdays" class="form-control-label  px-1">Total Number of Days</label>
-                                                 <input class="form-control form-outline " type="text" id="numofdays" readonly name="numofdays" placeholder="Enter Start date and End date...">
+                                                 <label id="labelnumofdays" class="form-control-label  px-1">{{__('createLeave.totalNumberOfDays')}}</label>
+                                                 <input class="form-control form-outline " type="text" id="numofdays" readonly name="numofdays" placeholder="{{__('createLeave.enterStartDateAndEndDate')}}">
                                                 </div>
                                             {{-- <a href="#" id="output" class="btn btn-sm btn-primary"></a> --}}
 
                                         </div>
 
                                         <div class="row justify-content-center">
-                                            <div class="justify-content-center form-group col-sm-2"> <button type="submit" class=" disable btn bg-gradient-primary btn-block">Submit</button> </div>
-                                            <div class="form-group col-sm-3"> <a class="btn btn-outline-danger" href="{{route('leaves.index')}}" >Cancel</a> </div>
+                                            <div class="justify-content-center form-group col-sm-2"> <button type="submit" class=" disable btn bg-gradient-primary btn-block">{{__('createLeave.submit')}}</button> </div>
+                                            <div class="form-group col-sm-3"> <a class="btn btn-outline-danger" href="{{route('leaves.index')}}" >{{__('createLeave.cancel')}}</a> </div>
                                         </div>
                                       </form>
                                     </div>

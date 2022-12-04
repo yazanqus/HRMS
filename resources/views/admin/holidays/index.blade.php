@@ -18,13 +18,13 @@
                   <div class="container-fluid">
                       <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">Holiday Caladner</h4>
+                          <h4 class="card-title ">{{__('holidays.holidaycalander')}}</h4>
                           @php
                           $user = Auth::user()
                       @endphp
                       @if ($user->hradmin == 'yes')
                           <div   div class="col-12 text-right">
-                            <a href="{{route('admin.holidays.create')}}" class="btn btn-sm btn-primary">Add Holiday Calander</a>
+                            <a href="{{route('admin.holidays.create')}}" class="btn btn-sm btn-primary">{{__('holidays.addcalendar')}}</a>
                           </div>
                           @endif
                         </div>
@@ -33,10 +33,10 @@
                         <table class="table table-hover text-nowrap table-Secondary">
                         <thead>
                             <tr>
-                              <th class="text-center" scope="col">Name</th>
-                              <th class="text-center" scope="col">Year</th>
+                              <th class="text-center" scope="col">{{__('holidays.name')}}</th>
+                              <th class="text-center" scope="col">{{__('holidays.year')}}</th>
                               @if ($user->hradmin == 'yes')
-                              <th class="text-center" scope="col">Action</th>
+                              <th class="text-center" scope="col">{{__('holidays.action')}}</th>
                               @endif
                             </tr>
                           </thead>

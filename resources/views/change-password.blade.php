@@ -26,7 +26,7 @@
 
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title ">Change Password</h4>
+                    <h4 class="card-title ">{{__('changepassword.changepassword')}}</h4>
                     {{-- <p class="card-category"> Here you can manage users</p> --}}
                   </div>
 
@@ -68,7 +68,7 @@
 
                                                     <div class="row justify-content-between  text-left">
                                                         <div class="form-group row {{ $errors->has('current-password') ? ' has-error' : '' }}  flex-column d-flex">
-                                                            <label for="new-password" class="mt-1 col-sm-11 form-control-label required px-1">Current Password</label>
+                                                            <label for="new-password" class="mt-1 col-sm-11 form-control-label required px-1">{{__('changepassword.currentpassword')}}</label>
                                                             <div class="input-group">
                                                             <input class=" form-control form-outline" type="password" id="current-password"  name="current-password" required>
                                                             <div class="input-group-append">
@@ -89,7 +89,7 @@
 
                                                           <div class="row justify-content-between text-left">
                                                           <div class="form-group row {{ $errors->has('new-password') ? ' has-error' : '' }}  flex-column d-flex">
-                                                            <label for="new-password" class="mt-1 col-sm-11 form-control-label required px-1">New Password</label>
+                                                            <label for="new-password" class="mt-1 col-sm-11 form-control-label required px-1">{{__('changepassword.newpassword')}}</label>
                                                             <div class="input-group">
                                                             <input class=" form-control form-outline " type="password" id="new-password"  name="new-password" required>
                                                             <div class="input-group-append">
@@ -108,7 +108,7 @@
 
                                                           <div class="row justify-content-between text-left">
                                                           <div class="form-group row flex-column d-flex">
-                                                            <label for="new-password-confirm" class=" mt-1 col-sm-11 form-control-label required px-1">Confirm New Password</label>
+                                                            <label for="new-password-confirm" class=" mt-1 col-sm-11 form-control-label required px-1">{{__('changepassword.confirmpassword')}}</label>
                                                             <div class="input-group">
                                                             <input class=" form-control form-outline " type="password" id="new-password-confirm"  name="new-password_confirmation" required>
                                                             <div class="input-group-append">
@@ -125,7 +125,7 @@
                                                     <div class="form-group">
                                                         <div class="col-md-6 col-md-offset-4">
                                                             <button type="submit" class="btn btn-primary">
-                                                                Change Password
+                                                            {{__('changepassword.changethepass')}}
                                                             </button>
                                                         </div>
                                                     </div>

@@ -19,9 +19,9 @@
                   <div class="container-fluid">
                       <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">My leaves</h4>
+                          <h4 class="card-title ">{{__('leaves.myLeaves')}}</h4>
                             <div class="col-12 text-right">
-                              <a href="{{route('leaves.create')}}" class="btn btn-sm btn-primary">Submit a new Leave</a>
+                              <a href="{{route('leaves.create')}}" class="btn btn-sm btn-primary">{{__('leaves.submitNewLeave')}}</a>
                             </div>
                         </div>
 
@@ -30,13 +30,13 @@
                         <table id="table_id" class="table table-bordered table-hover text-nowrap table-Secondary table-striped">
                         <thead>
                             <tr>
-                              <th scope="col">ID</th>
-                              <th scope="col">Type</th>
-                              <th class="text-center" scope="col">Start date</th>
-                              <th class="text-center" scope="col">End date</th>
-                              <th class="text-center" scope="col">Days</th>
-                              <th class="text-center" scope="col">Status</th>
-                              <th class="text-center" scope="col">Action</th>
+                            <th scope="col">{{__('leaves.id')}}</th>
+                              <th scope="col">{{__('leaves.type')}}</th>
+                              <th class="text-center" scope="col">{{__('leaves.startDate')}}</th>
+                              <th class="text-center" scope="col">{{__('leaves.endDate')}}</th>
+                              <th class="text-center" scope="col">{{__('leaves.days')}}</th>
+                              <th class="text-center" scope="col">{{__('leaves.status')}}</th>
+                              <th class="text-center" scope="col">{{__('leaves.action')}}</th>
                             </tr>
                           </thead>
                           <tbody>
