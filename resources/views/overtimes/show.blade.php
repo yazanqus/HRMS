@@ -18,7 +18,7 @@
                 <div class="container-fluid">
                     <div class="card">
                       <div class="card-header card-header-primary">
-                        <h4 class="card-title ">Overtime Details</h4>
+                        <h4 class="card-title ">{{__('overtimeshow.overtimeDetails')}}</h4>
                         <p class="card-category"></p>
                       </div>
                       <div class="card-body">
@@ -29,23 +29,23 @@
                           </div> --}}
                         <div class="row">
                             <div class="col">
-                                <strong>Overtime ID: </strong> {{$overtime->id}}
+                                <strong>{{__('overtimeshow.overtimeId')}}: </strong> {{$overtime->id}}
                                 <br>
-                                <strong>Overtime Status: </strong> {{$overtime->status}}
+                                <strong>{{__('overtimeshow.overtimeStatus')}}: </strong> {{$overtime->status}}
                                 <br>
-                                <strong>Overtime Date: </strong> {{$overtime->date}}
+                                <strong>{{__('overtimeshow.overtimeDate')}}: </strong> {{$overtime->date}}
                                 <br>
-                                <strong>Overtime Start Hour: </strong> {{$overtime->start_hour}}
+                                <strong>{{__('overtimeshow.overtimestarthour')}}: </strong> {{$overtime->start_hour}}
                                 <br>
-                                <strong>Overtime End Hour: </strong> {{$overtime->end_hour}}
+                                <strong>{{__('overtimeshow.overtimeendhour')}}: </strong> {{$overtime->end_hour}}
                               </div>
                               <div class="col">
 
-                                <strong>Overtime hours: </strong> {{$overtime->hours}}
+                                <strong>{{__('overtimeshow.overtimeHours')}}: </strong> {{$overtime->hours}}
                                   <br>
-                                  <strong>Overtime Type: </strong> {{$overtime->type}}
+                                  <strong>{{__('overtimeshow.overtimeType')}}: </strong> {{$overtime->type}}
                                   <br>
-                                  <strong>Overtime Creation Date: </strong> {{$overtime->created_at}}
+                                  <strong>{{__('overtimeshow.overtimeCreationDate')}}: </strong> {{$overtime->created_at}}
 
                               </div>
                         </div>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">Overtime reason</h4>
+                          <h4 class="card-title ">{{__('overtimeshow.overtimeReason')}}</h4>
                           <p class="card-category"></p>
                         </div>
                         <div class="card-body">
@@ -90,10 +90,10 @@
                 @endphp
                 @if ($variableee=='1')
 
-                <a href="/storage/overtimes/{{basename($overtime->path)}}" target="_blank">Attachement</a>
+                <a href="/storage/overtimes/{{basename($overtime->path)}}" target="_blank">{{__('overtimeshow.attachment')}}</a>
                 @endif
                 @if ($variableee == '2')
-                No Attachement
+                {{__('overtimeshow.noAttachment')}}
                 @endif
                     </h4>
                   <p class="card-category"></p>
@@ -103,18 +103,18 @@
 
     <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">Approval workflow - Current status: <strong>{{$overtime->status}}</strong></h4>
+                          <h4 class="card-title ">{{__('overtimeshow.approvalWorlflowCurrentStatus')}} <strong>{{$overtime->status}}</strong></h4>
                           <p class="card-category"></p>
                         </div>
                         <div class="card-body">
                             
                           <div class="row">
                               <div class="col">
-                              Submitted by: <strong>{{$overtime->user->name}}</strong>
+                              {{__('overtimeshow.submittedBy')}}: <strong>{{$overtime->user->name}}</strong>
                                   <br>
-                                  Approved/Declined by Line manager: <strong>{{$overtime->lmapprover}}</strong>
+                                  {{__('overtimeshow.approved')}}/{{__('overtimeshow.declined')}} {{__('overtimeshow.by')}} {{__('overtimeshow.lineManager')}}: <strong>{{$overtime->lmapprover}}</strong>
                                   <br>
-                                  Approved/Declined by HR: <strong>{{$overtime->hrapprover}}</strong>
+                                  {{__('overtimeshow.approved')}}/{{__('overtimeshow.declined')}} {{__('overtimeshow.by')}} {{__('overtimeshow.hr')}}: <strong>{{$overtime->hrapprover}}</strong>
                                 </div>
 
                           </div>

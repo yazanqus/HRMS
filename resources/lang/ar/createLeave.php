@@ -2,7 +2,7 @@
 
 return [
 
-    'newLeave' => 'تسجيل إجازة' ,
+    'newLeave' => 'طلب إجازة' ,
     'leaveType' => 'نوع الإجازة' ,
     'startDate' => 'تاريخ بدء الإجازة',
     'endDate' => 'تاريخ انتهاء الإجازة' ,
@@ -13,11 +13,11 @@ return [
     'hours' => 'ساعات'  ,
     'between' => 'بين' ,
     'and' => 'و' ,
-    'attachment' => 'المرفق' ,
+    'attachment' => 'الملف المرفق' ,
     'chooseFile' => 'اختيار ملف' ,
     'noFileChosen' => 'لا يوجد ملف مختار',
     'totalNumberOfDays' => 'عدد أيام الإجازة' ,
-    'enterStartDateAndEndDate' => 'أدخل تاريخ بدء وانتهاء الإجازة' ,
-    'submit' => 'تسجيل' ,
-    'cancel' => 'الغاء'
+    'enterStartDateAndEndDate' => 'ادخل تاريخ بدء وانتهاء الإجازة' ,
+    'submit' => 'إرسال الطلب' ,
+    'cancel' => 'إالغاء'
 ];

@@ -2,7 +2,7 @@
 
 return [
 
-    'welcome' => 'مرحبا بك' ,
+    'welcome' => 'المعلومات الشخصية' ,
     'approvals' => 'الموافقات' ,
     'leaveApproval' => 'موافقات الإجازات',
     'overTimeApproval' => 'موافقات الإضافي',
@@ -10,7 +10,7 @@ return [
     'users' => "الموظفون",
     'createNewUser' => 'إنشاء حساب جديد' ,
     'allUsers' => 'جميع الموظفين' ,
-    'hrApprovals' => 'موافقات الموارد البشرية',
+    'hrApprovals' => 'الموافقات  ',
     'allStaffLeaves' => 'مغادرات جميع الموظفين' ,
     'allStaffOverTimes' => '  الإضافي لجميع الموظفين' ,
     'leaves' => 'الإجازات' ,

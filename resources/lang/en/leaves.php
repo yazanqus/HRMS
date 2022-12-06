@@ -6,7 +6,7 @@ return [
     'submitNewLeave' => 'submit a New Leave' ,
     'show' => 'Show' ,
     'entries' => 'Entries',
-    'id' => 'Id',
+    'id' => '#',
     'type' => 'Type',
     'startDate' => 'Start Date',
     'endDate' => 'End Date' ,

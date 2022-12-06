@@ -14,7 +14,7 @@ return [
     'attachment' => 'المرفق' ,
     'noAttachment' => 'لا يوجد مرفق' ,
     'approvalWorlflowCurrentStatus' => 'حالة الإجازة حاليا' ,
-    'submittedBy' => 'الموظف الذي قام بإنشاء الرسالة' ,
+    'submittedBy' => 'الموظف الذي قام بإنشاء الطلب' ,
     'approved' => 'قبول' ,
     'declined' => 'رفض' ,
     'lineManager' => 'المدير المباشر' ,
