@@ -2,7 +2,7 @@
 
 return [
 
-    'leavesPendinHrApproval' => 'Leaves Pending HR Approvlas' ,
+    'leavesPendinHrApproval' => 'Leaves Pending HR Approvals' ,
     'id' => 'ID' ,
     'name' => 'Name',
     'leaveType' => 'Leave Type',

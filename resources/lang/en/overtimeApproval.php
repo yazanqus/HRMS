@@ -2,7 +2,7 @@
 
 return [
 
-    'overtimesPendingYourApproval' => 'Overtimes Pending Your Approvlas' ,
+    'overtimesPendingYourApproval' => 'Overtimes Pending Your Approvals' ,
     'id' => 'ID' ,
     'name' => 'Name',
     'date' => 'Date' ,

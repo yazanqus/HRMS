@@ -2,7 +2,7 @@
 
 return [
 
-    'leavesPendingYourApproval' => 'Leaves Pending Your Approvlas' ,
+    'leavesPendingYourApproval' => 'Leaves Pending Your Approvals' ,
     'id' => 'ID' ,
     'name' => 'Name',
     'leaveType' => 'Leave Type',
