@@ -53,7 +53,7 @@ class LeavetypeTableSeeder extends Seeder
         // id=6
         DB::table('leavetypes')->insert([
             'name' => 'Compassionate - First degree relative',
-            'value' => '5',
+            'value' => '100',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
