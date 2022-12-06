@@ -86,7 +86,7 @@ class UserController extends Controller
             'office' => 'required',
             'linemanager',
             'hradmin',
-            'email'  => 'email|unique:users,email',
+            'email'  => 'nullable|email|unique:users,email',
             'password' => 'required',
         ]);
 
@@ -397,7 +397,7 @@ class UserController extends Controller
             'joined_date' => 'required',
             'linemanager',
             'hradmin',
-            'email'  => 'email|unique:users,email,' .$user->id,
+            'email'  => 'nullable|email|unique:users,email,' .$user->id,
             'password',
             // hradminrole?
             // staffrole?
