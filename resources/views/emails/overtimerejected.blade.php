@@ -20,7 +20,7 @@ HR: <strong>{{ $details['hrname'] }}</strong>
 <br>
 
 
-@component('mail::button', ['url' => 'http://127.0.0.1:8000/overtimes'])
+@component('mail::button', ['url' => 'https://nrchr360.nrc.no/overtimes'])
 Check your overtime requests
 @endcomponent
 

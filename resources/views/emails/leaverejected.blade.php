@@ -18,7 +18,7 @@ HR: <strong>{{ $details['hrname'] }}</strong>
 @endcomponent
 <br>
 
-@component('mail::button', ['url' => 'http://127.0.0.1:8000/leaves'])
+@component('mail::button', ['url' => 'https://nrchr360.nrc.no/leaves'])
 Check your leave requests
 @endcomponent
 

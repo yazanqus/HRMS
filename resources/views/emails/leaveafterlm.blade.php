@@ -20,7 +20,7 @@ Line Manager: <strong>{{ $details['linemanagername'] }}</strong>
     Current Status: {{ $details['status'] }}
 @endcomponent
 
-@component('mail::button', ['url' => 'https://nrchr360-dev.nrc.no/leaves'])
+@component('mail::button', ['url' => 'https://nrchr360.nrc.no/leaves'])
 Check your leave requests
 @endcomponent
 

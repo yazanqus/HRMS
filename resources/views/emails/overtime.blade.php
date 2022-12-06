@@ -17,7 +17,7 @@ for <strong>{{ $details['requestername'] }}</strong>
 @endcomponent
 <br>
 
-@component('mail::button', ['url' => 'http://127.0.0.1:8000/overtimes/approval'])
+@component('mail::button', ['url' => 'https://nrchr360.nrc.no/overtimes/approval'])
 Approve/Decline
 @endcomponent
    

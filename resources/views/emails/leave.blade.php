@@ -16,7 +16,7 @@ for <strong>{{ $details['requestername'] }}</strong>
 @endcomponent
 <br>
 
-@component('mail::button', ['url' => 'https://nrchr360-dev.nrc.no/leaves/approval'])
+@component('mail::button', ['url' => 'https://nrchr360.nrc.no/leaves/approval'])
 Approve/Decline
 @endcomponent
    
