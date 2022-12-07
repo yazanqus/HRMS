@@ -3,6 +3,7 @@
 return [
 
     'newOvertime' => 'New Overtime' ,
+    'newOvertimedetails' => 'New Overtime Request details' ,
     'overtimeType' => 'Overtime Type' ,
     'Date' => 'Date',
     'starthour' => 'Start Hour',

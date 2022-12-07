@@ -4,14 +4,14 @@
 
 return [
 
-    'myStaff' => 'كادري' ,
-    'name' => 'الاسم' ,
+    'myStaff' => 'فريقي' ,
+    'name' => 'الموظف' ,
     'birthDate' => 'تاريخ الميلاد',
     'email' => 'البريد الإلكتروني' ,
     'employeeNumber' => 'الرقم الوظيفي',
     'position' => 'المنصب',
     'joinedDate' => 'تاريخ الانضمام',
-    'myStaffLeaves' => 'إجازات الكادر الخاص بي' ,
+    'myStaffLeaves' => 'إجازات اعضاء الفريق ' ,
     'show' => 'عرض' ,
     'entries' => 'الأسطر',
     'search' => 'بحث' ,
@@ -26,7 +26,7 @@ return [
     'showing' => 'عرض',
     'to' => 'الى' ,
     'of' => 'من',
-    'myStaffOvertime' => 'طلبات الوقت الإضافي الخاصة بكادري' ,
+    'myStaffOvertime' => 'طلبات الوقت الإضافي للفريق ' ,
     'overtimeType' => 'نوع طلب الوقت الإضافي' ,
     'date' => 'التاريخ' ,
     'startHour' => 'ساعة البدء' ,

@@ -3,7 +3,8 @@
 return [
 
     'newLeave' => 'New Leave' ,
-    'leaveType' => 'leave Type' ,
+    'newLeavedetails' => 'New Leave Request details' ,
+    'leaveType' => 'Leave type' ,
     'startDate' => 'Start Date',
     'endDate' => 'End Date' ,
     'show' => 'Show' ,

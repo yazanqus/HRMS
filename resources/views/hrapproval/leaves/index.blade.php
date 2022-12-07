@@ -37,11 +37,11 @@
                             </div>
                             <div class="card-body table-responsive-md ">
                               <div class="row">
-                            <table class="table table-hover text-nowrap table-Secondary ">
+                            <table class="table table-responsive table-hover text-nowrap table-Secondary ">
                             <thead>
                                 <tr>
-                                <th scope="col">{{__('hrApprovalLeave.id')}}</th>
-                                    <th scope="col">{{__('hrApprovalLeave.name')}}</th>
+                                <th style="width: 3%" scope="col">{{__('hrApprovalLeave.id')}}</th>
+                                    <th style="width: 3%" scope="col">{{__('hrApprovalLeave.name')}}</th>
                                     <th class="text-center" scope="col">{{__('hrApprovalLeave.leaveType')}}</th>
                                     <th class="text-center" scope="col">{{__('hrApprovalLeave.startDate')}}</th>
                                     <th class="text-center" scope="col">{{__('hrApprovalLeave.endDate')}}</th>
@@ -56,11 +56,11 @@
                                 <tr>
                                     <td><a href="{{ route('leaves.show', $leave) }}" target="_blank">{{ $leave->id }}</a></td>
                                   <td>{{ $leave->user->name }}</td>
-                                  <td class="text-center">{{ $leave->leavetype->name }}</td>
+                                  <td class="text-center">{{ __("databaseLeaves.{$leave->leavetype->name}") }}</td>
                                   <td class="text-center">{{ $leave->start_date }}</td>
                                   <td class="text-center">{{ $leave->end_date }}</td>
                                   <td class="text-center">{{ $leave->days }}</td>
-                                  <td class="text-center">{{ $leave->status }}</td>
+                                  <td class="text-center">{{__("databaseLeaves.$leave->status")}}</td>
                                   <td class="text-center">
                                       <a id="buttonSelector" class=" btn btn-success"
                                       href="{{route('leaves.hrapproved',$leave->id)}}">Approve</a>

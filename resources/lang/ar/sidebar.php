@@ -6,7 +6,7 @@ return [
     'approvals' => 'الموافقات' ,
     'leaveApproval' => 'موافقات الإجازات',
     'overTimeApproval' => 'موافقات الإضافي',
-    'myStaff' => 'الكادر المسؤول عنه',
+    'myStaff' => 'فريقي',
     'users' => "الموظفون",
     'createNewUser' => 'إنشاء حساب جديد' ,
     'allUsers' => 'جميع الموظفين' ,

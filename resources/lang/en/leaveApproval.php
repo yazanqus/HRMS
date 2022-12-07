@@ -3,8 +3,8 @@
 return [
 
     'leavesPendingYourApproval' => 'Leaves Pending Your Approvals' ,
-    'id' => 'ID' ,
-    'name' => 'Name',
+    'id' => '#' ,
+    'name' => 'Requester',
     'leaveType' => 'Leave Type',
     'startDate' => 'Start Date',
     'endDate' => 'End Date',

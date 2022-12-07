@@ -49,13 +49,13 @@
                             <tr>
                               <td><a href="{{ route('overtimes.show', $overtime) }}" target="_blank">{{ $overtime->id }}</a></td>
                               <td>{{ $overtime->user->name }}</td>
-                              <td class="text-center">{{ $overtime->type }}</td>
+                              <td class="text-center">{{__("databaseLeaves.$overtime->type")}}</td>
                               <td class="text-center">{{ $overtime->date }}</td>
                               <td class="text-center">{{ $overtime->start_hour }}</td>
                               <td class="text-center">{{ $overtime->end_hour }}</td>
                               <td class="text-center">{{ $overtime->hours }}</td>
                               <td class="text-center">{{ $overtime->value }}</td>
-                              <td class="text-center">{{ $overtime->status }}</td>
+                              <td class="text-center">{{__("databaseLeaves.$overtime->status")}}</td>
                               <td class="text-center">{{ $overtime->lmapprover }}</td>
                               <td class="text-center">{{ $overtime->created_at }}</td>
                               {{-- <td>edit</td> --}}

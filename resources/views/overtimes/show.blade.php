@@ -31,7 +31,7 @@
                             <div class="col">
                                 <strong>{{__('overtimeshow.overtimeId')}}: </strong> {{$overtime->id}}
                                 <br>
-                                <strong>{{__('overtimeshow.overtimeStatus')}}: </strong> {{$overtime->status}}
+                                <strong>{{__('overtimeshow.overtimeStatus')}}: </strong> {{__("databaseLeaves.$overtime->status")}}
                                 <br>
                                 <strong>{{__('overtimeshow.overtimeDate')}}: </strong> {{$overtime->date}}
                                 <br>
@@ -43,7 +43,7 @@
 
                                 <strong>{{__('overtimeshow.overtimeHours')}}: </strong> {{$overtime->hours}}
                                   <br>
-                                  <strong>{{__('overtimeshow.overtimeType')}}: </strong> {{$overtime->type}}
+                                  <strong>{{__('overtimeshow.overtimeType')}}: </strong> {{__("databaseLeaves.$overtime->type")}}
                                   <br>
                                   <strong>{{__('overtimeshow.overtimeCreationDate')}}: </strong> {{$overtime->created_at}}
 
@@ -103,7 +103,7 @@
 
     <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">{{__('overtimeshow.approvalWorlflowCurrentStatus')}} <strong>{{$overtime->status}}</strong></h4>
+                          <h4 class="card-title ">{{__('overtimeshow.approvalWorlflowCurrentStatus')}} <strong>{{__("databaseLeaves.$overtime->status")}}</strong></h4>
                           <p class="card-category"></p>
                         </div>
                         <div class="card-body">

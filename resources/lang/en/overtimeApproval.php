@@ -3,8 +3,8 @@
 return [
 
     'overtimesPendingYourApproval' => 'Overtimes Pending Your Approvals' ,
-    'id' => 'ID' ,
-    'name' => 'Name',
+    'id' => '#' ,
+    'name' => 'Requester',
     'date' => 'Date' ,
     'overtimeType' => 'Overtime Type',
     'startHour' => 'Start Hours',

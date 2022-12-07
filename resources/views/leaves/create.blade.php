@@ -43,7 +43,7 @@
                                 <div class="col-12 col-lg-10 col-xl-10">
                                   <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                                     <div class="card-body p-4 p-md-5">
-                                      <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">{{__('createLeave.newLeave')}}</h3>
+                                      <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">{{__('createLeave.newLeavedetails')}}</h3>
                                       <form action="{{ route('leaves.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
 
@@ -51,6 +51,9 @@
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <div class="form-outline">
                                                     <label class="form-control-label px-1">{{__('createLeave.leaveType')}}</label>
+                                                    <a id="reset" href="" >
+                                                        <i class="fas fa-times"></i>
+                                                    </a>
                                                     <select
                                                     class="form-control selectpicker" data-size="5" data-style="btn btn-outline-secondary"
                                                     name="leavetype_id" id="leavetype_id" type="text"
@@ -59,9 +62,12 @@
                                                     @foreach ($leavetypes as $leavetype)
                                                         <option value="{{ $leavetype->id }}"> {{__("databaseLeaves.$leavetype->name")}} </option>
                                                     @endforeach
+                                                    
                                                 </select>
+                                                
                                                 </div>
                                               </div>
+   
                                         </div>
 
                                         <div class="row justify-content-between text-left">
@@ -86,25 +92,9 @@
                                                     <input  type="text" id="hours" name="hours" required readonly value="1"/>
                                                     <span  class="plus" id="plus">+</span>
                                                     
-                                                    <!-- <select
-                                                    class="form-control selectpicker" data-size="7" data-style="btn btn-outline-secondary"
-                                                    name="hours" id="hours" type="text"
-                                                    required>
-                                                   
-                                                        <option value="0.125"> 1 Hour </option>
-                                                        <option value="0.25"> 2 Hours </option>
-                                                        <option value="0.375"> 3 Hours </option>
-                                                        <option value="0.5"> 4 Hours </option>
-                                                        <option value="0.625"> 5 Hours </option>
-                                                        <option value="0.75"> 6 Hours </option>
-                                                        <option value="0.875"> 7 Hours </option>
                                                     
-                                                </select> -->
                                                 </div>
 
-                                                <!-- <div class="number">
-                                                    
-                                                  </div> -->
 
                                                 
                                         </div>
@@ -195,6 +185,7 @@ $(document).ready(function() {
         $('#hours').hide();
         $('#minus').hide();
         $('#plus').hide();
+$('#reset').hide();
 
   var sickpercentage;
 //   $('.disable').click(function(){
@@ -211,7 +202,7 @@ $('#leavetype_id').on('change',function(){
   // $('#leavetype_id').prop("disabled", true); 
   // $('#leavetype_id').prop('disabled', 'disabled');
   $('.dropdown-toggle').prop('disabled', true);
-  
+  $('#reset').show();
 
   
   if ($(this).val() == '3' || $(this).val() == '4')

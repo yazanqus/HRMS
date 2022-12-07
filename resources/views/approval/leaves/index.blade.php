@@ -23,11 +23,11 @@
                             </div>
                             <div class="card-body table-responsive-md ">
                               <div class="row">
-                            <table class="table table-hover text-nowrap table-Secondary ">
+                            <table class="table table-responsive table-hover text-nowrap table-Secondary ">
                             <thead>
                                 <tr>
-                                <th scope="col">{{__('leaveApproval.id')}}</th>
-                                    <th scope="col">{{__('leaveApproval.name')}}</th>
+                                <th style="width: 3%" scope="col">{{__('leaveApproval.id')}}</th>
+                                    <th style="width: 3%" scope="col">{{__('leaveApproval.name')}}</th>
                                     <th class="text-center" scope="col">{{__('leaveApproval.leaveType')}}</th>
                                     <th class="text-center" scope="col">{{__('leaveApproval.startDate')}}</th>
                                     <th class="text-center" scope="col">{{__('leaveApproval.endDate')}}</th>

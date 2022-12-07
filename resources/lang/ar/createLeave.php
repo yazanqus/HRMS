@@ -3,6 +3,7 @@
 return [
 
     'newLeave' => 'طلب إجازة' ,
+    'newLeavedetails' => 'تفاصيل طلب الإجازة' ,
     'leaveType' => 'نوع الإجازة' ,
     'startDate' => 'تاريخ بدء الإجازة',
     'endDate' => 'تاريخ انتهاء الإجازة' ,

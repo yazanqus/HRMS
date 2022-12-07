@@ -20,7 +20,7 @@
                 <div class="container-fluid">
                     <div class="card">
                       <div class="card-header card-header-primary">
-                        <h4 class="card-title ">Add Policy</h4>
+                        <h4 class="card-title ">{{__('createHrPolicy.addPolicies')}}</h4>
                      </div>
 
                         <div class="card-body table-responsive-md">
@@ -29,7 +29,7 @@
                                 <div class="col-12 col-lg-10 col-xl-10">
                                   <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                                     <div class="card-body p-4 p-md-5">
-                                      <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Policy details</h3>
+                                      <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">{{__('createHrPolicy.policyDetails')}}</h3>
                                       <form action="{{ route('admin.policies.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
 
@@ -38,14 +38,14 @@
 
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
-                                                 <label class="form-control-label required px-1">Name</label>
+                                                 <label class="form-control-label required px-1">{{__('createHrPolicy.name')}}</label>
                                                  <input class="form-control form-outline  {{ $errors->has('name') ? ' is-invalid' : '' }} " type="text" id="name"  name="name" placeholder="">
                                                  @if ($errors->has('name'))
                                                 <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
                                                @endif
                                                 </div>
                                             <div class="form-group  {{ $errors->has('desc') ? ' has-danger' : '' }}  col-sm-6 flex-column d-flex">
-                                                <label class="form-control-label px-1">Description</label>
+                                                <label class="form-control-label px-1">{{__('createHrPolicy.description')}}</label>
                                                  <input class="form-control form-outline {{ $errors->has('desc') ? ' is-invalid' : '' }}" type="text" name="desc" id="desc" placeholder="" >
                                                  @if ($errors->has('desc'))
                                                  <span id="desc-error" class="error text-danger" for="input-desc">{{ $errors->first('desc') }}</span>
@@ -57,14 +57,14 @@
 
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group {{ $errors->has('created_date') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
-                                                 <label class="form-control-label required px-1">Created Date</label>
+                                                 <label class="form-control-label required px-1">{{__('createHrPolicy.createdDate')}}</label>
                                                  <input class="form-control form-outline  {{ $errors->has('created_date') ? ' is-invalid' : '' }} " type="date" id="created_date"  name="created_date" placeholder="">
                                                  @if ($errors->has('created_date'))
                                                 <span id="created_date-error" class="error text-danger" for="input-created_date">{{ $errors->first('created_date') }}</span>
                                                @endif
                                                 </div>
                                             <div class="form-group  {{ $errors->has('lastupdate_date') ? ' has-danger' : '' }}  col-sm-6 flex-column d-flex">
-                                                <label class="form-control-label required px-1">Last Update</label>
+                                                <label class="form-control-label required px-1">{{__('createHrPolicy.lastUpdate')}}</label>
                                                  <input class="form-control form-outline {{ $errors->has('lastupdate_date') ? ' is-invalid' : '' }}" type="date" name="lastupdate_date" id="lastupdate_date" placeholder="" >
                                                  @if ($errors->has('lastupdate_date'))
                                                  <span id="lastupdate_date-error" class="error text-danger" for="input-lastupdate_date">{{ $errors->first('lastupdate_date') }}</span>
@@ -106,7 +106,7 @@
                                           </div> --}}
                                           <div class="row justify-content-between text-left">
                                             <div class="form-group {{ $errors->has('file') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
-                                                 <label class="form-control-label required px-1">File <small>(PDF only)</small></label>
+                                                 <label class="form-control-label required px-1">{{__('createHrPolicy.file')}} <small>(PDF only)</small></label>
                                                  <input class="form-control-file form-outline  {{ $errors->has('file') ? ' is-invalid' : '' }} " type="file" id="file"  name="file">
                                                  @if ($errors->has('file'))
                                                 <span id="file-error" class="error text-danger" for="input-file">{{ $errors->first('file') }}</span>

@@ -27,7 +27,7 @@
                                 @endphp
 
                                 @if ($authuser->office == "AO2")
-                                {{-- @if ($authuser->id !== $userid) --}}
+                               
                                 @if ($userstatus == 'suspended')
 
                                 <a href="{{route('admin.users.removesuspend', $user)}}" role="button" class="btn btn-sm btn-outline-success">Activate

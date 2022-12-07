@@ -2,7 +2,7 @@
 
 return [
 
-    'myOvertimes' => 'أوقاتي الإضافية' ,
+    'myOvertimes' => 'طلبات الدوام الإضافي' ,
     'submitNewOvertime' => 'تسجيل وقت إضافي جديد' ,
     'show' => 'عرض' ,
     'date' => 'التاريخ',

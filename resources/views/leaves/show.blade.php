@@ -31,7 +31,7 @@
                             <div class="col">
                             <strong>{{__('leaveShow.leaveId')}}: </strong> {{$leave->id}}
                                 <br>
-                                <strong>{{__('leaveShow.leaveStatus')}}: </strong> {{$leave->status}}
+                                <strong>{{__('leaveShow.leaveStatus')}}: </strong> {{__("databaseLeaves.$leave->status")}}
                                 <br>
                                 <strong>{{__('leaveShow.leaveStartDate')}}: </strong> {{$leave->start_date}}
                                 <br>
@@ -43,7 +43,7 @@
                                   <br>
                                   <strong>{{__('leaveShow.leaveHours')}}: </strong> {{$leave->hours}}
                                   <br>
-                                  <strong>{{__('leaveShow.leaveType')}}: </strong> {{$leave->leavetype->name}}
+                                  <strong>{{__('leaveShow.leaveType')}}: </strong> {{ __("databaseLeaves.{$leave->leavetype->name}") }}
                                   <br>
                                   <strong>{{__('leaveShow.leaveCreationDate')}}: </strong> {{$leave->created_at}}
 
@@ -103,7 +103,7 @@
 
     <div class="card">
     <div class="card-header card-header-primary">
-                          <h4 class="card-title ">{{__('leaveShow.approvalWorlflowCurrentStatus')}}: <strong>{{$leave->status}}</strong></h4>
+                          <h4 class="card-title ">{{__('leaveShow.approvalWorlflowCurrentStatus')}}: <strong>{{__("databaseLeaves.$leave->status")}}</strong></h4>
                           <p class="card-category"></p>
                         </div>
                         <div class="card-body">

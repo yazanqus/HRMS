@@ -2,7 +2,7 @@
 
 return [
     'holidaycalander' => 'تقويم العطل الرسمية' ,
-    'addcalendar' => 'اضافة تقويم' ,
+    'addcalendar' => 'إضافة تقويم' ,
     'name' => 'الاسم' ,
     'year' => 'السنة' ,
     'action' => 'خيارات' 

@@ -23,11 +23,11 @@
                             </div>
                             <div class="card-body table-responsive-md ">
                               <div class="row">
-                            <table class="table table-hover text-nowrap table-Secondary ">
+                            <table class="table table-responsive  table-hover text-nowrap table-Secondary ">
                             <thead>
                                 <tr>
-                                    <th scope="col">{{__('overtimeApproval.id')}}</th>
-                                    <th scope="col">{{__('overtimeApproval.name')}}</th>
+                                    <th style="width: 3%" scope="col">{{__('overtimeApproval.id')}}</th>
+                                    <th style="width: 3%" scope="col">{{__('overtimeApproval.name')}}</th>
                                     <th class="text-center" scope="col">{{__('overtimeApproval.overtimeType')}}</th>
                                     <th class="text-center" scope="col">{{__('overtimeApproval.date')}}</th>
                                     <th class="text-center" scope="col">{{__('overtimeApproval.startHour')}}</th>

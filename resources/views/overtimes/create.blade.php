@@ -32,12 +32,15 @@
                                 <div class="col-12 col-lg-10 col-xl-10">
                                   <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                                     <div class="card-body p-4 p-md-5">
-                                      <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">{{__('createOvertime.newOvertime')}}</h3>
+                                      <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">{{__('createOvertime.newOvertimedetails')}}</h3>
                                       <form action="{{ route('overtimes.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="row justify-content-between text-left">
                                         <div id="type" class="form-group col-sm-6 flex-column d-flex">
-                                        <label class="form-control-label px-1">{{__('createOvertime.overtimeType')}}</label>
+                                        <label class="form-control-label px-1">{{__('createOvertime.overtimeType')}}  <a id="reset" href="" >
+                                                        <i class="fas fa-times"></i>
+                                                    </a></label>
+                                
                                         @php
                                         $user = Auth::user();
                                         if($user->contract == "Service")
@@ -156,7 +159,7 @@
                                         <br>
                                         <div class="row justify-content-center">
                                             <div class="justify-content-center form-group col-sm-2"> <button type="submit" class="btn bg-gradient-primary btn-block">{{__('createOvertime.submit')}}</button> </div>
-                                            <div class="form-group col-sm-3"> <a class="btn btn-outline-danger" href="{{route('leaves.index')}}" >{{__('createOvertime.cancel')}}</a> </div>
+                                            <div class="form-group col-sm-3"> <a class="btn btn-outline-danger" href="{{route('overtimes.index')}}" >{{__('createOvertime.cancel')}}</a> </div>
                                         </div>
                                       </form>
                                     </div>
@@ -174,7 +177,21 @@
                       content:" *";
                       color: red;
                     }
+
+                    
+                  
                   </style>
+                  @if (App::isLocale('ar'))
+          <style>         
+      .datepicker {
+        direction: rtl;
+      }             
+    .datepicker.dropdown-menu {
+right: initial;             
+      }     
+    </style>
+     @endif
+
 
 
 
@@ -183,6 +200,10 @@
 @endsection
 
 @push('scripts')
+
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script> -->
@@ -196,7 +217,7 @@
 
 
 $(document).ready(function() {
-
+  $('#reset').hide();
   
 
   $('form').submit(function(){
@@ -206,6 +227,7 @@ $(document).ready(function() {
 var weekday;
   
 $("input[name=type]:radio").change(function(){
+  $('#reset').show();
     if ($("#weekday").prop("checked")) {
       $('#weekend').hide();
       $('#weekendlabel').hide();
