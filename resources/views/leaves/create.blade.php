@@ -51,7 +51,7 @@
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <div class="form-outline">
                                                     <label class="form-control-label px-1">{{__('createLeave.leaveType')}}</label>
-                                                    <a id="reset" href="" >
+                                                    <a class="text-danger" id="reset" href="" >
                                                         <i class="fas fa-times"></i>
                                                     </a>
                                                     <select

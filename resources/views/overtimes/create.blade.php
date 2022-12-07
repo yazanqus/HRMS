@@ -37,7 +37,7 @@
                                         @csrf
                                         <div class="row justify-content-between text-left">
                                         <div id="type" class="form-group col-sm-6 flex-column d-flex">
-                                        <label class="form-control-label px-1">{{__('createOvertime.overtimeType')}}  <a id="reset" href="" >
+                                        <label class="form-control-label px-1">{{__('createOvertime.overtimeType')}}  <a class="text-danger" id="reset" href="" >
                                                         <i class="fas fa-times"></i>
                                                     </a></label>
                                 
