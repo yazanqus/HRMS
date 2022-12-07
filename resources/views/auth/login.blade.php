@@ -202,7 +202,7 @@
 
                         </div>
                         <div class="card-footer justify-content-center">
-                            <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Lets Go') }}</button>
+                            <button type="submit" id="buttonSelector" class=" disabled btn btn-primary btn-link btn-lg">{{ __('Lets Go') }}</button>
                         </div>
                     </div>
                 </form>
@@ -226,6 +226,15 @@
 @push('scripts')
 
 <script>
+  $(document).ready(function() {
+
+$(document).on('click', '#buttonSelector', function () {
+$(this).addClass('disabled');
+});
+$('form').submit(function(){
+  $(this).find(':submit').attr('disabled','disabled');
+});
+});
   $(".reveal").on('click',function() {
     var $pwd = $(".pwd");
     if ($pwd.attr('type') === 'password') {
