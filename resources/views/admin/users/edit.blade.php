@@ -157,21 +157,32 @@
                                                   </div>
                                             </div>
                                             @endif
+                                            @php
+                                        if ($user->contract == "Regular") {
+                                      $contract = "Regular";
+                                    }
 
+                                    elseif ($user->contract == "Service") {
+                                        $contract = "Service";
+                                    }
+                                    elseif ($user->contract == "NA") {
+                                      $contract = "NA";
+                                    }
+                                            @endphp
                                             <div class="form-group {{ $errors->has('contract') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex"> <label class="form-control-label required px-1">Contract Type</label> <div class="form-check">
-                                            <input  class="btn-check" type="radio" name="contract" Value="Regular" id="regular" @if (old('contract') == "Regular") {{ 'checked' }} @endif>
+                                            <input  class="btn-check" type="radio" name="contract" Value="Regular" id="regular" {{ $contract=='Regular' ? ' checked' : '' }}>
                                             <label class="form-check-label" for="regular">
                                               Regular Contract
                                             </label>
                                           </div>
                                           <div class="form-check">
-                                            <input  class="btn-check" type="radio" name="contract" Value="Service" id="sc" @if (old('contract') == "Service") {{ 'checked' }} @endif>
+                                            <input  class="btn-check" type="radio" name="contract" Value="Service" id="sc" {{ $contract=='Service' ? ' checked' : '' }}>
                                             <label class="form-check-label" for="sc">
                                               Service Contract
                                             </label>
                                           </div> 
                                           <div class="form-check">
-                                            <input  class="btn-check" type="radio" name="contract" Value="NA" id="na" @if (old('contract') == "NA") {{ 'checked' }} @endif>
+                                            <input  class="btn-check" type="radio" name="contract" Value="NA" id="na" {{ $contract=='NA' ? ' checked' : '' }}>
                                             <label class="form-check-label" for="na">
                                               Not Available
                                             </label>
