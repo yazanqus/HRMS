@@ -19,5 +19,10 @@ return [
     'Unpaid leave - First half' => 'إجازة غير مدفوعة - النصف الأول من اليوم' ,
     'Unpaid leave - Second half' => 'إجازة غير مدفوعة - النصف الثاني من اليوم' ,
     'Compansetion' => 'الإجازة التعويضية' ,
-    'Compansetion - hours' => 'الإجازة التعويضية - ساعات'   
+    'Compansetion - hours' => 'الإجازة التعويضية - ساعات',   
+    'Pending LM Approval' => 'انتظار موافقة المدير',
+    'Pending HR Approval' => 'انتظار موافقة الموارد البشرية',
+    'Approved' => 'تم الموافقة على الطلب',
+    'Declined by LM' => 'رفض الطلب من المدير',
+    'Declined by HR' => 'رفض الطلب من الموارد البشرية',
 ];

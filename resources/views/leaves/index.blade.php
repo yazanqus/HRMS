@@ -43,11 +43,11 @@
                             @foreach ($leaves as $leave)
                             <tr>
                               <td><a href="{{ route('leaves.show', $leave) }}" >{{ $leave->id }}</a></td>
-                              <td>{{ $leave->leavetype->name }}</td>
+                              <td>{{ __("databaseLeaves.{$leave->leavetype->name}") }}</td>
                               <td class="text-center">{{ $leave->start_date }}</td>
                               <td class="text-center">{{ $leave->end_date }}</td>
                               <td class="text-center">{{ $leave->days }}</td>
-                              <td class="text-center">{{ $leave->status }}</td>
+                              <td class="text-center">{{__("databaseLeaves.$leave->status")}}</td>
                               <td class="text-center">
                                   @php
                                   if ($leave->status == 'Approved' || $leave->status == 'Declined by HR' || $leave->status == 'Cancelled' || $leave->status == 'Submitted by HR' || $leave->status == 'Declined by LM')

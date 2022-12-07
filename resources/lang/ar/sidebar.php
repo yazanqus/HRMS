@@ -11,7 +11,7 @@ return [
     'createNewUser' => 'إنشاء حساب جديد' ,
     'allUsers' => 'جميع الموظفين' ,
     'hrApprovals' => 'الموافقات  ',
-    'allStaffLeaves' => 'مغادرات جميع الموظفين' ,
+    'allStaffLeaves' => 'إجازات جميع الموظفين' ,
     'allStaffOverTimes' => '  الإضافي لجميع الموظفين' ,
     'leaves' => 'الإجازات' ,
     'overtimes' => 'الدوام الإضافي' ,

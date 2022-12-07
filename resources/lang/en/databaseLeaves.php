@@ -19,5 +19,10 @@ return [
     'Unpaid leave - First half' => 'Unpaid leave - First half' ,
     'Unpaid leave - Second half' => 'Unpaid leave - Second half' ,
     'Compansetion' => 'Compansetion' ,
-    'Compansetion - hours' => 'Compansetion - hours'   
+    'Compansetion - hours' => 'Compansetion - hours',
+    'Pending LM Approval' => 'Pending LM Approval',
+    'Pending HR Approval' => 'Pending HR Approval',
+    'Approved' => 'Approved',
+    'Declined by LM' => 'Declined by LM',
+    'Declined by HR' => 'Declined by HR',
 ];

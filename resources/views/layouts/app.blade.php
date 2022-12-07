@@ -3,7 +3,7 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html lang="en">
+<html lang="{{App::getLocale()}}" dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,6 +12,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
+  <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css')}}">
 
@@ -23,7 +25,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
 
   <!-- Theme style -->
+  @if (App::isLocale('ar'))
+
+  <link rel="stylesheet" href="{{ asset('adminlte') }}/dist/css/adminlte.rtl.min.css">
+  @else
   <link rel="stylesheet" href="{{ asset('adminlte') }}/dist/css/adminlte.min.css">
+  @endif
 </head>
 <body class="hold-transition sidebar-mini">
     @auth()
@@ -669,11 +676,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src={{"/adminlte/plugins/jquery/jquery.min.js"}}></script>
 <script src={{"/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"}}></script> --}}
 
-
 <script src="{{ asset('adminlte/plugins/jquery/jquery.min.js')}}"></script>
 <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{ asset('adminlte/dist/js/adminlte.min.js')}}"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
+<script  src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
 
 @stack('scripts')
 
