@@ -224,9 +224,11 @@ if($(this).hasClass('fa-eye-slash')){
 
 
 
-
-
-
+$(document).ready(function() {
+  $('form').submit(function(){
+  $(this).find(':submit').attr('disabled','disabled');
+});
+});
 //   $(".reveal1").on('click',function() {
 //     var $pwd = $(".pwd1");
 //     if ($pwd.attr('type') === 'password') {
