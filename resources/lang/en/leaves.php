@@ -3,7 +3,7 @@
 return [
 
     'myLeaves' => 'My Leaves' ,
-    'submitNewLeave' => 'submit a New Leave' ,
+    'submitNewLeave' => 'New Leave' ,
     'show' => 'Show' ,
     'entries' => 'Entries',
     'id' => '#',

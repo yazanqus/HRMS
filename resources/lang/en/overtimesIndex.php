@@ -3,7 +3,7 @@
 return [
 
     'myOvertimes' => 'My Overtimes' ,
-    'submitNewOvertime' => 'submit a New Overtime' ,
+    'submitNewOvertime' => 'New Overtime' ,
     'show' => 'Show' ,
     'date' => 'Date',
     'entries' => 'Entries',
