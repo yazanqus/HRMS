@@ -55,7 +55,7 @@
                                                         <i class="fas fa-times"></i>
                                                     </a>
                                                     <select
-                                                    class="form-control selectpicker" data-size="5" data-style="btn btn-outline-secondary"
+                                                    class="form-control selectpicker" data-size="6" data-style="btn btn-outline-secondary"
                                                     name="leavetype_id" id="leavetype_id" type="text"
                                                     placeholder="{{ __('Leave Type') }}"
                                                     required>
