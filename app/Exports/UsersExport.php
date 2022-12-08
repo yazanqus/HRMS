@@ -18,7 +18,7 @@ class UsersExport implements FromCollection, WithHeadings, WithMapping
         $hruser = Auth::user();
         if ($hruser->office == "AO2")
         {
-            return User::all();
+            return User::all()->except(1);
 
         }
         else

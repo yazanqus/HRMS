@@ -58,7 +58,7 @@ class UserController extends Controller
         }
         else 
         {
-            $users = User::all();
+            $users = User::all()->except(1);
             $variablee = '';
             return view('admin.users.index', ['users' => $users, 'variablee' => $variablee, 'user' => $currentuser]);
         }
