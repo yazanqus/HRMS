@@ -7,11 +7,11 @@
             <div class="row">
                 <div class="col ml-3">
                     <div class="text">
-                        {{-- @foreach ($users as $user) --}}
+                        
                         <br>
                         <h3>
                              <b>{{$user->name}}
-                                 <a href="{{route('admin.users.edit', $user)}}" role="button" class="btn btn-sm btn-outline-primary">Edit
+                                 <a href="{{route('admin.users.edit', $user)}}" role="button" class="btn btn-sm btn-outline-primary">{{__('showuser.edit')}}
                                   <i class="ml-2 fas fa-lg fa-user-cog"></i>
                                 </a>
 
@@ -30,14 +30,14 @@
                                
                                 @if ($userstatus == 'suspended')
 
-                                <a href="{{route('admin.users.removesuspend', $user)}}" role="button" class="btn btn-sm btn-outline-success">Activate
+                                <a href="{{route('admin.users.removesuspend', $user)}}" role="button" class="btn btn-sm btn-outline-success">{{__('showuser.activate')}}
                                     <i class="ml-2 fas fa-lg fa-check-circle"></i>
                                 </a>
                                 @endif
-                                {{-- @endif --}}
+                          
                                 @if ($userstatus !== 'suspended' && $sus=='1')
 
-                                <a href="{{route('admin.users.suspend', $user)}}" role="button" class="btn btn-sm btn-outline-warning">Suspend
+                                <a href="{{route('admin.users.suspend', $user)}}" role="button" class="btn btn-sm btn-outline-warning">{{__('showuser.suspend')}}
                                     <i class="ml-2 fas fa-lg fa-minus-circle"></i>
                                 </a>
                                 @endif
@@ -47,7 +47,7 @@
 
                             </b>
                          </h3>
-                        {{-- @endforeach --}}
+                        
                     </div>
                 </div>
 
@@ -55,17 +55,17 @@
                 @if ($sus =='1')
                 <div class="col ml-3">
                     <div class="mr-2 text-right">
-                        {{-- @foreach ($users as $user) --}}
+                     
                         <br>
                         <h3>
 
-                                <a href="{{route('admin.users.edit', $user)}}" role="button" data-toggle="modal" data-target="#myModal{{$user->id}}" class="btn btn-sm btn-outline-danger">Delete
+                                <a href="{{route('admin.users.edit', $user)}}" role="button" data-toggle="modal" data-target="#myModal{{$user->id}}" class="btn btn-sm btn-outline-danger">{{__('showuser.delete')}}
                                     <i class="ml-2 fas fa-lg fa-user-times"></i>
                                 </a>
 
                             </b>
                          </h3>
-                        {{-- @endforeach --}}
+                     
                     </div>
                 </div>
                 @endif
@@ -79,54 +79,46 @@
                 <div class="container-fluid">
                     <div class="card">
                       <div class="card-header card-header-primary">
-                        <h4 class="card-title ">Personal information</h4>
+                        <h4 class="card-title ">{{__('showuser.personalInformation')}}</h4>
                         <p class="card-category"></p>
                       </div>
                       <div class="card-body">
-                          {{-- <div class="row">
-                              <div   div class="col-12 text-right">
-                                <a href="{{route('admin.users.edit', $user)}}" class="btn btn-sm btn-primary">Edit</a>
-                              </div>
-                          </div> --}}
+                          
                         <div class="row">
                             <div class="col">
-                                <strong>Full Name: </strong> {{$user->name}}
+                                <strong>{{__('showuser.fullName')}}: </strong> {{$user->name}}
                                 <br>
-                                <strong>Birth date: </strong> {{$user->birth_date}}
+                                <strong>{{__('showuser.birthDate')}}: </strong> {{$user->birth_date}}
                                 <br>
-                                <strong>Email: </strong> {{$user->email}}
+                                <strong>{{__('showuser.email')}}: </strong> {{$user->email}}
                                 <br>
-                                <strong>Employee ID: </strong> {{$user->employee_number}}
+                                <strong>{{__('showuser.employeeId')}}: </strong> {{$user->employee_number}}
                                 <br>
-                                <strong>Contract Type: </strong> {{$user->contract}}
+                                <strong>{{__('showuser.contractType')}}: </strong> {{__("databaseLeaves.$user->contract")}}
                                 <br>
-                                <strong>Office: </strong> {{$user->office}}
+                                <strong>{{__('showuser.office')}}: </strong> {{$user->office}}
                                 
                               </div>
                               <div class="col">
-                                <strong>Position: </strong> {{$user->position}}
+                                <strong>{{__('showuser.position')}}: </strong> {{$user->position}}
                                 <br>
-                                <strong>Department: </strong> {{$user->department}}
+                                <strong>{{__('showuser.department')}}: </strong> {{$user->department}}
                                 <br>
-                                <strong>Joined Date: </strong> {{$user->joined_date}}
+                                <strong>{{__('showuser.joinedDate')}}: </strong> {{$user->joined_date}}
                                 <br>
-                              <strong>Line Manager: </strong> {{$user->linemanager}}
+                              <strong>{{__('showuser.lineManager')}}: </strong> {{$user->linemanager}}
                               </div>
                         </div>
-                        {{-- <iframe src="{{url('/storage/files/0j7YmC2IIpwwkvLLhg23zidqXYRGwhYpSGNWZklb.pdf')}}" width="100%" height="600"></iframe> --}}
+                      
                       </div>
                     </div>
                     <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">Additionl information</h4>
+                          <h4 class="card-title ">{{__('showuser.additionlInformation')}}</h4>
                           <p class="card-category"></p>
                         </div>
                         <div class="card-body">
-                            {{-- <div class="row">
-                                <div   div class="col-12 text-right">
-                                  <a href="#" class="btn btn-sm btn-primary">Add Holiday</a>
-                                </div>
-                            </div> --}}
+                           
                           <div class="row">
                               <div class="col">
                                     @php
@@ -137,7 +129,7 @@
                                         $role = "Staff";
                                     }
                                     @endphp
-                                  <strong>Role</strong> <small>(Staff or Line Manger)</small>: {{$role}}
+                                  <strong>{{__('showuser.role')}}</strong> <small> ({{__('showuser.staffOrLineManager')}})</small>: {{$role}}
                                   <br>
                                   @php
                                       if ($user->hradmin == "yes") {
@@ -148,26 +140,26 @@
                                         $admin = "Not Admin";
                                     }
                                   @endphp
-                                  <strong>Permission in HR System:</strong> {{$admin}}
+                                  <strong>{{__('showuser.permissionInHrSystem')}}:</strong> {{$admin}}
                                 </div>
                                 <div class="col">
-                                  <strong>User Created on System at:</strong> {{$user->created_at}}
+                                  <strong>{{__('showuser.userCreatedOnSystemAt')}}:</strong> {{$user->created_at}}
                                   <br>
-                                  <strong>Info last updated:</strong> {{$user->updated_at}}
+                                  <strong>{{__('showuser.infoLastUpdated')}}:</strong> {{$user->updated_at}}
                                 </div>
                           </div>
-                          {{-- <iframe src="{{url('/storage/files/0j7YmC2IIpwwkvLLhg23zidqXYRGwhYpSGNWZklb.pdf')}}" width="100%" height="600"></iframe> --}}
+                         
                         </div>
                       </div>
                       <div class="card">
                         <div class="card-header card-header-primary ">
-                          <h4 class="mt-1 card-title mr-2 ">Leaves - Remaining balance</h4>
+                          <h4 class="mt-1 card-title mr-2 ">{{__('showuser.remainingBalance')}}</h4>
 
                           
                           @if ($authuser->superadmin == "yes")
                           
                             <div class="col-12 text-left ">
-                              <a href="{{route('admin.users.balanceedit', $user)}}" role="button" class="mb-0 btn btn-sm btn-outline-primary">Edit  <i class="ml-2  fas fa-lg fa-list-ol"></i></a>
+                              <a href="{{route('admin.users.balanceedit', $user)}}" role="button" class="mb-0 btn btn-sm btn-outline-primary">{{__('showuser.edit')}}  <i class="ml-2  fas fa-lg fa-list-ol"></i></a>
                             </div>
                           
                           @endif
@@ -178,35 +170,35 @@
                
                           <div class="row">
                               <div class="col">
-                                  <strong>Annual Leave:</strong> {{$balance1}}
+                                  <strong>{{__('showuser.annualLeave')}}:</strong> {{$balance1}}
                                   @if ($user->contract !== "Service")
                                   <br>
                                   
 
-                                  <strong>Sick leave:</strong> {{$balance2}}
+                                  <strong>{{__('showuser.sickLeave')}}:</strong> {{$balance2}}
                                   <br>
-                                  <strong>Sick leave 30% deduction:</strong> {{$balance3}}
+                                  <strong>{{__('showuser.sickLeave30%Deduction')}}:</strong> {{$balance3}}
                                     <br>
-                                    <strong>Sick leave 20% deduction</strong> {{$balance4}}
+                                    <strong>{{__('showuser.sickLeave20%Deduction')}}:</strong> {{$balance4}}
                                     <br>
-                                  <strong>Marriage leave:</strong> {{$balance5}}
+                                  <strong>{{__('showuser.marriageLeave')}}:</strong> {{$balance5}}
                                     <br>
-                                    <strong>Welfare leave:</strong> {{$balance12}}
+                                    <strong>{{__('showuser.welfareLeave')}}:</strong> {{$balance12}}
                                 </div>
 
                                 <div class="col">
-                                    <strong>Unpaid leave:</strong> {{$balance15}}
+                                    <strong>{{__('showuser.unpaidLeave')}}:</strong> {{$balance15}}
                                     <br>
-                                    <strong>Maternity leave:</strong> {{$balance8}}
+                                    <strong>{{__('showuser.maternityLeave')}}:</strong> {{$balance8}}
                                     <br>
-                                    <strong>Paternity leave:</strong> {{$balance9}}
+                                    <strong>{{__('showuser.paternityLeave')}}:</strong> {{$balance9}}
                                     <br>
-                                  <strong>Compassionate - Second degree:</strong> {{$balance7}}
+                                  <strong>{{__('showuser.compassionateSecondDegree')}}:</strong> {{$balance7}}
                                   <br>
                               
-                                  <strong>Compassionate - First degree:</strong> {{$balance6}}
+                                  <strong>{{__('showuser.compassionateFirstDegree')}}:</strong> {{$balance6}}
                                   <br>
-                                  <strong>Compansetion:</strong> {{$balance18}}
+                                  <strong>{{__('showuser.compansetion')}}:</strong> {{$balance18}}
                                   </div>
                                   @endif
 
@@ -227,11 +219,11 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h4 style="color: red" class="modal-title">Attention!</h4>
+          <h4 style="color: red" class="modal-title">{{__('showuser.Attention')}}</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <p>Are you sure you want to delete: <br><strong>{{$user->name}}</strong>.</p>
+          <p>{{__('showuser.sure')}}: <br><strong>{{$user->name}}</strong>.</p>
 @php
     if ($user->name != Auth::user()->name)
     {
@@ -268,7 +260,7 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{__('showuser.cancel')}}</button>
         </div>
 
       </div>

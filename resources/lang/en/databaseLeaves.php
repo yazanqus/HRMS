@@ -29,6 +29,9 @@ return [
     'week-end' => 'week-end',
     'weekend' => 'weekend',
     'holiday' => 'holiday',
-    
-    
+    'Regular' => 'Regular',
+    'Service' => 'Service',
+    'NA' => 'Not Available',
+    'Staff' => 'Staff (not a line manager to anyone)',
+    'Line Manager' => 'Line Manager (has at least one staff reporting to him/her)'
 ];

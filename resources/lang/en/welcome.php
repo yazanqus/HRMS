@@ -6,7 +6,7 @@ return [
     'fullName' => 'Full Name' ,
     'birthDate' => 'Birth Date',
     'email' => 'Email',
-    'employeeId' => 'employeeID',
+    'employeeId' => 'Employee ID',
     'contractType' => "Contract Type",
     'office' => 'Office' ,
     'position' => 'Position' ,

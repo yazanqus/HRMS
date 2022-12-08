@@ -2,7 +2,7 @@
 
 return [
 
-    'createNewUser' => 'Create New User ' ,
+    'editUser' => 'Edit User information' ,
     'userInformation' => 'User Information' ,
     'fullName' => 'Full Name',
     'birthDate' => 'Birth Date' ,
@@ -15,6 +15,7 @@ return [
     'employeeId' => 'Employee ID',
     'lineManager' => 'Line Manager' ,
     'hrAdmin' => 'HR Admin' ,
+    'Currently' => 'Currently',
     'permissionOnHrms' => 'Permissions on HR360' ,
     'notAdmin' => 'Not Admin' ,
     'contractType' => 'Contract Type' ,
@@ -24,7 +25,9 @@ return [
     'email' => 'Email' ,
     'whenSigningUsingEmployeeId' => 'when signin using employee ID',
     'password' => 'Password' ,
-    'create' => 'Create' ,
+    'changepassword' => 'Change User Password' ,
+    'passwordnote' => "Can't view, Only Reset is possible" ,
+    'update' => 'Update User info' ,
     'cancel' => 'Cancel',
 
 ];

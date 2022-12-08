@@ -27,11 +27,11 @@
                         <div class="card-body table-responsive-md">
 
 
-                        <table id="table_id" class="table table-bordered table-hover text-nowrap table-Secondary table-striped">
+                        <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                             <thead>
                             <tr>
-                            <th scope="col">{{__('overtimesIndex.id')}}</th>
-                              <th scope="col">{{__('overtimesIndex.type')}}</th>
+                            <th  style="width: 3%"  scope="col">{{__('overtimesIndex.id')}}</th>
+                              <th  style="width: 10%"  scope="col">{{__('overtimesIndex.type')}}</th>
                               <th class="text-center" scope="col">{{__('overtimesIndex.date')}}</th>
                               <th class="text-center" scope="col">{{__('overtimesIndex.starthour')}}</th>
                               <th class="text-center" scope="col">{{__('overtimesIndex.endhour')}}</th>

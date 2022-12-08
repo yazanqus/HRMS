@@ -2,8 +2,8 @@
 
 return [
     
-    'edit' => 'Edit' ,
-    'personalInformation' => 'Personal Information' ,
+    'edit' => 'Edit User Leave Balances' ,
+    'leaves' => 'Leave Balances' ,
     'fullName' => 'Full Name',
     'birthDate' => 'Birh Date' ,
     'email' => 'Email',
@@ -25,7 +25,6 @@ return [
     'status' => 'Status' ,
     'userCreatedOnSystemAt' => 'User Created on System at' ,
     'infoLastUpdated' => 'User Info last updated',
-    'leaves' => 'Leaves' ,
     'remainingBalance' => 'Current Leaves Balance',
     'annualLeave' => 'Annual Leave' ,
     'sickLeave' => 'Sick Leave' ,
@@ -44,7 +43,8 @@ return [
     'LineManager' => 'Line Manager (has at least one staff reporting to him/her)',
     'Attention' => 'Attention!',
     'sure' => 'Are you sure you want to delete',
-    'cancel' => 'Cancel'
+    'cancel' => 'Cancel',
+    'update' => 'Update Leaves Balances'
 
     
 ];

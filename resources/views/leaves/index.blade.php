@@ -27,11 +27,11 @@
 
                         <div class="card-body table-responsive-md">
 
-                        <table id="table_id" class="table table-bordered table-hover text-nowrap table-Secondary table-striped">
+                        <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                         <thead>
                             <tr>
-                            <th scope="col">{{__('leaves.id')}}</th>
-                              <th scope="col">{{__('leaves.type')}}</th>
+                            <th style="width: 3%" scope="col">{{__('leaves.id')}}</th>
+                              <th style="width: 10%" scope="col">{{__('leaves.type')}}</th>
                               <th class="text-center" scope="col">{{__('leaves.startDate')}}</th>
                               <th class="text-center" scope="col">{{__('leaves.endDate')}}</th>
                               <th class="text-center" scope="col">{{__('leaves.days')}}</th>
@@ -71,22 +71,7 @@
 
 
 
-                                {{-- <div class="btn-group dropright">
-                                    <button class="btn btn-xs " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-bars"></i>
-                                    </button>
-                                    <div style="min-width: 7rem" class="dropdown-menu " aria-labelledby="dropdownMenuButton">
-                                      <div class="text-center"><a class="dropdown-item text-center" href="{{ route('admin.users.show', $user) }}" target="_blank">View</a></div>
-                                      <div class="text-center"><a class="dropdown-item text-center" href="{{ route('admin.users.edit', $user) }}" >Edit</a></div>
-                                      <button type="button" class="dropdown-item text-center form-group btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal{{$user->id}}">Delete</button>
-
-                                      <div class="text-center"><a class="form-group btn btn-sm btn-outline-primary" href="{{ route('leaves.show', $leave) }}" target="_blank">View</a></div>
-                                      <div class="text-center"><a class="form-group btn btn-sm btn-outline-info" href="{{ route('leaves.edit', $leave) }}" >Edit</a></div>
-                                      <div class="text-center"><button type="button" class=" form-group btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal{{$leave->id}}">Delete</button></div>
-
-
-                                    </div>
-                                  </div> --}}
+                                
                               </td>
                             </tr>
                             @endforeach

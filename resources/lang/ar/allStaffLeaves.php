@@ -2,7 +2,7 @@
 
 return [
 
-    'allStaffLeaves' => 'مغادرات جميع الموظفين' ,
+    'allStaffLeaves' => 'إجازات جميع الموظفين' ,
     'advancedSearch' => 'بحث متقدم' ,
     'pdfReport' => ' pdf تقرير بصيغة ' ,
     'excel' => 'اكسل' ,

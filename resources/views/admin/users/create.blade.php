@@ -8,9 +8,7 @@
             <div class="row">
                 <div class="col-md-6 mb-6">
                     <div class="text">
-                        {{-- @foreach ($users as $user) --}}
-                        {{-- <h3>Welcome <b>{{$user->name}}</b> </h3> --}}
-                        {{-- @endforeach --}}
+                        
                     </div>
                 </div>
             </div>
@@ -23,7 +21,7 @@
                 <div class="card">
                     <div class="card-header card-header-primary">
                         <h4 class="card-title ">{{__('createUser.createNewUser')}}</h4>
-                        {{-- <p class="card-category"> Here you can manage users</p> --}}
+                        
                       </div>
 
                     <div class="card-body table-responsive-md">
@@ -101,7 +99,7 @@
                                 $authuser = Auth::user();
                                 @endphp
                                 @if ($authuser->superadmin == "yes")
-                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label  px-1">{{__('createUser.hrAdmin')}}<small>({{__('createUser.permissionOnHrms')}})</small></label> <div class="form-check">
+                                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label  px-1">{{__('createUser.hrAdmin')}} <small>({{__('createUser.permissionOnHrms')}})</small></label> <div class="form-check">
                                             <input  class="btn-check" type="radio" name="hradmin" Value="no" id="test1" checked>
                                             <label class="form-check-label" for="test1">
                                             {{__('createUser.notAdmin')}}
