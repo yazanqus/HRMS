@@ -558,8 +558,8 @@ class UserController extends Controller
 
         // dd($checkifuserhasleave);
 
-        // disable the update of balances when updating user after a while
-        if ($checkifuserhasleave->isEmpty()) {
+        // disable the update of balances when updating user (joined date/contract) after a while (after he has at least one approved leave)
+        if ($checkifuserhasleave->isEmpty() && $user->id > 208) {
 
             $yearr = date("Y", strtotime($user->joined_date));
             $dayy = date("d", strtotime($user->joined_date));
