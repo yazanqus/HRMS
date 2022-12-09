@@ -137,9 +137,19 @@ class LeaveController extends Controller
             'end_date' => 'required|after_or_equal:start_date',
             'leavetype_id' => 'required',
             'reason',
-            'hours',
+            'hours' => 'nullable|numeric|max:7',
             'file' => 'nullable|mimes:jpeg,png,jpg,pdf|max:3072',
-        ]);
+        
+        ],
+        [
+            'start_date.required'=> trans('leaveerror.startdatereq'), // custom message
+            'end_date.required'=> trans('leaveerror.enddatereq'), // custom message
+            'end_date.after_or_equal'=> trans('leaveerror.afterorequal'), // custom message
+            'file.mimes'=> trans('leaveerror.mimes'), // custom message
+            'file.max'=> trans('leaveerror.max'), // custom message
+            'hours.max'=> trans('leaveerror.hmax'), // custom message
+        ]
+        );
 
         $hours = $request->hours ;
         
@@ -221,7 +231,7 @@ class LeaveController extends Controller
 
                     if($counted > 0)
                     {
-                        return redirect()->back()->with("error", "You have already submitted a leave starting this day");
+                        return redirect()->back()->with("error", trans('leaveerror.sameday'));
                     }
 
                     else
@@ -278,10 +288,10 @@ class LeaveController extends Controller
   
 
                 } else {
-                    return redirect()->back()->with("error", "Leave remaining balance is not enough");
+                    return redirect()->back()->with("error",trans('leaveerror.nobalance'));
                 }
             } else {
-                return redirect()->back()->with("error", "You can't submit leave while still on probation");
+                return redirect()->back()->with("error", trans('leaveerror.prob'));
             }
         }
 
@@ -312,7 +322,7 @@ class LeaveController extends Controller
 
                 if($counted > 0)
                 {
-                    return redirect()->back()->with("error", "You have already submitted a leave starting this day");
+                    return redirect()->back()->with("error", trans('leaveerror.sameday'));
                 }
 
 
@@ -365,7 +375,7 @@ class LeaveController extends Controller
             }
 
             } else {
-                return redirect()->back()->with("error", "Leave remaining balance is not enough");
+                return redirect()->back()->with("error",trans('leaveerror.nobalance'));
             }
         }
 
@@ -393,7 +403,7 @@ class LeaveController extends Controller
 
                 if($counted > 0)
                 {
-                    return redirect()->back()->with("error", "You have already submitted a leave starting this day");
+                    return redirect()->back()->with("error", trans('leaveerror.sameday'));
                 }
 
 
@@ -446,7 +456,7 @@ class LeaveController extends Controller
             }
 
             } else {
-                return redirect()->back()->with("error", "Leave remaining balance is not enough");
+                return redirect()->back()->with("error",trans('leaveerror.nobalance'));
             }
         }
 
@@ -474,7 +484,7 @@ class LeaveController extends Controller
 
                 if($counted > 0)
                 {
-                    return redirect()->back()->with("error", "You have already submitted a leave starting this day");
+                    return redirect()->back()->with("error", trans('leaveerror.sameday'));
                 }
 
 
@@ -526,7 +536,7 @@ class LeaveController extends Controller
 
             }
             } else {
-                return redirect()->back()->with("error", "Leave remaining balance is not enough");
+                return redirect()->back()->with("error",trans('leaveerror.nobalance'));
             }
         }
 
@@ -556,7 +566,7 @@ class LeaveController extends Controller
     
                     if($counted > 0)
                     {
-                        return redirect()->back()->with("error", "You have already submitted a leave starting this day");
+                        return redirect()->back()->with("error", trans('leaveerror.sameday'));
                     }
 
                     else
@@ -607,10 +617,10 @@ class LeaveController extends Controller
 
                     }
                 } else {
-                    return redirect()->back()->with("error", "Leave remaining balance is not enough");
+                    return redirect()->back()->with("error",trans('leaveerror.nobalance'));
                 }
             } else {
-                return redirect()->back()->with("error", "You can't submit leave before at least 6 months of service");
+                return redirect()->back()->with("error",trans('leaveerror.sixmonthserv'));
             }
 
         }
@@ -641,7 +651,7 @@ class LeaveController extends Controller
     
                     if($counted > 0)
                     {
-                        return redirect()->back()->with("error", "You have already submitted a leave starting this day");
+                        return redirect()->back()->with("error", trans('leaveerror.sameday'));
                     }
 
 
@@ -694,10 +704,10 @@ class LeaveController extends Controller
                     return redirect()->route('leaves.index');
                 }
                 } else {
-                    return redirect()->back()->with("error", "Leave remaining balance is not enough");
+                    return redirect()->back()->with("error",trans('leaveerror.nobalance'));
                 }
             } else {
-                return redirect()->back()->with("error", "You can't submit leave before at least 6 months of service");
+                return redirect()->back()->with("error",trans('leaveerror.sixmonthserv'));
             }
         }
 
@@ -727,7 +737,7 @@ class LeaveController extends Controller
     
                     if($counted > 0)
                     {
-                        return redirect()->back()->with("error", "You have already submitted a leave starting this day");
+                        return redirect()->back()->with("error", trans('leaveerror.sameday'));
                     }
 
 
@@ -761,10 +771,10 @@ class LeaveController extends Controller
                     return redirect()->route('leaves.index');
                 }
                 } else {
-                    return redirect()->back()->with("error", "Leave remaining balance is not enough");
+                    return redirect()->back()->with("error",trans('leaveerror.nobalance'));
                 }
             } else {
-                return redirect()->back()->with("error", "You can't submit leave before at least 5 years of service");
+                return redirect()->back()->with("error", trans('leaveerror.fiveyearserv'));
             }
         }
 
@@ -797,7 +807,7 @@ class LeaveController extends Controller
     
                     if($counted > 0)
                     {
-                        return redirect()->back()->with("error", "You have already submitted a leave starting this day");
+                        return redirect()->back()->with("error", trans('leaveerror.sameday'));
                     }
 
                     else
@@ -831,10 +841,10 @@ class LeaveController extends Controller
 
                 }
                 } else {
-                    return redirect()->back()->with("error", "Leave remaining balance is not enough");
+                    return redirect()->back()->with("error",trans('leaveerror.nobalance'));
                 }
             } else {
-                return redirect()->back()->with("error", "You can't submit leave before at least 5 years of service");
+                return redirect()->back()->with("error", trans('leaveerror.fiveyearserv'));
             }
         }
 
@@ -863,7 +873,7 @@ class LeaveController extends Controller
     
                     if($counted > 0)
                     {
-                        return redirect()->back()->with("error", "You have already submitted a leave starting this day");
+                        return redirect()->back()->with("error", trans('leaveerror.sameday'));
                     }
 
                     else
@@ -915,10 +925,10 @@ class LeaveController extends Controller
                 }
 
                 } else {
-                    return redirect()->back()->with("error", "Can't submit more than 3 days welfare per week");
+                    return redirect()->back()->with("error", trans('leaveerror.welfarethree'));
                 }
             } else {
-                return redirect()->back()->with("error", "Leave remaining balance is not enough");
+                return redirect()->back()->with("error",trans('leaveerror.nobalance'));
             }
 
         }
@@ -950,7 +960,7 @@ class LeaveController extends Controller
     
                     if($counted > 0)
                     {
-                        return redirect()->back()->with("error", "You have already submitted a leave starting this day");
+                        return redirect()->back()->with("error", trans('leaveerror.sameday'));
                     }
 
                     else
@@ -1004,10 +1014,10 @@ class LeaveController extends Controller
 
                 }
                 } else {
-                    return redirect()->back()->with("error", "Leave remaining balance is not enough");
+                    return redirect()->back()->with("error",trans('leaveerror.nobalance'));
                 }
             } else {
-                return redirect()->back()->with("error", "You can't submit leave while still on probation");
+                return redirect()->back()->with("error", trans('leaveerror.prob'));
             }
         }
 
@@ -1061,7 +1071,7 @@ class LeaveController extends Controller
 
                 return redirect()->route('leaves.index');
             } else {
-                return redirect()->back()->with("error", "Leave remaining balance is not enough");
+                return redirect()->back()->with("error",trans('leaveerror.nobalance'));
             }
 
         }
@@ -1090,7 +1100,7 @@ class LeaveController extends Controller
 
                 if($counted > 0)
                 {
-                    return redirect()->back()->with("error", "You have already submitted a leave starting this day");
+                    return redirect()->back()->with("error", trans('leaveerror.sameday'));
                 }
 
 
@@ -1142,7 +1152,7 @@ class LeaveController extends Controller
                 return redirect()->route('leaves.index');
             }
             } else {
-                return redirect()->back()->with("error", "Leave remaining balance is not enough");
+                return redirect()->back()->with("error",trans('leaveerror.nobalance'));
             }
 
         }
@@ -1172,7 +1182,7 @@ class LeaveController extends Controller
     
                     if($counted > 0)
                     {
-                        return redirect()->back()->with("error", "You have already submitted a leave starting this day");
+                        return redirect()->back()->with("error", trans('leaveerror.sameday'));
                     }
 
                     else
@@ -1224,10 +1234,10 @@ class LeaveController extends Controller
 
                 }
                 } else {
-                    return redirect()->back()->with("error", "Leave remaining balance is not enough");
+                    return redirect()->back()->with("error",trans('leaveerror.nobalance'));
                 }
             } else {
-                return redirect()->back()->with("error", "You can't submit leave before at least 6 months of service");
+                return redirect()->back()->with("error",trans('leaveerror.sixmonthserv'));
             }
 
         }
@@ -1258,7 +1268,7 @@ class LeaveController extends Controller
     
                     if($counted > 0)
                     {
-                        return redirect()->back()->with("error", "You have already submitted a leave starting this day");
+                        return redirect()->back()->with("error", trans('leaveerror.sameday'));
                     }
 
                     else
@@ -1310,10 +1320,10 @@ class LeaveController extends Controller
 
                 }
                 } else {
-                    return redirect()->back()->with("error", "Leave remaining balance is not enough");
+                    return redirect()->back()->with("error",trans('leaveerror.nobalance'));
                 }
             } else {
-                return redirect()->back()->with("error", "You can't submit leave while still on probation");
+                return redirect()->back()->with("error", trans('leaveerror.prob'));
             }
         }
 
@@ -1342,7 +1352,7 @@ class LeaveController extends Controller
 
                 if($counted > 0)
                 {
-                    return redirect()->back()->with("error", "You have already submitted a leave starting this day");
+                    return redirect()->back()->with("error", trans('leaveerror.sameday'));
                 }
 
 
@@ -1396,7 +1406,7 @@ class LeaveController extends Controller
                 return redirect()->route('leaves.index');
             }
             } else {
-                return redirect()->back()->with("error", "Can't submit more than 5 days leave of this type per request");
+                return redirect()->back()->with("error", trans('leaveerror.fivedaysfistdeg'));
             }
 
         }
@@ -1425,7 +1435,7 @@ class LeaveController extends Controller
 
                 if($counted > 0)
                 {
-                    return redirect()->back()->with("error", "You have already submitted a leave starting this day");
+                    return redirect()->back()->with("error", trans('leaveerror.sameday'));
                 }
                 
 
@@ -1477,7 +1487,7 @@ class LeaveController extends Controller
                 return redirect()->route('leaves.index');
             }
             } else {
-                return redirect()->back()->with("error", "Can't submit more than 3 days leave of this type per request");
+                return redirect()->back()->with("error", trans('leaveerror.threedayperrequest'));
             }
 
         } else {
@@ -1500,7 +1510,7 @@ class LeaveController extends Controller
 
             if($counted > 0)
             {
-                return redirect()->back()->with("error", "You have already submitted a leave on this day");
+                return redirect()->back()->with("error", trans('leaveerror.sameday'));
             }
 
             else

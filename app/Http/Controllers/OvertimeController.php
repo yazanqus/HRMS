@@ -59,7 +59,18 @@ class OvertimeController extends Controller
             'reason' => 'required',
             'file' => 'nullable|mimes:jpeg,png,jpg,pdf|max:3072',
 
-        ]);
+        ],[
+            'type.required'=> trans('overtimeerror.type'), // custom message
+            'date.required'=> trans('overtimeerror.date'), // custom message
+            'start_hour.required'=> trans('overtimeerror.starthour'), // custom message
+            'end_hour.required'=> trans('overtimeerror.endhour'), // custom message
+            'end_hour.after'=> trans('overtimeerror.after'), // custom message
+            'reason.required'=> trans('overtimeerror.reason'), // custom message
+            'file.mimes'=> trans('overtimeerror.mimes'), // custom message
+            'file.max'=> trans('overtimeerror.max'), // custom message
+            
+        ]
+    );
 
         $stime = $request->start_hour;
         $etime = $request->end_hour;
