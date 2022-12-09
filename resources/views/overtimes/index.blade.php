@@ -21,7 +21,7 @@
                           <h4 class="card-title ">{{__('overtimesIndex.myOvertimes')}}</h4>
                           {{-- <p class="card-category">Here you can see the history of overtimes</p> --}}
                           <div class="col-12 text-right">
-                            <a href="{{route('overtimes.create')}}" class="btn btn-sm btn-primary">{{__('overtimesIndex.submitNewOvertime')}}</a>
+                            <a href="{{route('overtimes.create')}}" class="btn btn-md btn-primary">{{__('overtimesIndex.submitNewOvertime')}}</a>
                           </div>
                         </div>
                         <div class="card-body table-responsive-md">

@@ -21,7 +21,7 @@
                         <div class="card-header card-header-primary">
                           <h4 class="card-title ">{{__('leaves.myLeaves')}}</h4>
                             <div class="col-12 text-right">
-                              <a href="{{route('leaves.create')}}" class="btn btn-sm btn-primary">{{__('leaves.submitNewLeave')}}</a>
+                              <a href="{{route('leaves.create')}}" class="btn btn-md btn-primary">{{__('leaves.submitNewLeave')}}</a>
                             </div>
                         </div>
 
