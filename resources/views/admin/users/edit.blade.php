@@ -47,6 +47,11 @@
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">{{__('edituser.position')}}</label> <input class="form-control form-outline" type="text" id="position" value="{{$user->position}}" name="position" placeholder="" > </div>
 
+                                            @php
+                                            $authuser = Auth::user();
+                                            @endphp
+
+                                            @if ($authuser->office == "AO2")
                                             <div class="form-group col-sm-6 flex-column d-flex {{ $errors->has('office') ? ' has-danger' : '' }}"> <label class="dropdown form-control-label required px-1 {{ $errors->has('joined_date') ? ' is-invalid' : '' }}">{{__('edituser.office')}}</label>
                                         <select class="form-control form-outline"  id="office" name="office" aria-label="Default select example" >
                                           
@@ -59,10 +64,11 @@
                                           <option value="AO7" @if ($user->office == "AO7") {{ 'selected' }} @endif>AO7</option>
                                           
                                         </select>
-                                        @if ($errors->has('office'))
+                                        @if ($errors->has('office'))  
                                                 <span id="office-error" class="error text-danger" for="input-office">{{ $errors->first('office') }}</span>
                                                @endif
                                         </div>
+                                        @endif
                                         <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">{{__('edituser.department')}}</label> <input class="form-control form-outline" type="text" id="department"  value="{{ $user->department }}" name="department" placeholder="" > </div>
                                         </div>
                                         <div class="row justify-content-between text-left">

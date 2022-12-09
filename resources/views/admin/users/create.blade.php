@@ -51,17 +51,83 @@
                                         <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">{{__('createUser.position')}}</label> <input class="form-control form-outline" type="text" id="position"  value="{{ old('position') }}" name="position" placeholder="" > </div>
                    
                                         <div class="form-group col-sm-6 flex-column d-flex {{ $errors->has('office') ? ' has-danger' : '' }}"> <label class="dropdown form-control-label required px-1 {{ $errors->has('joined_date') ? ' is-invalid' : '' }}">{{__('createUser.office')}}</label>
-                                        <select class="form-control form-outline" id="office" name="office" aria-label="Default select example" >
-                                          
-                                          <option value selected disabled ="">{{__('createUser.choose')}} {{__('createUser.office')}}..</option>
                                         
-                                          <option value="AO2" @if (old('office') == "AO2") {{ 'selected' }} @endif >AO2</option>
-                                          <option value="AO3" @if (old('office') == "AO3") {{ 'selected' }} @endif>AO3</option>
-                                          <option value="AO4" @if (old('office') == "AO4") {{ 'selected' }} @endif>AO4</option>
-                                          <option value="AO6" @if (old('office') == "AO6") {{ 'selected' }} @endif>AO6</option>
-                                          <option value="AO7" @if (old('office') == "AO7") {{ 'selected' }} @endif>AO7</option>
-                                          
-                                        </select>
+@php
+$authuser = Auth::user();
+@endphp
+
+@if ($authuser->office == "AO3")
+<select class="form-control form-outline" id="office" name="office" aria-label="Default select example" >
+
+<option value selected disabled ="">{{__('createUser.choose')}} {{__('createUser.office')}}..</option>
+
+<!-- <option value="AO2" @if (old('office') == "AO2") {{ 'selected' }} @endif>AO2</option> -->
+<option value="AO3" @if (old('office') == "AO3") {{ 'selected' }} @endif>AO3</option>
+<!-- <option value="AO4" @if (old('office') == "AO4") {{ 'selected' }} @endif>AO4</option>
+<option value="AO6" @if (old('office') == "AO6") {{ 'selected' }} @endif>AO6</option>
+<option value="AO7" @if (old('office') == "AO7") {{ 'selected' }} @endif>AO7</option> -->
+
+</select>
+
+@endif
+
+@if ($authuser->office == "AO4")
+<select class="form-control form-outline" id="office" name="office" aria-label="Default select example" >
+
+<option value selected disabled ="">{{__('createUser.choose')}} {{__('createUser.office')}}..</option>
+
+<!-- <option value="AO2" @if (old('office') == "AO2") {{ 'selected' }} @endif>AO2</option> -->
+<!-- <option value="AO3" @if (old('office') == "AO3") {{ 'selected' }} @endif>AO3</option> -->
+<option value="AO4" @if (old('office') == "AO4") {{ 'selected' }} @endif>AO4</option>
+<!-- <option value="AO6" @if (old('office') == "AO6") {{ 'selected' }} @endif>AO6</option> -->
+<!-- <option value="AO7" @if (old('office') == "AO7") {{ 'selected' }} @endif>AO7</option> -->
+
+</select>
+
+@endif
+
+@if ($authuser->office == "AO6")
+<select class="form-control form-outline" id="office" name="office" aria-label="Default select example" >
+
+<option value selected disabled ="">{{__('createUser.choose')}} {{__('createUser.office')}}..</option>
+
+<!-- <option value="AO2" @if (old('office') == "AO2") {{ 'selected' }} @endif>AO2</option> -->
+<!-- <option value="AO3" @if (old('office') == "AO3") {{ 'selected' }} @endif>AO3</option> -->
+<!-- <option value="AO4" @if (old('office') == "AO4") {{ 'selected' }} @endif>AO4</option> -->
+<option value="AO6" @if (old('office') == "AO6") {{ 'selected' }} @endif>AO6</option>
+<!-- <option value="AO7" @if (old('office') == "AO7") {{ 'selected' }} @endif>AO7</option> -->
+
+</select>
+
+@endif
+@if ($authuser->office == "AO7")
+<select class="form-control form-outline" id="office" name="office" aria-label="Default select example" >
+
+<option value selected disabled ="">{{__('createUser.choose')}} {{__('createUser.office')}}..</option>
+
+<!-- <option value="AO2" @if (old('office') == "AO2") {{ 'selected' }} @endif>AO2</option> -->
+<!-- <option value="AO3" @if (old('office') == "AO3") {{ 'selected' }} @endif>AO3</option> -->
+<!-- <option value="AO4" @if (old('office') == "AO4") {{ 'selected' }} @endif>AO4</option> -->
+<!-- <option value="AO6" @if (old('office') == "AO6") {{ 'selected' }} @endif>AO6</option> -->
+<option value="AO7" @if (old('office') == "AO7") {{ 'selected' }} @endif>AO7</option>
+
+</select>
+
+@endif
+@if ($authuser->office == "AO2")
+<select class="form-control form-outline" id="office" name="office" aria-label="Default select example" >
+
+<option value selected disabled ="">{{__('createUser.choose')}} {{__('createUser.office')}}..</option>
+
+<option value="AO2" @if (old('office') == "AO2") {{ 'selected' }} @endif>AO2</option>
+<option value="AO3" @if (old('office') == "AO3") {{ 'selected' }} @endif>AO3</option>
+<option value="AO4" @if (old('office') == "AO4") {{ 'selected' }} @endif>AO4</option>
+<option value="AO6" @if (old('office') == "AO6") {{ 'selected' }} @endif>AO6</option>
+<option value="AO7" @if (old('office') == "AO7") {{ 'selected' }} @endif>AO7</option>
+
+</select>
+
+@endif
                                         @if ($errors->has('office'))
                                                 <span id="office-error" class="error text-danger" for="input-office">{{ $errors->first('office') }}</span>
                                                @endif

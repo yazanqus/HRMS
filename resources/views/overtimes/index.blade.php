@@ -43,7 +43,7 @@
                           <tbody>
                             @foreach ($overtimes as $overtime)
                             <tr>
-                                <td><a href="{{ route('overtimes.show', $overtime) }}" >{{ $overtime->id }}</a></td>
+                                <td><a href="{{ route('overtimes.show', encrypt($overtime->id)) }}" >{{ $overtime->id }}</a></td>
                               <td>{{__("databaseLeaves.$overtime->type")}}</td>
                               <td class="text-center">{{ $overtime->date }}</td>
                               <td class="text-center">{{ $overtime->start_hour }}</td>

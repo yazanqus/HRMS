@@ -29,7 +29,7 @@
                   <div class="input-group-append">
                     <div class="input-group-text">
                         <i class="fas fa-id-badge"></i>
-                      {{-- <span class="fas fa-envelope"></span> --}}
+                      
                     </div>
                   </div>
                 </div>
@@ -55,7 +55,7 @@
             </div>
 
             <div class="row">
-              {{-- <div class="col-2"> --}}
+             
                 <div class="container ">
                     <div class="check-primary text-left  pwd">
                       <input type="checkbox" class="reveal">
@@ -74,7 +74,7 @@
                               </div>
                           </div> -->
                 </div>
-              {{-- </div> --}}
+     
             </div>
             @if($errors->any())
             <div class="alert " style="color:red; font-weight:bold; padding-bottom: 0.2rem;"  >{{$errors->first()}}</></div>
@@ -113,13 +113,7 @@
             </a> --}}
           </div> -->
           <!-- /.social-auth-links -->
-{{--
-          <p class="mb-1">
-            <a href="forgot-password.html">I forgot my password</a>
-          </p>
-          <p class="mb-0">
-            <a href="register.html" class="text-center">Register a new membership</a>
-          </p> --}}
+
         </div>
         <!-- /.card-body -->
       </div>
@@ -135,88 +129,7 @@
 
 
 
-{{--
-            <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
-                <form class="form" method="POST" action="{{ route('login') }}">
-                    @csrf
-                  <div class="color-head" style="margin: 0 0 -73px 0; background-color:#ff9400; height: 50px; border-radius: 5px;"></div>
-                    <div class="card card-login card-hidden mb-3">
 
-                        <div class="card-body">
-
-                            <div class="bmd-form-group{{ $errors->has('employee_number') ? ' has-danger' : '' }}">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="material-icons">lock_outline</i>
-                                        </span>
-                                    </div>
-                                    <input type="employee_number" name="employee_number" class="form-control"
-                                        placeholder="{{ __('Employee Number...') }}"
-                                        value="{{ old('employee_number', '') }}" required>
-                                </div>
-                                @if ($errors->has('employee_number'))
-                                    <div id="employee_number-error" class="error text-danger pl-3" for="employee_number"
-                                        style="display: block;">
-                                        <strong>{{ $errors->first('employee_number') }}</strong>
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="bmd-form-group{{ $errors->has('password') ? ' has-danger' : '' }} mt-3">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="material-icons">lock_outline</i>
-                                        </span>
-                                    </div>
-                                    <input type="password" name="password" id="password" class="form-control"
-                                        placeholder="{{ __('Password...') }}"
-                                        value="{{ !$errors->has('password') ? 'secret' : '' }}" required>
-                                </div>
-                                @if ($errors->has('password'))
-                                    <div id="password-error" class="error text-danger pl-3" for="password"
-                                        style="display: block;">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="form-check mr-auto ml-3 mt-3">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" name="remember"
-                                        {{ old('remember') ? 'checked' : '' }}> {{ __('Remember me') }}
-                                    <span class="form-check-sign">
-                                        <span class="check"></span>
-                                    </span>
-                                </label>
-                            </div>
-
-                            <div class="form-group row">
-                              <div class="col-md-6 offset-md-4">
-                                  <div class="checkbox">
-                                      <label>
-                                          <a href="{{ route('forget.password.get') }}">Reset Password</a>
-                                      </label>
-                                  </div>
-                              </div>
-                          </div>
-
-                        </div>
-                        <div class="card-footer justify-content-center">
-                            <button type="submit" id="buttonSelector" class=" disabled btn btn-primary btn-link btn-lg">{{ __('Lets Go') }}</button>
-                        </div>
-                    </div>
-                </form>
-                <div class="row">
-
-                    <div class="btn btn-danger">
-                        <a href="{{ route('login-okta') }}" class="text-light">
-                            {{ __('Login With OKTA') }}
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 
 
 

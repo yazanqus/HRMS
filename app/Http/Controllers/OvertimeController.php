@@ -144,8 +144,13 @@ class OvertimeController extends Controller
      * @param  \App\Models\Overtime  $overtime
      * @return \Illuminate\Http\Response
      */
-    public function show(Overtime $overtime)
+    public function show($overtimeid)
     {
+
+        $id = decrypt($overtimeid);
+        // dd($id);
+        $overtime = Overtime::findOrFail($id);
+
         return view('overtimes.show', ['overtime' => $overtime]);
     }
 

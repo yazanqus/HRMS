@@ -54,7 +54,7 @@
                               <tbody>
                                 @foreach ($leaves as $leave)
                                 <tr>
-                                    <td><a href="{{ route('leaves.show', $leave) }}" target="_blank">{{ $leave->id }}</a></td>
+                                    <td><a href="{{ route('leaves.show', encrypt($leave->id)) }}" target="_blank">{{ $leave->id }}</a></td>
                                   <td>{{ $leave->user->name }}</td>
                                   <td class="text-center">{{ __("databaseLeaves.{$leave->leavetype->name}") }}</td>
                                   <td class="text-center">{{ $leave->start_date }}</td>

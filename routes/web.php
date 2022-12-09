@@ -324,26 +324,58 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin']], function () {
     Route::get('overtimes/hrapproval', function () {
 
 
+        $hrcurrentuser = Auth::user();
         
+        
+        if($hrcurrentuser->office == "AO2")
+        {
+            $overtimes = Overtime::where('status', 'Pending HR Approval')->get();
+            
+            if (count($overtimes)) {
+                return view('hrapproval.overtimes.index', ['overtimes' => $overtimes]);
+            } else {
+                $overtimess = Overtime::where([
+                    ['status', 'no staff under this line manager'],
+                ])->get();    
+                return view('hrapproval.overtimes.index', ['overtimes' => $overtimess]);
+            }
+        }
+        else
+        {
+            $staffwithsameoffice = User::where('office',$hrcurrentuser->office)->get();
+            if (count($staffwithsameoffice)) {
+                $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
+                            return collect($staffwithsameoffice->toArray())
+                                ->only(['id'])
+                                ->all();
+                        });
+                        $overtimes = Overtime::whereIn('user_id', $hrsubsets)->where('status', 'Pending HR Approval')->get();
+                            if (count($overtimes)) {
+                                return view('hrapproval.overtimes.index', ['overtimes' => $overtimes]);
+                            } else {
+                                $overtimess = Overtime::where([
+                                    ['user_id', 'fake'],
+                                    ['status', 'no staff under this line manager'],
+                                ])->get();
+                                
+                                return view('hrapproval.overtimes.index', ['overtimes' => $overtimess]);
+                            }
+            }
 
-        $overtimes = Overtime::where('status', 'Pending HR Approval')->get();
-        // $leaves = Leave::where('Status', 'Pending Approval')->get();
-        // dd($leaves);
-        if (count($overtimes)) {
-            return view('hrapproval.overtimes.index', ['overtimes' => $overtimes]);
-
-        } else {
-
-            $overtimess = Overtime::where([
-
-                ['status', 'no staff under this line manager'],
-            ])->get();
-            // dd($leavess);
-
-            return view('hrapproval.overtimes.index', ['overtimes' => $overtimess]);
+            else
+            {
+                $overtimess = Overtime::where([
+                            ['user_id', 'fake'],
+                            ['status', 'no staff under this line manager'],
+                        ])->get();
+                        // dd($overtimess);
+                
+                        return view('hrapproval.overtimes.index', ['overtimes' => $overtimess]);
+                    }
+            }
         }
 
-    })->name('overtimes.hrapproval');
+    )->name('overtimes.hrapproval');
 
     Route::get('attendances/approval/hr/staff/{attendance}', function ($attendance) {
 

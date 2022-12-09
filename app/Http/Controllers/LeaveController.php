@@ -21,6 +21,7 @@ use App\Mail\Leavefinal as MailLeavefinal;
 use App\Mail\Leaverejected as MailLeaverejected;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Crypt;
 
 class LeaveController extends Controller
 {
@@ -1565,9 +1566,11 @@ class LeaveController extends Controller
      * @param  \App\Models\Leave  $leave
      * @return \Illuminate\Http\Response
      */
-    public function show(Leave $leave)
+    public function show($leaveid)
     {
-
+        $id = decrypt($leaveid);
+        // dd($id);
+        $leave = Leave::findOrFail($id);
         // $leavetype = Leavetype::where('id', $leave-)->get();
         return view('leaves.show', ['leave' => $leave]);
     }

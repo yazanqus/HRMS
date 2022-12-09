@@ -42,7 +42,7 @@
                           <tbody>
                             @foreach ($leaves as $leave)
                             <tr>
-                              <td><a href="{{ route('leaves.show', $leave) }}" >{{ $leave->id }}</a></td>
+                              <td><a href="{{ route('leaves.show', encrypt($leave->id)) }}" >{{ $leave->id }}</a></td>
                               <td>{{ __("databaseLeaves.{$leave->leavetype->name}") }}</td>
                               <td class="text-center">{{ $leave->start_date }}</td>
                               <td class="text-center">{{ $leave->end_date }}</td>
