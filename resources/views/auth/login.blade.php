@@ -98,7 +98,7 @@
               <!-- /.col -->
               <div class="row">
                   <div class="col-12">
-                    <button type="submit" class="mb-2 btn-1 ">Sign In</button>
+                    <button type="submit" class="mb-2 btn-1 ">Sign in</button>
                   </div>
               </div>
               <!-- /.col -->
