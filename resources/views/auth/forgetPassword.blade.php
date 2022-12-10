@@ -58,7 +58,7 @@
               <!-- /.col -->
               <div id="box3" class="row">
                   <div class="col-12">
-                    <button type="submit" class="btn bg-gradient-primary btn-block">Send Password Reset Link</button>
+                    <button type="submit" class="btn-1">Send Password Reset Link</button>
                   </div>
               </div>
               <!-- /.col -->
@@ -72,7 +72,23 @@
       <!-- /.card -->
 
 
+      <style>
+.btn-1 {
+  border: none;
+  width: 100%;
+  height: 35px;
+  color: white;
+  background-color: #007bff;
+  border-radius: 3px;
+box-shadow: inset 0 0 0 0 #14489e;
+transition: ease-out 0.8s;
 
+}
+.btn-1.activate {
+  box-shadow: inset 500px 0 0 0 #14489e;
+}
+
+          </style>
 
 
 </div>
@@ -125,6 +141,11 @@
 
 <script>
 $(document).ready(function() {
+
+
+  $(document).on('click', '.btn-1', function () {
+$(this).addClass('activate');
+});
     if ($("#message").text().length < 1) {
      $('#box').show();
      $('#box1').show();

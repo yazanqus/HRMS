@@ -80,7 +80,7 @@
             <div class="alert " style="color:red; font-weight:bold; padding-bottom: 0.2rem;"  >{{$errors->first()}}</></div>
 @endif
 
-                          <div class="form-group row text-right">
+                          <div class="form-group mb-0 row text-right">
                               <div class="col">
                                   <div class="checkbox">
                                       <label>
@@ -113,7 +113,7 @@
   background-color: #007bff;
   border-radius: 3px;
 box-shadow: inset 0 0 0 0 #14489e;
-transition: ease-out 0.8s;
+transition: ease-out 0.9s;
 
 }
 .btn-1.activate {

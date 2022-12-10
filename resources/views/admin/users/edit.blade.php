@@ -140,6 +140,9 @@
                                     elseif ($user->contract == "NA") {
                                       $contract = "NA";
                                     }
+                                    else {
+                                      $contract = "undefiend";
+                                    }
                                             @endphp
                                             <div class="form-group {{ $errors->has('contract') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex"> <label class="form-control-label required px-1">{{__('edituser.contractType')}}</label> <div class="form-check">
                                             <input  class="btn-check" type="radio" name="contract" Value="Regular" id="regular" {{ $contract=='Regular' ? ' checked' : '' }}>
