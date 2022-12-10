@@ -98,11 +98,29 @@
               <!-- /.col -->
               <div class="row">
                   <div class="col-12">
-                    <button type="submit" class="mb-2 btn bg-gradient-primary btn-block">Sign In</button>
+                    <button type="submit" class="mb-2 btn-1 ">Sign In</button>
                   </div>
               </div>
               <!-- /.col -->
           </form>
+
+          <style>
+.btn-1 {
+  border: none;
+  width: 100%;
+  height: 100%;
+  color: white;
+  background-color: #007bff;
+  border-radius: 3px;
+box-shadow: inset 0 0 0 0 #14489e;
+transition: ease-out 0.8s;
+
+}
+.btn-1.activate {
+  box-shadow: inset 500px 0 0 0 #14489e;
+}
+
+          </style>
 
           <!-- <div class="social-auth-links text-center ">
             <a href="#" class="btn btn-block btn-outline-primary">
@@ -140,6 +158,10 @@
 
 <script>
   $(document).ready(function() {
+
+    $(document).on('click', '.btn-1', function () {
+$(this).addClass('activate');
+});
 
 $(document).on('click', '#buttonSelector', function () {
 $(this).addClass('disabled');
