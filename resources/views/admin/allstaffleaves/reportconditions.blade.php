@@ -93,7 +93,7 @@
                                        <br>
                                       <div class="row justify-content-center">
                                           <div class="form-group col-sm-3"> <button type="submit" class="btn bg-gradient-primary btn-block">{{__('leavesPDF.view')}}</button> </div>
-                                          <div class="form-group col-sm-3"> <a class="btn btn-outline-danger" href="{{route('admin.users.index')}}" >{{__('leavesPDF.cancel')}}</a> </div>
+                                          <div class="form-group col-sm-3"> <a class="btn btn-outline-danger" href="{{route('admin.allstaffleaves.index')}}" >{{__('leavesPDF.cancel')}}</a> </div>
                                       </div>
                                   </form>
                                   </div>

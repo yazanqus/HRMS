@@ -150,7 +150,7 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/
         }
     })->name('allleavessearch.cond');
 
-    Route::post('/overtimes/search', [LeaveController::class, 'search'])->name('overtimes.search');
+    Route::post('/leaves/search', [LeaveController::class, 'search'])->name('leaves.search');
 
 
     Route::get('allovertimessearch', function () {

@@ -947,18 +947,35 @@ class LeaveController extends Controller
 
                     $leavessubmitted = Leave::where([
                         ['user_id', $user->id],
+                        ['leavetype_id','!=', '13'],
+                        ['leavetype_id','!=', '14'],
+                        ['start_date', $request->start_date],
+                        ])->where(function($query) {
+                            $query->where('status','Pending LM Approval')
+                                        ->orWhere('status','Pending HR Approval')
+                                        // ->orWhere('leavetype_id','!=','13')
+                                        // ->orWhere('leavetype_id','!=','14')
+                                        ->orWhere('status','Approved');
+                })->get();
+    
+                    $counted = count($leavessubmitted);
+
+                    $leavessubmittedannual = Leave::where([
+                        ['user_id', $user->id],
                         ['leavetype_id', $request->leavetype_id],
                         ['start_date', $request->start_date],
                         ])->where(function($query) {
                             $query->where('status','Pending LM Approval')
                                         ->orWhere('status','Pending HR Approval')
+                                        // ->orWhere('leavetype_id','!=','13')
+                                        // ->orWhere('leavetype_id','!=','14')
                                         ->orWhere('status','Approved');
                 })->get();
     
-                    $counted = count($leavessubmitted);
+                    $counted1 = count($leavessubmittedannual);
     
     
-                    if($counted > 0)
+                    if($counted + $counted1 > 0)
                     {
                         return redirect()->back()->with("error", trans('leaveerror.sameday'));
                     }
