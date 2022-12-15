@@ -329,7 +329,7 @@ class LeaveController extends Controller
                     $path = $request->file('file')->store('public/leaves');
                 }
                 if ($days > '1' and $request->hasFile('file') == null) {
-                    return redirect()->back()->with("error", "Attachement is missing");
+                    return redirect()->back()->with("error",trans('leaveerror.attachment'));
                 }
 
 
@@ -412,7 +412,7 @@ class LeaveController extends Controller
                 if ($request->hasFile('file')) {
                     $path = $request->file('file')->store('public/leaves');
                 } else {
-                    return redirect()->back()->with("error", "Attachement is missing");
+                    return redirect()->back()->with("error",trans('leaveerror.attachment'));
                 }
 
 
@@ -493,7 +493,7 @@ class LeaveController extends Controller
                 if ($request->hasFile('file')) {
                     $path = $request->file('file')->store('public/leaves');
                 } else {
-                    return redirect()->back()->with("error", "Attachement is missing");
+                    return redirect()->back()->with("error",trans('leaveerror.attachment'));
                 }
 
                 $leavessubmitted = Leave::where([

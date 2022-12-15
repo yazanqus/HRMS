@@ -9,6 +9,7 @@ return [
     'max' => 'The file must smaller than 3 MB' ,
     'hmax' =>  'Leave Hours must be less than 8' ,
     'nobalance' => 'Leave remaining balance is not enough',
+    'attachment' => 'Attachment is needed for this leave type',
     'sameday' => 'You have already submitted a leave starting this day',
     'prob' => "You can't submit leave while still on probation",
     'sixmonthserv' => "You can't submit leave before at least 6 months of service"  ,
