@@ -7,6 +7,7 @@ return [
     'starthour' => 'The Start Hour is required' ,
     'endhour' => 'The End Hour is required' ,
     'after' => 'The End Hour must be after Start Hour.' ,
+    'holiday' => 'The Data should be a Holiday from NRC',
     'reason' => 'Overtime Reason is required' ,
     'mimes' => 'The file must be a type of: jpeg, png, jpg, pdf',
     'max' => 'The file must smaller than 3 MB' ,

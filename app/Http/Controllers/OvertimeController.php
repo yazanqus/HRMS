@@ -72,80 +72,115 @@ class OvertimeController extends Controller
         ]
     );
 
-        $stime = $request->start_hour;
-        $etime = $request->end_hour;
-        $starttime1 = new DateTime($stime);
-        $endtime2 = new DateTime($etime);
-        $interval = $starttime1->diff($endtime2);
-        $hourss = $interval->format('%h');
-        $minss = $interval->format('%i');
-        $units = round($minss / 30) * 30;
-        $mintohour = $units / 60;
-        $last = $hourss + $mintohour;
+        $nrcholidays = [
+            '2023-01-01',
+            '2023-03-21',
+            '2023-04-09',
+            '2023-04-16',
+            '2023-04-17',
+            '2023-04-23',
+            '2023-04-24',
+            '2023-04-25',
+            '2023-05-01',
+            '2023-06-28',
+            '2023-06-29',
+            '2023-06-30',
+            '2023-07-01',
+            '2023-07-02',
+            '2023-07-03',
+            '2023-07-19',
+            '2023-07-27',
+            '2023-08-10',
+            '2023-08-10',
+            '2023-12-25',
+            
+        ];
 
-        // dd($last);
-
-        // $hours = $hourss+'1';
-        if ($request->hasFile('file')) {
-            $path = $request->file('file')->store('public/overtimes');
-        }
-        $overtime = new Overtime();
-        $overtime->type = $request->type;
-        $overtime->date = $request->date;
-        $overtime->start_hour = $request->start_hour;
-        $overtime->end_hour = $request->end_hour;
-        $overtime->reason = $request->reason;
-        $overtime->hours = $last;
-        if ($request->hasFile('file')) {
-            $overtime->path = $path;
-        }
-        // $overtime->overtimetype_id = $request->overtimetype_id;
-        $overtime->user_id = auth()->user()->id;
-        if (!isset($user->linemanager)) {
-            $overtime->status = 'Pending HR Approval';
-
-        } else {
-
-            $overtime->status = 'Pending LM Approval';
-            $dayname = Carbon::parse($overtime->date)->format('l');
-            $linemanageremail = User::where('name',$user->linemanager)->value('email');
-
-            // dd($linemanageremail);
-            $details = [
-                'requestername' => $user->name,
-                'linemanagername' => $user->linemanager,
-                'linemanageremail' => $linemanageremail,
-                'title' => 'Overtime Request Approval - '.$overtime->type,
-                'overtimetype' => $overtime->type,
-                'dayname' => $dayname,
-                'date' => $overtime->date,
-                'start_hour' => $overtime->start_hour,
-                'end_hour' => $overtime->end_hour,
-                'hours' => $overtime->hours,
-                'comment' =>  $overtime->reason
-            ];
-           
-            Mail::to($linemanageremail)->send(new MailOvertime($details));
-
-
-        }
-        if ($overtime->type == 'weekday') {
-            $overtime->value = $last * 1.5;
-        }
-        
-        else if ($overtime->type == 'SC-overtime')
+        if ($request->type == 'holiday' && !in_array($request->date , $nrcholidays))
         {
-            $overtime->value = $last * 1;
-        }
-        //holiday and weekends overtimes:
-        else {
-            $overtime->value = $last * 2;
+        
+            return redirect()->back()->with("error", trans('overtimeerror.holiday'));
         }
 
-        $overtime->save();
+        else
+        {
 
-        // dd($partialstoannual);
-        return redirect()->route('overtimes.index');
+            $stime = $request->start_hour;
+            $etime = $request->end_hour;
+            $starttime1 = new DateTime($stime);
+            $endtime2 = new DateTime($etime);
+            $interval = $starttime1->diff($endtime2);
+            $hourss = $interval->format('%h');
+            $minss = $interval->format('%i');
+            $units = round($minss / 30) * 30;
+            $mintohour = $units / 60;
+            $last = $hourss + $mintohour;
+    
+            // dd($last);
+    
+            // $hours = $hourss+'1';
+            if ($request->hasFile('file')) {
+                $path = $request->file('file')->store('public/overtimes');
+            }
+            $overtime = new Overtime();
+            $overtime->type = $request->type;
+            $overtime->date = $request->date;
+            $overtime->start_hour = $request->start_hour;
+            $overtime->end_hour = $request->end_hour;
+            $overtime->reason = $request->reason;
+            $overtime->hours = $last;
+            if ($request->hasFile('file')) {
+                $overtime->path = $path;
+            }
+            // $overtime->overtimetype_id = $request->overtimetype_id;
+            $overtime->user_id = auth()->user()->id;
+            if (!isset($user->linemanager)) {
+                $overtime->status = 'Pending HR Approval';
+    
+            } else {
+    
+                $overtime->status = 'Pending LM Approval';
+                $dayname = Carbon::parse($overtime->date)->format('l');
+                $linemanageremail = User::where('name',$user->linemanager)->value('email');
+    
+                // dd($linemanageremail);
+                $details = [
+                    'requestername' => $user->name,
+                    'linemanagername' => $user->linemanager,
+                    'linemanageremail' => $linemanageremail,
+                    'title' => 'Overtime Request Approval - '.$overtime->type,
+                    'overtimetype' => $overtime->type,
+                    'dayname' => $dayname,
+                    'date' => $overtime->date,
+                    'start_hour' => $overtime->start_hour,
+                    'end_hour' => $overtime->end_hour,
+                    'hours' => $overtime->hours,
+                    'comment' =>  $overtime->reason
+                ];
+               
+                Mail::to($linemanageremail)->send(new MailOvertime($details));
+    
+    
+            }
+            if ($overtime->type == 'weekday') {
+                $overtime->value = $last * 1.5;
+            }
+            
+            else if ($overtime->type == 'SC-overtime')
+            {
+                $overtime->value = $last * 1;
+            }
+            //holiday and weekends overtimes:
+            else {
+                $overtime->value = $last * 2;
+            }
+    
+            $overtime->save();
+    
+            // dd($partialstoannual);
+            return redirect()->route('overtimes.index');
+    
+        }
 
     }
 
