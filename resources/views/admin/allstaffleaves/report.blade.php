@@ -33,7 +33,7 @@ tr:nth-child(even) {
                     <div class="text">
                     <h3>Leave Summary report</h3>
                     <br>
-                    Staff Name: <strong>{{$name}}</strong>
+                    Staff: <strong>{{$name}}</strong> - <strong>{{$userpeopleid}}</strong>
                     <br>
                     Period: <strong>{{$start_date}}</strong> to <strong>{{$end_date}}</strong>
                     <br>

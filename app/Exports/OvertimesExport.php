@@ -42,6 +42,7 @@ class OvertimesExport implements FromCollection, WithHeadings, WithMapping
         return [
             'Overtime ID',
             'Requester',
+            'People ID',
             'Office',
             'Overtime Type',
             'Date',
@@ -60,6 +61,7 @@ class OvertimesExport implements FromCollection, WithHeadings, WithMapping
         return [
             $overtime->id,
             $overtime->user->name,
+            $overtime->user->employee_number,
             $overtime->user->office,
             $overtime->type,
             $overtime->date,

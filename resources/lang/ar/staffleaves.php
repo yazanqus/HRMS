@@ -14,6 +14,7 @@ return [
     'myStaffLeaves' => 'إجازات اعضاء الفريق ' ,
     'show' => 'عرض' ,
     'entries' => 'الأسطر',
+    'balance' => 'رصيد الإجازة السنوية',
     'search' => 'بحث' ,
     'id-Leave' => 'رقم الإجازة' ,
     'id-Overtime' => 'رقم الطلب' ,

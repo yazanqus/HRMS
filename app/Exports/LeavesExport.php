@@ -19,6 +19,7 @@ class LeavesExport implements FromCollection, WithHeadings, WithMapping
         return [
             'Leave ID',
             'Requester',
+            'People ID',
             'Office',
             'Leave Type',
             'Start Date',
@@ -55,6 +56,7 @@ class LeavesExport implements FromCollection, WithHeadings, WithMapping
         return [
             $leave->id,
             $leave->user->name,
+            $leave->user->employee_number,
             $leave->user->office,
             $leave->leavetype->name,
             $leave->start_date,

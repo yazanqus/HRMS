@@ -205,7 +205,7 @@ $('#leavetype_id').on('change',function(){
   $('#reset').show();
 
   
-  if ($(this).val() == '3' || $(this).val() == '4')
+  if ($(this).val() == '3' || $(this).val() == '4' || $(this).val() == '15')
   {
     sickpercentage = "yes";
     

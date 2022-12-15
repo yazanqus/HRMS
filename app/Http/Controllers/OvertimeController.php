@@ -394,6 +394,7 @@ class OvertimeController extends Controller
 
         
         $userid = User::where('name',$name)->value('id');
+        $userpeopleid = User::where('name',$name)->value('employee_number');
          
         $overtimes = Overtime::where([
 
@@ -408,7 +409,7 @@ class OvertimeController extends Controller
         $date = Carbon::now();
 
 
-        $pdf = Pdf::loadView('admin.allstaffovertimes.report', ['name'=>$name,'hruser'=>$hruser,'date'=>$date, 'start_date'=>$start_date,'end_date'=>$end_date,'overtimes'=>$overtimes])->setOptions(['defaultFont' => 'sans-serif', 'isHtml5ParserEnabled'=> 'true', 'isRemoteEnabled'=> 'true', 'isPhpEnabled'=> 'true'])->setpaper('a4','portrait');
+        $pdf = Pdf::loadView('admin.allstaffovertimes.report', ['name'=>$name,'userpeopleid'=>$userpeopleid,'hruser'=>$hruser,'date'=>$date, 'start_date'=>$start_date,'end_date'=>$end_date,'overtimes'=>$overtimes])->setOptions(['defaultFont' => 'sans-serif', 'isHtml5ParserEnabled'=> 'true', 'isRemoteEnabled'=> 'true', 'isPhpEnabled'=> 'true'])->setpaper('a4','portrait');
 
         return $pdf->stream();
 

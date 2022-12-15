@@ -42,12 +42,14 @@ class UsersExport implements FromCollection, WithHeadings, WithMapping
             $user->birth_date,
             $user->employee_number,
             $user->office,
+            $user->contract,
             $user->position,
             $user->department,
             $user->joined_date,
             $user->status,
             $user->linemanager,
             $user->hradmin,
+            $user->email,
             $user->created_at,
 
         ];
@@ -61,12 +63,14 @@ class UsersExport implements FromCollection, WithHeadings, WithMapping
             'Birth Date',
             'Employee Number',
             'office',
+            'Contract',
             'Position',
             'Department',
             'Joined Date',
             'Account Status',
             'Line Manager',
             'HR Admin',
+            'Email',
             'Account Created Date',
 
         ];
