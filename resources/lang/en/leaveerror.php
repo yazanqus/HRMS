@@ -10,7 +10,7 @@ return [
     'hmax' =>  'Leave Hours must be less than 8' ,
     'nobalance' => 'Leave remaining balance is not enough',
     'attachment' => 'Attachment is needed for this leave type',
-    'sameday' => 'You have already submitted a leave starting this day',
+    'sameday' => 'You have already submitted a leave during the selected period',
     'prob' => "You can't submit leave while still on probation",
     'sixmonthserv' => "You can't submit leave before at least 6 months of service"  ,
     'fiveyearserv' => "You can't submit leave before at least 5 years of service" ,
