@@ -187,6 +187,11 @@ class LeaveController extends Controller
         // dd($datess);
 
 
+        $numberofmatches = count($matches=array_intersect($nrcholidays,$datess));
+
+
+        
+
 
         
         $hours = $request->hours ;
@@ -218,7 +223,7 @@ class LeaveController extends Controller
         // total days
         $sickpercentagedays = $interval->days;
         $days = $interval->days;
-
+        
         // create an iterateable period of date (P1D equates to 1 day)
         $period = new DatePeriod($start, new DateInterval('P1D'), $end);
 
@@ -231,6 +236,9 @@ class LeaveController extends Controller
             }
 
         }
+
+        $dayswithoutholidays = $days - $numberofmatches;
+            
 
         // $interval = $datetime1->diff($datetime2);
         // $dayss = $interval->format('%a');
@@ -305,7 +313,7 @@ class LeaveController extends Controller
                     if ($request->hasFile('file')) {
                         $leave->path = $path;
                     }
-                    $leave->days = $days;
+                    $leave->days = $dayswithoutholidays;
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
                     if (!isset($user->linemanager)) {
@@ -424,7 +432,7 @@ class LeaveController extends Controller
                     $leave->path = $path;
                 }
 
-                $leave->days = $days;
+                $leave->days = $dayswithoutholidays;
                 $leave->leavetype_id = $request->leavetype_id;
                 $leave->user_id = auth()->user()->id;
                 if (!isset($user->linemanager)) {
