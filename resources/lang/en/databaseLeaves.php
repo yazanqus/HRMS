@@ -33,5 +33,12 @@ return [
     'Service' => 'Service',
     'NA' => 'Not Available',
     'Staff' => 'Staff (not a line manager to anyone)',
-    'Line Manager' => 'Line Manager (has at least one staff reporting to him/her)'
+    'Line Manager' => 'Line Manager (has at least one staff reporting to him/her)',
+    'Sunday' => 'Sunday',
+    'Monday' => 'Monday',
+    'Tuesday' => 'Tuesday',
+    'Wednesday' => 'Wednesday',
+    'Thursday' => 'Thursday',
+    'Friday' => 'Friday',
+    'Saturday' => 'Saturday',
 ];

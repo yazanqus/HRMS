@@ -10,7 +10,7 @@ return [
     'users' => "الموظفون",
     'createNewUser' => 'إنشاء حساب جديد' ,
     'allUsers' => 'جميع الموظفين' ,
-    'hrApprovals' => 'الموافقات  ',
+    'hrApprovals' => 'الموافقات',
     'allStaffLeaves' => 'إجازات جميع الموظفين' ,
     'allStaffOverTimes' => '  الإضافي لجميع الموظفين' ,
     'leaves' => 'الإجازات' ,

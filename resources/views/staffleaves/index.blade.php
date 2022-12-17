@@ -77,14 +77,14 @@
                         <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                         <thead>
                             <tr>
-                            <th style="width: 5%" scope="col">{{__('staffleaves.id-Leave')}}</th>
+                                <th style="width: 5%" scope="col">{{__('staffleaves.id-Leave')}}</th>
                                 <th style="width: 15%" scope="col">{{__('staffleaves.name')}}</th>
                                 <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.leaveType')}}</th>
-                                <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.startDate')}}</th>
-                                <th style="width: 10%"  class="text-center"scope="col">{{__('staffleaves.endDate')}}</th>
-                                <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.days')}}</th>
-                                <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.status')}}</th>
-                                <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.dateCreated')}}</th>
+                                <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.startDate')}}</th>
+                                <th style="width: 20%"  class="text-center"scope="col">{{__('staffleaves.endDate')}}</th>
+                                <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.days')}}</th>
+                                <th style="width: 30%" class="text-center" scope="col">{{__('staffleaves.status')}}</th>
+                                <!-- <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.dateCreated')}}</th> -->
                             </tr>
                           </thead>
                           <tbody>
@@ -93,11 +93,15 @@
                                 <td><a href="{{ route('leaves.show', encrypt($leave->id)) }}" >{{ $leave->id }}</a></td>
                               <td>{{ $leave->user->name }}</td>
                               <td class="text-center">{{ $leave->leavetype->name }}</td>
-                              <td class="text-center">{{ $leave->start_date }}</td>
-                              <td class="text-center">{{ $leave->end_date }}</td>
+                              @php
+                              $startdayname = Carbon\Carbon::parse($leave->start_date)->format('l');
+                              $enddayname = Carbon\Carbon::parse($leave->end_date)->format('l');
+                              @endphp
+                              <td class="text-center">{{__("databaseLeaves.$startdayname")}} {{ $leave->start_date }}</td>
+                              <td class="text-center">{{__("databaseLeaves.$enddayname")}} {{ $leave->end_date }}</td>
                               <td class="text-center">{{ $leave->days }}</td>
                               <td class="text-center">{{ $leave->status }}</td>
-                              <td class="text-center"> {{ $leave->created_at }}</td>
+                              <!-- <td class="text-center"> {{ $leave->created_at }}</td> -->
                             </tr>
                             @endforeach
                           </tbody>
@@ -117,15 +121,15 @@
                       <table id="table_idd" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                       <thead>
                           <tr>
-                          <th style="width: 5%" scope="col">{{__('staffleaves.id-Overtime')}}</th>
+                          <th style="width: 10%" scope="col">{{__('staffleaves.id-Overtime')}}</th>
                               <th style="width: 10%" scope="col">{{__('staffleaves.name')}}</th>
                               <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.overtimeType')}}</th>
                               <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.date')}}</th>
                               <th style="width: 10%"  class="text-center"scope="col">{{__('staffleaves.startHour')}}</th>
                               <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.endHour')}}</th>
-                              <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.hours')}}</th>
+                              <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.hours')}}</th>
                               <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.status')}}</th>
-                              <th style="width: 15%" class="text-center" scope="col">{{__('staffleaves.dateCreated')}}</th>
+                              <!-- <th style="width: 15%" class="text-center" scope="col">{{__('staffleaves.dateCreated')}}</th> -->
                           </tr>
                         </thead>
                         <tbody>
@@ -134,12 +138,15 @@
                             <td><a href="{{ route('overtimes.show', encrypt($overtime->id)) }}" >{{ $overtime->id }}</a></td>
                             <td>{{ $overtime->user ? $overtime->user->name : 'Deleted User' }}</td>
                             <td class="text-center">{{ $overtime->type }}</td>
-                            <td class="text-center">{{ $overtime->date }}</td>
+                            @php
+                              $dayname = Carbon\Carbon::parse($overtime->date)->format('l');
+                              @endphp
+                            <td class="text-center">{{__("databaseLeaves.$dayname")}} {{ $overtime->date }}</td>
                             <td class="text-center">{{ $overtime->start_hour }}</td>
                             <td class="text-center">{{ $overtime->end_hour }}</td>
                             <td class="text-center">{{ $overtime->hours }}</td>
                             <td class="text-center">{{ $overtime->status }}</td>
-                            <td class="text-center"> {{ $overtime->created_at }}</td>
+                            <!-- <td class="text-center"> {{ $overtime->created_at }}</td> -->
                           </tr>
                           @endforeach
                         </tbody>
@@ -167,14 +174,14 @@
     $(document).ready( function () {
     $('#table_id').DataTable(
         {
-            "order": [[ 7, "desc" ]],
+            "order": [[ 0, "desc" ]],
             
         }
     );
 
     $('#table_idd').DataTable(
         {
-            "order": [[ 8, "desc" ]]
+            "order": [[ 0, "desc" ]]
         }
     );
     $('#table_iddd').DataTable(

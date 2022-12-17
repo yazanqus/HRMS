@@ -45,7 +45,10 @@
                             <tr>
                                 <td><a href="{{ route('overtimes.show', encrypt($overtime->id)) }}" >{{ $overtime->id }}</a></td>
                               <td>{{__("databaseLeaves.$overtime->type")}}</td>
-                              <td class="text-center">{{ $overtime->date }}</td>
+                              @php
+                              $dayname = Carbon\Carbon::parse($overtime->date)->format('l');
+                              @endphp
+                              <td class="text-center">{{__("databaseLeaves.$dayname")}} {{ $overtime->date }}</td>
                               <td class="text-center">{{ $overtime->start_hour }}</td>
                               <td class="text-center">{{ $overtime->end_hour }}</td>
                               <td class="text-center">{{ $overtime->hours }}</td>

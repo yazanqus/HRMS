@@ -31,9 +31,13 @@
                                 <br>
                                 <strong>{{__('leaveShow.leaveStatus')}}: </strong> {{__("databaseLeaves.$leave->status")}}
                                 <br>
-                                <strong>{{__('leaveShow.leaveStartDate')}}: </strong> {{$leave->start_date}}
+                                @php
+                              $startdayname = Carbon\Carbon::parse($leave->start_date)->format('l');
+                              $enddayname = Carbon\Carbon::parse($leave->end_date)->format('l');
+                              @endphp
+                                <strong>{{__('leaveShow.leaveStartDate')}}: </strong>{{__("databaseLeaves.$startdayname")}} {{$leave->start_date}}
                                 <br>
-                                <strong>{{__('leaveShow.leaveEndDate')}}: </strong> {{$leave->end_date}}
+                                <strong>{{__('leaveShow.leaveEndDate')}}: </strong>{{__("databaseLeaves.$enddayname")}} {{$leave->end_date}}
                               </div>
                               <div class="col">
 

@@ -33,7 +33,10 @@
                                 <br>
                                 <strong>{{__('overtimeshow.overtimeStatus')}}: </strong> {{__("databaseLeaves.$overtime->status")}}
                                 <br>
-                                <strong>{{__('overtimeshow.overtimeDate')}}: </strong> {{$overtime->date}}
+                                @php
+                              $dayname = Carbon\Carbon::parse($overtime->date)->format('l');
+                              @endphp
+                                <strong>{{__('overtimeshow.overtimeDate')}}: </strong>{{__("databaseLeaves.$dayname")}} {{$overtime->date}}
                                 <br>
                                 <strong>{{__('overtimeshow.overtimestarthour')}}: </strong> {{$overtime->start_hour}}
                                 <br>
