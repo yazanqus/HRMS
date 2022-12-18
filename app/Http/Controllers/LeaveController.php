@@ -266,11 +266,10 @@ class LeaveController extends Controller
                     $leavessubmitted = Leave::where([
                         ['user_id', $user->id],
                         // ['start_date', $request->start_date],
-                        ])->whereBetween(
-                            'start_date', [$request->start_date,$request->end_date]
-                        )->orWhereBetween(
-                            'end_date', [$request->start_date,$request->end_date]
-                        )->where(function($query) {
+                        ])->where(function($query) use ($request) {
+                            $query->whereBetween('start_date', [$request->start_date,$request->end_date])
+                        ->orWhereBetween('end_date', [$request->start_date,$request->end_date]);
+                })->where(function($query) {
                             $query->where('status','Pending LM Approval')
                                         ->orWhere('status','Pending HR Approval')
                                         ->orWhere('status','Approved');
@@ -280,15 +279,14 @@ class LeaveController extends Controller
                 $leavessubmittedcase2 = Leave::where([
                     ['user_id', $user->id],
                     // ['start_date', $request->start_date],
-                    ])->whereRaw(
-                        '"'.$request->start_date.'" between `start_date` and `end_date`'
-                    )->orwhereRaw(
-                        '"'.$request->end_date.'" between `start_date` and `end_date`'
-                    )->where(function($query) {
+                    ])->where(function($query) use ($request) {
+                        $query->whereRaw('"'.$request->start_date.'" between `start_date` and `end_date`')
+                        ->orwhereRaw('"'.$request->end_date.'" between `start_date` and `end_date`');       
+                 })->where(function($query) {
                         $query->where('status','Pending LM Approval')
                                     ->orWhere('status','Pending HR Approval')
                                     ->orWhere('status','Approved');
-            })->get();
+                })->get();
 
 
                     $counted = count($leavessubmitted);
@@ -382,42 +380,40 @@ class LeaveController extends Controller
             //                         ->orWhere('status','Approved');
             // })->get();
 
-
-  $leavessubmitted = Leave::where([
-                        ['user_id', $user->id],
-                        // ['start_date', $request->start_date],
-                        ])->whereBetween(
-                            'start_date', [$request->start_date,$request->end_date]
-                        )->orWhereBetween(
-                            'end_date', [$request->start_date,$request->end_date]
-                        )->where(function($query) {
-                            $query->where('status','Pending LM Approval')
-                                        ->orWhere('status','Pending HR Approval')
-                                        ->orWhere('status','Approved');
-                })->get();
+            $leavessubmitted = Leave::where([
+                ['user_id', $user->id],
+                // ['start_date', $request->start_date],
+                ])->where(function($query) use ($request) {
+                    $query->whereBetween('start_date', [$request->start_date,$request->end_date])
+                ->orWhereBetween('end_date', [$request->start_date,$request->end_date]);
+        })->where(function($query) {
+                    $query->where('status','Pending LM Approval')
+                                ->orWhere('status','Pending HR Approval')
+                                ->orWhere('status','Approved');
+        })->get();
 
 
-                $leavessubmittedcase2 = Leave::where([
-                    ['user_id', $user->id],
-                    // ['start_date', $request->start_date],
-                    ])->whereRaw(
-                        '"'.$request->start_date.'" between `start_date` and `end_date`'
-                    )->orwhereRaw(
-                        '"'.$request->end_date.'" between `start_date` and `end_date`'
-                    )->where(function($query) {
-                        $query->where('status','Pending LM Approval')
-                                    ->orWhere('status','Pending HR Approval')
-                                    ->orWhere('status','Approved');
-            })->get();
+        $leavessubmittedcase2 = Leave::where([
+            ['user_id', $user->id],
+            // ['start_date', $request->start_date],
+            ])->where(function($query) use ($request) {
+                $query->whereRaw('"'.$request->start_date.'" between `start_date` and `end_date`')
+                ->orwhereRaw('"'.$request->end_date.'" between `start_date` and `end_date`');       
+         })->where(function($query) {
+                $query->where('status','Pending LM Approval')
+                            ->orWhere('status','Pending HR Approval')
+                            ->orWhere('status','Approved');
+        })->get();
 
 
-                    $counted = count($leavessubmitted);
-                    $countedcase2 = count($leavessubmittedcase2);
+            $counted = count($leavessubmitted);
+            $countedcase2 = count($leavessubmittedcase2);
 
-                    if($counted + $countedcase2 > 0)
-                    {
-                        return redirect()->back()->with("error", trans('leaveerror.sameday'));
-                    }
+            if($counted + $countedcase2 > 0)
+            {
+                return redirect()->back()->with("error", trans('leaveerror.sameday'));
+            }
+
 
                 else
 
@@ -491,14 +487,14 @@ class LeaveController extends Controller
             //                         ->orWhere('status','Pending HR Approval')
             //                         ->orWhere('status','Approved');
             // })->get();
+            
             $leavessubmitted = Leave::where([
                 ['user_id', $user->id],
                 // ['start_date', $request->start_date],
-                ])->whereBetween(
-                    'start_date', [$request->start_date,$request->end_date]
-                )->orWhereBetween(
-                    'end_date', [$request->start_date,$request->end_date]
-                )->where(function($query) {
+                ])->where(function($query) use ($request) {
+                    $query->whereBetween('start_date', [$request->start_date,$request->end_date])
+                ->orWhereBetween('end_date', [$request->start_date,$request->end_date]);
+        })->where(function($query) {
                     $query->where('status','Pending LM Approval')
                                 ->orWhere('status','Pending HR Approval')
                                 ->orWhere('status','Approved');
@@ -508,15 +504,14 @@ class LeaveController extends Controller
         $leavessubmittedcase2 = Leave::where([
             ['user_id', $user->id],
             // ['start_date', $request->start_date],
-            ])->whereRaw(
-                '"'.$request->start_date.'" between `start_date` and `end_date`'
-            )->orwhereRaw(
-                '"'.$request->end_date.'" between `start_date` and `end_date`'
-            )->where(function($query) {
+            ])->where(function($query) use ($request) {
+                $query->whereRaw('"'.$request->start_date.'" between `start_date` and `end_date`')
+                ->orwhereRaw('"'.$request->end_date.'" between `start_date` and `end_date`');       
+         })->where(function($query) {
                 $query->where('status','Pending LM Approval')
                             ->orWhere('status','Pending HR Approval')
                             ->orWhere('status','Approved');
-    })->get();
+        })->get();
 
 
             $counted = count($leavessubmitted);
@@ -601,41 +596,39 @@ class LeaveController extends Controller
             // })->get();
 
 
-  $leavessubmitted = Leave::where([
-                        ['user_id', $user->id],
-                        // ['start_date', $request->start_date],
-                        ])->whereBetween(
-                            'start_date', [$request->start_date,$request->end_date]
-                        )->orWhereBetween(
-                            'end_date', [$request->start_date,$request->end_date]
-                        )->where(function($query) {
-                            $query->where('status','Pending LM Approval')
-                                        ->orWhere('status','Pending HR Approval')
-                                        ->orWhere('status','Approved');
-                })->get();
+            $leavessubmitted = Leave::where([
+                ['user_id', $user->id],
+                // ['start_date', $request->start_date],
+                ])->where(function($query) use ($request) {
+                    $query->whereBetween('start_date', [$request->start_date,$request->end_date])
+                ->orWhereBetween('end_date', [$request->start_date,$request->end_date]);
+        })->where(function($query) {
+                    $query->where('status','Pending LM Approval')
+                                ->orWhere('status','Pending HR Approval')
+                                ->orWhere('status','Approved');
+        })->get();
 
 
-                $leavessubmittedcase2 = Leave::where([
-                    ['user_id', $user->id],
-                    // ['start_date', $request->start_date],
-                    ])->whereRaw(
-                        '"'.$request->start_date.'" between `start_date` and `end_date`'
-                    )->orwhereRaw(
-                        '"'.$request->end_date.'" between `start_date` and `end_date`'
-                    )->where(function($query) {
-                        $query->where('status','Pending LM Approval')
-                                    ->orWhere('status','Pending HR Approval')
-                                    ->orWhere('status','Approved');
-            })->get();
+        $leavessubmittedcase2 = Leave::where([
+            ['user_id', $user->id],
+            // ['start_date', $request->start_date],
+            ])->where(function($query) use ($request) {
+                $query->whereRaw('"'.$request->start_date.'" between `start_date` and `end_date`')
+                ->orwhereRaw('"'.$request->end_date.'" between `start_date` and `end_date`');       
+         })->where(function($query) {
+                $query->where('status','Pending LM Approval')
+                            ->orWhere('status','Pending HR Approval')
+                            ->orWhere('status','Approved');
+        })->get();
 
 
-                    $counted = count($leavessubmitted);
-                    $countedcase2 = count($leavessubmittedcase2);
+            $counted = count($leavessubmitted);
+            $countedcase2 = count($leavessubmittedcase2);
 
-                    if($counted + $countedcase2 > 0)
-                    {
-                        return redirect()->back()->with("error", trans('leaveerror.sameday'));
-                    }
+            if($counted + $countedcase2 > 0)
+            {
+                return redirect()->back()->with("error", trans('leaveerror.sameday'));
+            }
 
 
                 else
@@ -714,34 +707,32 @@ class LeaveController extends Controller
                 $leavessubmitted = Leave::where([
                     ['user_id', $user->id],
                     // ['start_date', $request->start_date],
-                    ])->whereBetween(
-                        'start_date', [$request->start_date,$request->end_date]
-                    )->orWhereBetween(
-                        'end_date', [$request->start_date,$request->end_date]
-                    )->where(function($query) {
+                    ])->where(function($query) use ($request) {
+                        $query->whereBetween('start_date', [$request->start_date,$request->end_date])
+                    ->orWhereBetween('end_date', [$request->start_date,$request->end_date]);
+            })->where(function($query) {
                         $query->where('status','Pending LM Approval')
                                     ->orWhere('status','Pending HR Approval')
                                     ->orWhere('status','Approved');
             })->get();
-
-
+    
+    
             $leavessubmittedcase2 = Leave::where([
                 ['user_id', $user->id],
                 // ['start_date', $request->start_date],
-                ])->whereRaw(
-                    '"'.$request->start_date.'" between `start_date` and `end_date`'
-                )->orwhereRaw(
-                    '"'.$request->end_date.'" between `start_date` and `end_date`'
-                )->where(function($query) {
+                ])->where(function($query) use ($request) {
+                    $query->whereRaw('"'.$request->start_date.'" between `start_date` and `end_date`')
+                    ->orwhereRaw('"'.$request->end_date.'" between `start_date` and `end_date`');       
+             })->where(function($query) {
                     $query->where('status','Pending LM Approval')
                                 ->orWhere('status','Pending HR Approval')
                                 ->orWhere('status','Approved');
-        })->get();
-
-
+            })->get();
+    
+    
                 $counted = count($leavessubmitted);
                 $countedcase2 = count($leavessubmittedcase2);
-
+    
                 if($counted + $countedcase2 > 0)
                 {
                     return redirect()->back()->with("error", trans('leaveerror.sameday'));
@@ -827,34 +818,32 @@ class LeaveController extends Controller
                 $leavessubmitted = Leave::where([
                     ['user_id', $user->id],
                     // ['start_date', $request->start_date],
-                    ])->whereBetween(
-                        'start_date', [$request->start_date,$request->end_date]
-                    )->orWhereBetween(
-                        'end_date', [$request->start_date,$request->end_date]
-                    )->where(function($query) {
+                    ])->where(function($query) use ($request) {
+                        $query->whereBetween('start_date', [$request->start_date,$request->end_date])
+                    ->orWhereBetween('end_date', [$request->start_date,$request->end_date]);
+            })->where(function($query) {
                         $query->where('status','Pending LM Approval')
                                     ->orWhere('status','Pending HR Approval')
                                     ->orWhere('status','Approved');
             })->get();
-
-
+    
+    
             $leavessubmittedcase2 = Leave::where([
                 ['user_id', $user->id],
                 // ['start_date', $request->start_date],
-                ])->whereRaw(
-                    '"'.$request->start_date.'" between `start_date` and `end_date`'
-                )->orwhereRaw(
-                    '"'.$request->end_date.'" between `start_date` and `end_date`'
-                )->where(function($query) {
+                ])->where(function($query) use ($request) {
+                    $query->whereRaw('"'.$request->start_date.'" between `start_date` and `end_date`')
+                    ->orwhereRaw('"'.$request->end_date.'" between `start_date` and `end_date`');       
+             })->where(function($query) {
                     $query->where('status','Pending LM Approval')
                                 ->orWhere('status','Pending HR Approval')
                                 ->orWhere('status','Approved');
-        })->get();
-
-
+            })->get();
+    
+    
                 $counted = count($leavessubmitted);
                 $countedcase2 = count($leavessubmittedcase2);
-
+    
                 if($counted + $countedcase2 > 0)
                 {
                     return redirect()->back()->with("error", trans('leaveerror.sameday'));
@@ -941,34 +930,32 @@ class LeaveController extends Controller
                 $leavessubmitted = Leave::where([
                     ['user_id', $user->id],
                     // ['start_date', $request->start_date],
-                    ])->whereBetween(
-                        'start_date', [$request->start_date,$request->end_date]
-                    )->orWhereBetween(
-                        'end_date', [$request->start_date,$request->end_date]
-                    )->where(function($query) {
+                    ])->where(function($query) use ($request) {
+                        $query->whereBetween('start_date', [$request->start_date,$request->end_date])
+                    ->orWhereBetween('end_date', [$request->start_date,$request->end_date]);
+            })->where(function($query) {
                         $query->where('status','Pending LM Approval')
                                     ->orWhere('status','Pending HR Approval')
                                     ->orWhere('status','Approved');
             })->get();
-
-
+    
+    
             $leavessubmittedcase2 = Leave::where([
                 ['user_id', $user->id],
                 // ['start_date', $request->start_date],
-                ])->whereRaw(
-                    '"'.$request->start_date.'" between `start_date` and `end_date`'
-                )->orwhereRaw(
-                    '"'.$request->end_date.'" between `start_date` and `end_date`'
-                )->where(function($query) {
+                ])->where(function($query) use ($request) {
+                    $query->whereRaw('"'.$request->start_date.'" between `start_date` and `end_date`')
+                    ->orwhereRaw('"'.$request->end_date.'" between `start_date` and `end_date`');       
+             })->where(function($query) {
                     $query->where('status','Pending LM Approval')
                                 ->orWhere('status','Pending HR Approval')
                                 ->orWhere('status','Approved');
-        })->get();
-
-
+            })->get();
+    
+    
                 $counted = count($leavessubmitted);
                 $countedcase2 = count($leavessubmittedcase2);
-
+    
                 if($counted + $countedcase2 > 0)
                 {
                     return redirect()->back()->with("error", trans('leaveerror.sameday'));
@@ -1035,37 +1022,36 @@ class LeaveController extends Controller
                 //                         ->orWhere('status','Pending HR Approval')
                 //                         ->orWhere('status','Approved');
                 // })->get();
+                
                 $leavessubmitted = Leave::where([
                     ['user_id', $user->id],
                     // ['start_date', $request->start_date],
-                    ])->whereBetween(
-                        'start_date', [$request->start_date,$request->end_date]
-                    )->orWhereBetween(
-                        'end_date', [$request->start_date,$request->end_date]
-                    )->where(function($query) {
+                    ])->where(function($query) use ($request) {
+                        $query->whereBetween('start_date', [$request->start_date,$request->end_date])
+                    ->orWhereBetween('end_date', [$request->start_date,$request->end_date]);
+            })->where(function($query) {
                         $query->where('status','Pending LM Approval')
                                     ->orWhere('status','Pending HR Approval')
                                     ->orWhere('status','Approved');
             })->get();
-
-
+    
+    
             $leavessubmittedcase2 = Leave::where([
                 ['user_id', $user->id],
                 // ['start_date', $request->start_date],
-                ])->whereRaw(
-                    '"'.$request->start_date.'" between `start_date` and `end_date`'
-                )->orwhereRaw(
-                    '"'.$request->end_date.'" between `start_date` and `end_date`'
-                )->where(function($query) {
+                ])->where(function($query) use ($request) {
+                    $query->whereRaw('"'.$request->start_date.'" between `start_date` and `end_date`')
+                    ->orwhereRaw('"'.$request->end_date.'" between `start_date` and `end_date`');       
+             })->where(function($query) {
                     $query->where('status','Pending LM Approval')
                                 ->orWhere('status','Pending HR Approval')
                                 ->orWhere('status','Approved');
-        })->get();
-
-
+            })->get();
+    
+    
                 $counted = count($leavessubmitted);
                 $countedcase2 = count($leavessubmittedcase2);
-
+    
                 if($counted + $countedcase2 > 0)
                 {
                     return redirect()->back()->with("error", trans('leaveerror.sameday'));
@@ -1132,34 +1118,32 @@ class LeaveController extends Controller
                 $leavessubmitted = Leave::where([
                     ['user_id', $user->id],
                     // ['start_date', $request->start_date],
-                    ])->whereBetween(
-                        'start_date', [$request->start_date,$request->end_date]
-                    )->orWhereBetween(
-                        'end_date', [$request->start_date,$request->end_date]
-                    )->where(function($query) {
+                    ])->where(function($query) use ($request) {
+                        $query->whereBetween('start_date', [$request->start_date,$request->end_date])
+                    ->orWhereBetween('end_date', [$request->start_date,$request->end_date]);
+            })->where(function($query) {
                         $query->where('status','Pending LM Approval')
                                     ->orWhere('status','Pending HR Approval')
                                     ->orWhere('status','Approved');
             })->get();
-
-
+    
+    
             $leavessubmittedcase2 = Leave::where([
                 ['user_id', $user->id],
                 // ['start_date', $request->start_date],
-                ])->whereRaw(
-                    '"'.$request->start_date.'" between `start_date` and `end_date`'
-                )->orwhereRaw(
-                    '"'.$request->end_date.'" between `start_date` and `end_date`'
-                )->where(function($query) {
+                ])->where(function($query) use ($request) {
+                    $query->whereRaw('"'.$request->start_date.'" between `start_date` and `end_date`')
+                    ->orwhereRaw('"'.$request->end_date.'" between `start_date` and `end_date`');       
+             })->where(function($query) {
                     $query->where('status','Pending LM Approval')
                                 ->orWhere('status','Pending HR Approval')
                                 ->orWhere('status','Approved');
-        })->get();
-
-
+            })->get();
+    
+    
                 $counted = count($leavessubmitted);
                 $countedcase2 = count($leavessubmittedcase2);
-
+    
                 if($counted + $countedcase2 > 0)
                 {
                     return redirect()->back()->with("error", trans('leaveerror.sameday'));
@@ -1267,6 +1251,9 @@ class LeaveController extends Controller
                     ['user_id', $user->id],
                     ['leavetype_id','!=', '13'],
                     ['leavetype_id','!=', '14'],
+                    ['leavetype_id','!=', '16'],
+                    ['leavetype_id','!=', '17'],
+                    ['leavetype_id','!=', '19'],
                     // ['start_date', $request->start_date],
                     ])
                     // ->whereBetween(
@@ -1521,11 +1508,10 @@ class LeaveController extends Controller
             $leavessubmitted = Leave::where([
                 ['user_id', $user->id],
                 // ['start_date', $request->start_date],
-                ])->whereBetween(
-                    'start_date', [$request->start_date,$request->end_date]
-                )->orWhereBetween(
-                    'end_date', [$request->start_date,$request->end_date]
-                )->where(function($query) {
+                ])->where(function($query) use ($request) {
+                    $query->whereBetween('start_date', [$request->start_date,$request->end_date])
+                ->orWhereBetween('end_date', [$request->start_date,$request->end_date]);
+        })->where(function($query) {
                     $query->where('status','Pending LM Approval')
                                 ->orWhere('status','Pending HR Approval')
                                 ->orWhere('status','Approved');
@@ -1535,15 +1521,14 @@ class LeaveController extends Controller
         $leavessubmittedcase2 = Leave::where([
             ['user_id', $user->id],
             // ['start_date', $request->start_date],
-            ])->whereRaw(
-                '"'.$request->start_date.'" between `start_date` and `end_date`'
-            )->orwhereRaw(
-                '"'.$request->end_date.'" between `start_date` and `end_date`'
-            )->where(function($query) {
+            ])->where(function($query) use ($request) {
+                $query->whereRaw('"'.$request->start_date.'" between `start_date` and `end_date`')
+                ->orwhereRaw('"'.$request->end_date.'" between `start_date` and `end_date`');       
+         })->where(function($query) {
                 $query->where('status','Pending LM Approval')
                             ->orWhere('status','Pending HR Approval')
                             ->orWhere('status','Approved');
-    })->get();
+        })->get();
 
 
             $counted = count($leavessubmitted);
@@ -1631,34 +1616,32 @@ class LeaveController extends Controller
                 $leavessubmitted = Leave::where([
                     ['user_id', $user->id],
                     // ['start_date', $request->start_date],
-                    ])->whereBetween(
-                        'start_date', [$request->start_date,$request->end_date]
-                    )->orWhereBetween(
-                        'end_date', [$request->start_date,$request->end_date]
-                    )->where(function($query) {
+                    ])->where(function($query) use ($request) {
+                        $query->whereBetween('start_date', [$request->start_date,$request->end_date])
+                    ->orWhereBetween('end_date', [$request->start_date,$request->end_date]);
+            })->where(function($query) {
                         $query->where('status','Pending LM Approval')
                                     ->orWhere('status','Pending HR Approval')
                                     ->orWhere('status','Approved');
             })->get();
-
-
+    
+    
             $leavessubmittedcase2 = Leave::where([
                 ['user_id', $user->id],
                 // ['start_date', $request->start_date],
-                ])->whereRaw(
-                    '"'.$request->start_date.'" between `start_date` and `end_date`'
-                )->orwhereRaw(
-                    '"'.$request->end_date.'" between `start_date` and `end_date`'
-                )->where(function($query) {
+                ])->where(function($query) use ($request) {
+                    $query->whereRaw('"'.$request->start_date.'" between `start_date` and `end_date`')
+                    ->orwhereRaw('"'.$request->end_date.'" between `start_date` and `end_date`');       
+             })->where(function($query) {
                     $query->where('status','Pending LM Approval')
                                 ->orWhere('status','Pending HR Approval')
                                 ->orWhere('status','Approved');
-        })->get();
-
-
+            })->get();
+    
+    
                 $counted = count($leavessubmitted);
                 $countedcase2 = count($leavessubmittedcase2);
-
+    
                 if($counted + $countedcase2 > 0)
                 {
                     return redirect()->back()->with("error", trans('leaveerror.sameday'));
@@ -1886,11 +1869,10 @@ class LeaveController extends Controller
             $leavessubmitted = Leave::where([
                 ['user_id', $user->id],
                 // ['start_date', $request->start_date],
-                ])->whereBetween(
-                    'start_date', [$request->start_date,$request->end_date]
-                )->orWhereBetween(
-                    'end_date', [$request->start_date,$request->end_date]
-                )->where(function($query) {
+                ])->where(function($query) use ($request) {
+                    $query->whereBetween('start_date', [$request->start_date,$request->end_date])
+                ->orWhereBetween('end_date', [$request->start_date,$request->end_date]);
+        })->where(function($query) {
                     $query->where('status','Pending LM Approval')
                                 ->orWhere('status','Pending HR Approval')
                                 ->orWhere('status','Approved');
@@ -1900,15 +1882,14 @@ class LeaveController extends Controller
         $leavessubmittedcase2 = Leave::where([
             ['user_id', $user->id],
             // ['start_date', $request->start_date],
-            ])->whereRaw(
-                '"'.$request->start_date.'" between `start_date` and `end_date`'
-            )->orwhereRaw(
-                '"'.$request->end_date.'" between `start_date` and `end_date`'
-            )->where(function($query) {
+            ])->where(function($query) use ($request) {
+                $query->whereRaw('"'.$request->start_date.'" between `start_date` and `end_date`')
+                ->orwhereRaw('"'.$request->end_date.'" between `start_date` and `end_date`');       
+         })->where(function($query) {
                 $query->where('status','Pending LM Approval')
                             ->orWhere('status','Pending HR Approval')
                             ->orWhere('status','Approved');
-    })->get();
+        })->get();
 
 
             $counted = count($leavessubmitted);
@@ -1997,11 +1978,10 @@ class LeaveController extends Controller
             $leavessubmitted = Leave::where([
                 ['user_id', $user->id],
                 // ['start_date', $request->start_date],
-                ])->whereBetween(
-                    'start_date', [$request->start_date,$request->end_date]
-                )->orWhereBetween(
-                    'end_date', [$request->start_date,$request->end_date]
-                )->where(function($query) {
+                ])->where(function($query) use ($request) {
+                    $query->whereBetween('start_date', [$request->start_date,$request->end_date])
+                ->orWhereBetween('end_date', [$request->start_date,$request->end_date]);
+        })->where(function($query) {
                     $query->where('status','Pending LM Approval')
                                 ->orWhere('status','Pending HR Approval')
                                 ->orWhere('status','Approved');
@@ -2011,15 +1991,14 @@ class LeaveController extends Controller
         $leavessubmittedcase2 = Leave::where([
             ['user_id', $user->id],
             // ['start_date', $request->start_date],
-            ])->whereRaw(
-                '"'.$request->start_date.'" between `start_date` and `end_date`'
-            )->orwhereRaw(
-                '"'.$request->end_date.'" between `start_date` and `end_date`'
-            )->where(function($query) {
+            ])->where(function($query) use ($request) {
+                $query->whereRaw('"'.$request->start_date.'" between `start_date` and `end_date`')
+                ->orwhereRaw('"'.$request->end_date.'" between `start_date` and `end_date`');       
+         })->where(function($query) {
                 $query->where('status','Pending LM Approval')
                             ->orWhere('status','Pending HR Approval')
                             ->orWhere('status','Approved');
-    })->get();
+        })->get();
 
 
             $counted = count($leavessubmitted);
@@ -2102,11 +2081,10 @@ class LeaveController extends Controller
         $leavessubmitted = Leave::where([
             ['user_id', $user->id],
             // ['start_date', $request->start_date],
-            ])->whereBetween(
-                'start_date', [$request->start_date,$request->end_date]
-            )->orWhereBetween(
-                'end_date', [$request->start_date,$request->end_date]
-            )->where(function($query) {
+            ])->where(function($query) use ($request) {
+                $query->whereBetween('start_date', [$request->start_date,$request->end_date])
+            ->orWhereBetween('end_date', [$request->start_date,$request->end_date]);
+    })->where(function($query) {
                 $query->where('status','Pending LM Approval')
                             ->orWhere('status','Pending HR Approval')
                             ->orWhere('status','Approved');
@@ -2116,15 +2094,14 @@ class LeaveController extends Controller
     $leavessubmittedcase2 = Leave::where([
         ['user_id', $user->id],
         // ['start_date', $request->start_date],
-        ])->whereRaw(
-            '"'.$request->start_date.'" between `start_date` and `end_date`'
-        )->orwhereRaw(
-            '"'.$request->end_date.'" between `start_date` and `end_date`'
-        )->where(function($query) {
+        ])->where(function($query) use ($request) {
+            $query->whereRaw('"'.$request->start_date.'" between `start_date` and `end_date`')
+            ->orwhereRaw('"'.$request->end_date.'" between `start_date` and `end_date`');       
+     })->where(function($query) {
             $query->where('status','Pending LM Approval')
                         ->orWhere('status','Pending HR Approval')
                         ->orWhere('status','Approved');
-})->get();
+    })->get();
 
 
         $counted = count($leavessubmitted);
