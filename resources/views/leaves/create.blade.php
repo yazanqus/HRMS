@@ -50,7 +50,7 @@
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <div class="form-outline">
-                                                    <label class="form-control-label px-1">{{__('createLeave.leaveType')}}</label>
+                                                    <label class="form-control-label required px-1">{{__('createLeave.leaveType')}}</label>
                                                     <a class="text-danger" id="reset" href="" >
                                                         <i class="fas fa-times"></i>
                                                     </a>
@@ -391,21 +391,5 @@ $('.minus').click(function () {
 
 </script>
 
-{{-- <script>
-function comparedates()
-{
-    var date1=new Date(document.getElementById('start_date').value);
-    var date2=new Date(document.getElementById('end_date').value);
 
-    var Difference_In_Time = date2.getTime() - date1.getTime();
-    var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-
-    var result;
-
-    result=Difference_In_Days;
-    document.getElementById('output').style.color='green';
-
-    if()
-}
-</script> --}}
 @endpush
