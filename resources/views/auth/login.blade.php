@@ -113,7 +113,7 @@
   background-color: #007bff;
   border-radius: 3px;
 box-shadow: inset 0 0 0 0 #14489e;
-transition: ease-out 0.9s;
+transition: ease-out 1s;
 
 }
 .btn-1.activate {

@@ -125,10 +125,11 @@
                                         </div>
 
                                         <div class="row justify-content-center">
-                                            <div class="justify-content-center form-group col-sm-2"> <button type="submit" class=" disable btn bg-gradient-primary btn-block">{{__('createLeave.submit')}}</button> </div>
+                                            <div class="justify-content-center form-group col-sm-2"> <button type="submit" class="disabled btn-1">{{__('createLeave.submit')}}</button> </div>
                                             <div class="form-group col-sm-3"> <a class="btn btn-outline-danger" href="{{route('leaves.index')}}" >{{__('createLeave.cancel')}}</a> </div>
                                         </div>
                                       </form>
+
                                     </div>
                                   </div>
                                 </div>
@@ -159,6 +160,22 @@
       vertical-align: middle;
       text-align: center;
 		}
+
+    .btn-1 {
+  border: none;
+  width: 100%;
+  height: 100%;
+  color: white;
+  background-color: #007bff;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 0 #14489e;
+
+}
+.btn-1.activate {
+  box-shadow: inset 500px 0 0 0 #14489e;
+  transition: all 2s;
+
+}
 		
 			
                   </style>
@@ -181,6 +198,11 @@
 
 <script>
 $(document).ready(function() {
+
+  $(document).on('click', '.btn-1', function () {
+$(this).addClass('activate');
+});
+
   $('#hourslabel').hide();
         $('#hours').hide();
         $('#minus').hide();

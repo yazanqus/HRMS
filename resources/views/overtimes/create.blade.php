@@ -172,7 +172,7 @@
                                         </div>
                                         <br>
                                         <div class="row justify-content-center">
-                                            <div class="justify-content-center form-group col-sm-2"> <button type="submit" class="btn bg-gradient-primary btn-block">{{__('createOvertime.submit')}}</button> </div>
+                                            <div class="justify-content-center form-group col-sm-2"> <button type="submit" class="btn-1">{{__('createOvertime.submit')}}</button> </div>
                                             <div class="form-group col-sm-3"> <a class="btn btn-outline-danger" href="{{route('overtimes.index')}}" >{{__('createOvertime.cancel')}}</a> </div>
                                         </div>
                                       </form>
@@ -191,7 +191,21 @@
                       content:" *";
                       color: red;
                     }
+                    .btn-1 {
+  border: none;
+  width: 100%;
+  height: 100%;
+  color: white;
+  background-color: #007bff;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 0 #14489e;
 
+}
+.btn-1.activate {
+  box-shadow: inset 500px 0 0 0 #14489e;
+  transition: all 2s;
+
+}
                     
                   
                   </style>
@@ -231,6 +245,11 @@ right: initial;
 
 
 $(document).ready(function() {
+
+  $(document).on('click', '.btn-1', function () {
+$(this).addClass('activate');
+});
+
   $('#reset').hide();
   
 
