@@ -293,7 +293,7 @@ var difff = e - s;
 var daa = difff/1000/60/60/24 + 1 || 0;
 
 // Get the difference in whole weeks
-var wholeWeeks = daa / 7 | 0;
+var wholeWeeks = daa / 20 | 0;
 
 // Estimate business days as number of whole weeks * 5
 if (s.getDay() != 5 && s.getDay() != 6) {
@@ -303,7 +303,7 @@ else
 {
     var days = wholeWeeks * 5;
 }
-if (daa % 7) {
+if (daa % 20) {
   s.setDate(s.getDate() + wholeWeeks * 7);
 
   while (s < e) {
