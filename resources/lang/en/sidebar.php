@@ -3,7 +3,7 @@
 return [
 
     'welcome' => 'Welcome' ,
-    'approvals' => 'Approvals' ,
+    'approvals' => 'LM Approvals' ,
     'leaveApproval' => 'Leave Approval',
     'overTimeApproval' => 'Overtime Approval',
     'myStaff' => 'My Staff',
