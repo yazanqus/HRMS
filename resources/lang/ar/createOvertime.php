@@ -9,7 +9,7 @@ return [
     'starthour' => 'وقت البدء',
     'endhour' => 'وقت الانتهاء' ,
     'ServiceContractOvertime' => 'وقت إضافي لعقد الخدمة',
-    'Weekday' => 'يوم دوام',
+    'workday' => 'يوم دوام',
 'Week-end' => 'نهاية الاسبوع',
 'Holiday' => 'يوم عطلة رسمية',
 'suntothu' => '(من الاحد للخميس)',

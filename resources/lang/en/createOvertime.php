@@ -9,7 +9,7 @@ return [
     'starthour' => 'Start Hour',
     'endhour' => 'End Hour' ,
 'ServiceContractOvertime' => 'Service Contract Overtime',
-'Weekday' => 'Weekday',
+'workday' => 'Workday',
 'Week-end' => 'Week-end',
 'Holiday' => 'Holiday',
 'suntothu' => '(Sun to Thu)',

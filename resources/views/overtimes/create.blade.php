@@ -81,9 +81,9 @@
                                             
                                                  
                                                  <div class="form-check">
-                                                <input  class="btn-check"  type="radio" name="type" id="weekday" Value="weekday">
-                                                <label class="form-check-label" id="weekdaylabel" for="weekday">
-                                                {{__('createOvertime.Weekday')}} <small> {{__('createOvertime.suntothu')}}</small>
+                                                <input  class="btn-check"  type="radio" name="type" id="workday" Value="workday">
+                                                <label class="form-check-label" id="workdaylabel" for="workday">
+                                                {{__('createOvertime.workday')}} <small> {{__('createOvertime.suntothu')}}</small>
                                                 </label>
                                               </div>
                                               <div class="form-check">
@@ -261,7 +261,7 @@ var weekday;
   
 $("input[name=type]:radio").change(function(){
   $('#reset').show();
-    if ($("#weekday").prop("checked")) {
+    if ($("#workday").prop("checked")) {
       $('#weekend').hide();
       $('#weekendlabel').hide();
       $('#holiday').hide();
@@ -279,7 +279,7 @@ daysOfWeekDisabled: weekday
     }
    else if ($("#weekend").prop("checked")) {
      weekday = "0,1,2,3,4";
-     $('#weekday').hide();
+     $('#workday').hide();
       $('#weekdaylabel').hide();
       $('#holiday').hide();
       $('#holidaylabel').hide();
@@ -294,7 +294,7 @@ daysOfWeekDisabled: weekday
     }
     else if ($("#holiday").prop("checked"))
     {
-      $('#weekday').hide();
+      $('#workday').hide();
       $('#weekdaylabel').hide();
       $('#weekend').hide();
       $('#weekendlabel').hide();

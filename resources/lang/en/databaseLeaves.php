@@ -25,7 +25,7 @@ return [
     'Approved' => 'Approved',
     'Declined by LM' => 'Declined by LM',
     'Declined by HR' => 'Declined by HR',
-    'weekday' => 'weekday',
+    'workday' => 'workday',
     'week-end' => 'week-end',
     'weekend' => 'weekend',
     'holiday' => 'holiday',

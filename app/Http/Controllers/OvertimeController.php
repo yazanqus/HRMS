@@ -162,7 +162,7 @@ class OvertimeController extends Controller
     
     
             }
-            if ($overtime->type == 'weekday') {
+            if ($overtime->type == 'workday') {
                 $overtime->value = $last * 1.5;
             }
             
