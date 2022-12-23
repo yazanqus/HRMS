@@ -167,8 +167,18 @@ class BalanceTableSeeder extends Seeder
         ]);
 
         DB::table('balances')->insert([
-            'name' => 'Compansetion',
+            'name' => 'Compensation',
             'leavetype_id' => '18',
+            'user_id' => '1',
+            'value' => '0',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+
+        DB::table('balances')->insert([
+            'name' => 'Compensation - hours',
+            'leavetype_id' => '19',
             'user_id' => '1',
             'value' => '0',
             'created_at' => now(),

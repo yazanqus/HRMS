@@ -148,7 +148,7 @@ class LeavetypeTableSeeder extends Seeder
 
         // id=18
         DB::table('leavetypes')->insert([
-            'name' => 'Compansetion',
+            'name' => 'Compensation',
             'value' => '0',
             'created_at' => now(),
             'updated_at' => now(),
@@ -156,7 +156,7 @@ class LeavetypeTableSeeder extends Seeder
 
         // id=19 just for having it as an option when submitting leaves, the balance is irreveleant as it should be from id18
         DB::table('leavetypes')->insert([
-            'name' => 'Compansetion - hours',
+            'name' => 'Compensation - hours',
             'value' => '0',
             'created_at' => now(),
             'updated_at' => now(),

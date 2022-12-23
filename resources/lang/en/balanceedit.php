@@ -37,7 +37,7 @@ return [
     'paternityLeave' => 'Paternity leave' ,
     'compassionateFirstDegree' => 'Compassionate - Second degree' ,
     'compassionateSecondDegree' => 'Compassionate - Second degree' ,    
-    'compansetion' => 'Compansetion' ,    
+    'compansetion' => 'Compensation' ,    
     'NA' => 'Not Available',
     'Staff' => 'Staff (not a line manager to anyone)',
     'LineManager' => 'Line Manager (has at least one staff reporting to him/her)',
