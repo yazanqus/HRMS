@@ -91,7 +91,7 @@
             {{ csrf_field() }}
           
             <div class="form-group">
-                <input type="submit" class="mb-0 mt-0 btn btn-success" value="Approve">
+                <input id="buttonSelector" type="submit" class="mb-0 mt-0 btn btn-success" value="Approve">
             </div>
         </form>
         </div>
@@ -125,7 +125,7 @@
             {{ csrf_field() }}
           
             <div class="form-group">
-                <input type="submit" class="mb-0 mt-0 btn btn-danger" value="Decline">
+                <input id="buttonSelector" type="submit" class="mb-0 mt-0 btn btn-danger" value="Decline">
             </div>
         </form>
         </div>
