@@ -2228,12 +2228,14 @@ class LeaveController extends Controller
         return redirect()->route('leaves.index')->with("success", "Leave is canceled");
     }
 
-    public function approved($id)
+    public function approved(Request $request,$id)
     {
         $lmuser = Auth::user();
         $leave = Leave::find($id);
         $leave->status = 'Pending HR Approval';
         $leave->lmapprover = $lmuser->name;
+        $leave->lmapprover = $lmuser->name;
+        $leave->lmcomment = $request->comment;
 
         $startdayname = Carbon::parse($leave->start_date)->format('l');
         $enddayname = Carbon::parse($leave->end_date)->format('l');
@@ -2265,12 +2267,13 @@ class LeaveController extends Controller
 
     }
 
-    public function declined($id)
+    public function declined(Request $request,$id)
     {
         $lmuser = Auth::user();
         $leave = Leave::find($id);
         $leave->status = 'Declined by LM';
         $leave->lmapprover = $lmuser->name;
+        $leave->lmcomment = $request->comment;
         $startdayname = Carbon::parse($leave->start_date)->format('l');
         $enddayname = Carbon::parse($leave->end_date)->format('l');
 

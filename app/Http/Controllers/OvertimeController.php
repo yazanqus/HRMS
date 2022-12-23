@@ -241,13 +241,13 @@ class OvertimeController extends Controller
         return redirect()->route('overtimes.index');
     }
 
-    public function approved($id)
+    public function approved(Request $request,$id)
     {
         $lmuser = Auth::user();
         $overtime = Overtime::find($id);
         $overtime->status = 'Pending HR Approval';
         $overtime->lmapprover = $lmuser->name;
-
+        $overtime->lmcomment = $request->comment;
 
 
         $overtime->save();
@@ -277,12 +277,14 @@ class OvertimeController extends Controller
 
     }
 
-    public function declined($id)
+    public function declined(Request $request,$id)
     {
         $lmuser = Auth::user();
         $overtime = Overtime::find($id);
         $overtime->status = 'Declined by LM';
         $overtime->lmapprover = $lmuser->name;
+        $overtime->lmcomment = $request->comment;
+
         $overtime->save();
 
         $dayname = Carbon::parse($overtime->date)->format('l');

@@ -993,16 +993,16 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
     Route::resource('leaves', LeaveController::class)->except(['show']);
     Route::get('/leaves/{leave}', [LeaveController::class, 'show'])->name('leaves.show');
     Route::get('/leaves/onbehalf', [LeaveController::class, 'onbehalf'])->name('leaves.onbehalf');
-    Route::get('/leaves/approved/{id}', [LeaveController::class, 'approved'])->name('leaves.approved');
-    Route::get('/leaves/declined/{id}', [LeaveController::class, 'declined'])->name('leaves.declined');
+    Route::post('/leaves/approved/{id}', [LeaveController::class, 'approved'])->name('leaves.approved');
+    Route::post('/leaves/declined/{id}', [LeaveController::class, 'declined'])->name('leaves.declined');
     Route::get('/leaves/hrapproved/{id}', [LeaveController::class, 'hrapproved'])->name('leaves.hrapproved');
     Route::get('/leaves/hrdeclined/{id}', [LeaveController::class, 'hrdeclined'])->name('leaves.hrdeclined');
 });
 
 Route::group(['middleware' => ['auth', 'checkstatus']], function () {
     Route::resource('overtimes', OvertimeController::class);
-    Route::get('/overtimes/approved/{id}', [OvertimeController::class, 'approved'])->name('overtimes.approved');
-    Route::get('/overtimes/declined/{id}', [OvertimeController::class, 'declined'])->name('overtimes.declined');
+    Route::post('/overtimes/approved/{id}', [OvertimeController::class, 'approved'])->name('overtimes.approved');
+    Route::post('/overtimes/declined/{id}', [OvertimeController::class, 'declined'])->name('overtimes.declined');
     Route::get('/overtimes/hrapproved/{id}', [OvertimeController::class, 'hrapproved'])->name('overtimes.hrapproved');
     Route::get('/overtimes/hrdeclined/{id}', [OvertimeController::class, 'hrdeclined'])->name('overtimes.hrdeclined');
 });

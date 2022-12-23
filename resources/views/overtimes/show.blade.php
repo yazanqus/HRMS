@@ -115,7 +115,7 @@
                               <div class="col">
                               {{__('overtimeshow.submittedBy')}}: <strong>{{$overtime->user->name}}</strong>
                                   <br>
-                                  {{__('overtimeshow.approved')}}/{{__('overtimeshow.declined')}} {{__('overtimeshow.by')}} {{__('overtimeshow.lineManager')}}: <strong>{{$overtime->lmapprover}}</strong>
+                                  {{__('overtimeshow.approved')}}/{{__('overtimeshow.declined')}} {{__('overtimeshow.by')}} {{__('overtimeshow.lineManager')}}: <strong>{{$overtime->lmapprover}}</strong> - "<i>{{$overtime->lmcomment}}</i>"
                                   <br>
                                   {{__('overtimeshow.approved')}}/{{__('overtimeshow.declined')}} {{__('overtimeshow.by')}} {{__('overtimeshow.hr')}}: <strong>{{$overtime->hrapprover}}</strong>
                                 </div>

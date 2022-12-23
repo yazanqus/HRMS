@@ -114,7 +114,7 @@
                               <div class="col">
                               {{__('leaveShow.submittedBy')}}: <strong>{{$leave->user->name}}</strong>
                                   <br>
-                                  {{__('leaveShow.approved')}}/{{__('leaveShow.declined')}} {{__('leaveShow.by')}} {{__('leaveShow.lineManager')}}: <strong>{{$leave->lmapprover}}</strong>
+                                  {{__('leaveShow.approved')}}/{{__('leaveShow.declined')}} {{__('leaveShow.by')}} {{__('leaveShow.lineManager')}}: <strong>{{$leave->lmapprover}}</strong> - "<i>{{$leave->lmcomment}}</i>"
                                   <br>
                                   {{__('leaveShow.approved')}}/{{__('leaveShow.declined')}} {{__('leaveShow.by')}} {{__('leaveShow.hr')}}: <strong>{{$leave->hrapprover}}</strong>
                                 </div>
