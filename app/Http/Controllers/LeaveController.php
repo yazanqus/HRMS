@@ -2304,7 +2304,7 @@ class LeaveController extends Controller
 
     }
 
-    public function hrapproved($id)
+    public function hrapproved(Request $request,$id)
     {
         $hruser = Auth::user();
         $leave = Leave::find($id);
@@ -2392,8 +2392,10 @@ class LeaveController extends Controller
 
                 else
                 {
+
                     $leave->status = 'Approved';
                     $leave->hrapprover = $hruser->name;
+                    $leave->hrcomment = $request->comment;
             
                     $startdayname = Carbon::parse($leave->start_date)->format('l');
                     $enddayname = Carbon::parse($leave->end_date)->format('l');
@@ -2513,12 +2515,13 @@ class LeaveController extends Controller
 
     }
 
-    public function hrdeclined($id)
+    public function hrdeclined(Request $request,$id)
     {
         $hruser = Auth::user();
         $leave = Leave::find($id);
         $leave->status = 'Declined by HR';
         $leave->hrapprover = $hruser->name;
+        $leave->hrcomment = $request->comment;
 
 
         $startdayname = Carbon::parse($leave->start_date)->format('l');

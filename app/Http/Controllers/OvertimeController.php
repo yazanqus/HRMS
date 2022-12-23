@@ -312,12 +312,13 @@ class OvertimeController extends Controller
 
     }
 
-    public function hrapproved($id)
+    public function hrapproved(Request $request,$id)
     {
         $hruser = Auth::user();
         $overtime = Overtime::find($id);
         $overtime->status = 'Approved';
         $overtime->hrapprover = $hruser->name;
+        $overtime->hrcomment = $request->comment;
         $overtime->save();
 
         if ($overtime->type == 'week-end') {
@@ -374,12 +375,13 @@ class OvertimeController extends Controller
 
     }
 
-    public function hrdeclined($id)
+    public function hrdeclined(Request $request,$id)
     {
         $hruser = Auth::user();
         $overtime = Overtime::find($id);
         $overtime->status = 'Declined by HR';
         $overtime->hrapprover = $hruser->name;
+        $overtime->hrcomment = $request->comment;
         $overtime->save();
 
         $dayname = Carbon::parse($overtime->date)->format('l');

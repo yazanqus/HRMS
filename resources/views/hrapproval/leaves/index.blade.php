@@ -76,11 +76,10 @@
                                   <td class="text-center">{{ $leave->days }}</td>
                                   <td class="text-center">{{__("databaseLeaves.$leave->status")}}</td>
                                   <td class="text-center">
-                                      <a id="buttonSelector" class=" btn btn-success"
-                                      href="{{route('leaves.hrapproved',$leave->id)}}">Approve</a>
+                                  <div class="text-center"><button type="button" class="mb-0 form-group btn btn-xs btn-success" data-toggle="modal" data-target="#myModal{{$leave->id}}"><i class="fas fa-check-square"></i> </button></div>
                                     </td>
                                     <td class="text-center">
-                                        <a id="buttonSelector" class=" btn btn-danger" href="{{route('leaves.hrdeclined',$leave->id)}}">Decline</a>
+                                    <div class="text-center"><button type="button" class="mb-0 form-group btn btn-xs btn-danger" data-toggle="modal" data-target="#myModal2{{$leave->id}}"><i class="fas fa-minus-circle"></i> </button></div>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -89,6 +88,79 @@
                               <!-- </div> -->
                             </div>
                           </div>
+
+
+                          
+                          @foreach ($leaves as $leave)
+
+  <div id="myModal{{$leave->id}}" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-body text-center">
+          <p>Approving leave: <strong>{{$leave->id}}</strong></p>
+          <p>Requested by: <strong>{{$leave->user->name}}</strong></p>
+          <form method="POST" action="{{route('leaves.hrapproved',$leave->id)}}" class="mb-0 text-center" >
+          <div class="row justify-content-center text-center">
+          <div class="form-group  col-sm-12 flex-column d-flex">
+                <label class="form-control-label px-1">{{__('createLeave.comment')}}</small></label>
+                <input class="form-control form-outline" type="text" id="comment" autocomplete="off" name="comment" placeholder="">
+
+              </div>
+              </div>
+
+            {{ csrf_field() }}
+          
+            <div class="form-group">
+                <input type="submit" class="mb-0 mt-0 btn btn-success" value="Approve">
+            </div>
+        </form>
+        </div>
+        <div class="modal-footer mt-0">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div id="myModal2{{$leave->id}}" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-body text-center">
+          <p>Declining leave: <strong>{{$leave->id}}</strong></p>
+          <p>Requested by: <strong>{{$leave->user->name}}</strong></p>
+          <form method="POST" action="{{route('leaves.hrdeclined',$leave->id)}}" class="mb-0 text-center" >
+          <div class="row justify-content-center text-center">
+          <div class="form-group  col-sm-12 flex-column d-flex">
+                <label class="form-control-label px-1">{{__('createLeave.comment')}}</small></label>
+                <input class="form-control form-outline" type="text" id="comment" autocomplete="off" name="comment" placeholder="">
+
+              </div>
+              </div>
+
+            {{ csrf_field() }}
+          
+            <div class="form-group">
+                <input type="submit" class="mb-0 mt-0 btn btn-danger" value="Decline">
+            </div>
+        </form>
+        </div>
+        <div class="modal-footer mt-0">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  @endforeach
+
                   </div>
               </div>
           </div>
@@ -114,6 +186,15 @@ $(document).ready(function() {
 
 });
 
+</script>
+<script>
+
+var myModal = document.getElementById('myModal')
+var myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', function () {
+ myInput.focus()
+})
 </script>
 
 @endpush
