@@ -1446,6 +1446,7 @@ class LeaveController extends Controller
                     }
     
                     $leave->hours = $hours;
+                    $leave->days = $leave->hours / 8;
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
                     if (!isset($user->linemanager)) {
