@@ -1753,8 +1753,11 @@ class LeaveController extends Controller
 
                 $leavessubmitted = Leave::where([
                     ['user_id', $user->id],
+                    ['leavetype_id','!=', '13'],
+                    ['leavetype_id','!=', '14'],
                     ['leavetype_id','!=', '16'],
                     ['leavetype_id','!=', '17'],
+                    ['leavetype_id','!=', '19'],
                     // ['start_date', $request->start_date],
                     ])->whereRaw(
                         '"'.$request->start_date.'" between `start_date` and `end_date`'
