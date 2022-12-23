@@ -40,9 +40,9 @@ class OvertimesExport implements FromCollection, WithHeadings, WithMapping
     public function headings(): array
     {
         return [
+            'People ID',
             'Overtime ID',
             'Requester',
-            'People ID',
             'Office',
             'Overtime Type',
             'Date',
@@ -59,9 +59,9 @@ class OvertimesExport implements FromCollection, WithHeadings, WithMapping
     public function map($overtime): array
     {
         return [
+            $overtime->user->employee_number,
             $overtime->id,
             $overtime->user->name,
-            $overtime->user->employee_number,
             $overtime->user->office,
             $overtime->type,
             $overtime->date,

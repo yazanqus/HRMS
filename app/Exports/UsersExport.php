@@ -38,9 +38,9 @@ class UsersExport implements FromCollection, WithHeadings, WithMapping
     {
         return [
 
+            $user->employee_number,
             $user->name,
             $user->birth_date,
-            $user->employee_number,
             $user->office,
             $user->contract,
             $user->position,
@@ -59,9 +59,9 @@ class UsersExport implements FromCollection, WithHeadings, WithMapping
     {
         return [
 
+            'Employee Number',
             'Name',
             'Birth Date',
-            'Employee Number',
             'office',
             'Contract',
             'Position',
