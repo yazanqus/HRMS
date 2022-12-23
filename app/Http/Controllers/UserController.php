@@ -1092,7 +1092,7 @@ class UserController extends Controller
 
     public function createbalance()
     {
-        $users = User::all();
+        $users = User::all()->except(1);
 
         $leavetypes = Leavetype::all();
 
@@ -1100,36 +1100,13 @@ class UserController extends Controller
         {
             foreach ($leavetypes as $leavetype) {
 
-                if ($leavetype->name == "Annual leave") {
-                    $user->balances()->create([
-    
-                        'name' => $leavetype->name,
-                        'value' => '15',
-                        'leavetype_id' => $leavetype->id,
-                    ]);
-    
-                } elseif ($leavetype->name == "Annual leave - First half") {
-                    $user->balances()->create([
-    
-                        'name' => $leavetype->name,
-                        'value' => '15',
-                        'leavetype_id' => $leavetype->id,
-                    ]);
-    
-                } elseif ($leavetype->name == "Annual leave - Second half") {
-                    $user->balances()->create([
-    
-                        'name' => $leavetype->name,
-                        'value' => '15',
-                        'leavetype_id' => $leavetype->id,
-                    ]);
-                } else {
+              
                     $user->balances()->create([
                         'name' => $leavetype->name,
                         'value' => $leavetype->value,
                         'leavetype_id' => $leavetype->id,
                     ]);
-                }
+                
             }
         }
 
