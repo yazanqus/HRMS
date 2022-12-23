@@ -268,7 +268,8 @@ class OvertimeController extends Controller
                 'end_hour' => $overtime->end_hour,
                 'hours' => $overtime->hours,
                 'status' => $overtime->status,
-                'comment' =>  $overtime->reason
+                'comment' =>  $overtime->reason,
+                'lmcomment' => $overtime->lmcomment
             ];
            
             Mail::to($requester->email)->send(new MailOvertimeafterlm($details));
@@ -303,7 +304,8 @@ class OvertimeController extends Controller
                 'end_hour' => $overtime->end_hour,
                 'hours' => $overtime->hours,
                 'status' => $overtime->status,
-                'comment' =>  $overtime->reason
+                'comment' =>  $overtime->reason,
+                'lmcomment' => $overtime->lmcomment
             ];
            
             Mail::to($requester->email)->send(new MailOvertimeafterlm($details));
@@ -362,7 +364,9 @@ class OvertimeController extends Controller
                 'end_hour' => $overtime->end_hour,
                 'hours' => $overtime->hours,
                 'status' => $overtime->status,
-                'comment' =>  $overtime->reason
+                'comment' =>  $overtime->reason,
+                'lmcomment' => $overtime->lmcomment,
+                'hrcomment' => $overtime->hrcomment
             ];
            
             Mail::to($requester->email)->send(new MailOvertimefinal($details));
@@ -401,7 +405,9 @@ class OvertimeController extends Controller
                 'end_hour' => $overtime->end_hour,
                 'hours' => $overtime->hours,
                 'status' => $overtime->status,
-                'comment' =>  $overtime->reason
+                'comment' =>  $overtime->reason,
+                'lmcomment' => $overtime->lmcomment,
+                'hrcomment' => $overtime->hrcomment
             ];
            
             Mail::to($requester->email)->send(new MailOvertimerejected($details));

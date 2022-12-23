@@ -12,7 +12,8 @@ Line Manager: <strong>{{ $details['linemanagername'] }}</strong>
     | ------------- |:-------------:
     | From:      | {{ $details['startdayname'] }} {{ $details['start_date'] }}      
     | To:      | {{ $details['enddayname'] }} {{ $details['end_date'] }}
-    | Comment:      | {{ $details['comment'] }}
+    | Leave Comment:      | {{ $details['comment'] }}
+    | Line Manger Comment:      | {{ $details['lmcomment'] }}
 @endcomponent
 <br>
 

@@ -2256,7 +2256,8 @@ class LeaveController extends Controller
             'end_date' =>  $leave->end_date,
             'days' => $leave->days,
             'status' => $leave->status,
-            'comment' =>  $leave->reason
+            'comment' =>  $leave->reason,
+            'lmcomment' => $leave->lmcomment
         ];
        
         Mail::to($requester->email)->send(new MailLeaveafterlm($details));
@@ -2293,7 +2294,8 @@ class LeaveController extends Controller
             'end_date' =>  $leave->end_date,
             'days' => $leave->days,
             'status' => $leave->status,
-            'comment' =>  $leave->reason
+            'comment' =>  $leave->reason,
+            'lmcomment' => $leave->lmcomment
         ];
        
         Mail::to($requester->email)->send(new MailLeaveafterlm($details));
@@ -2414,7 +2416,9 @@ class LeaveController extends Controller
                         'days' => $leave->days,
                         'status' => $leave->status,
                         'comment' =>  $leave->reason,
-                        'newbalance' => $newbalance
+                        'newbalance' => $newbalance,
+                        'lmcomment' => $leave->lmcomment,
+                        'hrcomment' => $leave->hrcomment
                     ];
                    
                     Mail::to($requester->email)->send(new MailLeavefinal($details));
@@ -2541,6 +2545,8 @@ class LeaveController extends Controller
             'days' => $leave->days,
             'status' => $leave->status,
             'comment' =>  $leave->reason,
+            'lmcomment' => $leave->lmcomment,
+            'hrcomment' => $leave->hrcomment
         ];
        
         Mail::to($requester->email)->send(new MailLeaverejected($details));

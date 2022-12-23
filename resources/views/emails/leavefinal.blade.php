@@ -14,7 +14,9 @@ HR: <strong>{{ $details['hrname'] }}</strong>
     | ------------- |:-------------:
     | From:      | {{ $details['startdayname'] }} {{ $details['start_date'] }}      
     | To:      | {{ $details['enddayname'] }} {{ $details['end_date'] }}
-    | Comment:      | {{ $details['comment'] }}
+    | Leave Comment:      | {{ $details['comment'] }}
+    | Line Manager Comment:      | {{ $details['lmcomment'] }}
+    | HR Comment:      | {{ $details['hrcomment'] }}
 @endcomponent
 <br>
 

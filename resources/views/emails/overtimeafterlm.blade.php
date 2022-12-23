@@ -13,7 +13,8 @@ Line Manager: <strong>{{ $details['linemanagername'] }}</strong>
     | Date:      | {{ $details['dayname'] }} {{ $details['date'] }}      
     | From:      |  {{ $details['start_hour'] }}
     | To:      |  {{ $details['end_hour'] }}
-    | Comment:      | {{ $details['comment'] }}
+    | Overtime Comment:      | {{ $details['comment'] }}
+    | Line Manager Comment:      | {{ $details['lmcomment'] }}
 @endcomponent
 <br>
 
