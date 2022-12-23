@@ -59,10 +59,33 @@
                                                     name="leavetype_id" id="leavetype_id" type="text"
                                                     placeholder="{{ __('Leave Type') }}"
                                                     required>
-                                                    @foreach ($leavetypes as $leavetype)
+                                                    <!-- @foreach ($leavetypes as $leavetype)
                                                         <option value="{{ $leavetype->id }}"> {{__("databaseLeaves.$leavetype->name")}} </option>
-                                                    @endforeach
-                                                    
+                                                    @endforeach -->
+
+                                                    <option value="1">{{__('createLeave.AnnualLeave')}}</option>
+                                                    <option value="2">{{__('createLeave.SickLeave')}}</option>
+                                                    <option value="20">{{__('createLeave.SickLeaveFirsthalf')}}</option>
+                                                    <option value="21">{{__('createLeave.SickLeaveSecondhalf')}}</option>
+                                                    <option value="3">{{__('createLeave.Sickleave30%deduction')}}</option>
+                                                    <option value="4">{{__('createLeave.Sickleave20%deduction')}}</option>
+                                                    <option value="13">{{__('createLeave.AnnualleaveFirsthalf')}}</option>
+                                                    <option value="14">{{__('createLeave.AnnualleaveSecondhalf')}}</option>
+                                                    <option value="15">{{__('createLeave.Unpaidleave')}}</option>
+                                                    <option value="16">{{__('createLeave.UnpaidleaveFirsthalf')}}</option>
+                                                    <option value="17">{{__('createLeave.UnpaidleaveSecondhalf')}}</option>
+                                                    <option value="18">{{__('createLeave.Compensation')}}</option>
+                                                    <option value="19">{{__('createLeave.Compensationhours')}}</option>
+                                                    <option value="5">{{__('createLeave.Marriageleave')}}</option>
+                                                    <option value="6">{{__('createLeave.CompassionateFirstdegreerelative')}}</option>
+                                                    <option value="7">{{__('createLeave.CompassionateSeconddegreerelative')}}</option>
+                                                    <option value="8">{{__('createLeave.Maternityleave')}}</option>
+                                                    <option value="9">{{__('createLeave.Paternityleave')}}</option>
+                                                    <option value="12">{{__('createLeave.Welfareleave')}}</option>
+                                                    <option value="10">{{__('createLeave.PilgrimageIslamicleave')}}</option>
+                                                    <option value="11">{{__('createLeave.PilgrimageChristianleave')}}</option>
+
+
                                                 </select>
                                                 
                                                 </div>
@@ -199,7 +222,9 @@
 <script>
 $(document).ready(function() {
 
-  $(document).on('click', '.btn-1', function () {
+ 
+
+$(document).on('click', '.btn-1', function () {
 $(this).addClass('activate');
 });
 
@@ -234,7 +259,7 @@ $('#leavetype_id').on('change',function(){
 
   }
 
-    else if ($(this).val() == '13' || $(this).val() == '14' || $(this).val() == '16' || $(this).val() == '17' ) {
+    else if ($(this).val() == '13' || $(this).val() == '14' || $(this).val() == '16' || $(this).val() == '17' || $(this).val() == '20' || $(this).val() == '21' ) {
         $('#end_date').prop('readonly',true);
         $('#numofdays').hide();
         $('#labelnumofdays').hide();

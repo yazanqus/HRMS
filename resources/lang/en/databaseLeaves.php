@@ -19,6 +19,8 @@ return [
     'Unpaid leave - First half' => 'Unpaid leave - First half' ,
     'Unpaid leave - Second half' => 'Unpaid leave - Second half' ,
     'Compansetion' => 'Compensation' ,
+    'Sick Leave - First half' => 'Sick Leave - First half' ,
+    'Sick Leave - Second half' => 'Sick Leave - Second half' ,
     'Compansetion - hours' => 'Compensation - hours',
     'Pending LM Approval' => 'Pending LM Approval',
     'Pending HR Approval' => 'Pending HR Approval',
