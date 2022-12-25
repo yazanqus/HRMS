@@ -67,8 +67,6 @@
                                                     <option value="2">{{__('createLeave.SickLeave')}}</option>
                                                     <option value="20">{{__('createLeave.SickLeaveFirsthalf')}}</option>
                                                     <option value="21">{{__('createLeave.SickLeaveSecondhalf')}}</option>
-                                                    <option value="3">{{__('createLeave.Sickleave30%deduction')}}</option>
-                                                    <option value="4">{{__('createLeave.Sickleave20%deduction')}}</option>
                                                     <option value="13">{{__('createLeave.AnnualleaveFirsthalf')}}</option>
                                                     <option value="14">{{__('createLeave.AnnualleaveSecondhalf')}}</option>
                                                     <option value="15">{{__('createLeave.Unpaidleave')}}</option>
@@ -76,6 +74,8 @@
                                                     <option value="17">{{__('createLeave.UnpaidleaveSecondhalf')}}</option>
                                                     <option value="18">{{__('createLeave.Compensation')}}</option>
                                                     <option value="19">{{__('createLeave.Compensationhours')}}</option>
+                                                    <option value="3">{{__('createLeave.Sickleave30%deduction')}}</option>
+                                                    <option value="4">{{__('createLeave.Sickleave20%deduction')}}</option>
                                                     <option value="5">{{__('createLeave.Marriageleave')}}</option>
                                                     <option value="6">{{__('createLeave.CompassionateFirstdegreerelative')}}</option>
                                                     <option value="7">{{__('createLeave.CompassionateSeconddegreerelative')}}</option>
