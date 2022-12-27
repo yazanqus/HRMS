@@ -63,7 +63,7 @@
                                                       @if ($user->status == 'suspended')
                                                       <i class="fas fa-minus-circle"></i>
                                                       @endif
-                                                      <a href="{{ route('admin.users.show', $user) }}" >{{ $user->name }}</a>
+                                                      <a style = "color: #007bff;" href="{{ route('admin.users.show', $user) }}" >{{ $user->name }}</a>
                                                     </td>
                                                   <td>{{ $user->employee_number }}</td>
                                                   <td>{{ $user->position }}</td>
