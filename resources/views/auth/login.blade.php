@@ -5,7 +5,7 @@
         <div class="row align-items-center">
 
       <!-- /.login-logo -->
-      <div style = "background-color: #ffffffbd;  "class="card card-outline card-primary col-lg-4 col-md-6 col-sm-8 ml-2rem">
+      <div style = "background-color: #ffffffbd; border-top: 3px solid #007bff;"class="card card-outline card-primary col-lg-4 col-md-6 col-sm-8 ml-2rem">
      
         <div class="card-header text-center">
           <p class="h1 mb-0" style="font-size:2.3rem;"> <img class="mb-0 ml-0" src="{{url('/hr360-3-noBG.png')}}"  alt="" style=" width:150px;height:50px;"></p>
@@ -84,7 +84,7 @@
                               <div class="col">
                                   <div class="checkbox">
                                       <label>
-                                          <a href="{{ route('forget.password.get') }}">Forgot your credentials?</a>
+                                          <a style = "color: #007bff;" href="{{ route('forget.password.get') }}">Forgot your credentials?</a>
                                       </label>
                                   </div>
                               </div>
@@ -110,14 +110,14 @@
   width: 100%;
   height: 100%;
   color: white;
-  background-color: #FF7602;
+  background-color: #007bff;
   border-radius: 3px;
-box-shadow: inset 0 0 0 0 #14489e;
+box-shadow: inset 0 0 0 0 #FF7602;
 transition: ease-out 1.3s;
 
 }
 .btn-1.activate {
-  box-shadow: inset 500px 0 0 0 #14489e;
+  box-shadow: inset 500px 0 0 0 #FF7602;
 }
 
           </style>
