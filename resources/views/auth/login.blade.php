@@ -110,7 +110,7 @@
   width: 100%;
   height: 100%;
   color: white;
-  background-color: #007bff;
+  background-color: #FF7602;
   border-radius: 3px;
 box-shadow: inset 0 0 0 0 #14489e;
 transition: ease-out 1.3s;

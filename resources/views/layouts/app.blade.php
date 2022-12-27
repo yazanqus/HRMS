@@ -109,7 +109,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Brand Logo -->
 <a href="{{ route('welcome') }}" class="text-center brand-link">
   {{-- <img src="{{ asset('adminlte') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
-  <p class="h1 mb-0" style="font-size:2.3rem;"> <img class="mb-0 ml-0" src="{{url('/hr360-3-noBG2.png')}}"  alt="" style="width:130px;height:40px;"></p>
+  <p class="h1 mb-0" style="font-size:2.3rem;"> <img class="mb-0 ml-0" src="{{url('/nrc-nobg2.png')}}"  alt="" style="width:190px;height:60px;"></p>
 </a>
 
 <!-- Sidebar -->
@@ -516,7 +516,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- To the right -->
     
     <!-- Default to the left -->
-    <p style="background-color: #f4f6f9;" class=" text-right mb-0"> Powered by <strong >ICT Syria &copy; </strong></p>
+    
+    <p style="background-color: #f4f6f9;" class=" text-right mb-0"><img class="text-right mb-0 mr-2 ml-0" src="{{url('/hr360-3-noBG.png')}}"  alt="" style=" width:140px;height:40px;"> <br>  Powered by <strong >ICT Syria &copy; </strong></p>
    
   </footer>
   @endauth

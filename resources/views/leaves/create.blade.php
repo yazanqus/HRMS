@@ -189,7 +189,7 @@
   width: 100%;
   height: 100%;
   color: white;
-  background-color: #007bff;
+  background-color: #FF7602;
   border-radius: 4px;
   box-shadow: inset 0 0 0 0 #14489e;
 
