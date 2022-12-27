@@ -280,7 +280,7 @@ daysOfWeekDisabled: weekday
    else if ($("#weekend").prop("checked")) {
      weekday = "0,1,2,3,4";
      $('#workday').hide();
-      $('#weekdaylabel').hide();
+      $('#workdaylabel').hide();
       $('#holiday').hide();
       $('#holidaylabel').hide();
       $('#datepicker').datepicker({
@@ -295,7 +295,7 @@ daysOfWeekDisabled: weekday
     else if ($("#holiday").prop("checked"))
     {
       $('#workday').hide();
-      $('#weekdaylabel').hide();
+      $('#workdaylabel').hide();
       $('#weekend').hide();
       $('#weekendlabel').hide();
       $('#datepicker').datepicker({
