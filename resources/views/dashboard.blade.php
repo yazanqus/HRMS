@@ -2,10 +2,16 @@
 
 @section('content')
 
+    <div class="img-responsive img-fluid w-100 bg-image" 
+     style=" background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; background-image: url('/nrccover.png');
+            height: 100vh">
     <div class="content">
+
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6 mb-6">
+                <div class="col-md-6 col-sm-4 mb-6">
                     <div class="text">
                         {{-- @foreach ($users as $user) --}}
                         {{-- <h3>Welcome <b>{{$user->name}}</b> </h3> --}}
@@ -14,9 +20,12 @@
                 </div>
             </div>
             <br>
+          
+            
             <div class="content">
-                <div class="container-fluid">
-                    <div class="card">
+              <div class="row">
+                <!-- <div class="container-fluid"> -->
+                    <div class="card mx-4 col-md-8">
                       <div class="card-header card-header-primary">
                         <h4 class="card-title ">{{__('welcome.personalInformation')}}</h4>
                         <p class="card-category"></p>
@@ -53,7 +62,29 @@
                         
                       </div>
                     </div>
-                    <div class="card">
+                    <!-- <div class="card mx-3 col-md-3 ">
+                        <div class="card-header card-header-primary">
+                          <h4 class="card-title ">{{__('welcome.leaves')}} - {{__('welcome.remainingBalance')}}</h4>
+                          <p class="card-category"></p>
+                        </div>
+                        <div class="card-body">
+                    
+                          <div class="row">
+                              <div class="col">
+                                  <strong>{{__('welcome.annualLeave')}}:</strong> {{$balance1}}
+                                  <br>
+                                  <strong>{{__('welcome.sickLeave')}}:</strong> {{$balance2}}
+                                  <br>
+                                <strong>{{__('welcome.compensationLeaveDays')}}:</strong> {{$balance18}}
+
+                                </div>
+
+                          </div>
+                </div>
+            </div> -->
+            </div>
+            <div class="row">
+            <div class="card ml-4 mr-4 col-md-3 ">
                         <div class="card-header card-header-primary">
                           <h4 class="card-title ">{{__('welcome.leaves')}} - {{__('welcome.remainingBalance')}}</h4>
                           <p class="card-category"></p>
@@ -73,11 +104,30 @@
                           </div>
                 </div>
             </div>
+            </div>
+            <!-- <div class="container-fluid">
+            <div class="row">
+           
+                    <div class="card bg-light  mt-5 ml-5 mx-5   mr-5 col-2">
+                    <img class="mt-4 mb-3 img-fluid mx-auto d-block" style="max-width: 50%; height: 40%;" src="{{url('/running-solid.png')}}"  alt="Card image">
+                     <h4 class="text-center">Leave</h4>
+                    </div>
 
+                    <div class="card bg-light  mt-5  ml-5 col-2">
+                    <img class="mt-4 mb-3 img-fluid mx-auto d-block" style="max-width: 40%; height: 40%;" src="{{url('/adjust-solid.png')}}"  alt="Card image">
+                    <h4 class="mb-0 text-center">Overtime</h4>
+                    </div>
+                    
+            </div>
+            </div> -->
+            
 
-        </div>
+    
     </div>
     </div>
+    
+</div>
+
 </div>
 @endsection
 

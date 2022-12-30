@@ -512,6 +512,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Main Footer -->
   @auth()
+  @if ($_SERVER['REQUEST_URI'] !== "/welcome")
   <footer style="background-color: #f4f6f9;padding: 0rem;border-top: 0px solid #dee2e6;" class="main-footer">
     <!-- To the right -->
     
@@ -520,6 +521,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <p style="background-color: #f4f6f9;" class=" text-right mb-0"><img class="text-right mb-0 mr-2 ml-0" src="{{url('/hr360-3-noBG.png')}}"  alt="" style=" width:140px;height:40px;"> <br>  Powered by <strong >ICT Syria &copy; </strong></p>
    
   </footer>
+  @endif
   @endauth
 </div>
 <!-- ./wrapper -->
