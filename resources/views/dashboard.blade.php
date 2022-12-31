@@ -84,7 +84,7 @@
             </div> -->
             </div>
             <div class="row">
-            <div class="card ml-4 mr-4 col-md-3 ">
+            <div class="card ml-4 mr-4 col-md-4 ">
                         <div class="card-header card-header-primary">
                           <h4 class="card-title ">{{__('welcome.leaves')}} - {{__('welcome.remainingBalance')}}</h4>
                           <p class="card-category"></p>
