@@ -7,7 +7,7 @@ return [
     'overtimeDate' => 'تاريخ الدوام الإضافي' ,
     'overtimestarthour' => 'ساعة بدء الدوام الإضافي' ,
     'overtimeendhour' => 'ساعة نهاية الدوام الإضافي' ,
-
+    'extra'=>'الموافقة الإضافية',
     'overtimeHours' => 'عدد ساعات الدوام الإضافي' ,
     'overtimeType' => 'نوع الدوام الإضافي' ,
     'overtimeCreationDate' => 'تاريخ إنشاء الطلب' ,

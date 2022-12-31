@@ -21,7 +21,7 @@ return [
     'enterStartDateAndEndDate' => 'ادخل تاريخ بدء وانتهاء الإجازة' ,
     'submit' => 'إرسال الطلب' ,
     'cancel' => 'إالغاء',
-
+    'extra'=>'موافقة إضافية',
 'AnnualLeave' => 'الإجازات السنوية',
 'SickLeave'=> 'الإجازات المرضية',
 'SickLeaveFirsthalf'=> 'إجازة مرضية - النصف الأول من اليوم',

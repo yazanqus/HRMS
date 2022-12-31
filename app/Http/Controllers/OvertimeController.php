@@ -314,6 +314,40 @@ class OvertimeController extends Controller
 
     }
 
+
+    public function forward(Request $request,$id)
+    {
+        $overtime = Overtime::find($id);
+        $overtime->status = 'Pending extra Approval';
+        $overtime->exapprover = $request->extra;
+        $overtime->save();
+        return redirect()->route('overtimes.hrapproval');
+    }
+
+    public function exapproved(Request $request,$id)
+    {
+        $exuser = Auth::user();
+        $overtime = Overtime::find($id);
+        $overtime->status = 'Approved by extra Approval';
+        $overtime->exapprover = $exuser->name;
+        $overtime->excomment = $request->comment;
+        $overtime->save();
+
+        return redirect()->route('overtimes.approval');
+    }
+    public function exdeclined(Request $request,$id)
+    {
+        $exuser = Auth::user();
+        $overtime = Overtime::find($id);
+        $overtime->status = 'Declined by extra Approval';
+        $overtime->exapprover = $exuser->name;
+        $overtime->excomment = $request->comment;
+        $overtime->save();
+
+        return redirect()->route('overtimes.approval');
+    }
+
+
     public function hrapproved(Request $request,$id)
     {
         $hruser = Auth::user();

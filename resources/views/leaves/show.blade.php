@@ -116,6 +116,10 @@
                                   <br>
                                   {{__('leaveShow.approved')}}/{{__('leaveShow.declined')}} {{__('leaveShow.by')}} {{__('leaveShow.lineManager')}}: <strong>{{$leave->lmapprover}}</strong> - "<i>{{$leave->lmcomment}}</i>"
                                   <br>
+                                  @if ($leave->exapprover != null)
+                                  {{__('leaveShow.approved')}}/{{__('leaveShow.declined')}} {{__('leaveShow.by')}} {{__('leaveShow.extra')}}: <strong>{{$leave->exapprover}}</strong> - "<i>{{$leave->excomment}}</i>"
+                                  <br>
+                                  @endif
                                   {{__('leaveShow.approved')}}/{{__('leaveShow.declined')}} {{__('leaveShow.by')}} {{__('leaveShow.hr')}}: <strong>{{$leave->hrapprover}}</strong> - "<i>{{$leave->hrcomment}}</i>"
                                 </div>
 

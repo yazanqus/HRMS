@@ -26,6 +26,8 @@ class CreateOvertimesTable extends Migration
             $table->string('lmcomment')->nullable();
             $table->string('hrapprover')->nullable();
             $table->string('hrcomment')->nullable();
+            $table->string('exapprover')->nullable();
+            $table->string('excomment')->nullable();
             $table->string('path')->nullable();
             $table->string('value')->nullable();
             $table->date('cancelled_date')->nullable();

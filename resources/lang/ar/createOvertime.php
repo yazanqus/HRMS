@@ -26,5 +26,6 @@ return [
     'totalNumberOfDays' => 'Total Number of Days' ,
     'enterStartDateAndEndDate' => 'Enter Start Date and End Date' ,
     'submit' => 'إرسال الطلب' ,
-    'cancel' => 'إلغاء'
+    'cancel' => 'إلغاء',
+    'extra' =>'الموافقة الإضافية',
 ];

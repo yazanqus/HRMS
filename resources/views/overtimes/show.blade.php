@@ -117,6 +117,10 @@
                                   <br>
                                   {{__('overtimeshow.approved')}}/{{__('overtimeshow.declined')}} {{__('overtimeshow.by')}} {{__('overtimeshow.lineManager')}}: <strong>{{$overtime->lmapprover}}</strong> - "<i>{{$overtime->lmcomment}}</i>"
                                   <br>
+                                  @if ($overtime->exapprover != null)
+                                  {{__('overtimeshow.approved')}}/{{__('overtimeshow.declined')}} {{__('overtimeshow.by')}} {{__('overtimeshow.extra')}}: <strong>{{$overtime->exapprover}}</strong> - "<i>{{$overtime->excomment}}</i>"
+                                  <br>
+                                  @endif
                                   {{__('overtimeshow.approved')}}/{{__('overtimeshow.declined')}} {{__('overtimeshow.by')}} {{__('overtimeshow.hr')}}: <strong>{{$overtime->hrapprover}}</strong> - "<i>{{$overtime->hrcomment}}</i>"
                                 </div>
 

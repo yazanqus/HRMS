@@ -40,8 +40,9 @@
                                     <th class="text-center" scope="col">{{__('hrApprovalOvertime.endHour')}}</th>
                                     <th class="text-center"scope="col">{{__('hrApprovalOvertime.hours')}}</th>
                                     <th class="text-center" scope="col">{{__('hrApprovalOvertime.status')}}</th>
-                                    <th class="text-center" scope="col ">{{__('hrApprovalOvertime.approve')}}</th>
-                                    <th class="text-center" scope="col">{{__('hrApprovalOvertime.decline')}}</th>
+                                    <th class="text-center" scope="col">{{__('hrApprovalLeave.action')}}</th>
+                                    <!-- <th class="text-center" scope="col ">{{__('hrApprovalOvertime.approve')}}</th> -->
+                                    <!-- <th class="text-center" scope="col">{{__('hrApprovalOvertime.decline')}}</th> -->
                                 </tr>
                               </thead>
                               <tbody>
@@ -60,13 +61,19 @@
                                   <td class="text-center">{{ $overtime->start_hour }}</td>
                                   <td class="text-center">{{ $overtime->end_hour }}</td>
                                   <td class="text-center">{{ $overtime->hours }}</td>
-                                  <td class="text-center">{{ $overtime->status }}</td>
+                                  <td class="text-center">{{__("databaseLeaves.$overtime->status")}}</td>
                                   <td class="text-center">
-                                  <div class="text-center"><button type="button" class="mb-0 form-group btn btn-xs btn-success" data-toggle="modal" data-target="#myModal{{$overtime->id}}"><i class="fas fa-check-square"></i> </button></div>
+                                  <div class="text-center">
+                                    <button type="button" class="mb-0 form-group btn btn-xs btn-success" data-toggle="modal" data-target="#myModal{{$overtime->id}}"><i class="fas fa-check-square"></i> </button>
+                                    <button type="button" class="mx-1 mb-0 form-group btn btn-xs btn-danger" data-toggle="modal" data-target="#myModal2{{$overtime->id}}"><i class="fas fa-minus-circle"></i> </button>
+                                    @if ($overtime->exapprover == null)
+                                    <button  type="button" class=" mb-0 form-group btn btn-xs btn-warning" data-toggle="modal" data-target="#myModal3{{$overtime->id}}"><i class="fas fa-plus-square"></i> </button>
+                                    @endif
+                                  </div>
                                     </td>
+                                    <!-- <div class="text-center"><button type="button" class="mb-0 form-group btn btn-xs btn-danger" data-toggle="modal" data-target="#myModal2{{$overtime->id}}"><i class="fas fa-minus-circle"></i> </button></div>
                                     <td class="text-center">
-                                    <div class="text-center"><button type="button" class="mb-0 form-group btn btn-xs btn-danger" data-toggle="modal" data-target="#myModal2{{$overtime->id}}"><i class="fas fa-minus-circle"></i> </button></div>
-                                    </td>
+                                    </td> -->
                                 </tr>
                                 @endforeach
                               </tbody>
@@ -148,6 +155,49 @@
 
   </div>
 </div>
+
+
+<div id="myModal3{{$overtime->id}}" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+
+      <div class="modal-body text-center">
+        <p>Forwarding overtime: <strong>{{$overtime->id}}</strong></p>
+        <p>Requested by: <strong>{{$overtime->user->name}}</strong></p>
+        <form method="POST" action="{{route('overtimes.forward',$overtime->id)}}" class="mb-0 text-center" >
+        <div class="row justify-content-center text-center">
+        <div class="form-group  col-sm-12 flex-column d-flex">
+        <label class="form-control-label px-1">{{__('createLeave.extra')}}</small></label>
+                <input class="form-control form-outline" type="text" list="FavoriteColor" id="color" placeholder="Choose Staff Name.."
+                                            name="extra" value="{{ old('extra') }}" autocomplete="off">
+                                        <datalist id="FavoriteColor">
+                                            @foreach ($users as $user)
+                                                <option value="{{ $user->name }}"> </option>
+                                            @endforeach
+                                        </datalist>
+
+
+            </div>
+            </div>
+
+          {{ csrf_field() }}
+        
+          <div class="form-group">
+              <input id="buttonSelector" type="submit" class="mb-0 mt-0 btn btn-warning" value="Forward">
+          </div>
+      </form>
+      </div>
+      <div class="modal-footer mt-0">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
 @endforeach
 
 

@@ -9,6 +9,7 @@ return [
     'leaveDays' => 'Leave Days' ,
     'leaveHours' => 'Leave Hours' ,
     'leaveType' => 'Leave Type' ,
+    'extra'=>'Extra Approval',
     'leaveCreationDate' => 'Leave Creation Date' ,
     'leaveReason' => 'Leave Reason' ,
     'attachment' => 'Attachment' ,

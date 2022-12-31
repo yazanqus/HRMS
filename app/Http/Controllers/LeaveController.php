@@ -2429,6 +2429,38 @@ class LeaveController extends Controller
 
     }
 
+    public function forward(Request $request,$id)
+    {
+        $leave = Leave::find($id);
+        $leave->status = 'Pending extra Approval';
+        $leave->exapprover = $request->extra;
+        $leave->save();
+        return redirect()->route('leaves.hrapproval');
+    }
+
+    public function exapproved(Request $request,$id)
+    {
+        $exuser = Auth::user();
+        $leave = Leave::find($id);
+        $leave->status = 'Approved by extra Approval';
+        $leave->exapprover = $exuser->name;
+        $leave->excomment = $request->comment;
+        $leave->save();
+
+        return redirect()->route('leaves.approval');
+    }
+    public function exdeclined(Request $request,$id)
+    {
+        $exuser = Auth::user();
+        $leave = Leave::find($id);
+        $leave->status = 'Declined by extra Approval';
+        $leave->exapprover = $exuser->name;
+        $leave->excomment = $request->comment;
+        $leave->save();
+
+        return redirect()->route('leaves.approval');
+    }
+
     public function hrapproved(Request $request,$id)
     {
         $hruser = Auth::user();

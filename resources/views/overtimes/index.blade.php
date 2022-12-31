@@ -55,7 +55,7 @@
                               <td class="text-center">{{__("databaseLeaves.$overtime->status")}}</td>
                               <td class="text-center">
                                 @php
-                                if ($overtime->status == 'Approved' || $overtime->status == 'Declined by HR')
+                                if ($overtime->status == 'Approved' || $overtime->status == 'Declined by extra Approval'  || $overtime->status == 'Approved by extra Approval' || $overtime->status == 'Declined by HR' || $overtime->status == 'Pending extra Approval' || $overtime->status == 'Cancelled' || $overtime->status == 'Submitted by HR' || $overtime->status == 'Declined by LM')
                                 {
                                     $variable='disabled';
                                 }

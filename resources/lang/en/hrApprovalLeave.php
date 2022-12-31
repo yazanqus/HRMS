@@ -13,4 +13,5 @@ return [
     'status' => 'Status' ,
     'approve' => 'Approve',
     'decline' => 'Decline' ,
+    'action' => 'Action'
 ];

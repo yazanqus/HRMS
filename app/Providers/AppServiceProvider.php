@@ -43,17 +43,28 @@ class AppServiceProvider extends ServiceProvider
                                 ->all();
                         });
 
-                        $leaves = Leave::whereIn('user_id', $subsets)->where('status', 'Pending LM Approval')->get();
-                        $overtimes = Overtime::whereIn('user_id', $subsets)->where('status', 'Pending LM Approval')->get();
+                        $leaves = Leave::whereIn('user_id', $subsets)
+                        ->where('status', 'Pending LM Approval')
+                        ->orwhere(function($query) use($user) {
+                            $query->where('status', 'Pending extra Approval')
+                        ->where('exapprover', $user->name);})
+                        ->get();
+                        $overtimes = Overtime::whereIn('user_id', $subsets)
+                        ->where('status', 'Pending LM Approval')
+                        ->orwhere(function($query) use($user) {
+                            $query->where('status', 'Pending extra Approval')
+                        ->where('exapprover', $user->name);})
+                        ->get();
                         
                         $numleaveapproval = count($leaves);
+                        
                         $numoverapproval = count($overtimes);
                         $numapproval = $numleaveapproval + $numoverapproval;
 
                         if ($user->office == "AO2")
                         {
-                            $hrleaves = Leave::where('status', 'Pending HR Approval')->get();
-                            $hrovertimes = Overtime::where('status', 'Pending HR Approval')->get();
+                            $hrleaves = Leave::where('status', 'Pending HR Approval')->orWhere('status', 'Approved by extra Approval')->orWhere('status', 'Declined by extra Approval')->get();
+                            $hrovertimes = Overtime::where('status', 'Pending HR Approval')->orWhere('status', 'Approved by extra Approval')->orWhere('status', 'Declined by extra Approval')->get();
                             $numleavehrapproval = count($hrleaves);
                             $numoverhrapproval = count($hrovertimes);
                             $numhrapproval = $numleavehrapproval + $numoverhrapproval;
@@ -78,8 +89,12 @@ class AppServiceProvider extends ServiceProvider
                                         ->only(['id'])
                                         ->all();
                                 });
-                            $hrleaves = Leave::whereIn('user_id', $hrsubsets)->where('status', 'Pending HR Approval')->get();
-                            $hrovertimes = Overtime::whereIn('user_id', $hrsubsets)->where('status', 'Pending HR Approval')->get();
+                            $hrleaves = Leave::whereIn('user_id', $hrsubsets)->where(function($query) {
+                                $query->where('status', 'Pending HR Approval')
+                            ->orwhere('status', 'Approved by extra Approval')->orwhere('status', 'Declined by extra Approval');})->get();
+                            $hrovertimes = Overtime::whereIn('user_id', $hrsubsets)->where(function($query) {
+                                $query->where('status', 'Pending HR Approval')
+                            ->orwhere('status', 'Approved by extra Approval')->orwhere('status', 'Declined by extra Approval');})->get();
                             $numleavehrapproval = count($hrleaves);
                             $numoverhrapproval = count($hrovertimes);
                             $numhrapproval = $numleavehrapproval + $numoverhrapproval;
@@ -113,8 +128,8 @@ class AppServiceProvider extends ServiceProvider
                             if ($user->office == "AO2")
                             // if i am AO2 HR
                             {
-                        $hrleaves = Leave::where('status', 'Pending HR Approval')->get();
-                        $hrovertimes = Overtime::where('status', 'Pending HR Approval')->get();
+                        $hrleaves = Leave::where('status', 'Pending HR Approval')->orWhere('status', 'Approved by extra Approval')->orWhere('status', 'Declined by extra Approval')->get();
+                        $hrovertimes = Overtime::where('status', 'Pending HR Approval')->orWhere('status', 'Approved by extra Approval')->orWhere('status', 'Declined by extra Approval')->get();
                         $numleavehrapproval = count($hrleaves);
                         $numoverhrapproval = count($hrovertimes);
                         $numhrapproval = $numleavehrapproval + $numoverhrapproval;
@@ -137,8 +152,12 @@ class AppServiceProvider extends ServiceProvider
                                             ->only(['id'])
                                             ->all();
                                     });
-                                $hrleaves = Leave::whereIn('user_id', $hrsubsets)->where('status', 'Pending HR Approval')->get();
-                                $hrovertimes = Overtime::whereIn('user_id', $hrsubsets)->where('status', 'Pending HR Approval')->get();
+                                $hrleaves = Leave::whereIn('user_id', $hrsubsets)->where(function($query) {
+                                    $query->where('status', 'Pending HR Approval')
+                                ->orwhere('status', 'Approved by extra Approval')->orwhere('status', 'Declined by extra Approval');})->get();
+                                $hrovertimes = Overtime::whereIn('user_id', $hrsubsets)->where(function($query) {
+                                    $query->where('status', 'Pending HR Approval')
+                                ->orwhere('status', 'Approved by extra Approval')->orwhere('status', 'Declined by extra Approval');})->get();
                                 $numleavehrapproval = count($hrleaves);
                                 $numoverhrapproval = count($hrovertimes);
                                 $numhrapproval = $numleavehrapproval + $numoverhrapproval;

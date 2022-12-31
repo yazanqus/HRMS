@@ -13,4 +13,5 @@ return [
     'status' => 'حالة الطلب' ,
     'approve' => 'الموافقة',
     'decline' => 'الرفض' ,
+    'action' => 'خيارات'
 ];

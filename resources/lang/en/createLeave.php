@@ -21,7 +21,7 @@ return [
     'enterStartDateAndEndDate' => 'Enter Start Date and End Date' ,
     'submit' => 'Submit' ,
     'cancel' => 'Cancel',
-    
+    'extra'=>'Extra Approver:',
 'AnnualLeave' => 'Annual Leave',
 'SickLeave'=> 'Sick Leave',
 'SickLeaveFirsthalf'=> 'Sick Leave - First half',

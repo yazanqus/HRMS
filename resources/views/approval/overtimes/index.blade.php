@@ -51,13 +51,24 @@
                                   <td class="text-center">{{ $overtime->start_hour }}</td>
                                   <td class="text-center">{{ $overtime->end_hour }}</td>
                                   <td class="text-center">{{ $overtime->hours }}</td>
-                                  <td class="text-center">{{ $overtime->status }}</td>
+                                  <td class="text-center">{{__("databaseLeaves.$overtime->status")}}</td>
+                                  @if ($overtime->status == "Pending extra Approval")
+                                  <td class="text-center">
+                                  <div class="text-center"><button type="button" class="mb-0 form-group btn btn-xs btn-warning" data-toggle="modal" data-target="#myModal3{{$overtime->id}}"><i class="fas fa-check-square"></i> </button></div>
+                                    </td>
+                                    <td class="text-center">
+                                    <div class="text-center"><button type="button" class="mb-0 form-group btn btn-xs btn-warning" data-toggle="modal" data-target="#myModal4{{$overtime->id}}"><i class="fas fa-minus-circle"></i> </button></div>
+                                        
+                                    </td>
+                                  @endif 
+                                  @if ($overtime->status  == "Pending LM Approval")
                                   <td class="text-center">
                                   <div class="text-center"><button type="button" class="mb-0 form-group btn btn-xs btn-success" data-toggle="modal" data-target="#myModal{{$overtime->id}}"><i class="fas fa-check-square"></i> </button></div>
                                     </td>
                                     <td class="text-center">
                                     <div class="text-center"><button type="button" class="mb-0 form-group btn btn-xs btn-danger" data-toggle="modal" data-target="#myModal2{{$overtime->id}}"><i class="fas fa-minus-circle"></i> </button></div>
                                     </td>
+                                    @endif
                                 </tr>
                                 @endforeach
                               </tbody>
@@ -114,6 +125,72 @@
           <p>Declining overtime: <strong>{{$overtime->id}}</strong></p>
           <p>Requested by: <strong>{{$overtime->user->name}}</strong></p>
           <form method="POST" action="{{route('overtimes.declined',$overtime->id)}}" class="mb-0 text-center" >
+          <div class="row justify-content-center text-center">
+          <div class="form-group  col-sm-12 flex-column d-flex">
+                <label class="form-control-label px-1">{{__('createLeave.comment')}}</small></label>
+                <input class="form-control form-outline" type="text" id="comment" autocomplete="off" name="comment" placeholder="">
+
+              </div>
+              </div>
+
+            {{ csrf_field() }}
+          
+            <div class="form-group">
+                <input id="buttonSelector" type="submit" class="mb-0 mt-0 btn btn-danger" value="Decline">
+            </div>
+        </form>
+        </div>
+        <div class="modal-footer mt-0">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="myModal3{{$overtime->id}}" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-body text-center">
+          <p>Extra Approving overtime: <strong>{{$overtime->id}}</strong></p>
+          <p>Requested by: <strong>{{$overtime->user->name}}</strong></p>
+          <form method="POST" action="{{route('overtimes.exapproved',$overtime->id)}}" class="mb-0 text-center" >
+          <div class="row justify-content-center text-center">
+          <div class="form-group  col-sm-12 flex-column d-flex">
+                <label class="form-control-label px-1">{{__('createLeave.comment')}}</small></label>
+                <input class="form-control form-outline" type="text" id="comment" autocomplete="off" name="comment" placeholder="">
+
+              </div>
+              </div>
+
+            {{ csrf_field() }}
+          
+            <div class="form-group">
+                <input id="buttonSelector" type="submit" class="mb-0 mt-0 btn btn-success" value="Approve">
+            </div>
+        </form>
+        </div>
+        <div class="modal-footer mt-0">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="myModal4{{$overtime->id}}" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-body text-center">
+          <p>Extra Declining overtime: <strong>{{$overtime->id}}</strong></p>
+          <p>Requested by: <strong>{{$overtime->user->name}}</strong></p>
+          <form method="POST" action="{{route('overtimes.exdeclined',$overtime->id)}}" class="mb-0 text-center" >
           <div class="row justify-content-center text-center">
           <div class="form-group  col-sm-12 flex-column d-flex">
                 <label class="form-control-label px-1">{{__('createLeave.comment')}}</small></label>

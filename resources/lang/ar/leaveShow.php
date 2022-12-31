@@ -11,6 +11,7 @@ return [
     'leaveType' => 'نوع الإجازة' ,
     'leaveCreationDate' => 'تاريخ إنشاء الإجازة' ,
     'leaveReason' => 'سبب الإجازة' ,
+    'extra'=>'الموافقة الإضافية',
     'attachment' => 'المرفق' ,
     'noAttachment' => 'لا يوجد مرفق' ,
     'approvalWorlflowCurrentStatus' => 'حالة الإجازة حاليا' ,

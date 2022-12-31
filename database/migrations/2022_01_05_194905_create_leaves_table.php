@@ -25,6 +25,8 @@ class CreateLeavesTable extends Migration
             $table->string('lmcomment')->nullable();
             $table->string('hrapprover')->nullable();
             $table->string('hrcomment')->nullable();
+            $table->string('exapprover')->nullable();
+            $table->string('excomment')->nullable();
             $table->string('path')->nullable();
             $table->date('cancelled_date')->nullable();
             $table->softDeletes();

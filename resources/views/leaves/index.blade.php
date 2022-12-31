@@ -54,7 +54,7 @@
                               <td class="text-center">{{__("databaseLeaves.$leave->status")}}</td>
                               <td class="text-center">
                                   @php
-                                  if ($leave->status == 'Approved' || $leave->status == 'Declined by HR' || $leave->status == 'Cancelled' || $leave->status == 'Submitted by HR' || $leave->status == 'Declined by LM')
+                                  if ($leave->status == 'Approved' || $leave->status == 'Declined by extra Approval'  || $leave->status == 'Approved by extra Approval' || $leave->status == 'Declined by HR' || $leave->status == 'Pending extra Approval' || $leave->status == 'Cancelled' || $leave->status == 'Submitted by HR' || $leave->status == 'Declined by LM')
                                   {
                                       $variable='disabled';
                                   }
