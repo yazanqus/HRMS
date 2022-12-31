@@ -157,7 +157,7 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/
         $hruser = Auth::user();
 
         if ($hruser->office == "AO2") {
-            $users = User::all()->except(1);;
+            $users = User::all()->except(1);
             $overtimes = Overtime::all();
             return view('admin.allstaffovertimes.searchconditions', ['overtimes' => $overtimes,'users' => $users]);
         }
@@ -185,7 +185,7 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/
  
         $hruser = Auth::user();
         if ($hruser->office == "AO2") {
-            $overtimes = Overtime::all()->except(1);;
+            $overtimes = Overtime::all();
             return view('admin.allstaffovertimes.index', ['overtimes' => $overtimes]);
         }
         else
