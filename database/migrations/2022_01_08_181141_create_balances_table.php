@@ -20,6 +20,7 @@ class CreateBalancesTable extends Migration
             $table->foreignId('user_id');
             $table->decimal('value',8,3)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
