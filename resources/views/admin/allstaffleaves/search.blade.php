@@ -28,7 +28,7 @@
                         <div class="card-body table-responsive-md">
                         <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                         <thead>
-                            <tr>
+                            <tr style=" background-color: #ffb678 !important;">
                                 <th style="width: 3%" scope="col">ID</th>
                                 <th style="width: 10%" scope="col">Name</th>
                                 <th style="width: 10%" class="text-center" scope="col">Leave type</th>
@@ -42,8 +42,8 @@
                           </thead>
                           <tbody>
                             @foreach ($leaves as $leave)
-                            <tr>
-                              <td><a href="{{ route('leaves.show', $leave) }}" >{{ $leave->id }}</a></td>
+                            <tr  >
+                              <td><a href="{{ route('leaves.show', encrypt($leave->id)) }}" >{{ $leave->id }}</a></td>
                               <td>{{ $leave->user ? $leave->user->name : 'Deleted User' }}</td>
                               <td class="text-center">{{ $leave->leavetype->name }}</td>
                               <td class="text-center">{{ $leave->start_date }}</td>

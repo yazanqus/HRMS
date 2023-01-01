@@ -2819,7 +2819,7 @@ class LeaveController extends Controller
             'start_date' => 'required',
             'end_date' => 'required|after_or_equal:start_date',
             // 'leavetype' => 'required',
-            'name'=> 'required',
+            'name',
            
         ]);
 
@@ -2827,20 +2827,34 @@ class LeaveController extends Controller
         $start_date=$request->start_date;
         $end_date=$request->end_date;
         // $leavetype=$request->leavetype;
+        // dd($request->name);
+        if ($request->name == null)
+        {
+            $leaves = Leave::where([
 
-        
-        $userid = User::where('name',$name)->value('id');
+                
+                ['start_date', '>=', $start_date],
+                ['end_date', '<=', $end_date],
+    
+    
+            ])->get();
+        }
+        else
+        {
+            $userid = User::where('name',$name)->value('id');
         
   
  
-        $leaves = Leave::where([
-
-            ['user_id', $userid],
-            ['start_date', '>=', $start_date],
-            ['end_date', '<=', $end_date],
-
-
-        ])->get();
+            $leaves = Leave::where([
+    
+                ['user_id', $userid],
+                ['start_date', '>=', $start_date],
+                ['end_date', '<=', $end_date],
+    
+    
+            ])->get();
+        }
+        
 
         return view('admin.allstaffleaves.search', ['leaves' => $leaves, 'name'=>$name,'start_date' =>$start_date, 'end_date'=>$end_date]);
     }

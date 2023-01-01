@@ -36,7 +36,7 @@
 
                                       <div class="row justify-content-between text-left">
                                       <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
-                                        <label class="form-control-label required px-1">{{__('advancedSearchLeave.staffName')}}</label>
+                                        <label class="form-control-label  px-1">{{__('advancedSearchLeave.staffName')}}</label>
                                         <input class="form-control form-outline {{ $errors->has('name') ? ' is-invalid' : '' }}" type="text" list="FavoriteColor" id="color" placeholder="Choose Staff Name.."
                                             name="name" value="{{ old('name') }}" autocomplete="off">
                                             @if ($errors->has('name'))

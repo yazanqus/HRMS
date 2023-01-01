@@ -28,7 +28,7 @@
                         <div class="card-body table-responsive-md">
                         <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                         <thead>
-                            <tr>
+                            <tr style=" background-color: #ffb678 !important;">
                             <th style="width: 3%"scope="col">{{__('allStaffOvertimes.id')}}</th>
                                 <th style="width: 10%" scope="col">{{__('allStaffOvertimes.name')}}</th>
                                 <th style="width: 10%" class="text-center" scope="col">{{__('allStaffOvertimes.type')}}</th>
@@ -45,7 +45,7 @@
                           <tbody>
                           @foreach ($overtimes as $overtime)
                             <tr>
-                              <td><a href="{{ route('overtimes.show', $overtime) }}" target="_blank">{{ $overtime->id }}</a></td>
+                              <td><a href="{{ route('overtimes.show', encrypt($overtime->id)) }}" target="_blank">{{ $overtime->id }}</a></td>
                               <td>{{ $overtime->user->name }}</td>
                               <td class="text-center">{{ $overtime->type }}</td>
                               <td class="text-center">{{ $overtime->date }}</td>
