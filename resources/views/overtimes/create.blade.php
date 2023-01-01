@@ -35,18 +35,18 @@
 
                 <div class="container-fluid">
                     <div class="card">
-                      <div class="card-header card-header-primary">
+                      <div style=" background-color: #ffb678 !important;" class="card-header card-header-primary">
                         <h4 class="card-title ">{{__('createOvertime.newOvertime')}}</h4>
                     </div>
 
 
                         <div class="card-body table-responsive-md">
-                            <div class="container py-3 h-100">
+                            <div class="container py-1 h-100">
                               <div class="row justify-content-center align-items-center h-100">
                                 <div class="col-12 col-lg-10 col-xl-10">
                                   <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-                                    <div class="card-body p-4 p-md-5">
-                                      <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">{{__('createOvertime.newOvertimedetails')}}</h3>
+                                    <div class="card-body p-4 p-md-4">
+                                    
                                       <form action="{{ route('overtimes.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="row justify-content-between text-left">

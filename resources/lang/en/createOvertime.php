@@ -2,7 +2,7 @@
 
 return [
 
-    'newOvertime' => 'New Overtime' ,
+    'newOvertime' => 'New Overtime Request' ,
     'newOvertimedetails' => 'New Overtime Request details' ,
     'overtimeType' => 'Overtime Type' ,
     'Date' => 'Date',

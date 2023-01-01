@@ -19,7 +19,7 @@
             <div class="container-fluid">
 
                 <div class="card">
-                    <div class="card-header card-header-primary">
+                    <div style=" background-color: #ffb678 !important;" class="card-header card-header-primary">
                     
                         <h4 class="card-title "> <i class="mr-2 fas fa-search"></i>{{__('advancedSearchLeave.advancedSearchForStaffLeaves')}}</h4>
                       </div>

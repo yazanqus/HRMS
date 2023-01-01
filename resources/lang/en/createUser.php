@@ -20,7 +20,7 @@ return [
     'contractType' => 'Contract Type' ,
     'reqularContract' => 'Reqular Contract' ,
     'serviceContract' => 'Service Contract' ,
-    'notAvaillable' => 'Not Availlabe' ,
+    'notAvaillable' => 'Not Available' ,
     'email' => 'Email' ,
     'whenSigningUsingEmployeeId' => 'when signin using employee ID',
     'password' => 'Password' ,

@@ -25,7 +25,7 @@
 
 
             <div class="card">
-                <div class="card-header card-header-primary">
+                <div style=" background-color: #ffb678 !important;" class="card-header card-header-primary">
                     <h4 class="card-title ">{{__('changepassword.changepassword')}}</h4>
                     {{-- <p class="card-category"> Here you can manage users</p> --}}
                   </div>
@@ -57,11 +57,11 @@
 
 
 
-                                    <div class="container py-3 h-100">
+                                    <div class="container py-1 h-100">
                                         <div class="row justify-content-center align-items-center h-100">
                                           <div class="col-12 col-lg-10 col-xl-10">
                                             <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-                                              <div class="card-body p-4 p-md-5">
+                                              <div class="card-body p-4 p-md-4">
 
                                                 <form class="form-horizontal" autocomplete="off" method="POST" action="{{ route('changePasswordPost') }}">
                                                     {{ csrf_field() }}
@@ -121,14 +121,16 @@
                                                           </div>
 
                                                     </div>
-
-                                                    <div class="form-group">
-                                                        <div class="col-md-6 col-md-offset-4">
-                                                            <button type="submit" class="btn btn-primary">
+<div class="row justify-content-center">
+<div class="  form-group col-sm-3">
+                                                        <!-- <div class=" col-md-6 col-md-offset-4"> -->
+                                                            <button type="submit" class="btn btn-block btn-primary">
                                                             {{__('changepassword.changethepass')}}
                                                             </button>
-                                                        </div>
+                                                        <!-- </div> -->
                                                     </div>
+</div>
+                                                    
                                                 </form>
 
                                                 <style>

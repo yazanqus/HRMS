@@ -19,7 +19,7 @@
             <div class="container-fluid">
 
                 <div class="card">
-                    <div class="card-header card-header-primary">
+                    <div style=" background-color: #ffb678 !important;" class="card-header card-header-primary">
                         <h4 class="card-title ">{{__('createUser.createNewUser')}}</h4>
                         
                       </div>
