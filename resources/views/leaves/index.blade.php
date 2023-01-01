@@ -21,7 +21,7 @@
                         <div class="card-header card-header-primary">
                           <h4 class="card-title ">{{__('leaves.myLeaves')}}</h4>
                             <div class="col-12 text-right">
-                              <a href="{{route('leaves.create')}}" class="btn btn-md btn-primary">{{__('leaves.submitNewLeave')}}</a>
+                              <a href="{{route('leaves.create')}}" class="btn btn-md btn-primary"><strong>{{__('leaves.submitNewLeave')}}</strong></a>
                             </div>
                         </div>
 
@@ -29,7 +29,7 @@
 
                         <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                         <thead>
-                            <tr>
+                            <tr style=" background-color: #ffb678 !important;">
                             <th style="width: 3%" scope="col">{{__('leaves.id')}}</th>
                               <th style="width: 10%" scope="col">{{__('leaves.type')}}</th>
                               <th class="text-center" scope="col">{{__('leaves.startDate')}}</th>
@@ -41,7 +41,7 @@
                           </thead>
                           <tbody>
                             @foreach ($leaves as $leave)
-                            <tr>
+                            <tr  >
                               <td><a href="{{ route('leaves.show', encrypt($leave->id)) }}" >{{ $leave->id }}</a></td>
                               <td>{{ __("databaseLeaves.{$leave->leavetype->name}") }}</td>
                               @php

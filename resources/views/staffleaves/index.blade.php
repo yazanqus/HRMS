@@ -30,7 +30,7 @@
                         <!-- <div class="row"> -->
                       <table id="table_iddd" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                       <thead>
-                          <tr>
+                          <tr style=" background-color: #ffb678 !important;">
                             <th style="width: 20%" scope="col">{{__('staffleaves.name')}}</th>
                             <th style="width: 10%" scope="col">{{__('staffleaves.birthDate')}}</th>
                             <!-- <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.email')}}</th> -->
@@ -76,7 +76,7 @@
 
                         <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                         <thead>
-                            <tr>
+                            <tr style=" background-color: #ffb678 !important;">
                                 <th style="width: 5%" scope="col">{{__('staffleaves.id-Leave')}}</th>
                                 <th style="width: 15%" scope="col">{{__('staffleaves.name')}}</th>
                                 <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.leaveType')}}</th>
@@ -120,7 +120,7 @@
 
                       <table id="table_idd" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                       <thead>
-                          <tr>
+                          <tr style=" background-color: #ffb678 !important;">
                           <th style="width: 10%" scope="col">{{__('staffleaves.id-Overtime')}}</th>
                               <th style="width: 10%" scope="col">{{__('staffleaves.name')}}</th>
                               <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.overtimeType')}}</th>

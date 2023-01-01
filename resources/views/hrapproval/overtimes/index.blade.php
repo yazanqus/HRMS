@@ -28,7 +28,7 @@
                               <!-- <div class="row"> -->
                               <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                             <thead>
-                                <tr>
+                                <tr style=" background-color: #ffb678 !important;">
                                   <th style="width: 3%" scope="col">{{__('hrApprovalOvertime.id')}}</th>
                                     <th style="width: 3%" scope="col">{{__('hrApprovalOvertime.name')}}</th>
                                     @if ($hruser->office == "AO2")

@@ -32,7 +32,7 @@
                         <div class="card-body table-responsive-md">
                         <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                         <thead>
-                            <tr>
+                            <tr  style=" background-color: #ffb678 !important;">
                                 <th style="width: 3%" scope="col">{{__('allStaffLeaves.id')}}</th>
                                 <th style="width: 10%" scope="col">{{__('allStaffLeaves.name')}}</th>
                                 @if ($hruser->office == "AO2")

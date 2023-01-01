@@ -40,7 +40,12 @@
                               </thead>
                               <tbody>
                                 @foreach ($overtimes as $overtime)
-                                <tr>
+                                @if ($overtime->status == "Pending extra Approval")
+                                <tr style=" background-color: #feefc1 !important;" >
+                                @endif
+                                @if ($overtime->status  == "Pending LM Approval")
+                                <tr >
+                                @endif
                                     <td><a href="{{ route('overtimes.show', encrypt($overtime->id)) }}" >{{ $overtime->id }}</a></td>
                                   <td>{{ $overtime->user->name }}</td>
                                   <td class="text-center">{{ $overtime->type }}</td>

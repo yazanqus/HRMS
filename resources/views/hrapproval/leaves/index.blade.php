@@ -43,7 +43,7 @@
                               <!-- <div class="row"> -->
                               <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                             <thead>
-                                <tr>
+                                <tr style=" background-color: #ffb678 !important;">
                                 <th style="width: 10%" scope="col">{{__('hrApprovalLeave.id')}}</th>
                                     <th style="width: 20%" scope="col">{{__('hrApprovalLeave.name')}}</th>
                                     @if ($hruser->office == "AO2")

@@ -44,7 +44,7 @@
                                       <div class="card-body table-responsive-md">
                                           <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                                             <thead>
-                                              <tr>
+                                              <tr style=" background-color: #ffb678 !important;">
                                               
                                               <th style="width: 20%" scope="col">{{__('allUsers.name')}}</th>
                                               <th style="width: 10%" scope="col">{{__('allUsers.employeeId')}}</th>

@@ -25,9 +25,9 @@
             <div class="content">
               <div class="row">
                 <!-- <div class="container-fluid"> -->
-                    <div class="card mx-4 col-md-8">
-                      <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{__('welcome.personalInformation')}}</h4>
+                    <div  class="card mx-4 col-md-8">
+                      <div style=" background-color: #ffb678 !important;" class="card-header card-header-primary">
+                        <h4 class="card-title "><strong>{{__('welcome.personalInformation')}}</strong></h4>
                         <p class="card-category"></p>
                       </div>
                       <div class="card-body">
@@ -85,8 +85,8 @@
             </div>
             <div class="row">
             <div class="card ml-4 mr-4 col-md-4 ">
-                        <div class="card-header card-header-primary">
-                          <h4 class="card-title ">{{__('welcome.leaves')}} - {{__('welcome.remainingBalance')}}</h4>
+                        <div style=" background-color: #ffb678 !important;"  class="card-header card-header-primary">
+                          <h4 class="card-title "><strong>{{__('welcome.leaves')}} - {{__('welcome.remainingBalance')}}</strong></h4>
                           <p class="card-category"></p>
                         </div>
                         <div class="card-body">

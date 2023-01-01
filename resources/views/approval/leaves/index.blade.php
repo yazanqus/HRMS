@@ -39,7 +39,12 @@
                               </thead>
                               <tbody>
                                 @foreach ($leaves as $leave)
-                                <tr>
+                                @if ($leave->status == "Pending extra Approval")
+                                <tr style=" background-color: #feefc1 !important;" >
+                                @endif
+                                @if ($leave->status  == "Pending LM Approval")
+                                <tr >
+                                @endif
                                     <td><a href="{{ route('leaves.show', encrypt($leave->id)) }}" >{{ $leave->id }}</a></td>
                                   <td>{{ $leave->user->name }}</td>
                                   <td class="text-center">{{ $leave->leavetype->name }}</td>
