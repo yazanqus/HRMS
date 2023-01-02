@@ -36,6 +36,7 @@ class Leave extends Model
     public function leavetype()
     {
         return $this->belongsTo(Leavetype::class);
+        // test
     }
 
     public function user()
