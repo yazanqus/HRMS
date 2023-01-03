@@ -85,6 +85,8 @@
                                   <div class="checkbox">
                                       <label>
                                           <a style = "color: #007bff;" href="{{ route('forget.password.get') }}">Forgot your credentials?</a>
+                                          <br>
+                                          <a style = "color: #007bff;" href="{{ route('forget.password.get') }}">نسيت معلومات الدخول؟</a>
                                       </label>
                                   </div>
                               </div>

@@ -61,7 +61,7 @@ class ForgotPasswordController extends Controller
               
           // });
   
-          return back()->with('message', 'We have sent you a reset-password email, open the link in the email to continue, you can close this page now.');
+          return back()->with('message', 'We have sent you a reset-password email, open the link in the email to continue, you can close this page now. تم ارسال ايميل لتعيين كلمة السر , يرجى فتح الرابط في الايميل لاستكمال عملية تعيين كلمة السر , يمكنك اغلاق هذه الصفحة الآن');
       }
       /**
        * Write code on Method

@@ -20,7 +20,7 @@
 
 
                     
-          <p id="box1" class="login-box-msg pr-0 pb-3 pl-0">Reset your password</p>
+          <p id="box1" class="login-box-msg pr-0 pb-3 pl-0">Reset your password / ادخل ايميل العمل</p>
 
           <form action="{{ route('forget.password.post') }}" method="post">
             @csrf
