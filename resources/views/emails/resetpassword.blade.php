@@ -2,8 +2,10 @@
 
 Dear {{ $details['name'] }}
 # Request has been received to change the password of your HR360 account.
-  <br>
-Your Employee Number is: {{$details['employee']}}
+# تم استقبال طلب لتغيير كلمة السر الخاصة بحسابك
+<br>
+Your Employee Number is / رقمك الوظيفي : {{$details['employee']}}
+<br>
 
 @component('mail::button', ['url' => route('reset.password.get', $details['token'])])
 Reset Password
