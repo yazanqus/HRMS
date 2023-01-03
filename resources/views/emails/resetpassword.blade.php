@@ -6,6 +6,9 @@ Dear {{ $details['name'] }}
 <br>
 Your Employee Number is / رقمك الوظيفي : {{$details['employee']}}
 <br>
+<br>
+
+
 
 @component('mail::button', ['url' => route('reset.password.get', $details['token'])])
 Reset Password
