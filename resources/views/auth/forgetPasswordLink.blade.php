@@ -28,10 +28,17 @@
                               </div>
                           </div>
   
-                          <div class="form-group row">
+                          <div class="form-group row ">
                               <label for="password" class="col-md-4 col-form-label text-md-right">New Password</label>
                               <div class="col-md-6">
+                              <div class="input-group">
                                   <input type="password" id="password" class="form-control" name="password" required autofocus>
+                                  <div class="input-group-append">
+                                                                <div class="input-group-text">
+                                                                  <i class="fas fa-eye-slash" id="eye1"></i>
+                                                                </div>
+                                                              </div>
+                                                              </div>
                                   @if ($errors->has('password'))
                                       <span class="text-danger">{{ $errors->first('password') }}</span>
                                   @endif
@@ -41,7 +48,14 @@
                           <div class="form-group row">
                               <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm New Password</label>
                               <div class="col-md-6">
+                              <div class="input-group">
                                   <input type="password" id="password-confirm" class="form-control" name="password_confirmation" required autofocus>
+                                  <div class="input-group-append">
+                                                                <div class="input-group-text">
+                                                                  <i class="fas fa-eye-slash" id="eye2"></i>
+                                                                </div>
+                                                              </div>
+                                                              </div>
                                   @if ($errors->has('password_confirmation'))
                                       <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
                                   @endif
@@ -62,3 +76,58 @@
   </div>
 </main>
 @endsection
+
+@push('scripts')
+
+<script>
+
+
+
+    $("#eye1").on('click',function() {
+
+        if($(this).hasClass('fa-eye-slash')){
+
+          $(this).removeClass('fa-eye-slash');
+
+          $(this).addClass('fa-eye');
+
+          $('#password').attr('type','text');
+
+        }else{
+
+          $(this).removeClass('fa-eye');
+
+          $(this).addClass('fa-eye-slash');
+
+          $('#password').attr('type','password');
+        }
+    });
+
+
+    $("#eye2").on('click',function() {
+
+if($(this).hasClass('fa-eye-slash')){
+
+  $(this).removeClass('fa-eye-slash');
+
+  $(this).addClass('fa-eye');
+
+  $('#password-confirm').attr('type','text');
+
+}else{
+
+  $(this).removeClass('fa-eye');
+
+  $(this).addClass('fa-eye-slash');
+
+  $('#password-confirm').attr('type','password');
+}
+});
+
+
+
+
+
+</script>
+
+@endpush
