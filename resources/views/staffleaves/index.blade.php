@@ -32,7 +32,7 @@
                       <thead>
                           <tr style=" background-color: #ffb678 !important;">
                             <th style="width: 20%" scope="col">{{__('staffleaves.name')}}</th>
-                            <th style="width: 10%" scope="col">{{__('staffleaves.birthDate')}}</th>
+                            <!-- <th style="width: 10%" scope="col">{{__('staffleaves.birthDate')}}</th> -->
                             <!-- <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.email')}}</th> -->
                             <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.employeeNumber')}}</th>
                             <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.balance')}}</th>

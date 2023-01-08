@@ -88,8 +88,8 @@
                             <div class="col">
                                 <strong>{{__('showuser.fullName')}}: </strong> {{$user->name}}
                                 <br>
-                                <strong>{{__('showuser.birthDate')}}: </strong> {{$user->birth_date}}
-                                <br>
+                                <!-- <strong>{{__('showuser.birthDate')}}: </strong> {{$user->birth_date}}
+                                <br> -->
                                 <strong>{{__('showuser.email')}}: </strong> {{$user->email}}
                                 <br>
                                 <strong>{{__('showuser.employeeId')}}: </strong> {{$user->employee_number}}

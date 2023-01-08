@@ -40,8 +40,8 @@
                             <div class="col">
                             <strong>{{__('welcome.fullName')}}: </strong> {{$user->name}}
                                 <br>
-                                <strong>{{__('welcome.birthDate')}}: </strong> {{$user->birth_date}}
-                                <br>
+                                <!-- <strong>{{__('welcome.birthDate')}}: </strong> {{$user->birth_date}}
+                                <br> -->
                                 <strong>{{__('welcome.email')}}: </strong> {{$user->email}}
                                 <br>
                                 <strong>{{__('welcome.employeeId')}}: </strong> {{$user->employee_number}}
