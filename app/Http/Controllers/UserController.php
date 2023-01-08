@@ -517,7 +517,7 @@ class UserController extends Controller
             'contract',
             'birth_date',
             'position',
-            'office' => 'required',
+            'office',
             'department',
             'joined_date' => 'required',
             'linemanager',
@@ -527,7 +527,7 @@ class UserController extends Controller
             // hradminrole?
             // staffrole?
         ]);
-
+        $hruser = Auth::user();
         // dd($request);
         // $user->password = Hash::make($request->password);
 
@@ -538,7 +538,11 @@ class UserController extends Controller
         $user->birth_date = $request->birth_date;
         $user->contract = $request->contract;
         $user->position = $request->position;
-        $user->office = $request->office;
+        if ($hruser->office == "AO2")
+        {
+            $user->office = $request->office;
+
+        }
         $user->department = $request->department;
         $user->linemanager = $request->linemanager;
         $user->joined_date = $request->joined_date;

@@ -144,7 +144,7 @@
                                       $contract = "undefiend";
                                     }
                                             @endphp
-                                            <div class="form-group {{ $errors->has('contract') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex"> <label class="form-control-label required px-1">{{__('edituser.contractType')}}</label> <div class="form-check">
+                                            <div class="form-group {{ $errors->has('contract') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex"> <label class="form-control-label  px-1">{{__('edituser.contractType')}}</label> <div class="form-check">
                                             <input  class="btn-check" type="radio" name="contract" Value="Regular" id="regular" {{ $contract=='Regular' ? ' checked' : '' }}>
                                             <label class="form-check-label" for="regular">
                                             {{__('edituser.reqularContract')}}
@@ -174,7 +174,7 @@
                                                 @endif
                                             </div>
                                             <div class="form-group  {{ $errors->has('password') ? ' has-danger' : '' }}  col-sm-6 flex-column d-flex">
-                                                <label class="form-control-label required px-1">{{__('edituser.password')}} <small>({{__('edituser.changepassword')}})</small></label>
+                                                <label class="form-control-label  px-1">{{__('edituser.password')}} <small>({{__('edituser.changepassword')}})</small></label>
                                                 <div class="input-group">
                                                     <input class="form-control form-outline  {{ $errors->has('password') ? ' is-invalid' : '' }} "  type="password" id="password" autocomplete="off"
                                                     name="password"  autocomplete="new-password" placeholder="{{__('edituser.passwordnote')}}">
