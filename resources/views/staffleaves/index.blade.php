@@ -47,7 +47,7 @@
                             <td>
                                 {{ $user->name }}
                             </td>
-                            <td>{{ $user->birth_date }}</td>
+                            <!-- <td>{{ $user->birth_date }}</td> -->
                             <!-- <td class="text-center">{{ $user->email }}</td> -->
                             <td class="text-center">{{ $user->employee_number }}</td>
                             <td class="text-center">{{ $user->balances->first()->value }}</td>
