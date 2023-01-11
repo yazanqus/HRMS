@@ -546,7 +546,12 @@ class UserController extends Controller
         $user->department = $request->department;
         $user->linemanager = $request->linemanager;
         $user->joined_date = $request->joined_date;
-        $user->hradmin = $request->hradmin;
+        if ($hruser->office == "AO2")
+        {
+            $user->hradmin = $request->hradmin;
+
+        }
+        
         $user->email = $request->email;
 
         if (isset($request->password)) {
