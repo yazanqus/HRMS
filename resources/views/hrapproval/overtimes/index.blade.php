@@ -26,7 +26,7 @@
                             @endphp
                             <div class="card-body table-responsive-md ">
                               <!-- <div class="row"> -->
-                              <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
+                              <table id="table_id" style="font-size: 15px;"  class="table  table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                             <thead>
                                 <tr style=" background-color: #ffb678 !important;">
                                   <th style="width: 3%" scope="col">{{__('hrApprovalOvertime.id')}}</th>
@@ -48,7 +48,7 @@
                               <tbody>
                                 @foreach ($overtimes as $overtime)
                                 <tr>
-                                    <td><a href="{{ route('overtimes.show', encrypt($overtime->id)) }}" >{{ $overtime->id }}</a></td>
+                                    <td class="text-center"><a href="{{ route('overtimes.show', encrypt($overtime->id)) }}" >{{ $overtime->id }}</a></td>
                                     <td>{{ $overtime->user->name }}</td>
                                     @if ($hruser->office == "AO2")
                                   <td class="text-center">{{ $overtime->user->office }}</td>

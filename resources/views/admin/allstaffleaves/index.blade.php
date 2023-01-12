@@ -30,10 +30,10 @@
                           {{-- <p class="card-category"> Here you can manage users</p> --}}
                         </div>
                         <div class="card-body table-responsive-md">
-                        <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
+                        <table id="table_id" style="font-size: 14px;" class="table  table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                         <thead>
                             <tr  style=" background-color: #ffb678 !important;">
-                                <th style="width: 3%" scope="col">{{__('allStaffLeaves.id')}}</th>
+                                <th style="width: 3%" class="text-center" scope="col">{{__('allStaffLeaves.id')}}</th>
                                 <th style="width: 10%" scope="col">{{__('allStaffLeaves.name')}}</th>
                                 @if ($hruser->office == "AO2")
                                     <th style="width: 10%" class="text-center" scope="col">{{__('hrApprovalLeave.office')}}</th>
@@ -50,7 +50,7 @@
                           <tbody>
                             @foreach ($leaves as $leave)
                             <tr>
-                              <td><a style = "color: #007bff;" href="{{ route('leaves.show', encrypt($leave->id)) }}" >{{ $leave->id }}</a></td>
+                              <td class="text-center"><a  style = "color: #007bff;" href="{{ route('leaves.show', encrypt($leave->id)) }}" >{{ $leave->id }}</a></td>
                               <td>{{ $leave->user ? $leave->user->name : 'Deleted User' }}</td>
                               @if ($hruser->office == "AO2")
                                   <td class="text-center">{{ $leave->user->office }}</td>

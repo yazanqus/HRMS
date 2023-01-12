@@ -30,7 +30,7 @@
                           {{-- <p class="card-category"> Here you can manage users</p> --}}
                         </div>
                         <div class="card-body table-responsive-sm">
-                        <table  id="table_id" class="table table-bordered  table-responsive table-hover text-nowrap table-Secondary table-striped " >
+                        <table  id="table_id" style="font-size: 14px;" class="table table-bordered  table-responsive table-hover text-nowrap table-Secondary table-striped " >
                         <thead>
                             <tr style=" background-color: #ffb678 !important;">
                                 <th style="width: 3%"scope="col">{{__('allStaffOvertimes.id')}}</th>
@@ -52,7 +52,7 @@
                           <tbody>
                             @foreach ($overtimes as $overtime)
                             <tr>
-                              <td><a style = "color: #007bff;" href="{{ route('overtimes.show', encrypt($overtime->id)) }}" target="_blank">{{ $overtime->id }}</a></td>
+                              <td class="text-center"><a style = "color: #007bff;" href="{{ route('overtimes.show', encrypt($overtime->id)) }}" target="_blank">{{ $overtime->id }}</a></td>
                               <td>{{ $overtime->user->name }}</td>
                               @if ($hruser->office == "AO2")
                                   <td class="text-center">{{ $overtime->user->office }}</td>
