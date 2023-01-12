@@ -25,6 +25,7 @@ return [
     'Pending LM Approval' => 'Pending LM Approval',
     'Pending HR Approval' => 'Pending HR Approval',
     'Pending extra Approval' => 'Pending extra Approval',
+    'SC-overtime' => 'SC-overtime',
     'Approved by extra Approval' => 'Approved by extra Approval',
     'Declined by extra Approval' => 'Declined by extra Approval',
     'Approved' => 'Approved',
