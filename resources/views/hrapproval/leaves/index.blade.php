@@ -41,7 +41,7 @@
                             @endphp
                             <div class="card-body table-responsive-md ">
                               <!-- <div class="row"> -->
-                              <table id="table_id"  style="font-size: 14px;" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
+                              <table id="table_id"  style="font-size: 15px;" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                             <thead>
                                 <tr style=" background-color: #ffb678 !important;">
                                 <th style="width: 10%" scope="col">{{__('hrApprovalLeave.id')}}</th>
