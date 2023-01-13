@@ -251,8 +251,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <ul class="nav nav-treeview">
         <li class="nav-item" >
           <a class="nav-link {{ $activePage == 'hrleavesapproval' ? ' active' : '' }}" href="{{ route('leaves.hrapproval') }}">
-            <i style="padding-left:20px" class="fas fa-running nav-icon "></i>
-            <p style="padding-left:20px">{{ __('sidebar.leaveApproval') }}
+            <i style="padding-left:10px" class="fas fa-running nav-icon "></i>
+            <p style="padding-left:10px">{{ __('sidebar.leaveApproval') }}
                 @if ($numleavehrapproval > '0')
 
             <span class="ml-1 badge badge-primary"> {{$numleavehrapproval}} </span>
@@ -263,8 +263,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </li>
         <li class="nav-item" >
           <a class="nav-link {{ $activePage == 'hrovertimesapproval' ? ' active' : '' }}" href="{{ route('overtimes.hrapproval') }}">
-            <i style="padding-left:20px" class="fas fa-adjust nav-icon"></i>
-            <p style="padding-left:20px">{{ __('sidebar.overTimeApproval') }}
+            <i style="padding-left:10px" class="fas fa-adjust nav-icon"></i>
+            <p style="padding-left:10px">{{ __('sidebar.overTimeApproval') }}
                 @if ($numoverhrapproval > '0')
                 <span class="ml-1 badge badge-primary"> {{$numoverhrapproval}} </span>
             @endif</p>
