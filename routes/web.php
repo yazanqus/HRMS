@@ -39,6 +39,7 @@ Route::get('/', function () {
 })->name('home');
 
 
+
 Route::get('/change-language/{locale}', function ($locale) {
     if (!in_array($locale, ['en', 'ar'])) {        
         abort(404);
@@ -48,7 +49,7 @@ Route::get('/change-language/{locale}', function ($locale) {
     return redirect()->back();
   })->middleware(\App\Http\Middleware\Localization::class)->name('locale');
 
-Auth::routes();
+  Auth::routes(['register' => false]);
 
 Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::get('/leaves/export', [LeaveController::class, 'export'])->name('leaves.export');
