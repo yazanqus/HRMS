@@ -21,6 +21,11 @@ class CheckStatus
             Auth::logout();
             return redirect(route('login'))->withErrors(['Account is deactivated - Contact HR']);
         }
+
+        else if (Auth::user()->employee_number == NULL) {
+            Auth::logout();
+            return redirect(route('login'))->withErrors(['Account is deactivated - Contact HR']);
+        }
         return $next($request);
     }
 }
