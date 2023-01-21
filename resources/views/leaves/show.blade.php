@@ -156,7 +156,7 @@
                 </div>
             </div>
 
-            @foreach ($leaves as $leave)
+            
 
 <div id="myModal1{{$leave->id}}" class="modal fade" role="dialog">
   <div class="modal-dialog modal-sm">
@@ -331,7 +331,7 @@
 
     </div>
   </div>
-@endforeach
+
     
 
             {{-- <div class="card">
