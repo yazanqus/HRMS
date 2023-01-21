@@ -45,7 +45,7 @@
                                 @if ($leave->status  == "Pending LM Approval")
                                 <tr >
                                 @endif
-                                    <td><a href="{{ route('leaves.show', encrypt($leave->id)) }}" >{{ $leave->id }}</a></td>
+                                    <td><a href="{{ route('leaves.show', encrypt($leave->id)) }}" ><strong>{{ $leave->id }}</strong></a></td>
                                   <td>{{ $leave->user->name }}</td>
                                   <td class="text-center">{{ $leave->leavetype->name }}</td>
                                   @php
@@ -67,10 +67,10 @@
                                   @endif 
                                   @if ($leave->status  == "Pending LM Approval")
                                   <td class="text-center">
-                                  <div class="text-center"><button type="button" class="mb-0 form-group btn btn-xs btn-success" data-toggle="modal" data-target="#myModal{{$leave->id}}"><i class="fas fa-check-square"></i> </button></div>
+                                  <div class="text-center"><button type="button" class="mb-0 form-group btn btn-xs btn-block btn-success" data-toggle="modal" data-target="#myModal{{$leave->id}}"><i class="fas fa-check-square"></i> </button></div>
                                     </td>
                                     <td class="text-center">
-                                    <div class="text-center"><button type="button" class="mb-0 form-group btn btn-xs btn-danger" data-toggle="modal" data-target="#myModal2{{$leave->id}}"><i class="fas fa-minus-circle"></i> </button></div>
+                                    <div class="text-center"><button type="button" class="mb-0 form-group btn btn-xs btn-block btn-danger" data-toggle="modal" data-target="#myModal2{{$leave->id}}"><i class="fas fa-minus-circle"></i> </button></div>
                                         <!-- <a id="buttonSelector" class="btn btn-danger" href="{{route('leaves.declined',$leave->id)}}">{{__('leaveApproval.decline')}}</a> -->
                                     </td>
                                   @endif

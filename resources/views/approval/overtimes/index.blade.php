@@ -46,7 +46,7 @@
                                 @if ($overtime->status  == "Pending LM Approval")
                                 <tr >
                                 @endif
-                                    <td><a href="{{ route('overtimes.show', encrypt($overtime->id)) }}" >{{ $overtime->id }}</a></td>
+                                    <td><a href="{{ route('overtimes.show', encrypt($overtime->id)) }}" ><strong>{{ $overtime->id }}</strong></a></td>
                                   <td>{{ $overtime->user->name }}</td>
                                   <td class="text-center">{{ $overtime->type }}</td>
                                   @php
@@ -68,10 +68,10 @@
                                   @endif 
                                   @if ($overtime->status  == "Pending LM Approval")
                                   <td class="text-center">
-                                  <div class="text-center"><button type="button" class="mb-0 form-group btn btn-xs btn-success" data-toggle="modal" data-target="#myModal{{$overtime->id}}"><i class="fas fa-check-square"></i> </button></div>
+                                  <div class="text-center"><button type="button" class="mb-0 form-group btn btn-xs  btn-block btn-success" data-toggle="modal" data-target="#myModal{{$overtime->id}}"><i class="fas fa-check-square"></i> </button></div>
                                     </td>
                                     <td class="text-center">
-                                    <div class="text-center"><button type="button" class="mb-0 form-group btn btn-xs btn-danger" data-toggle="modal" data-target="#myModal2{{$overtime->id}}"><i class="fas fa-minus-circle"></i> </button></div>
+                                    <div class="text-center"><button type="button" class="mb-0 form-group btn btn-xs btn-block btn-danger" data-toggle="modal" data-target="#myModal2{{$overtime->id}}"><i class="fas fa-minus-circle"></i> </button></div>
                                     </td>
                                     @endif
                                 </tr>

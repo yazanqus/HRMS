@@ -42,7 +42,7 @@
                           <tbody>
                             @foreach ($leaves as $leave)
                             <tr  >
-                              <td><a href="{{ route('leaves.show', encrypt($leave->id)) }}" >{{ $leave->id }}</a></td>
+                              <td><a href="{{ route('leaves.show', encrypt($leave->id)) }}" ><strong>{{ $leave->id }}</strong></a></td>
                               <td>{{ __("databaseLeaves.{$leave->leavetype->name}") }}</td>
                               @php
                               $startdayname = Carbon\Carbon::parse($leave->start_date)->format('l');

@@ -196,8 +196,10 @@ class OvertimeController extends Controller
         $id = decrypt($overtimeid);
         // dd($id);
         $overtime = Overtime::findOrFail($id);
+        $overtimes = Overtime::all();
+        $users = User::all();
 
-        return view('overtimes.show', ['overtime' => $overtime]);
+        return view('overtimes.show', ['overtime' => $overtime,'overtimes'=>$overtimes,'users'=>$users]);
     }
 
     /**

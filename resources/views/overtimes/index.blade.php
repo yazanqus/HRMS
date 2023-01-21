@@ -43,7 +43,7 @@
                           <tbody>
                             @foreach ($overtimes as $overtime)
                             <tr>
-                                <td><a href="{{ route('overtimes.show', encrypt($overtime->id)) }}" >{{ $overtime->id }}</a></td>
+                                <td><a href="{{ route('overtimes.show', encrypt($overtime->id)) }}" ><strong>{{ $overtime->id }}</strong></a></td>
                               <td>{{__("databaseLeaves.$overtime->type")}}</td>
                               @php
                               $dayname = Carbon\Carbon::parse($overtime->date)->format('l');

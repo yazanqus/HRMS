@@ -38,7 +38,7 @@
                                     <th class="text-center" scope="col">{{__('hrApprovalOvertime.date')}}</th>
                                     <th class="text-center" scope="col">{{__('hrApprovalOvertime.startHour')}}</th>
                                     <th class="text-center" scope="col">{{__('hrApprovalOvertime.endHour')}}</th>
-                                    <th class="text-center"scope="col">{{__('hrApprovalOvertime.hours')}}</th>
+                                    <th class="text-center" scope="col">{{__('hrApprovalOvertime.hours')}}</th>
                                     <th class="text-center" scope="col">{{__('hrApprovalOvertime.status')}}</th>
                                     <th class="text-center" scope="col">{{__('hrApprovalLeave.action')}}</th>
                                     <!-- <th class="text-center" scope="col ">{{__('hrApprovalOvertime.approve')}}</th> -->
@@ -48,7 +48,7 @@
                               <tbody>
                                 @foreach ($overtimes as $overtime)
                                 <tr>
-                                    <td class="text-center"><a href="{{ route('overtimes.show', encrypt($overtime->id)) }}" >{{ $overtime->id }}</a></td>
+                                    <td class="text-center"><a href="{{ route('overtimes.show', encrypt($overtime->id)) }}" ><strong>{{ $overtime->id }}</strong></a></td>
                                     <td>{{ $overtime->user->name }}</td>
                                     @if ($hruser->office == "AO2")
                                   <td class="text-center">{{ $overtime->user->office }}</td>

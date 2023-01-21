@@ -18,7 +18,7 @@
                 <div class="container-fluid">
                     <div class="card">
                       <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{__('overtimeshow.overtimeDetails')}}</h4>
+                        <h4 class="card-title "><a href="javascript:window.history.back();"> <i class="fas fa-arrow-alt-circle-left"></i> </a>{{__('overtimeshow.overtimeDetails')}}</h4>
                         <p class="card-category"></p>
                       </div>
                       <div class="card-body">
@@ -106,8 +106,39 @@
 
     <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">{{__('overtimeshow.approvalWorlflowCurrentStatus')}} <strong>{{__("databaseLeaves.$overtime->status")}}</strong></h4>
-                          <p class="card-category"></p>
+                          <h4 class="mr-2 card-title ">{{__('overtimeshow.approvalWorlflowCurrentStatus')}} <strong>{{__("databaseLeaves.$overtime->status")}}</strong></h4>
+                          @php
+                          $authuser = Auth::user();
+
+                          if ($overtime->user->linemanager == $authuser->name && $overtime->status == "Pending LM Approval")
+                          {
+                            $showapproval = '1';
+                          }
+                          
+                          elseif ($authuser->hradmin == "yes" && $authuser->office == $overtime->user->office && $overtime->status == "Pending HR Approval")
+                          {
+                            $showapproval = '2';
+                          }
+
+                          elseif ($authuser->hradmin == "yes" && $authuser->office == "AO2" && $overtime->status == "Pending HR Approval")
+                          {
+                            $showapproval = '2';
+                          }
+
+                      
+
+                          else {
+                            $showapproval = '0';
+                          }
+                          @endphp
+                          @if ($showapproval == '1')
+
+                          <button type="button" class="mx-1 form-group btn btn-xs btn-success" data-toggle="modal" data-target="#myModal1{{$overtime->id}}"><i class="fas fa-check-square"></i> </button> <button type="button" class="mx-1 form-group btn btn-xs  btn-danger" data-toggle="modal" data-target="#myModal2{{$overtime->id}}"><i class="fas fa-minus-circle"></i> </button>
+                          @endif
+                          @if ($showapproval == '2')
+                          <button type="button" class="mx-1 form-group btn btn-xs btn-success" data-toggle="modal" data-target="#myModal3{{$overtime->id}}"><i class="fas fa-check-square"></i> </button> <button type="button" class="mx-1 form-group btn btn-xs  btn-danger" data-toggle="modal" data-target="#myModal4{{$overtime->id}}"><i class="fas fa-minus-circle"></i> </button><button  type="button" class="mx-2 form-group btn btn-xs btn-warning" data-toggle="modal" data-target="#myModal5{{$overtime->id}}"><i class="fas fa-plus-square"></i> </button>
+                          @endif
+                        
                         </div>
                         <div class="card-body">
                             
@@ -128,6 +159,182 @@
                 </div>
             </div>
 
+            @foreach ($overtimes as $overtime)
+
+<div id="myModal1{{$overtime->id}}" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+
+      <div class="modal-body text-center">
+        <p>Approving overtime: <strong>{{$overtime->id}}</strong></p>
+        <p>Requested by: <strong>{{$overtime->user->name}}</strong></p>
+        <form method="POST" action="{{route('overtimes.approved',$overtime->id)}}" class="mb-0 text-center" >
+        <div class="row justify-content-center text-center">
+        <div class="form-group  col-sm-12 flex-column d-flex">
+              <label class="form-control-label px-1">{{__('createLeave.comment')}}</small></label>
+              <input class="form-control form-outline" type="text" id="comment" autocomplete="off" name="comment" placeholder="Optional">
+
+            </div>
+            </div>
+
+          {{ csrf_field() }}
+        
+          <div class="form-group">
+              <input id="buttonSelector" type="submit" class="mb-0 mt-0 btn btn-success" value="Approve">
+          </div>
+      </form>
+      </div>
+      <div class="modal-footer mt-0">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="myModal2{{$overtime->id}}" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+
+      <div class="modal-body text-center">
+        <p>Declining overtime: <strong>{{$overtime->id}}</strong></p>
+        <p>Requested by: <strong>{{$overtime->user->name}}</strong></p>
+        <form method="POST" action="{{route('overtimes.declined',$overtime->id)}}" class="mb-0 text-center" >
+        <div class="row justify-content-center text-center">
+        <div class="form-group  col-sm-12 flex-column d-flex">
+              <label class="form-control-label px-1">{{__('createLeave.comment')}}</small></label>
+              <input class="form-control form-outline" type="text" id="comment" autocomplete="off" name="comment" placeholder="Optional">
+
+            </div>
+            </div>
+
+          {{ csrf_field() }}
+        
+          <div class="form-group">
+              <input id="buttonSelector" type="submit" class="mb-0 mt-0 btn btn-danger" value="Decline">
+          </div>
+      </form>
+      </div>
+      <div class="modal-footer mt-0">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="myModal3{{$overtime->id}}" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-body text-center">
+          <p>Approving overtime: <strong>{{$overtime->id}}</strong></p>
+          <p>Requested by: <strong>{{$overtime->user->name}}</strong></p>
+          <form method="POST" action="{{route('overtimes.hrapproved',$overtime->id)}}" class="mb-0 text-center" >
+          <div class="row justify-content-center text-center">
+          <div class="form-group  col-sm-12 flex-column d-flex">
+                <label class="form-control-label px-1">{{__('createLeave.comment')}}</small></label>
+                <input class="form-control form-outline" type="text" id="comment" autocomplete="off" name="comment" placeholder="Optional">
+
+              </div>
+              </div>
+
+            {{ csrf_field() }}
+          
+            <div class="form-group">
+                <input id="buttonSelector" type="submit" class="mb-0 mt-0 btn btn-success" value="Approve">
+            </div>
+        </form>
+        </div>
+        <div class="modal-footer mt-0">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div id="myModal4{{$overtime->id}}" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-body text-center">
+          <p>Declining overtime: <strong>{{$overtime->id}}</strong></p>
+          <p>Requested by: <strong>{{$overtime->user->name}}</strong></p>
+          <form method="POST" action="{{route('overtimes.hrdeclined',$overtime->id)}}" class="mb-0 text-center" >
+          <div class="row justify-content-center text-center">
+          <div class="form-group  col-sm-12 flex-column d-flex">
+                <label class="form-control-label px-1">{{__('createLeave.comment')}}</small></label>
+                <input class="form-control form-outline" type="text" id="comment" autocomplete="off" name="comment" placeholder="Optional">
+
+              </div>
+              </div>
+
+            {{ csrf_field() }}
+          
+            <div class="form-group">
+                <input id="buttonSelector" type="submit" class="mb-0 mt-0 btn btn-danger" value="Decline">
+            </div>
+        </form>
+        </div>
+        <div class="modal-footer mt-0">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div id="myModal5{{$overtime->id}}" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-body text-center">
+          <p>Forwarding overtime: <strong>{{$overtime->id}}</strong></p>
+          <p>Requested by: <strong>{{$overtime->user->name}}</strong></p>
+          <form method="POST" action="{{route('overtimes.forward',$overtime->id)}}" class="mb-0 text-center" >
+          <div class="row justify-content-center text-center">
+          <div class="form-group  col-sm-12 flex-column d-flex">
+                <label class="form-control-label px-1">{{__('createLeave.extra')}}</small></label>
+                <input class="form-control form-outline" type="text" list="FavoriteColor" id="color" placeholder="Choose Staff Name.."
+                                            name="extra" value="{{ old('extra') }}" autocomplete="off">
+                                        <datalist id="FavoriteColor">
+                                            @foreach ($users as $user)
+                                                <option value="{{ $user->name }}"> </option>
+                                            @endforeach
+                                        </datalist>
+
+              </div>
+              </div>
+
+            {{ csrf_field() }}
+          
+            <div class="form-group">
+                <input id="buttonSelector" type="submit" class="mb-0 mt-0 btn btn-warning" value="Forward">
+            </div>
+        </form>
+        </div>
+        <div class="modal-footer mt-0">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+@endforeach
             {{-- <div class="card">
                 <div class="card-header card-header-primary">
                   <h4 class="card-title ">Leaves - Taken</h4>

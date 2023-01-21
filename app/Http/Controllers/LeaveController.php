@@ -2307,7 +2307,9 @@ class LeaveController extends Controller
         // dd($id);
         $leave = Leave::findOrFail($id);
         // $leavetype = Leavetype::where('id', $leave-)->get();
-        return view('leaves.show', ['leave' => $leave]);
+        $leaves = Leave::all();
+        $users = User::all();
+        return view('leaves.show', ['leave' => $leave, 'leaves'=>$leaves,'users'=>$users]);
     }
 
     /**

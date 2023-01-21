@@ -62,7 +62,7 @@
                               <tbody>
                                 @foreach ($leaves as $leave)
                                 <tr>
-                                  <td class="text-center"><a href="{{ route('leaves.show', encrypt($leave->id)) }}" target="_blank">{{ $leave->id }}</a></td>
+                                  <td class="text-center"><a href="{{ route('leaves.show', encrypt($leave->id)) }}" ><strong>{{ $leave->id }}</strong></a></td>
                                   <td>{{ $leave->user->name }}</td>
                                   @if ($hruser->office == "AO2")
                                   <td class="text-center">{{ $leave->user->office }}</td>
