@@ -17,7 +17,7 @@
                     <div class="card">
                       <div class="card-header card-header-primary">
                       
-                        <h4 class="card-title "><a href="javascript:window.history.back();"> <i class="fas fa-arrow-alt-circle-left"></i> </a>    {{__('leaveShow.leaveDetails')}}</h4>
+                        <h4 class="card-title "><a href="{{ URL::previous() }}"> <i class="fas fa-arrow-alt-circle-left"></i> </a>    {{__('leaveShow.leaveDetails')}}</h4>
                         <p class="card-category"></p>
                       </div>
                       <div class="card-body">

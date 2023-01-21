@@ -17,7 +17,7 @@
                 <div class="container-fluid">
                     <div class="card">
                       <div class="card-header card-header-primary">
-                        <h4 class="card-title "> <a href="javascript:window.history.back();"> <i  class="fas fa-arrow-alt-circle-left"></i> </a> {{__('edituser.editUser')}}</h4>
+                        <h4 class="card-title "> <a href="{{ URL::previous() }}"> <i  class="fas fa-arrow-alt-circle-left"></i> </a> {{__('edituser.editUser')}}</h4>
                       </div>
 
 
