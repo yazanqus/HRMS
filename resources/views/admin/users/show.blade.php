@@ -10,6 +10,7 @@
                         
                         <br>
                         <h3>
+                        <a href="javascript:window.history.back();"> <i style="font-size: 0.73em;" class="fas fa-arrow-alt-circle-left"></i> </a>
                              <b>{{$user->name}}
                                  <a href="{{route('admin.users.edit', $user)}}" role="button" class="btn btn-sm btn-outline-primary">{{__('showuser.edit')}}
                                   <i class="ml-2 fas fa-lg fa-user-cog"></i>
@@ -38,7 +39,7 @@
                                 @if ($userstatus !== 'suspended' && $sus=='1')
 
                                 <a href="{{route('admin.users.suspend', $user)}}" role="button" class="btn btn-sm btn-outline-warning">{{__('showuser.suspend')}}
-                                    <i class="ml-2 fas fa-lg fa-minus-circle"></i>
+                                    <i  class="ml-2 fas fa-lg fa-minus-circle"></i>
                                 </a>
                                 @endif
                                 @endif
