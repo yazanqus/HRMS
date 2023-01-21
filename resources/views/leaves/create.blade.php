@@ -228,6 +228,10 @@ $(document).on('click', '.btn-1', function () {
 $(this).addClass('activate');
 });
 
+// $(document).on('change', 'leavetype_id', function () {
+//   $("input[type=date]").val("");
+// });
+
   $('#hourslabel').hide();
         $('#hours').hide();
         $('#minus').hide();
@@ -248,6 +252,8 @@ $('#leavetype_id').on('change',function(){
 
   // $('#leavetype_id').prop("disabled", true); 
   // $('#leavetype_id').prop('disabled', 'disabled');
+  $('#start_date').val("");
+  $('#end_date').val("");
   $('.dropdown-toggle').prop('disabled', true);
   $('#reset').show();
 
