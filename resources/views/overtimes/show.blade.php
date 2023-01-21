@@ -159,7 +159,7 @@
                 </div>
             </div>
 
-            @foreach ($overtimes as $overtime)
+         
 
 <div id="myModal1{{$overtime->id}}" class="modal fade" role="dialog">
   <div class="modal-dialog modal-sm">
@@ -334,7 +334,7 @@
 
     </div>
   </div>
-@endforeach
+
             {{-- <div class="card">
                 <div class="card-header card-header-primary">
                   <h4 class="card-title ">Leaves - Taken</h4>
