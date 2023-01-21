@@ -27,7 +27,7 @@
                         <div class="card-body table-responsive-md">
 
 
-                        <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
+                        <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary">
                             <thead>
                             <tr style=" background-color: #ffb678 !important;">
                             <th  style="width: 3%"  scope="col">{{__('overtimesIndex.id')}}</th>
@@ -42,7 +42,12 @@
                           </thead>
                           <tbody>
                             @foreach ($overtimes as $overtime)
-                            <tr>
+                            @if ($overtime->status == "Approved")
+                                <tr style=" background-color: #D9F8C4 !important;" >
+                                @endif
+                                @if ($overtime->status  == "Declined by LM" OR $overtime->status  == "Declined by HR" )
+                                <tr style=" background-color: #FAD4D4 !important;" >
+                                @endif
                                 <td><a href="{{ route('overtimes.show', encrypt($overtime->id)) }}" ><strong>{{ $overtime->id }}</strong></a></td>
                               <td>{{__("databaseLeaves.$overtime->type")}}</td>
                               @php

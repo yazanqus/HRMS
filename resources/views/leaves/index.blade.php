@@ -27,7 +27,7 @@
 
                         <div class="card-body table-responsive-md">
 
-                        <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
+                        <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary">
                         <thead>
                             <tr style=" background-color: #ffb678 !important;">
                             <th style="width: 3%" scope="col">{{__('leaves.id')}}</th>
@@ -41,7 +41,12 @@
                           </thead>
                           <tbody>
                             @foreach ($leaves as $leave)
-                            <tr  >
+                            @if ($leave->status == "Approved")
+                                <tr style=" background-color: #D9F8C4 !important;" >
+                                @endif
+                                @if ($leave->status  == "Declined by LM" OR $leave->status  == "Declined by HR" )
+                                <tr style=" background-color: #FAD4D4 !important;" >
+                                @endif
                               <td><a href="{{ route('leaves.show', encrypt($leave->id)) }}" ><strong>{{ $leave->id }}</strong></a></td>
                               <td>{{ __("databaseLeaves.{$leave->leavetype->name}") }}</td>
                               @php
