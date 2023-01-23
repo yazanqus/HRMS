@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
+
 <html lang="{{App::getLocale()}}" dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}">
 <head>
   <meta charset="utf-8">
@@ -106,26 +103,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-<!-- Brand Logo -->
+<!-- Logo -->
 <a href="{{ route('welcome') }}" class="text-center brand-link">
-  {{-- <img src="{{ asset('adminlte') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
+  
   <p class="h1 mb-0" style="font-size:2.3rem;"> <img class="mb-0 ml-0" src="{{url('/nrc-nobg2.png')}}"  alt="" style="width:190px;height:60px;"></p>
 </a>
 
 <!-- Sidebar -->
 <div class="sidebar">
-  <!-- Sidebar user panel (optional) -->
 
 
 
-  <!-- SidebarSearch Form -->
 
 
   <!-- Sidebar Menu -->
   <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-      <!-- Add icons to the links using the .nav-icon class
-           with font-awesome or any other icon font library -->
+ 
 
            <li class="nav-item">
             <a class="nav-link {{ $activePage == 'dashboard' ? ' active' : '' }}" href="{{ route('welcome') }}">
@@ -501,7 +495,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- Control Sidebar -->
 {{-- <aside class="control-sidebar control-sidebar-dark">
-<!-- Control sidebar content goes here -->
+<!-- Control sidebar -->
 <div class="p-3">
   <h5>Title</h5>
   <p>Sidebar content</p>
