@@ -34,10 +34,10 @@
                             <th style="width: 20%" scope="col">{{__('staffleaves.name')}}</th>
                             <!-- <th style="width: 10%" scope="col">{{__('staffleaves.birthDate')}}</th> -->
                             <!-- <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.email')}}</th> -->
-                            <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.employeeNumber')}}</th>
-                            <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.balance')}}</th>
+                            <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.employeeNumber')}}</th>
+                            <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.balance')}}</th>
                             <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.position')}}</th>
-                            <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.joinedDate')}}</th>
+                            <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.joinedDate')}}</th>
 
                           </tr>
                         </thead>
@@ -50,7 +50,14 @@
                             <!-- <td>{{ $user->birth_date }}</td> -->
                             <!-- <td class="text-center">{{ $user->email }}</td> -->
                             <td class="text-center">{{ $user->employee_number }}</td>
-                            <td class="text-center">{{ $user->balances->first()->value }}</td>
+                            <td class="text-center">
+                              @if ($user->contract == "Service") 
+
+                              {{ $user->balances->first()->value }}/NA/NA
+                              @endif
+                              @if ($user->contract !== "Service")
+                              {{ $user->balances->first()->value }}/{{ $user->balances->get(1)->value }}/{{ $user->balances->get(17)->value }}</td>
+                              @endif
                             <td class="text-center">{{ $user->position }}</td>
                             <td class="text-center">{{ $user->joined_date }}</td>
 
@@ -79,11 +86,11 @@
                             <tr style=" background-color: #ffb678 !important;">
                                 <th style="width: 5%" scope="col">{{__('staffleaves.id-Leave')}}</th>
                                 <th style="width: 15%" scope="col">{{__('staffleaves.name')}}</th>
-                                <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.leaveType')}}</th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.leaveType')}}</th>
                                 <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.startDate')}}</th>
                                 <th style="width: 20%"  class="text-center"scope="col">{{__('staffleaves.endDate')}}</th>
-                                <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.days')}}</th>
-                                <th style="width: 30%" class="text-center" scope="col">{{__('staffleaves.status')}}</th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.days')}}</th>
+                                <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.status')}}</th>
                                 <!-- <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.dateCreated')}}</th> -->
                             </tr>
                           </thead>
@@ -122,12 +129,12 @@
                       <thead>
                           <tr style=" background-color: #ffb678 !important;">
                           <th style="width: 10%" scope="col">{{__('staffleaves.id-Overtime')}}</th>
-                              <th style="width: 10%" scope="col">{{__('staffleaves.name')}}</th>
+                              <th style="width: 20%" scope="col">{{__('staffleaves.name')}}</th>
                               <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.overtimeType')}}</th>
                               <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.date')}}</th>
                               <th style="width: 10%"  class="text-center"scope="col">{{__('staffleaves.startHour')}}</th>
                               <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.endHour')}}</th>
-                              <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.hours')}}</th>
+                              <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.hours')}}</th>
                               <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.status')}}</th>
                               <!-- <th style="width: 15%" class="text-center" scope="col">{{__('staffleaves.dateCreated')}}</th> -->
                           </tr>
