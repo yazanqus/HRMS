@@ -1,7 +1,7 @@
 @extends('layouts.app', ['activePage' => 'allstaffleaves', 'titlePage' => ('allstaffleaves')])
 
 @section('content')
-
+<div id="load"></div>
           <div class="content">
               <div class="container-fluid">
                 <div class="row">
@@ -77,6 +77,15 @@
                   </div>
               </div>
           </div>
+          <style>
+            #load{
+              position:absolute;
+width: 100%;
+height: 100vh;
+    z-index:9999;
+    background:#fff url("/loading.gif") no-repeat center center;
+}
+          </style>
  @endsection
 
 
@@ -89,6 +98,16 @@
 
 
   <script>
+
+document.onreadystatechange = function () {
+  var state = document.readyState
+  if (state == 'complete') {
+         document.getElementById('interactive');
+         document.getElementById('load').style.visibility="hidden";
+  }
+}
+
+
      $(document).ready( function () {
     $('#table_id').DataTable(
         {
