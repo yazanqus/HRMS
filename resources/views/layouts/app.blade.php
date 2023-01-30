@@ -519,7 +519,7 @@
   @endauth
 </div>
 <style>
-            #load{
+            .loadingDiv{
               position:absolute;
 width: 100%;
 height: 100vh;
@@ -552,13 +552,9 @@ height: 100vh;
 @stack('scripts')
 
 <script>
-document.onreadystatechange = function () {
-  var state = document.readyState
-  if (state == 'complete') {
-         document.getElementById('interactive');
-         document.getElementById('load').style.visibility="hidden";
-  }
-}
+$('a').click(function(){
+   $('<div class=loadingDiv>loading...</div>').prependTo(document.body); 
+});
 
 </script>
 
