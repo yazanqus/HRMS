@@ -277,14 +277,14 @@
 
 
   <li class="nav-item">
-    <a id="as" class="nav-link {{ $activePage == 'allstaffleaves' ? ' active' : '' }}" href="{{ route('admin.allstaffleaves.index') }}">
+    <a  class="as nav-link {{ $activePage == 'allstaffleaves' ? ' active' : '' }}" href="{{ route('admin.allstaffleaves.index') }}">
         <i class="fas fa-paste nav-icon"></i>
         <p>{{ __('sidebar.allStaffLeaves') }}</p>
     </a>
   </li>
 
   <li class="nav-item">
-    <a id="as" class="nav-link {{ $activePage == 'allstaffovertimes' ? ' active' : '' }}" href="{{ route('admin.allstaffovertimes.index') }}">
+    <a  class="as nav-link {{ $activePage == 'allstaffovertimes' ? ' active' : '' }}" href="{{ route('admin.allstaffovertimes.index') }}">
         <i class="fas fa-adjust nav-icon"></i>
         <p>{{ __('sidebar.allStaffOverTimes') }}</p>
     </a>
@@ -552,7 +552,7 @@ height: 100vh;
 @stack('scripts')
 
 <script>
-$('#as').click(function(){
+$('.as').click(function(){
    $('<div class=loadingDiv>loading...</div>').prependTo(document.body); 
 });
 
