@@ -1,7 +1,7 @@
 @extends('layouts.app', ['activePage' => 'allstaffleaves', 'titlePage' => ('allstaffleaves')])
 
 @section('content')
-<div id="load"></div>
+
           <div class="content">
               <div class="container-fluid">
                 <div class="row">
@@ -99,13 +99,7 @@ height: 100vh;
 
   <script>
 
-document.onreadystatechange = function () {
-  var state = document.readyState
-  if (state == 'complete') {
-         document.getElementById('interactive');
-         document.getElementById('load').style.visibility="hidden";
-  }
-}
+
 
 
      $(document).ready( function () {

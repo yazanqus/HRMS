@@ -43,7 +43,7 @@
 @auth
 
 <div class="wrapper">
-
+<div id="load"></div>
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 <!-- Left navbar links -->
@@ -541,6 +541,16 @@
 <script  src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
 
 @stack('scripts')
+
+<script>
+  document.onreadystatechange = function () {
+  var state = document.readyState
+  if (state == 'complete') {
+         document.getElementById('interactive');
+         document.getElementById('load').style.visibility="hidden";
+  }
+}
+</script>
 
 </body>
 </html>
