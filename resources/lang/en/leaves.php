@@ -12,5 +12,8 @@ return [
     'endDate' => 'End Date' ,
     'days' => 'Days' ,
     'status' => 'Status',
+    'attention' => 'Attention!',
+    'deletemessage' => 'Are you sure you want to delete request ID:',
+    'Cancel' => 'Cancel',
     'action' => 'Action' ,
 ];

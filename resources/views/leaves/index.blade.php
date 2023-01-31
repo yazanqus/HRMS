@@ -99,11 +99,11 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h4 style="color: red" class="modal-title">Attention!</h4>
+          <h4 style="color: red" class="modal-title">{{__('leaves.attention')}}</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <p>Are you sure you want to delete leave ID: <strong>{{$leave->id}}</strong>.</p>
+          <p>{{__('leaves.deletemessage')}} <strong>{{$leave->id}}</strong>.</p>
           <form method="POST" action="{{ route('leaves.destroy', $leave->id) }}" class="text-center" >
             {{-- @csrf
             @method('DELETE') --}}
@@ -116,7 +116,7 @@
         </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{__('leaves.Cancel')}}</button>
         </div>
       </div>
 
