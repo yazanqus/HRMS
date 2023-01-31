@@ -2825,21 +2825,45 @@ class LeaveController extends Controller
            
         ]);
 
+
+        $hruser = Auth::user();
+
         $name= $request->name;
         $start_date=$request->start_date;
         $end_date=$request->end_date;
         // $leavetype=$request->leavetype;
         // dd($request->name);
         if ($request->name == null)
-        {
-            $leaves = Leave::where([
+        {   
+            if ($hruser->office == "AO2") {
+                $leaves = Leave::where([
+    
+                    
+                    ['start_date', '>=', $start_date],
+                    ['end_date', '<=', $end_date],
+        
+        
+                ])->get();
+            }
 
+            else {
+                $staffwithsameoffice = User::where('office',$hruser->office)->get();
+            if (count($staffwithsameoffice))
+            {
+                $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
+                    return collect($staffwithsameoffice->toArray())
+                        ->only(['id'])
+                        ->all();
+                });
+                $leaves = Leave::wherein('user_id', $hrsubsets)->where([
+                    ['start_date', '>=', $start_date],
+                    ['end_date', '<=', $end_date],
+                ])->get();
                 
-                ['start_date', '>=', $start_date],
-                ['end_date', '<=', $end_date],
-    
-    
-            ])->get();
+            }       
+            }
+            
+
         }
         else
         {
