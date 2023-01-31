@@ -43,7 +43,7 @@
 @auth
 
 <div class="wrapper">
-<div id="load"></div>
+
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 <!-- Left navbar links -->
@@ -117,6 +117,7 @@
 
 
   <!-- Sidebar Menu -->
+  
   <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
  
@@ -407,6 +408,7 @@
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
+<div id="load"></div>
 @yield('content')
 <!-- Content Header (Page header) -->
 {{-- <div class="content-header">
@@ -553,7 +555,7 @@ height: 100vh;
 
 <script>
 $('.as').click(function(){
-   $('<div class=loadingDiv>loading...</div>').prependTo(document.body); 
+   $('<div class=loadingDiv>loading...</div>').prependTo("#load"); 
 });
 
 </script>
