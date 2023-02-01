@@ -32,7 +32,7 @@ return [
 'AnnualleaveSecondhalf'=> 'Annual Leave - Second half',
 'Unpaidleave'=> 'Unpaid Leave',
 'UnpaidleaveFirsthalf'=> 'Unpaid Leave - First half',
-'UnpaidleaveSecondhalf'=> 'Unpaid Leave - First half',
+'UnpaidleaveSecondhalf'=> 'Unpaid Leave - Second half',
 'Compensation'=> 'Compensation',
 'Compensationhours'=> 'Compensation - Hours',
 'Marriageleave'=> 'Marriage Leave',
