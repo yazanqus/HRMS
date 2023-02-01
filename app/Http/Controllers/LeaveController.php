@@ -1828,7 +1828,7 @@ class LeaveController extends Controller
         //unpaid halfday
         elseif ($request->leavetype_id == '16' || $request->leavetype_id == '17') {
 
-            if ($probationdays >= '90') {
+           
 
                 if ($unpaidleavebalance >= '0.5') {
 
@@ -1967,9 +1967,7 @@ class LeaveController extends Controller
                 } else {
                     return redirect()->back()->with("error",trans('leaveerror.nobalance'));
                 }
-            } else {
-                return redirect()->back()->with("error", trans('leaveerror.prob'));
-            }
+            
         }
 
         //first degree days should be less than 5 days
@@ -2818,6 +2816,7 @@ class LeaveController extends Controller
     public function search(Request $request)
     {
         $request->validate([
+       
             'start_date' => 'required',
             'end_date' => 'required|after_or_equal:start_date',
             // 'leavetype' => 'required',
@@ -2829,16 +2828,18 @@ class LeaveController extends Controller
         $hruser = Auth::user();
 
         $name= $request->name;
+        $leavetype = $request->leavetype_id;
         $start_date=$request->start_date;
         $end_date=$request->end_date;
         // $leavetype=$request->leavetype;
         // dd($request->name);
+        dd($leavetype);
         if ($request->name == null)
         {   
             if ($hruser->office == "AO2") {
                 $leaves = Leave::where([
     
-                    
+                    ['leavetype_id', $leavetype],
                     ['start_date', '>=', $start_date],
                     ['end_date', '<=', $end_date],
         
