@@ -2833,18 +2833,37 @@ class LeaveController extends Controller
         $end_date=$request->end_date;
         // $leavetype=$request->leavetype;
         // dd($request->name);
-        dd($leavetype);
+        // dd($leavetype);
+
+        if ($leavetype == Null)
+
+        {
+            $leavetypee = Leavetype::all()->pluck('id')->toArray();
+        
+        }
+
+        else if ($leavetype !== Null)
+        {
+            $leavetypee = $leavetype;
+        }
+
         if ($request->name == null)
         {   
             if ($hruser->office == "AO2") {
-                $leaves = Leave::where([
-    
-                    ['leavetype_id', $leavetype],
-                    ['start_date', '>=', $start_date],
-                    ['end_date', '<=', $end_date],
-        
-        
-                ])->get();
+                    $leaves = Leave::where([
+                            ['start_date', '>=', $start_date],
+                            ['end_date', '<=', $end_date],
+                        ])
+                    ->WhereIn('leavetype_id', $leavetypee)->get();
+
+
+        //         $leaves = Leave::where(function($query) use ($request) {
+        //             $query->where([
+        //                     ['start_date', '>=', $start_date],
+        //                 ['end_date', '<=', $request->end_date],
+        //             ])
+        //         ->WhereIn('leavetype_id', $leavetypee);
+        // })->get();
             }
 
             else {
@@ -2856,10 +2875,10 @@ class LeaveController extends Controller
                         ->only(['id'])
                         ->all();
                 });
-                $leaves = Leave::wherein('user_id', $hrsubsets)->where([
+                $leaves = Leave::whereIn('user_id', $hrsubsets)->where([
                     ['start_date', '>=', $start_date],
                     ['end_date', '<=', $end_date],
-                ])->get();
+                ])->WhereIn('leavetype_id', $leavetypee)->get();
                 
             }       
             }
@@ -2879,7 +2898,7 @@ class LeaveController extends Controller
                 ['end_date', '<=', $end_date],
     
     
-            ])->get();
+            ])->WhereIn('leavetype_id', $leavetypee)->get();
         }
         
 

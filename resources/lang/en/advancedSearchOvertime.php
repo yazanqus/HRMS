@@ -7,6 +7,7 @@ return [
     'overtimeStartDate' => 'From Date' ,
     'overtimeEndDate' => 'To Date' ,
     'view' => 'View' ,
+    'overtimetype' => 'Overtime type (If not provided, it will consider all types)' ,
     'cancel' => 'Cancel'
 
 ];

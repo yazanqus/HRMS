@@ -7,6 +7,7 @@ return [
     'leaveStartDate' => 'Leave Start Date' ,
     'leaveEndDate' => 'Leave End Date' ,
     'view' => 'View' ,
+    'leavetype' => 'Leave type (If not provided, it will consider all types)' ,
     'cancel' => 'Cancel'
 
 ];

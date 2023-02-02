@@ -528,9 +528,27 @@ class OvertimeController extends Controller
         $hruser = Auth::user();
 
         $name= $request->name;
+        $overtimetype = $request->overtime;
         $start_date=$request->start_date;
         $end_date=$request->end_date;
-        // $leavetype=$request->leavetype;
+       
+       
+
+
+
+        if ($overtimetype == Null)
+
+        {
+            $overtimetypee = ['workday','week-end','holiday','SC-overtime'];
+           
+        }
+
+        else if ($overtimetype !== Null)
+        {
+            $overtimetypee = $overtimetype;
+        }
+
+
         if ($request->name == null)
         {
 
@@ -542,7 +560,7 @@ class OvertimeController extends Controller
                     ['date', '<=', $end_date],
         
         
-                ])->get();
+                ])->WhereIn('type', $overtimetypee)->get();
             }
             else {
                 $staffwithsameoffice = User::where('office',$hruser->office)->get();
@@ -556,7 +574,7 @@ class OvertimeController extends Controller
                 $overtimes = Overtime::wherein('user_id', $hrsubsets)->where([
                     ['date', '>=', $start_date],
                     ['date', '<=', $end_date],
-                ])->get();
+                ])->WhereIn('type', $overtimetypee)->get();
                 
             }       
             }
@@ -575,7 +593,7 @@ class OvertimeController extends Controller
                 ['date', '<=', $end_date],
     
     
-            ])->get();
+            ])->WhereIn('type', $overtimetypee)->get();
         }
        
 

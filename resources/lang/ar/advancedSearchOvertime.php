@@ -6,6 +6,8 @@ return [
     'choose' => 'اختار' ,
     'overtimeStartDate' => 'من تاريخ' ,
     'overtimeEndDate' => 'الى تاريخ ' ,
+    'overtimetype' => 'نوع الدوام الإضافي' ,
+
     'view' => 'عرض' ,
     'cancel' => 'الغاء'
 ];

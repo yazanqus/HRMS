@@ -50,6 +50,31 @@
                                      </div>
                                      
                                       </div>
+
+
+                                      
+                                      <div class="row justify-content-between text-left">
+                                      <div class="form-group {{ $errors->has('overtime') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
+                                        <label class="form-control-label  px-1">{{__('advancedSearchOvertime.overtimetype')}}</label>
+                                        <select
+                                                    class="form-control selectpicker" data-size="4" data-style="btn btn-outline-secondary"
+                                                    name="overtime[]" id="overtime" type="text" multiple
+                                                    placeholder="{{ __('Leave Type') }}"
+                                                    >
+                                                   
+
+                                                    <option value="workday">{{__('createOvertime.workday')}}</option>
+                                                    <option value="week-end">{{__('createOvertime.Week-end')}}</option>
+                                                    <option value="holiday">{{__('createOvertime.Holiday')}}</option>
+                                                    <option value="SC-overtime">{{__('createOvertime.ServiceContractOvertime')}}</option>
+                                                    
+                                                    
+
+
+                                                </select>
+                                     </div>
+                                     
+                                      </div>
                                       
                               
                                       <div class="row justify-content-between text-left">
@@ -68,6 +93,10 @@
                                                @endif
                                         </div>
                                       </div>
+
+
+
+
 
 
                                       {{-- MUST ADD requirepd for radio check --}}
@@ -104,8 +133,10 @@
 @endsection
 
 @push('scripts')
+<script src="{{ asset('select/js/bootstrap-select.min.js')}}"></script>
 
 <script>
+  
   $("#eye1").on('click',function() {
 
 if($(this).hasClass('fa-eye-slash')){

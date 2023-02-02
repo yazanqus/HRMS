@@ -6,6 +6,7 @@ return [
     'choose' => 'اختار' ,
     'leaveStartDate' => 'تاريخ بدء الإجازات' ,
     'leaveEndDate' => 'تاريخ انتهاء الإجازات ' ,
+    'leavetype' => 'نوع الإجازة' ,
     'view' => 'عرض' ,
     'cancel' => 'الغاء'
 ];
