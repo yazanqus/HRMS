@@ -10,6 +10,7 @@ return [
     'holiday' => 'The Data should be a Holiday from NRC',
     'reason' => 'Overtime Reason is required' ,
     'mimes' => 'The file must be a type of: jpeg, png, jpg, pdf',
+    'sameday' => 'You have already submitted an overtime on the selected day',
     'max' => 'The file must smaller than 3 MB' ,
 
 ];
