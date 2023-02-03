@@ -5,14 +5,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HR 360</title>
-  <link rel="icon" href="{{ asset('adminlte/hr.jpg')}}"/>
+  <link rel="icon" href="{{ asset('/hr.jpg')}}"/>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
   <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('fronththeme/plugins/fontawesome-free/css/all.min.css')}}">
 
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
 
@@ -24,9 +24,9 @@
   <!-- Theme style -->
   @if (App::isLocale('ar'))
 
-  <link rel="stylesheet" href="{{ asset('adminlte') }}/dist/css/adminlte.rtl.min.css">
+  <link rel="stylesheet" href="{{ asset('fronththeme') }}/dist/css/fronththeme.rtl.min.css">
   @else
-  <link rel="stylesheet" href="{{ asset('adminlte') }}/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="{{ asset('fronththeme') }}/dist/css/fronththeme.min.css">
   @endif
 </head>
 <body class="hold-transition sidebar-mini">
@@ -535,19 +535,19 @@ height: 100vh;
 
 <!-- jQuery -->
 
-{{-- <script src="{{ asset('adminlte') }}/plugins/jquery/jquery.min.js"></script>
+{{-- <script src="{{ asset('fronththeme') }}/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="{{ asset('adminlte') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('adminlte') }}/dist/js/adminlte.min.js"></script>
+<script src="{{ asset('fronththeme') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- fronththeme App -->
+<script src="{{ asset('fronththeme') }}/dist/js/fronththeme.min.js"></script>
 
-<script src={{"/adminlte/dist/js/adminlte.min.js"}}></script>
-<script src={{"/adminlte/plugins/jquery/jquery.min.js"}}></script>
-<script src={{"/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"}}></script> --}}
+<script src={{"/fronththeme/dist/js/fronththeme.min.js"}}></script>
+<script src={{"/fronththeme/plugins/jquery/jquery.min.js"}}></script>
+<script src={{"/fronththeme/plugins/bootstrap/js/bootstrap.bundle.min.js"}}></script> --}}
 
-<script src="{{ asset('adminlte/plugins/jquery/jquery.min.js')}}"></script>
-<script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{ asset('adminlte/dist/js/adminlte.min.js')}}"></script>
+<script src="{{ asset('fronththeme/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{ asset('fronththeme/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{ asset('fronththeme/dist/js/fronththeme.min.js')}}"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
 <script  src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
 
