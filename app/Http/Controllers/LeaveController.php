@@ -2820,7 +2820,7 @@ class LeaveController extends Controller
             'start_date' => 'required',
             'end_date' => 'required|after_or_equal:start_date',
             // 'leavetype' => 'required',
-            'name'=> 'required|exists:users',
+            'name',
            
         ]);
 
