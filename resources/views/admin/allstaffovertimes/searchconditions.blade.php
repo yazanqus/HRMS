@@ -14,7 +14,9 @@
             </div>
             <br>
 
-
+            @php
+$hruser = Auth::user();
+@endphp
 
             <div class="container-fluid">
 
@@ -48,7 +50,23 @@
                                             @endforeach
                                         </datalist>
                                      </div>
-                                     
+                                     @if ($hruser->office == "AO2")
+                                     <div class="form-group {{ $errors->has('office') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
+                                        <label class="test form-control-label  px-1">{{__('advancedSearchLeave.staffoffice')}}</label>
+                                        <select
+                                                    class=" test form-control form-outline   selectpicker" data-size="5" data-style="btn btn-outline-secondary"
+                                                    name="office[]" id="office" type="text" multiple>
+
+                                                    <option value="AO2">AO2</option>
+                                                    <option value="AO3">AO3</option>
+                                                    <option value="AO4">AO4</option>
+                                                    <option value="AO6">AO6</option>
+                                                    <option value="AO7">AO7</option>
+
+
+                                                </select>
+                                     </div>
+                                     @endif
                                       </div>
 
 
@@ -67,8 +85,28 @@
                                                     <option value="week-end">{{__('createOvertime.Week-end')}}</option>
                                                     <option value="holiday">{{__('createOvertime.Holiday')}}</option>
                                                     <option value="SC-overtime">{{__('createOvertime.ServiceContractOvertime')}}</option>
+                                                  
                                                     
                                                     
+
+
+                                                </select>
+                                     </div>
+
+
+
+                                     <div  class="form-group {{ $errors->has('status') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
+                                        <label class="form-control-label  px-1">{{__('advancedSearchOvertime.overtimestatus')}}</label>
+                                        <select
+                                                    class="form-control form-outline   selectpicker" data-size="5" data-style="btn btn-outline-secondary"
+                                                    name="status[]" id="status" type="text" multiple>
+                                                   
+
+                                                    <option value="Approved">Approved</option>
+                                                    <option value="Declined by HR">Declined by HR</option>
+                                                    <option value="Declined by LM">Declined by LM</option>
+                                                    <option value="Pending HR Approval">Pending HR Approval</option>
+                                                    <option value="Pending LM Approval">Pending LM Approval</option>
 
 
                                                 </select>
@@ -137,24 +175,23 @@
 
 <script>
   
-  $("#eye1").on('click',function() {
+  $(document).ready(function() {
 
-if($(this).hasClass('fa-eye-slash')){
+$('#color').on('change',function(){
 
-  $(this).removeClass('fa-eye-slash');
+  
+if ($('#color').val().length !== 0)
+{
+$(".test").hide();
 
-  $(this).addClass('fa-eye');
-
-  $('#password').attr('type','text');
-
-}else{
-
-  $(this).removeClass('fa-eye');
-
-  $(this).addClass('fa-eye-slash');
-
-  $('#password').attr('type','password');
 }
+else {
+$(".test").show();
+}
+
+
+});
+
 });
 </script>
 

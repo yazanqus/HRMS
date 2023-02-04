@@ -10,7 +10,7 @@ return [
     'entries' => 'Entries',
     'id' => '#',
     'name' => 'Requester',
-    'leaveType' => 'leaveType',
+    'leaveType' => 'Leave Type',
     'startDate' => 'Start Date' ,
     'endDate' =>'End Date' ,
     'days' => 'Days',

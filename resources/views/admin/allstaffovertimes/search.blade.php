@@ -15,7 +15,9 @@
                 </div>
                 <br>
 
-
+                @php
+                            $hruser = Auth::user();
+                            @endphp
                   <div class="container-fluid">
                       <div class="card">
                         <div class="card-header card-header-primary">
@@ -25,12 +27,15 @@
                           </div>
                           {{-- <p class="card-category"> Here you can manage users</p> --}}
                         </div>
-                        <div class="card-body table-responsive-md">
-                        <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
+                        <div class="card-body table-responsive-sm">
+                        <table  id="table_id" style="font-size: 14px;" class="table table-bordered  table-responsive table-hover text-nowrap table-Secondary table-striped " >
                         <thead>
                             <tr style=" background-color: #ffb678 !important;">
-                            <th style="width: 3%"scope="col">{{__('allStaffOvertimes.id')}}</th>
+                                <th style="width: 3%"scope="col">{{__('allStaffOvertimes.id')}}</th>
                                 <th style="width: 10%" scope="col">{{__('allStaffOvertimes.name')}}</th>
+                                @if ($hruser->office == "AO2")
+                                    <th style="width: 10%" class="text-center" scope="col">{{__('hrApprovalLeave.office')}}</th>
+                                    @endif
                                 <th style="width: 10%" class="text-center" scope="col">{{__('allStaffOvertimes.type')}}</th>
                                 <th style="width: 10%" class="text-center" scope="col">{{__('allStaffOvertimes.date')}}</th>
                                 <th style="width: 10%" class="text-center" scope="col">{{__('allStaffOvertimes.startHour')}}</th>
@@ -39,23 +44,29 @@
                                 <th style="width: 5%" class="text-center" scope="col">{{__('allStaffOvertimes.hours')}}<small>({{__('allStaffOvertimes.value')}})</small></th>
                                 <th style="width: 10%" class="text-center" scope="col">{{__('allStaffOvertimes.status')}}</th>
                                 <th style="width: 10%" class="text-center" scope="col">{{__('allStaffOvertimes.lineManager')}}</th>
-                                <th style="width: 10%" class="text-center" scope="col">{{__('allStaffOvertimes.dateCreated')}}</th>
+                                <!-- <th style="width: 10%" class="text-center" scope="col">{{__('allStaffOvertimes.dateCreated')}}</th> -->
                             </tr>
                           </thead>
                           <tbody>
-                          @foreach ($overtimes as $overtime)
+                            @foreach ($overtimes as $overtime)
                             <tr>
-                              <td><a href="{{ route('overtimes.show', encrypt($overtime->id)) }}" target="_blank">{{ $overtime->id }}</a></td>
+                              <td class="text-center"><a style = "color: #007bff;" href="{{ route('overtimes.show', encrypt($overtime->id)) }}" target="_blank">{{ $overtime->id }}</a></td>
                               <td>{{ $overtime->user->name }}</td>
-                              <td class="text-center">{{ $overtime->type }}</td>
-                              <td class="text-center">{{ $overtime->date }}</td>
+                              @if ($hruser->office == "AO2")
+                                  <td class="text-center">{{ $overtime->user->office }}</td>
+                                    @endif
+                              <td class="text-center">{{__("databaseLeaves.$overtime->type")}}</td>
+                              @php
+                              $dayname = Carbon\Carbon::parse($overtime->date)->format('l');
+                              @endphp
+                              <td class="text-center">{{__("databaseLeaves.$dayname")}} {{ $overtime->date }}</td>
                               <td class="text-center">{{ $overtime->start_hour }}</td>
                               <td class="text-center">{{ $overtime->end_hour }}</td>
                               <td class="text-center">{{ $overtime->hours }}</td>
                               <td class="text-center">{{ $overtime->value }}</td>
-                              <td class="text-center">{{ $overtime->status }}</td>
+                              <td class="text-center">{{__("databaseLeaves.$overtime->status")}}</td>
                               <td class="text-center">{{ $overtime->lmapprover }}</td>
-                              <td class="text-center">{{ $overtime->created_at }}</td>
+                              <!-- <td class="text-center">{{ $overtime->created_at }}</td> -->
                               {{-- <td>edit</td> --}}
                             </tr>
                             @endforeach
@@ -82,7 +93,7 @@
     $('#table_id').DataTable(
         {
             "aLengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
-            "order": [[8, "desc" ]]
+            "order": [[0, "desc" ]]
         }
     );
 } );

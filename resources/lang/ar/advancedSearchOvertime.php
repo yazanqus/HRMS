@@ -7,7 +7,7 @@ return [
     'overtimeStartDate' => 'من تاريخ' ,
     'overtimeEndDate' => 'الى تاريخ ' ,
     'overtimetype' => 'نوع الدوام الإضافي' ,
-
+    'overtimestatus' => 'حالة طلب الدوام الإضافي' ,
     'view' => 'عرض' ,
     'cancel' => 'الغاء'
 ];

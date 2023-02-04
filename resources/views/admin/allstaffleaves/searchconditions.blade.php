@@ -15,7 +15,9 @@
             <br>
 
 
-
+@php
+$hruser = Auth::user();
+@endphp
             <div class="container-fluid">
 
                 <div class="card">
@@ -37,7 +39,7 @@
                                       <div class="row justify-content-between text-left">
                                       <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
                                         <label class="form-control-label  px-1">{{__('advancedSearchLeave.staffName')}}</label>
-                                        <input class="form-control form-outline {{ $errors->has('name') ? ' is-invalid' : '' }}" type="text" list="FavoriteColor" id="color" placeholder="Choose Staff Name.."
+                                        <input class="staffname form-control form-outline {{ $errors->has('name') ? ' is-invalid' : '' }}" type="text" list="FavoriteColor" id="color" placeholder="Choose Staff Name.."
                                             name="name" value="{{ old('name') }}" autocomplete="off">
                                             @if ($errors->has('name'))
                                                 <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
@@ -48,18 +50,36 @@
                                             @endforeach
                                         </datalist>
                                      </div>
+
+@if ($hruser->office == "AO2")
+                                     <div class="form-group col-sm-6 flex-column d-flex">
+                                        <label  class=" test form-control-label  px-1">{{__('advancedSearchLeave.staffoffice')}}</label>
+                                        <select
+                                                    class="test form-control form-outline   selectpicker" data-size="5" data-style="btn btn-outline-secondary"
+                                                    name="office[]" id="stafffoffice" type="text" multiple>
+                                                   
+
+                                                    <option value="AO2">AO2</option>
+                                                    <option value="AO3">AO3</option>
+                                                    <option value="AO4">AO4</option>
+                                                    <option value="AO6">AO6</option>
+                                                    <option value="AO7">AO7</option>
+
+
+                                                </select>
+                                     </div>
+                                     @endif
                                      
                                       </div>
 
+<br>
 
                                       <div class="row justify-content-between text-left">
-                                      <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
+                                      <div class=" form-group {{ $errors->has('name') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
                                         <label class="form-control-label  px-1">{{__('advancedSearchLeave.leavetype')}}</label>
                                         <select
-                                                    class="form-control selectpicker" data-size="7" data-style="btn btn-outline-secondary"
-                                                    name="leavetype_id[]" id="leavetype_id" type="text" multiple
-                                                    placeholder="{{ __('Leave Type') }}"
-                                                    >
+                                                    class="form-control form-outline   selectpicker" data-size="7" data-style="btn btn-outline-secondary"
+                                                    name="leavetype_id[]" id="leavetype_id" type="text" multiple>
                                                    
 
                                                     <option value="1">{{__('createLeave.AnnualLeave')}}</option>
@@ -87,19 +107,40 @@
 
                                                 </select>
                                      </div>
+
+                                     <div  class="form-group {{ $errors->has('status') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
+                                        <label class="form-control-label  px-1">{{__('advancedSearchLeave.leavestatus')}}</label>
+                                        <select
+                                                    class="form-control form-outline   selectpicker" data-size="5" data-style="btn btn-outline-secondary"
+                                                    name="status[]" id="status" type="text" multiple>
+                                                   
+
+                                                    <option value="Approved">Approved</option>
+                                                    <option value="Declined by HR">Declined by HR</option>
+                                                    <option value="Declined by LM">Declined by LM</option>
+                                                    <option value="Pending HR Approval">Pending HR Approval</option>
+                                                    <option value="Pending LM Approval">Pending LM Approval</option>
+
+
+                                                </select>
+                                     </div>
+
+
+                                     
                                      
                                       </div>
                                       
+<br>
                               
                                       <div class="row justify-content-between text-left">
-                                        <div class="form-group {{ $errors->has('start_date') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
+                                        <div  class="  form-group {{ $errors->has('start_date') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
                                             <label class="form-control-label required px-1">{{__('advancedSearchLeave.leaveStartDate')}}</label>
                                             <input class="form-control form-outline {{ $errors->has('start_date') ? ' is-invalid' : '' }}" type="date" value="{{ old('start_date') }}" name="start_date" id="start_date" placeholder="" >
                                             @if ($errors->has('start_date'))
                                                 <span id="start_date-error" class="error text-danger" for="input-start_date">{{ $errors->first('start_date') }}</span>
                                                @endif
                                         </div>
-                                        <div class="form-group {{ $errors->has('end_date') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
+                                        <div  class="form-group {{ $errors->has('end_date') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
                                             <label class="form-control-label required px-1">{{__('advancedSearchLeave.leaveEndDate')}}</label>
                                             <input class="form-control form-outline {{ $errors->has('end_date') ? ' is-invalid' : '' }}" type="date" value="{{ old('end_date') }}" name="end_date" id="end_date" placeholder="" >
                                             @if ($errors->has('end_date'))
@@ -146,24 +187,23 @@
 <script src="{{ asset('select/js/bootstrap-select.min.js')}}"></script>
 <script>
 
-  $("#eye1").on('click',function() {
+$(document).ready(function() {
 
-if($(this).hasClass('fa-eye-slash')){
+  $('#color').on('change',function(){
 
-  $(this).removeClass('fa-eye-slash');
+    
+if ($('#color').val().length !== 0)
+{
+  $(".test").hide();
 
-  $(this).addClass('fa-eye');
-
-  $('#password').attr('type','text');
-
-}else{
-
-  $(this).removeClass('fa-eye');
-
-  $(this).addClass('fa-eye-slash');
-
-  $('#password').attr('type','password');
 }
+else {
+  $(".test").show();
+}
+  
+
+  });
+
 });
 </script>
 

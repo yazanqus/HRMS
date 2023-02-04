@@ -7,6 +7,9 @@ return [
     'leaveStartDate' => 'تاريخ بدء الإجازات' ,
     'leaveEndDate' => 'تاريخ انتهاء الإجازات ' ,
     'leavetype' => 'نوع الإجازة' ,
+    'staffoffice' => 'المكتب' ,
     'view' => 'عرض' ,
+    'leavestatus' => 'حالة الإجازة' ,
+
     'cancel' => 'الغاء'
 ];

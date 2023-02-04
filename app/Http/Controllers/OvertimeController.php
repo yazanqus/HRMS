@@ -521,7 +521,7 @@ class OvertimeController extends Controller
             'start_date' => 'required',
             'end_date' => 'required|after_or_equal:start_date',
             // 'leavetype' => 'required',
-            'name',
+            'name'=> 'required|exists:users',
            
         ]);
 
@@ -531,9 +531,29 @@ class OvertimeController extends Controller
         $overtimetype = $request->overtime;
         $start_date=$request->start_date;
         $end_date=$request->end_date;
+        $office = $request->office;
+        $status = $request->status;
        
-       
+        if ($office == Null)
+        {
+            $officee = ['AO2','AO3','AO4','AO6','AO7'];
+        }
 
+        else if ($office !== Null)
+        {
+            $officee = $office;
+        }
+        
+        if ($status == Null)
+        {
+            $statuse = ['Approved','Declined by HR','Declined by LM','Pending HR Approval','Pending LM Approval'];
+            
+        }
+
+        else if ($status !== Null)
+        {
+            $statuse = $status;
+        }
 
 
         if ($overtimetype == Null)
@@ -553,14 +573,27 @@ class OvertimeController extends Controller
         {
 
             if ($hruser->office == "AO2") {
-                $overtimes = Overtime::where([
+
+                $staffwithsameoffice = User::whereIn('office',$officee)->get();
+                if (count($staffwithsameoffice))
+                {
+
+                    $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
+                        return collect($staffwithsameoffice->toArray())
+                            ->only(['id'])
+                            ->all();
+                    });
+                    $overtimes = Overtime::whereIn('user_id', $hrsubsets)->where([
     
                     
-                    ['date', '>=', $start_date],
-                    ['date', '<=', $end_date],
-        
-        
-                ])->WhereIn('type', $overtimetypee)->get();
+                        ['date', '>=', $start_date],
+                        ['date', '<=', $end_date],
+            
+            
+                    ])->WhereIn('type', $overtimetypee)->WhereIn('status', $statuse)->get();
+
+                }
+              
             }
             else {
                 $staffwithsameoffice = User::where('office',$hruser->office)->get();
@@ -571,10 +604,10 @@ class OvertimeController extends Controller
                         ->only(['id'])
                         ->all();
                 });
-                $overtimes = Overtime::wherein('user_id', $hrsubsets)->where([
+                $overtimes = Overtime::whereIn('user_id', $hrsubsets)->where([
                     ['date', '>=', $start_date],
                     ['date', '<=', $end_date],
-                ])->WhereIn('type', $overtimetypee)->get();
+                ])->WhereIn('type', $overtimetypee)->WhereIn('status', $statuse)->get();
                 
             }       
             }
@@ -593,7 +626,7 @@ class OvertimeController extends Controller
                 ['date', '<=', $end_date],
     
     
-            ])->WhereIn('type', $overtimetypee)->get();
+            ])->WhereIn('type', $overtimetypee)->WhereIn('status', $statuse)->get();
         }
        
 

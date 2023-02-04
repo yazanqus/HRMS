@@ -15,7 +15,9 @@
                 </div>
                 <br>
 
-
+                @php
+                            $hruser = Auth::user();
+                            @endphp
                   <div class="container-fluid">
                       <div class="card">
                         <div class="card-header card-header-primary">
@@ -26,32 +28,43 @@
                           {{-- <p class="card-category"> Here you can manage users</p> --}}
                         </div>
                         <div class="card-body table-responsive-md">
-                        <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
+                        <table id="table_id" style="font-size: 14px;" class="table  table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                         <thead>
-                            <tr style=" background-color: #ffb678 !important;">
-                                <th style="width: 3%" scope="col">ID</th>
-                                <th style="width: 10%" scope="col">Name</th>
-                                <th style="width: 10%" class="text-center" scope="col">Leave type</th>
-                                <th style="width: 10%" class="text-center" scope="col">Start date</th>
-                                <th style="width: 10%" class="text-center" scope="col">End date</th>
-                                <th style="width: 3%" class="text-center" scope="col">Days</th>
-                                <th style="width: 10%" class="text-center" scope="col">Status</th>
-                                <th style="width: 10%" class="text-center" scope="col">Line Manager</th>
-                                <th style="width: 10%" class="text-center" scope="col">Date Created</th>
+                            <tr  style=" background-color: #ffb678 !important;">
+                                <th style="width: 3%" class="text-center" scope="col">{{__('allStaffLeaves.id')}}</th>
+                                <th style="width: 10%" scope="col">{{__('allStaffLeaves.name')}}</th>
+                                @if ($hruser->office == "AO2")
+                                    <th style="width: 10%" class="text-center" scope="col">{{__('hrApprovalLeave.office')}}</th>
+                                    @endif
+                                <th style="width: 10%" class="text-center" scope="col">{{__('allStaffLeaves.leaveType')}}</th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('allStaffLeaves.startDate')}}</th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('allStaffLeaves.endDate')}}</th>
+                                <th style="width: 3%" class="text-center" scope="col">{{__('allStaffLeaves.days')}}</th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('allStaffLeaves.status')}}</th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('allStaffLeaves.lineManager')}}</th>
+                                <!-- <th style="width: 10%" class="text-center" scope="col">{{__('allStaffLeaves.dateCreated')}}</th> -->
                             </tr>
                           </thead>
                           <tbody>
                             @foreach ($leaves as $leave)
-                            <tr  >
-                              <td><a href="{{ route('leaves.show', encrypt($leave->id)) }}" >{{ $leave->id }}</a></td>
+                            <tr>
+                              <td class="text-center"><a  style = "color: #007bff;" href="{{ route('leaves.show', encrypt($leave->id)) }}" >{{ $leave->id }}</a></td>
                               <td>{{ $leave->user ? $leave->user->name : 'Deleted User' }}</td>
-                              <td class="text-center">{{ $leave->leavetype->name }}</td>
-                              <td class="text-center">{{ $leave->start_date }}</td>
-                              <td class="text-center">{{ $leave->end_date }}</td>
+                              @if ($hruser->office == "AO2")
+                                  <td class="text-center">{{ $leave->user->office }}</td>
+                                    @endif
+                              <td class="text-center">{{ __("databaseLeaves.{$leave->leavetype->name}") }}</td>
+                             
+                              @php
+                              $startdayname = Carbon\Carbon::parse($leave->start_date)->format('l');
+                              $enddayname = Carbon\Carbon::parse($leave->end_date)->format('l');
+                              @endphp
+                              <td class="text-center">{{__("databaseLeaves.$startdayname")}} {{ $leave->start_date }}</td>
+                              <td class="text-center">{{__("databaseLeaves.$enddayname")}} {{ $leave->end_date }}</td>
                               <td class="text-center">{{ $leave->days }}</td>
-                              <td class="text-center">{{ $leave->status }}</td>
+                              <td class="text-center">{{__("databaseLeaves.$leave->status")}}</td>
                               <td class="text-center">{{ $leave->user ? $leave->lmapprover : '-' }}</td>
-                              <td class="text-center">{{ $leave->created_at }}</td>
+                              <!-- <td class="text-center">{{ $leave->created_at }}</td> -->
                               {{-- <td>edit</td> --}}
                             </tr>
                             @endforeach
@@ -78,7 +91,7 @@
     $('#table_id').DataTable(
         {
             "aLengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
-            "order": [[8, "desc" ]]
+            "order": [[0, "desc" ]]
         }
     );
 } );

@@ -7,7 +7,9 @@ return [
     'leaveStartDate' => 'Leave Start Date' ,
     'leaveEndDate' => 'Leave End Date' ,
     'view' => 'View' ,
-    'leavetype' => 'Leave type (If not provided, it will consider all types)' ,
+    'leavetype' => 'Leave Type (If not provided, it will consider all types)' ,
+    'staffoffice' => 'Staff Office (If not provided, it will consider all offices)' ,
+    'leavestatus' => 'Leave Status (If not provided, it will consider all status)' ,
     'cancel' => 'Cancel'
 
 ];
