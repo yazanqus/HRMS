@@ -10,12 +10,15 @@
                             {{-- @foreach ($users as $user) --}}
                             {{-- <h3>Welcome <b>{{$user->name}}</b> </h3> --}}
                             {{-- @endforeach --}}
+                            
                         </div>
                     </div>
                 </div>
                 <br>
 
                 @php
+
+            
                             $hruser = Auth::user();
                             @endphp
                   <div class="container-fluid">
@@ -24,6 +27,9 @@
                           <h4 class="card-title ">All <strong>{{$name}}</strong> leaves - Advanced Search Results</h4>
                           <div class="col-12 text-right">
                             Between <strong>{{$start_date}}</strong> and <strong>{{$end_date}}</strong>
+                         
+                            
+                            
                           </div>
                           {{-- <p class="card-category"> Here you can manage users</p> --}}
                         </div>
@@ -48,7 +54,7 @@
                           <tbody>
                             @foreach ($leaves as $leave)
                             <tr>
-                              <td class="text-center"><a  style = "color: #007bff;" href="{{ route('leaves.show', encrypt($leave->id)) }}" >{{ $leave->id }}</a></td>
+                              <td class="text-center"><a  style = "color: #007bff;" href="{{ route('leaves.show', encrypt($leave->id)) }}" target="_blank" >{{ $leave->id }}</a></td>
                               <td>{{ $leave->user ? $leave->user->name : 'Deleted User' }}</td>
                               @if ($hruser->office == "AO2")
                                   <td class="text-center">{{ $leave->user->office }}</td>
