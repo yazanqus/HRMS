@@ -13,12 +13,12 @@
         "laravel-frontend-presets/material-dashboard": "^1.1",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
-        "laravel/socialite": "^5.4",
+        "laravel/socialite": "^5.6",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "maatwebsite/excel": "^3.1",
         "snapappointments/bootstrap-select": "^1.13",
-        "socialiteproviders/okta": "^4.1",
+        "socialiteproviders/okta": "^4.2",
         "spatie/laravel-activitylog": "^4.4"
     },
     "require-dev": {

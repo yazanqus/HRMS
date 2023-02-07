@@ -55,18 +55,11 @@ class LoginController extends Controller
     }
     public function handleProviderCallback(Request $request)
     {
-        // // return 'You are Always Welcome';
-        // $user = Socialite::driver('okta')->user();
+        $user = Socialite::driver('okta')->user();
 
-        // // $localUser = User::updateOrCreate([
-        // //     'email' => $user->email,
-        // // ], [
-        // //     'name' => $user->name,
-        // //     'token' => $user->token,
-        // // ]);
-        // $localUser = User::where('email', $user->email)->first();
+        $localUser = User::where('email', $user->email)->first();
 
-        // // create a local user with the email and token from Okta
+        // Create a local user with the email and token from Okta
         // if (!$localUser) {
         //     $localUser = User::create([
         //         'email' => $user->email,
@@ -74,18 +67,25 @@ class LoginController extends Controller
         //         'token' => $user->token,
         //     ]);
         // } else {
-        //     // if the user already exists, just update the token:
-        //     $localUser->token = $user->token;
-        //     $localUser->save();
-        // }
 
-        // try {
-        //     Auth::login($localUser);
-        // } catch (\Throwable$e) {
-        //     return redirect('/login');
-        // }
 
-        // return redirect('/home');
+            if (!$localUser) {
+                return redirect(route('login'))->withErrors(['Account is not found - Contact HR']);
+            } 
+            else {
+
+            // if the user already exists, just update the token:
+            $localUser->token = $user->token;
+            $localUser->save();
+        }
+
+        try {
+            Auth::login($localUser);
+        } catch (\Throwable $e) {
+            return redirect('/login/okta');
+        }
+
+        return redirect('/');
     }
 
     public function logout()

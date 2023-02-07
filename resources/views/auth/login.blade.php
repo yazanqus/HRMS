@@ -124,15 +124,15 @@ transition: ease-out 1.6s;
 
           </style>
 
-          <!-- <div class="social-auth-links text-center ">
-            <a href="#" class="btn btn-block btn-outline-primary">
+          <div class="social-auth-links text-center ">
+            <a href="{{ route('login-okta') }}" class="btn btn-block btn-outline-primary">
               <i class="fab fa-faecebook"></i>SSO - Sign in with Okta
             </a>
             {{-- <a href="#" class="btn btn-block btn-danger">
               <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
             </a> --}}
-          </div> -->
-          <!-- /.social-auth-links -->
+          </div>
+          <!-- /.social-auth-links
 
         </div>
         <!-- /.card-body -->

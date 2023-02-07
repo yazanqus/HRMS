@@ -526,8 +526,9 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin']], function () {
 
 });
 
-// Route::get('login/okta', [LoginController::class, 'redirectToProvider'])->name('login-okta');
-// Route::get('login/okta/callback', [LoginController::class, 'handleProviderCallback']);
+Route::get('/login/okta', 'App\Http\Controllers\Auth\LoginController@redirectToProvider')->name('login-okta');
+
+Route::get('/login/okta/callback', 'App\Http\Controllers\Auth\LoginController@handleProviderCallback');
 
 Route::get('/logout', [LoginController::class, 'logout']);
 
