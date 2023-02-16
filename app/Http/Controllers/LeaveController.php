@@ -2817,8 +2817,8 @@ class LeaveController extends Controller
     {
         $request->validate([
        
-            'start_date' => 'required',
-            'end_date' => 'required|after_or_equal:start_date',
+            'start_date',
+            'end_date' => 'nullable|after_or_equal:start_date',
             // 'leavetype' => 'required',
             'name',
            
@@ -2834,9 +2834,41 @@ class LeaveController extends Controller
         $end_date=$request->end_date;
         $office = $request->office;
         $status = $request->status;
+        $staffstatus = $request->staffstatus;
+        $linemanager = $request->linemanager;
         // $leavetype=$request->leavetype;
         // dd($request->name);
         // dd($leavetype);
+
+        if ($start_date == Null)
+        {
+            $start_datee = "2023-01-01";
+        }
+
+        else if ($start_date !== Null)
+        {
+            $start_datee = $start_date;
+        }
+
+        if ($end_date == Null)
+        {
+            $end_datee = "2023-12-31";
+        }
+
+        else if ($end_date !== Null)
+        {
+            $end_datee = $end_date;
+        }
+
+        if ($staffstatus == Null)
+        {
+            $staffstatuse = ['active','suspended'];
+        }
+
+        else if ($staffstatus !== Null)
+        {
+            $staffstatuse = $staffstatus;
+        }
 
         if ($office == Null)
         {
@@ -2850,7 +2882,7 @@ class LeaveController extends Controller
         
         if ($status == Null)
         {
-            $statuse = ['Approved','Declined by HR','Declined by LM','Pending HR Approval','Pending LM Approval'];
+            $statuse = ['Approved','Declined by HR','Declined by LM','Pending HR Approval','Pending LM Approval','Pending extra Approval','Approved by extra Approval','Declined by extra Approval'];
             
         }
 
@@ -2861,10 +2893,8 @@ class LeaveController extends Controller
 
 
         if ($leavetype == Null)
-
         {
             $leavetypee = Leavetype::all()->pluck('id')->toArray();
-        
         }
 
         else if ($leavetype !== Null)
@@ -2872,11 +2902,12 @@ class LeaveController extends Controller
             $leavetypee = $leavetype;
         }
 
+
         if ($request->name == null)
         {   
             if ($hruser->office == "AO2") {
 
-                $staffwithsameoffice = User::whereIn('office',$officee)->get();
+                $staffwithsameoffice = User::whereIn('office',$officee)->WhereIn('status', $staffstatuse)->get();
                 if (count($staffwithsameoffice))
                 {
                     $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
@@ -2885,8 +2916,8 @@ class LeaveController extends Controller
                             ->all();
                     });
                     $leaves = Leave::whereIn('user_id', $hrsubsets)->where([
-                        ['start_date', '>=', $start_date],
-                        ['end_date', '<=', $end_date],
+                        ['start_date', '>=', $start_datee],
+                        ['end_date', '<=', $end_datee],
                     ])->WhereIn('leavetype_id', $leavetypee)->WhereIn('status', $statuse)->get();
                     
                 }   
@@ -2895,7 +2926,7 @@ class LeaveController extends Controller
             }
 
             else {
-                $staffwithsameoffice = User::where('office',$hruser->office)->get();
+                $staffwithsameoffice = User::where('office',$hruser->office)->WhereIn('status', $staffstatuse)->get();
             if (count($staffwithsameoffice))
             {
                 $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
@@ -2904,8 +2935,8 @@ class LeaveController extends Controller
                         ->all();
                 });
                 $leaves = Leave::whereIn('user_id', $hrsubsets)->where([
-                    ['start_date', '>=', $start_date],
-                    ['end_date', '<=', $end_date],
+                    ['start_date', '>=', $start_datee],
+                    ['end_date', '<=', $end_datee],
                 ])->WhereIn('leavetype_id', $leavetypee)->WhereIn('status', $statuse)->get();
                 
             }       
@@ -2922,15 +2953,47 @@ class LeaveController extends Controller
             $leaves = Leave::where([
     
                 ['user_id', $userid],
-                ['start_date', '>=', $start_date],
-                ['end_date', '<=', $end_date],
+                ['start_date', '>=', $start_datee],
+                ['end_date', '<=', $end_datee],
     
     
             ])->WhereIn('leavetype_id', $leavetypee)->WhereIn('status', $statuse)->get();
         }
+
+        if ($linemanager !== Null)
+        {
+            $staff = User::where('linemanager', $linemanager)->get();
+            if (count($staff))
+            {
+            $subsets = $staff->map(function ($staff) {
+                return collect($staff->toArray())
+
+                    ->only(['id'])
+                    ->all();
+            });
+
+            $leaves = Leave::whereIn('user_id', $subsets)->where([
+                ['start_date', '>=', $start_datee],
+                ['end_date', '<=', $end_datee],
+            ])->WhereIn('leavetype_id', $leavetypee)->WhereIn('status', $statuse)->get();
+        }
+
+        else {
+            $leaves = Leave::where([
+                ['start_date', '>=', $start_datee],
+                ['end_date', '<=', $end_datee],
+            ])->WhereIn('leavetype_id', $leavetypee)->Where('status', "nothing to show")->get();
+        }
+
         
 
-        return view('admin.allstaffleaves.search', ['leaves' => $leaves, 'name'=>$name,'start_date' =>$start_date, 'end_date'=>$end_date]);
+        }
+
+
+        
+        
+
+        return view('admin.allstaffleaves.search', ['leaves' => $leaves, 'name'=>$name,'start_date' =>$start_datee, 'end_date'=>$end_datee]);
     }
 
 }

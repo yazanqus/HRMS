@@ -10,6 +10,7 @@ return [
     'staffoffice' => 'المكتب' ,
     'view' => 'عرض' ,
     'leavestatus' => 'حالة الإجازة' ,
-
+    'staffstatus' => 'حالة حساب الموظف',
+    'linemanager' => 'المدير المباشر',
     'cancel' => 'الغاء'
 ];

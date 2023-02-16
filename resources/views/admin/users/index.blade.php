@@ -24,8 +24,8 @@
 
                                           <a href="{{route('admin.users.create')}}" class="btn btn-sm btn-primary">{{__('allUsers.createNewUser')}}</a>
                                           @if ($user->name == "HR Test")
-                                          <a href="{{route('admin.users.importshow')}}" class="btn btn-sm ml-2 btn-success">Import <i class="ml-2 fas fa-file-excel"></i> </a>
-                                          <a href="{{route('admin.users.createbalance')}}" class="btn btn-sm ml-2 btn-success">Create Balance <i class="ml-2 fas fa-file-excel"></i> </a>
+                                          <!-- <a href="{{route('admin.users.importshow')}}" class="btn btn-sm ml-2 btn-success">Import <i class="ml-2 fas fa-file-excel"></i> </a> -->
+                                          <!-- <a href="{{route('admin.users.createbalance')}}" class="btn btn-sm ml-2 btn-success">Create Balance <i class="ml-2 fas fa-file-excel"></i> </a> -->
                                           @endif
                                           <div class="btn-group" role="group">
                                             <button id="btnGroupDrop1" type="button" class="btn ml-2 btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

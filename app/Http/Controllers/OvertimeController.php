@@ -520,8 +520,8 @@ class OvertimeController extends Controller
     public function search(Request $request)
     {
         $request->validate([
-            'start_date' => 'required',
-            'end_date' => 'required|after_or_equal:start_date',
+            'start_date',
+            'end_date' => 'nullable|after_or_equal:start_date',
             // 'leavetype' => 'required',
             'name',
            
@@ -535,7 +535,39 @@ class OvertimeController extends Controller
         $end_date=$request->end_date;
         $office = $request->office;
         $status = $request->status;
-       
+        $staffstatus = $request->staffstatus;
+        $linemanager = $request->linemanager;
+
+        if ($start_date == Null)
+        {
+            $start_datee = "2023-01-01";
+        }
+
+        else if ($start_date !== Null)
+        {
+            $start_datee = $start_date;
+        }
+
+        if ($end_date == Null)
+        {
+            $end_datee = "2023-12-31";
+        }
+
+        else if ($end_date !== Null)
+        {
+            $end_datee = $end_date;
+        }
+
+        if ($staffstatus == Null)
+        {
+            $staffstatuse = ['active','suspended'];
+        }
+
+        else if ($staffstatus !== Null)
+        {
+            $staffstatuse = $staffstatus;
+        }
+
         if ($office == Null)
         {
             $officee = ['AO2','AO3','AO4','AO6','AO7'];
@@ -548,7 +580,7 @@ class OvertimeController extends Controller
         
         if ($status == Null)
         {
-            $statuse = ['Approved','Declined by HR','Declined by LM','Pending HR Approval','Pending LM Approval'];
+            $statuse = ['Approved','Declined by HR','Declined by LM','Pending HR Approval','Pending LM Approval','Pending extra Approval','Approved by extra Approval','Declined by extra Approval'];
             
         }
 
@@ -576,7 +608,7 @@ class OvertimeController extends Controller
 
             if ($hruser->office == "AO2") {
 
-                $staffwithsameoffice = User::whereIn('office',$officee)->get();
+                $staffwithsameoffice = User::whereIn('office',$officee)->WhereIn('status', $staffstatuse)->get();
                 if (count($staffwithsameoffice))
                 {
 
@@ -588,8 +620,8 @@ class OvertimeController extends Controller
                     $overtimes = Overtime::whereIn('user_id', $hrsubsets)->where([
     
                     
-                        ['date', '>=', $start_date],
-                        ['date', '<=', $end_date],
+                        ['date', '>=', $start_datee],
+                        ['date', '<=', $end_datee],
             
             
                     ])->WhereIn('type', $overtimetypee)->WhereIn('status', $statuse)->get();
@@ -598,7 +630,7 @@ class OvertimeController extends Controller
               
             }
             else {
-                $staffwithsameoffice = User::where('office',$hruser->office)->get();
+                $staffwithsameoffice = User::where('office',$hruser->office)->WhereIn('status', $staffstatuse)->get();
             if (count($staffwithsameoffice))
             {
                 $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
@@ -607,8 +639,8 @@ class OvertimeController extends Controller
                         ->all();
                 });
                 $overtimes = Overtime::whereIn('user_id', $hrsubsets)->where([
-                    ['date', '>=', $start_date],
-                    ['date', '<=', $end_date],
+                    ['date', '>=', $start_datee],
+                    ['date', '<=', $end_datee],
                 ])->WhereIn('type', $overtimetypee)->WhereIn('status', $statuse)->get();
                 
             }       
@@ -624,14 +656,42 @@ class OvertimeController extends Controller
             $overtimes = Overtime::where([
     
                 ['user_id', $userid],
-                ['date', '>=', $start_date],
-                ['date', '<=', $end_date],
+                ['date', '>=', $start_datee],
+                ['date', '<=', $end_datee],
     
     
             ])->WhereIn('type', $overtimetypee)->WhereIn('status', $statuse)->get();
         }
        
+        if ($linemanager !== Null)
+        {
+            $staff = User::where('linemanager', $linemanager)->get();
+            if (count($staff))
+            {
+            $subsets = $staff->map(function ($staff) {
+                return collect($staff->toArray())
 
-        return view('admin.allstaffovertimes.search', ['overtimes' => $overtimes, 'name'=>$name,'start_date' =>$start_date, 'end_date'=>$end_date]);
+                    ->only(['id'])
+                    ->all();
+            });
+
+            $overtimes = Overtime::whereIn('user_id', $subsets)->where([
+                ['date', '>=', $start_datee],
+                ['date', '<=', $end_datee],
+            ])->WhereIn('type', $overtimetypee)->WhereIn('status', $statuse)->get();
+        }
+
+        else {
+            $overtimes = Overtime::where([
+                ['date', '>=', $start_datee],
+                ['date', '<=', $end_datee],
+            ])->WhereIn('type', $overtimetypee)->Where('status', "nothing to show")->get();
+        }
+
+        
+
+        }
+
+        return view('admin.allstaffovertimes.search', ['overtimes' => $overtimes, 'name'=>$name,'start_date' =>$start_datee, 'end_date'=>$end_datee]);
     }
 }
