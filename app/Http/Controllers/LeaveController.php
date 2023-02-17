@@ -2759,7 +2759,28 @@ class LeaveController extends Controller
 
     public function export()
     {
-        return Excel::download(new LeavesExport, 'leaves.xlsx');
+        
+        $hruser = Auth::user();
+        if ($hruser->office == "AO2")
+        {
+            $leaves= Leave::all();
+
+        }
+        else
+        {
+        $staffwithsameoffice = User::where('office',$hruser->office)->get();
+            if (count($staffwithsameoffice))
+            {
+                $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
+                    return collect($staffwithsameoffice->toArray())
+                        ->only(['id'])
+                        ->all();
+                });
+                $leaves = Leave::wherein('user_id', $hrsubsets)->get(); 
+    
+    }
+}
+    return Excel::download(new LeavesExport($leaves), 'leaves.xlsx');
     }
 
     public function pdf(Request $request)
@@ -2989,11 +3010,18 @@ class LeaveController extends Controller
 
         }
 
+        switch ($request->input('action')) {
+            case 'view':
+                return view('admin.allstaffleaves.search', ['leaves' => $leaves, 'name'=>$name,'start_date' =>$start_datee, 'end_date'=>$end_datee]);
+                break;
+    
+            case 'excel':
+                return Excel::download(new LeavesExport($leaves), 'leaves.xlsx');
+                break;
+            }
+        
 
         
-        
-
-        return view('admin.allstaffleaves.search', ['leaves' => $leaves, 'name'=>$name,'start_date' =>$start_datee, 'end_date'=>$end_datee]);
     }
 
 }

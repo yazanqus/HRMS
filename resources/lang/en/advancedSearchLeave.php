@@ -7,6 +7,7 @@ return [
     'leaveStartDate' => 'Leave Start Date (If not provided, it will consider start of 2023)' ,
     'leaveEndDate' => 'Leave End Date (If not provided, it will consider end of 2023)' ,
     'view' => 'View' ,
+    'excel' => 'Excel' ,
     'leavetype' => 'Leave Type (If not provided, it will consider all types)' ,
     'staffoffice' => 'Staff Office (If not provided, it will consider all offices)' ,
     'leavestatus' => 'Leave Status (If not provided, it will consider all status)' ,

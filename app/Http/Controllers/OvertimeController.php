@@ -473,7 +473,27 @@ class OvertimeController extends Controller
 
     public function export()
     {
-        return Excel::download(new OvertimesExport, 'overtimes.xlsx');
+        $hruser = Auth::user();
+        if ($hruser->office == "AO2")
+        {
+            $overtimes = Overtime::all();
+
+        }
+        else
+        {
+        $staffwithsameoffice = User::where('office',$hruser->office)->get();
+            if (count($staffwithsameoffice))
+            {
+                $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
+                    return collect($staffwithsameoffice->toArray())
+                        ->only(['id'])
+                        ->all();
+                });
+                $overtimes= Overtime::wherein('user_id', $hrsubsets)->get(); 
+    
+    }
+    }
+        return Excel::download(new OvertimesExport($overtimes), 'overtimes.xlsx');
     }
 
 
@@ -692,6 +712,16 @@ class OvertimeController extends Controller
 
         }
 
-        return view('admin.allstaffovertimes.search', ['overtimes' => $overtimes, 'name'=>$name,'start_date' =>$start_datee, 'end_date'=>$end_datee]);
+        switch ($request->input('action')) {
+            case 'view':
+                return view('admin.allstaffovertimes.search', ['overtimes' => $overtimes, 'name'=>$name,'start_date' =>$start_datee, 'end_date'=>$end_datee]);
+                break;
+    
+            case 'excel':
+                return Excel::download(new OvertimesExport($overtimes), 'overtimes.xlsx');
+                break;
+            }
+
+        
     }
 }

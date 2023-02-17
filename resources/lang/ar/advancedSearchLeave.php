@@ -9,6 +9,7 @@ return [
     'leavetype' => 'نوع الإجازة' ,
     'staffoffice' => 'المكتب' ,
     'view' => 'عرض' ,
+    'excel' => 'Excel' ,
     'leavestatus' => 'حالة الإجازة' ,
     'staffstatus' => 'حالة حساب الموظف',
     'linemanager' => 'المدير المباشر',
