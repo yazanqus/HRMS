@@ -19,27 +19,15 @@
                           <div class="container-fluid">
                                 <div class="card">
                                 <div class="card-header card-header-primary">
-                                    <h4 class="card-title">{{__('allUsers.allUsers')}}</h4>
-                                        <div class="col-12 text-right">
-
-                                          <a href="{{route('admin.users.create')}}" class="btn btn-sm btn-primary">{{__('allUsers.createNewUser')}}</a>
-                                          <a href="{{route('admin.alluserssearch.cond')}}" class="btn btn-sm ml-2 btn-success">{{__('allStaffLeaves.advancedSearch')}} <i class="ml-2 fas fa-search"></i> </a>
-                                          @if ($user->name == "HR Test")
-                                          <!-- <a href="{{route('admin.users.importshow')}}" class="btn btn-sm ml-2 btn-success">Import <i class="ml-2 fas fa-file-excel"></i> </a> -->
-                                          <!-- <a href="{{route('admin.users.createbalance')}}" class="btn btn-sm ml-2 btn-success">Create Balance <i class="ml-2 fas fa-file-excel"></i> </a> -->
-                                          @endif
-                                          <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn ml-2 btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              Export <i class="ml-2 fas fa-file-excel"></i>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="{{route('admin.users.export')}}">{{__('allUsers.allUsers')}}</i></a>
-                                              <!-- <a class="dropdown-item" href="{{route('attendances.export')}}">All Attendances </i></a> -->
-                                            </div>
-                                        </div>
-
-                                        </div>
-                                    </div>
+                          <h4 class="card-title ">All <strong>{{$name}}</strong> User details</h4>
+                          <div class="col-12 text-right">
+                          
+                         
+                            
+                            
+                          </div>
+                          {{-- <p class="card-category"> Here you can manage users</p> --}}
+                        </div>
 
 
                                       <div class="card-body table-responsive-md">

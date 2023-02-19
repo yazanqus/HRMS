@@ -153,6 +153,34 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/
 
     Route::post('/leaves/search', [LeaveController::class, 'search'])->name('leaves.search');
 
+    Route::get('alluserssearch', function () {
+        $hruser = Auth::user();
+
+        if ($hruser->office == "AO2") {
+            $users = User::all()->except(1);
+            
+            return view('admin.users.searchconditions', ['users' => $users]);
+        }
+        else
+        {  
+            $staffwithsameoffice = User::where('office',$hruser->office)->get();
+            if (count($staffwithsameoffice))
+            {
+                $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
+                    return collect($staffwithsameoffice->toArray())
+                        ->only(['id'])
+                        ->all();
+                });
+                $hrusers = User::wherein('id', $hrsubsets)->get();
+
+                return view('admin.users.searchconditions', ['users' => $hrusers]);
+            }            
+
+        }
+    })->name('alluserssearch.cond');
+
+    Route::post('/users/search', [UserController::class, 'search'])->name('users.search');
+
 
     Route::get('allovertimessearch', function () {
         $hruser = Auth::user();

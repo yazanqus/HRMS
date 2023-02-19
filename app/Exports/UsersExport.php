@@ -4,34 +4,50 @@ namespace App\Exports;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
 class UsersExport implements FromCollection, WithHeadings, WithMapping
 {
+
+    use Exportable;
+    protected $users;
+
+
+    public function __construct($users) {
+
+        $this->users = $users;
+       
+    }
+
     /**
      * @return \Illuminate\Support\Collection
      */
     public function collection()
     {
-        $hruser = Auth::user();
-        if ($hruser->office == "AO2")
-        {
-            return User::all()->except(1);
 
-        }
-        else
-        $staffwithsameoffice = User::where('office',$hruser->office)->get();
-            if (count($staffwithsameoffice))
-            {
-                $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
-                    return collect($staffwithsameoffice->toArray())
-                        ->only(['id'])
-                        ->all();
-                });
-                return User::wherein('id', $hrsubsets)->get(); 
-    }
+        return $this->users;
+
+
+    //     $hruser = Auth::user();
+    //     if ($hruser->office == "AO2")
+    //     {
+    //         return User::all()->except(1);
+
+    //     }
+    //     else
+    //     $staffwithsameoffice = User::where('office',$hruser->office)->get();
+    //         if (count($staffwithsameoffice))
+    //         {
+    //             $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
+    //                 return collect($staffwithsameoffice->toArray())
+    //                     ->only(['id'])
+    //                     ->all();
+    //             });
+    //             return User::wherein('id', $hrsubsets)->get(); 
+    // }
 }
 
     public function map($user): array
@@ -40,7 +56,6 @@ class UsersExport implements FromCollection, WithHeadings, WithMapping
 
             $user->employee_number,
             $user->name,
-            $user->birth_date,
             $user->office,
             $user->contract,
             $user->position,
@@ -61,7 +76,6 @@ class UsersExport implements FromCollection, WithHeadings, WithMapping
 
             'Employee Number',
             'Name',
-            'Birth Date',
             'office',
             'Contract',
             'Position',

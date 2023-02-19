@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
+use PHPUnit\Framework\Constraint\IsFalse;
+
+use function PHPUnit\Framework\isFalse;
+use function PHPUnit\Framework\isNull;
 
 class UserController extends Controller
 {
@@ -1083,7 +1087,29 @@ class UserController extends Controller
 
     public function export()
     {
-        return Excel::download(new UsersExport, 'users.xlsx');
+
+        $hruser = Auth::user();
+        if ($hruser->office == "AO2")
+        {
+            $users= User::all()->except(1);
+
+        }
+        else
+        {
+        $staffwithsameoffice = User::where('office',$hruser->office)->get();
+            if (count($staffwithsameoffice))
+            {
+                $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
+                    return collect($staffwithsameoffice->toArray())
+                        ->only(['id'])
+                        ->all();
+                });
+                $users= User::wherein('id', $hrsubsets)->get(); 
+    }
+        }
+
+        
+        return Excel::download(new UsersExport($users), 'users.xlsx');
     }
 
     public function import(Request $request)
@@ -1120,6 +1146,190 @@ class UserController extends Controller
         }
 
         return redirect()->route('admin.users.index');
+        
+    }
+
+
+    public function search(Request $request)
+    {
+        $request->validate([
+       
+            'start_date',
+            // 'end_date' => 'nullable|after_or_equal:start_date',
+            // 'leavetype' => 'required',
+            'name',
+           
+        ]);
+
+
+        $hruser = Auth::user();
+
+
+        $name= $request->name;
+        $contract = $request->contract;
+        $start_date=$request->start_date;
+        // $end_date=$request->end_date;
+        $office = $request->office;
+        // $permission = $request->permission;
+        $staffstatus = $request->staffstatus;
+        $linemanager = $request->linemanager;
+        // $leavetype=$request->leavetype;
+        // dd($request->name);
+        // dd($leavetype);
+
+        if ($start_date == Null)
+        {
+            $start_datee = "2015-01-01";
+        }
+
+        else if ($start_date !== Null)
+        {
+            $start_datee = $start_date;
+        }
+
+     
+
+        if ($staffstatus == Null)
+        {
+            $staffstatuse = ['active','suspended'];
+        }
+
+        else if ($staffstatus !== Null)
+        {
+            $staffstatuse = $staffstatus;
+        }
+
+        if ($office == Null)
+        {
+            $officee = ['AO2','AO3','AO4','AO6','AO7'];
+        }
+
+        else if ($office !== Null)
+        {
+            $officee = $office;
+        }
+        
+        // if ($permission == Null)
+        // {
+        //     $permissione = ['yes',Null,'no'];
+            
+        // }
+
+        // else if ($permission !== Null)
+        // {
+        //     $permissione = $permission;
+        // }
+
+
+        if ($contract == Null)
+        {
+            $contracte = ['Regular','Service','NA'];
+        }
+
+        else if ($contract !== Null)
+        {
+            $contracte = $contract;
+        }
+
+
+        if ($request->name == null)
+        {   
+            if ($hruser->office == "AO2") {
+
+                $staffwithsameoffice = User::whereIn('office',$officee)->WhereIn('status', $staffstatuse)->get();
+                if (count($staffwithsameoffice))
+                {
+                    $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
+                        return collect($staffwithsameoffice->toArray())
+                            ->only(['id'])
+                            ->all();
+                    });
+                    $users = User::whereIn('id', $hrsubsets)->where([
+                        ['joined_date', '>=', $start_datee],
+                
+                    ])->WhereIn('contract', $contracte)->get();
+                    
+                }  
+                
+                
+               
+            }
+
+            else {
+                $staffwithsameoffice = User::where('office',$hruser->office)->WhereIn('status', $staffstatuse)->get();
+            if (count($staffwithsameoffice))
+            {
+                $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
+                    return collect($staffwithsameoffice->toArray())
+                        ->only(['id'])
+                        ->all();
+                });
+                $users = User::whereIn('id', $hrsubsets)->where([
+                    ['joined_date', '>=', $start_datee],
+            
+                ])->WhereIn('contract', $contracte)->get();
+                
+            }       
+            }
+            
+
+        }
+        else
+        {
+            $userid = User::where('name',$name)->value('id');
+        
+  
+ 
+            $users = User::where([
+    
+                ['id', $userid],
+                ['joined_date', '>=', $start_datee],
+        
+    
+    
+            ])->WhereIn('contract', $contracte)->get();
+        }
+
+        if ($linemanager !== Null)
+        {
+            $staff = User::where('linemanager', $linemanager)->get();
+            if (count($staff))
+            {
+            $subsets = $staff->map(function ($staff) {
+                return collect($staff->toArray())
+
+                    ->only(['id'])
+                    ->all();
+            });
+
+            $users = User::whereIn('id', $subsets)->where([
+                ['joined_date', '>=', $start_datee],
+        
+            ])->WhereIn('contract', $contracte)->get();
+        }
+
+        else {
+            $users = User::where([
+                ['joined_date', '>=', $start_datee],
+        
+            ])->WhereIn('contract', $contracte)->Where('status', "nothing to show")->get();
+        }
+
+        
+
+        }
+
+        switch ($request->input('action')) {
+            case 'view':
+                return view('admin.users.search', ['users' => $users, 'name'=>$name,'start_date' =>$start_datee]);
+                break;
+    
+            case 'excel':
+                return Excel::download(new UsersExport($users), 'users.xlsx');
+                break;
+            }
+        
+
         
     }
 
