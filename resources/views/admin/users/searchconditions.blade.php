@@ -181,7 +181,7 @@ $hruser = Auth::user();
                                       <div class="row justify-content-center">
                                           <div class="form-group col-sm-3"> <button type="submit" name="action" value="view" class="btn bg-gradient-primary btn-block">{{__('advancedSearchuser.view')}}</button> </div>
                                           <div class="form-group col-sm-3"> <button type="submit" name="action" value="excel" class="btn btn-secondary btn-block">{{__('advancedSearchuser.excel')}}</button> </div>
-                                          <div class="form-group col-sm-3"> <a class="btn btn-outline-danger" href="{{route('admin.allstaffleaves.index')}}" >{{__('advancedSearchuser.cancel')}}</a> </div>
+                                          <div class="form-group col-sm-3"> <a class="btn btn-outline-danger" href="{{route('admin.users.index')}}" >{{__('advancedSearchuser.cancel')}}</a> </div>
                                       </div>
                                   </form>
                                   </div>
