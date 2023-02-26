@@ -2541,7 +2541,29 @@ class LeaveController extends Controller
                     $newbalance = $currentbalanceforcomp - ($leave->hours / 8);
         
 
-                } else {
+                } 
+
+                //Unpaid Full day
+                elseif ($leave->leavetype_id == '15') {
+        
+                    $balances = Balance::where('user_id', $leave->user->id)->get();
+                    $subsets = $balances->map(function ($balance) {
+                        return collect($balance->toArray())
+        
+                            ->only(['value', 'leavetype_id'])
+                            ->all();
+                    });
+                    $final = $subsets->firstwhere('leavetype_id', '15');
+        
+                    $finalfinal = $final['value'];
+                    $currentbalanceforcomp = $finalfinal;
+        
+                    $newbalance = 1 + $leave->days;
+        
+
+                } 
+                
+                else {
                     $balances = Balance::where('user_id', $leave->user->id)->get();
                     $subsets = $balances->map(function ($balance) {
                         return collect($balance->toArray())
