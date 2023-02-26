@@ -1,9 +1,11 @@
 <?php
 
 return [
-    'createReportForStaffLeaves' => 'بحث متقدم لحسابات الموظفين' ,
+    'advancedSearchForStaffLeaves' => 'بحث متقدم لحسابات الموظفين' ,
     'staffName' => 'اسم الموظف (اذا لم يتم ادخال اسم, سيتم اظهار اجازات جميع الموظفين في الفترة المحددة)' ,
     'choose' => 'اختار' ,
+
+    'balanceexport' => 'استخراج أرصدة إجازات الموظفين' ,
     'leaveStartDate' => 'الموظفين بعد تاريخ الانضمام' ,
     'leaveEndDate' => 'تاريخ انتهاء الإجازات ' ,
     'leavetype' => 'نوع العقد' ,

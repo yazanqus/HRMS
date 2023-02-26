@@ -3,6 +3,7 @@
 return [
     'advancedSearchForStaffLeaves' => 'Advanced Search for Users' ,
     'staffName' => 'Staff Name (If not provided, it will consider all staff)' ,
+    'balanceexport' => 'Balance export for Users' ,
     'choose' => 'Choose' ,
     'leaveStartDate' => 'Staff joined after Date (If not provided, it will consider all staff)' ,
     'leaveEndDate' => 'Leave End Date (If not provided, it will consider end of 2023)' ,

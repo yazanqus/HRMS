@@ -4,6 +4,7 @@ return [
 
     'allStaffLeaves' => 'All Staff Leaves' ,
     'advancedSearch' => 'Advanced search' ,
+    'balanceexport' => 'Balances Export' ,
     'pdfReport' => 'PDF report' ,
     'excel' => 'Excel' ,
     'show' => 'Show' ,

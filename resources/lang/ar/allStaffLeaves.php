@@ -5,6 +5,7 @@ return [
     'allStaffLeaves' => 'إجازات جميع الموظفين' ,
     'advancedSearch' => 'بحث متقدم' ,
     'pdfReport' => ' pdf تقرير بصيغة ' ,
+    'balanceexport' => 'استخراج الأرصدة' ,
     'excel' => 'اكسل' ,
     'show' => 'عرض' ,
     'entries' => 'المدخلات',

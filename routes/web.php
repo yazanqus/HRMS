@@ -182,6 +182,33 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/
     Route::post('/users/search', [UserController::class, 'search'])->name('users.search');
 
 
+    Route::get('allusersbalanceexport', function () {
+        $hruser = Auth::user();
+
+        if ($hruser->office == "AO2") {
+            $users = User::all()->except(1);
+            
+            return view('admin.users.balanceconditions', ['users' => $users]);
+        }
+        else
+        {  
+            $staffwithsameoffice = User::where('office',$hruser->office)->get();
+            if (count($staffwithsameoffice))
+            {
+                $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
+                    return collect($staffwithsameoffice->toArray())
+                        ->only(['id'])
+                        ->all();
+                });
+                $hrusers = User::wherein('id', $hrsubsets)->get();
+
+                return view('admin.users.balanceconditions', ['users' => $hrusers]);
+            }            
+
+        }
+    })->name('allusersbalanceexport.cond');
+
+
     Route::get('allovertimessearch', function () {
         $hruser = Auth::user();
 
@@ -965,6 +992,7 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
 
 Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::get('/users/export', [UserController::class, 'export'])->name('users.export');
+    Route::post('/users/balanceexport', [UserController::class, 'balanceexport'])->name('users.balanceexport');
     Route::post('/users/import', [UserController::class, 'import'])->name('users.import');
     Route::get('/users/import/show', [UserController::class, 'importshow'])->name('users.importshow');
     Route::get('/users/createbalance', [UserController::class, 'createbalance'])->name('users.createbalance');
