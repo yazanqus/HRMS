@@ -96,6 +96,7 @@
           <div class="social-auth-links text-center ">
             <a href="{{ route('login-okta') }}" id="btn-1"class="btn-lg btn-block btn-outline-primary">
               <i class="fab fa-faecebook"></i>Sign in with Okta
+              <br> تسجيل الدخول باستخدام الأوكتا
             </a>
             
         
