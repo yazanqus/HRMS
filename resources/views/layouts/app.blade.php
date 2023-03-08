@@ -106,7 +106,7 @@
 <!-- Logo -->
 <a href="{{ route('welcome') }}" class="text-center brand-link">
   
-  <p class="h1 mb-0" style="font-size:2.3rem;"> <img class="mb-0 ml-0" src="{{url('/nrc-nobg2.png')}}"  alt="" style="width:190px;height:60px;"></p>
+  <p class="h1 mb-0" style="font-size:2.3rem;"> <img class="mb-0 ml-0" src="{{url('/Tradinos.png')}}"  alt="" style="width:190px;height:60px;"></p>
 </a>
 
 <!-- Sidebar -->

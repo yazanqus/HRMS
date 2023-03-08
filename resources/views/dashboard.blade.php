@@ -5,7 +5,7 @@
     <div class="img-responsive img-fluid w-100 bg-image" 
      style=" background-position: center;
   background-repeat: no-repeat;
-  background-size: cover; background-image: url('/nrccover.png');
+  background-size: cover; background-image: url('/tradinos-back.png');
             height: 100vh">
     <div class="content">
 
