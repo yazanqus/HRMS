@@ -209,6 +209,102 @@
             </div>
             <br>
 
+            
+            <div class="container-fluid">
+                      <div class="card">
+                        <div class="card-header card-header-primary">
+                          <h4 class="card-title "><strong>{{$user->name}}</strong> Leaves</h4>
+                          {{-- <p class="card-category"> Here you can manage users</p> --}}
+                        </div>
+                        <div class="card-body table-responsive-md">
+
+                        <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
+                        <thead>
+                            <tr style=" background-color: #ffb678 !important;">
+                                <th style="width: 5%" scope="col">{{__('staffleaves.id-Leave')}}</th>
+                               
+                                <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.leaveType')}}</th>
+                                <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.startDate')}}</th>
+                                <th style="width: 20%"  class="text-center"scope="col">{{__('staffleaves.endDate')}}</th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.days')}}</th>
+                                <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.status')}}</th>
+                                <th style="width: 10%" class="text-center" scope="col">{{__('allStaffLeaves.lineManager')}}</th>
+                                <!-- <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.dateCreated')}}</th> -->
+                            </tr>
+                          </thead>
+                          <tbody>
+                            @foreach ($leaves as $leave)
+                            <tr>
+                                <td><a href="{{ route('leaves.show', encrypt($leave->id)) }}" >{{ $leave->id }}</a></td>
+                             
+                                <td class="text-center">{{ $leave->leavetype->name }}</td>
+                              @php
+                              $startdayname = Carbon\Carbon::parse($leave->start_date)->format('l');
+                              $enddayname = Carbon\Carbon::parse($leave->end_date)->format('l');
+                              @endphp
+                              <td class="text-center">{{__("databaseLeaves.$startdayname")}} {{ $leave->start_date }}</td>
+                              <td class="text-center">{{__("databaseLeaves.$enddayname")}} {{ $leave->end_date }}</td>
+                              <td class="text-center">{{ $leave->days }}</td>
+                              <td class="text-center">{{ $leave->status }}</td>
+                              <td class="text-center">{{ $leave->user ? $leave->lmapprover : '-' }}</td>
+                              <!-- <td class="text-center"> {{ $leave->created_at }}</td> -->
+                            </tr>
+                            @endforeach
+                          </tbody>
+                      </table>
+                        </div>
+                      </div>
+                  </div>
+
+                  <div class="container-fluid">
+                    <div class="card">
+                      <div class="card-header card-header-primary">
+                      <h4 class="card-title "><strong>{{$user->name}}</strong> Overtimes</h4>
+                        {{-- <p class="card-category"> Here you can manage users</p> --}}
+                      </div>
+                      <div class="card-body table-responsive-md">
+
+                      <table id="table_idd" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
+                      <thead>
+                          <tr style=" background-color: #ffb678 !important;">
+                          <th style="width: 10%" scope="col">{{__('staffleaves.id-Overtime')}}</th>
+                             
+                              <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.overtimeType')}}</th>
+                              <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.date')}}</th>
+                              <th style="width: 10%"  class="text-center"scope="col">{{__('staffleaves.startHour')}}</th>
+                              <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.endHour')}}</th>
+                              <th style="width: 10%" class="text-center" scope="col">{{__('staffleaves.hours')}}</th>
+                              <th style="width: 5%" class="text-center" scope="col">{{__('allStaffOvertimes.hours')}}<small>({{__('allStaffOvertimes.value')}})</small></th>
+                              <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.status')}}</th>
+                              <th style="width: 10%" class="text-center" scope="col">{{__('allStaffOvertimes.lineManager')}}</th>
+                              <!-- <th style="width: 15%" class="text-center" scope="col">{{__('staffleaves.dateCreated')}}</th> -->
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach ($overtimes as $overtime)
+                          <tr>
+                            <td><a href="{{ route('overtimes.show', encrypt($overtime->id)) }}" >{{ $overtime->id }}</a></td>
+                            
+                            <td class="text-center">{{ $overtime->type }}</td>
+                            @php
+                              $dayname = Carbon\Carbon::parse($overtime->date)->format('l');
+                              @endphp
+                            <td class="text-center">{{__("databaseLeaves.$dayname")}} {{ $overtime->date }}</td>
+                            <td class="text-center">{{ $overtime->start_hour }}</td>
+                            <td class="text-center">{{ $overtime->end_hour }}</td>
+                            <td class="text-center">{{ $overtime->hours }}</td>
+                            <td class="text-center">{{ $overtime->value }}</td>
+                            <td class="text-center">{{ $overtime->status }}</td>
+                            <td class="text-center">{{ $overtime->lmapprover }}</td>
+                            <!-- <td class="text-center"> {{ $overtime->created_at }}</td> -->
+                          </tr>
+                          @endforeach
+                        </tbody>
+                    </table>
+                      </div>
+                    </div>
+                </div>
+
 
 
 
@@ -277,12 +373,28 @@
 @endsection
 
 @push('scripts')
-  {{-- <script>
+   <script>
     $(document).ready(function() {
+
+      $('#table_id').DataTable(
+        {
+            "order": [[ 0, "desc" ]],
+            
+        }
+    );
+
+    $('#table_idd').DataTable(
+        {
+            "order": [[ 0, "desc" ]]
+        }
+    );
+
+
+
       // Javascript method's body can be found in assets/js/demos.js
       md.initDashboardPageCharts();
     });
-  </script> --}}
+  </script>
   <script>
 
     var myModal = document.getElementById('myModal')

@@ -13,7 +13,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use App\Mail\Leave as MailLeave;
-
+use App\Models\Overtime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -361,6 +361,9 @@ class UserController extends Controller
             // $balance17 = round($leave17['value'],3);
             $leave18 = $subsets->firstwhere('leavetype_id', '18');
             $balance18 = round($leave18['value'],3);
+
+            $leaves = Leave::where('user_id', $user->id)->get();
+            $overtimes = Overtime::where('user_id', $user->id)->get();
     
             return view('admin.users.show', [
                 'user' => $user,
@@ -378,6 +381,8 @@ class UserController extends Controller
                 'balance12' => $balance12,
                 'balance15' => $balance15,
                 'balance18' => $balance18,
+                'leaves'=> $leaves,
+                'overtimes' => $overtimes,
             ]);
     
             }
@@ -445,6 +450,9 @@ class UserController extends Controller
             $leave18 = $subsets->firstwhere('leavetype_id', '18');
             $balance18 = round($leave18['value'],3);
     
+            $leaves = Leave::where('user_id', $user->id)->get();
+            $overtimes = Overtime::where('user_id', $user->id)->get();
+
             return view('admin.users.show', [
                 'user' => $user,
                 'balance1' => $balance1,
@@ -461,6 +469,8 @@ class UserController extends Controller
                 'balance12' => $balance12,
                 'balance15' => $balance15,
                 'balance18' => $balance18,
+                'leaves'=> $leaves,
+                'overtimes' => $overtimes,
             ]);
     
         }
