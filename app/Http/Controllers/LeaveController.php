@@ -275,7 +275,7 @@ class LeaveController extends Controller
 
             if ($probationdays >= '90') {
 
-                if ($days <= $currentbalance) {
+                if ($dayswithoutholidays <= $currentbalance) {
 
 
                     $leavessubmitted = Leave::where([
