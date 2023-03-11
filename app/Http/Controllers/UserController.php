@@ -481,7 +481,7 @@ class UserController extends Controller
     {
 
         $hruser = Auth::user();
-        // dd($hruser->office);
+        // dd($hruser->office);test
 
         if ($hruser->office == "AO3" || $hruser->office == "AO4" || $hruser->office == "AO6" || $hruser->office == "AO7")
         {
