@@ -43,10 +43,9 @@
                                                 <label class="form-control-label px-1">{{__('edituser.birthDate')}}</label>
                                                 <input class="form-control form-outline" type="date" id="birth_date" value="{{$user->birth_date}}" name="birth_date" placeholder="" >
                                             </div> -->
-                                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">{{__('edituser.position')}}</label> <input class="form-control form-outline" type="text" id="position" value="{{$user->position}}" name="position" placeholder="" > </div>
                                         </div>
                                         <div class="row justify-content-between text-left">
-                                            
+                                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">{{__('edituser.position')}}</label> <input class="form-control form-outline" type="text" id="position" value="{{$user->position}}" name="position" placeholder="" > </div>
 
                                             @php
                                             $authuser = Auth::user();
@@ -99,13 +98,7 @@
                                                         </datalist>
                                                         </p>
                                         </div>
-                                        <div class="form-group col-sm-6 flex-column d-flex">
-                                                <label class="form-control-label required px-1">{{__('edituser.email')}}</label>
-                                                <input class="form-control form-outline {{ $errors->has('email') ? ' is-invalid' : '' }}" type="email" id="email" value="{{$user->email}}" name="email" autocomplete="off" placeholder=""  >
-                                               @if ($errors->has('email'))
-                                                 <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
-                                                @endif
-                                            </div>
+
                                         </div>
                                         <div class="row justify-content-between text-left">
                                        
@@ -173,7 +166,13 @@
 
                                         </div>
                                         <div class="row justify-content-between text-left">
-<!--                                             
+                                            <div class="form-group col-sm-6 flex-column d-flex">
+                                                <label class="form-control-label px-1">{{__('edituser.email')}}</label>
+                                                <input class="form-control form-outline {{ $errors->has('email') ? ' is-invalid' : '' }}" type="email" id="email" value="{{$user->email}}" name="email" autocomplete="off" placeholder=""  >
+                                               @if ($errors->has('email'))
+                                                 <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
+                                                @endif
+                                            </div>
                                             <div class="form-group  {{ $errors->has('password') ? ' has-danger' : '' }}  col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label  px-1">{{__('edituser.password')}} <small>({{__('edituser.changepassword')}})</small></label>
                                                 <div class="input-group">
@@ -191,7 +190,7 @@
                                                  @if ($errors->has('password'))
                                               <span id="password-error" class="error text-danger" for="input-password">{{ $errors->first('password') }}</span>
                                              @endif
-                                                </div> -->
+                                                </div>
                                         </div>
                                         {{-- MUST ADD requirepd for radio check --}}
                                         <div class="row justify-content-center">

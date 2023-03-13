@@ -46,10 +46,9 @@
                                               <label class="form-control-label px-1">{{__('createUser.birthDate')}}</label>
                                               <input class="form-control form-outline" type="date" value="{{ old('birth_date') }}" name="birth_date" id="birth_date" placeholder="" >
                                             </div> -->
-                                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">{{__('createUser.position')}}</label> <input class="form-control form-outline" type="text" id="position"  value="{{ old('position') }}" name="position" placeholder="" > </div>
                                       </div>
                                       <div class="row justify-content-between text-left">
-                                       
+                                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">{{__('createUser.position')}}</label> <input class="form-control form-outline" type="text" id="position"  value="{{ old('position') }}" name="position" placeholder="" > </div>
                    
                                         <div class="form-group col-sm-6 flex-column d-flex {{ $errors->has('office') ? ' has-danger' : '' }}"> <label class="dropdown form-control-label required px-1 {{ $errors->has('joined_date') ? ' is-invalid' : '' }}">{{__('createUser.office')}}</label>
                                         
@@ -162,14 +161,6 @@ $authuser = Auth::user();
                                             @endforeach
                                         </datalist>
                                      </div>
-
-                                     <div class="form-group {{ $errors->has('email') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
-                                              <label class="form-control-label required px-1">{{__('createUser.email')}}</label>
-                                               <input class="form-control form-outline {{ $errors->has('email') ? ' is-invalid' : '' }}"  type="email" id="email"  name="email" autocomplete="off" value="{{ old('email') }}" placeholder="" >
-                                                @if ($errors->has('email'))
-                                                <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
-                                               @endif 
-                                             </div>
                                      @php
                                 $authuser = Auth::user();
                                 @endphp
@@ -208,12 +199,14 @@ $authuser = Auth::user();
                                             </label>
                                           </div> 
                                         </div>
-                                       
 
                                       </div>
                                       <div class="row justify-content-between text-left">
-                                         
-                                          <!-- <div class="form-group {{ $errors->has('password') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
+                                          <div class="form-group col-sm-6 flex-column d-flex">
+                                              <label class="form-control-label px-1">{{__('createUser.email')}}</label>
+                                               <input class="form-control form-outline"  type="email" id="email"  name="email" autocomplete="off" value="{{ old('email') }}" placeholder="" >
+                                             </div>
+                                          <div class="form-group {{ $errors->has('password') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
                                               <label class="form-control-label required  px-1">{{__('createUser.password')}} <small>({{__('createUser.whenSigningUsingEmployeeId')}})</small></label>
                                                <div class="input-group">
                                                    <input class="form-control form-outline  {{ $errors->has('password') ? ' is-invalid' : '' }} "  type="password" readonly onfocus="this.removeAttribute('readonly');" id="password" autocomplete="off"
@@ -230,7 +223,7 @@ $authuser = Auth::user();
                                                 @if ($errors->has('password'))
                                               <span id="password-error" class="error text-danger" for="input-password">{{ $errors->first('password') }}</span>
                                              @endif
-                                        </div> -->
+                                        </div>
                                       </div>
                                       {{-- MUST ADD requirepd for radio check --}}
                                        <br>
