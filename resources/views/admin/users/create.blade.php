@@ -51,7 +51,7 @@
                                       <div class="row justify-content-between text-left">
                                        
                    
-                                        <div class="form-group col-sm-6 flex-column d-flex {{ $errors->has('office') ? ' has-danger' : '' }}"> <label class="dropdown form-control-label required px-1 {{ $errors->has('joined_date') ? ' is-invalid' : '' }}">{{__('createUser.office')}}</label>
+                                        <div class="form-group col-sm-6 flex-column d-flex {{ $errors->has('office') ? ' has-danger' : '' }}"> <label class="dropdown form-control-label required px-1 {{ $errors->has('office') ? ' is-invalid' : '' }}">{{__('createUser.office')}}</label>
                                         
 @php
 $authuser = Auth::user();
@@ -135,7 +135,32 @@ $authuser = Auth::user();
                                         </div>
 
                                         <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-1">{{__('createUser.department')}}</label> <input class="form-control form-outline" type="text" id="department"  value="{{ old('department') }}" name="department" placeholder="" > </div>
-                      
+
+                                        <div class="form-group col-sm-6 flex-column d-flex {{ $errors->has('grade') ? ' has-danger' : '' }}"> <label class="dropdown form-control-label required px-1 {{ $errors->has('grade') ? ' is-invalid' : '' }}">{{__('createUser.grade')}}</label>
+                                          
+                                              <select class="form-control form-outline" id="grade" name="grade" aria-label="Default select example" >
+
+                                              <option value selected disabled ="">{{__('createUser.choose')}} {{__('createUser.grade')}}..</option>
+
+                                              <option value="1" @if (old('grade') == "1") {{ 'selected' }} @endif>1</option>
+                                              <option value="2" @if (old('grade') == "2") {{ 'selected' }} @endif>2</option>
+                                              <option value="3" @if (old('grade') == "3") {{ 'selected' }} @endif>3</option>
+                                              <option value="4" @if (old('grade') == "4") {{ 'selected' }} @endif>4</option>
+                                              <option value="5" @if (old('grade') == "5") {{ 'selected' }} @endif>5</option>
+                                              <option value="6" @if (old('grade') == "6") {{ 'selected' }} @endif>6</option>
+                                              <option value="7" @if (old('grade') == "7") {{ 'selected' }} @endif>7</option>
+                                              <option value="8" @if (old('grade') == "8") {{ 'selected' }} @endif>8</option>
+                                              <option value="9" @if (old('grade') == "9") {{ 'selected' }} @endif>9</option>
+                                              <option value="10" @if (old('grade') == "10") {{ 'selected' }} @endif>10</option>
+                                              <option value="11" @if (old('grade') == "11") {{ 'selected' }} @endif>11</option>
+                                              <option value="12" @if (old('grade') == "12") {{ 'selected' }} @endif>12</option>
+                                              <option value="13" @if (old('grade') == "13") {{ 'selected' }} @endif>13</option>
+                                              </select>
+
+                                          @if ($errors->has('grade'))
+                                                <span id="grade-error" class="error text-danger" for="input-grade">{{ $errors->first('grade') }}</span>
+                                               @endif
+                                              </div>                    
                                       </div>
                                       <div class="row justify-content-between text-left">
                                         <div class="form-group {{ $errors->has('joined_date') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">

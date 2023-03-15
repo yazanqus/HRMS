@@ -105,6 +105,8 @@
                                 <br>
                                 <strong>{{__('showuser.department')}}: </strong> {{$user->department}}
                                 <br>
+                                <strong>{{__('showuser.grade')}}: </strong> {{$user->grade}}
+                                <br>
                                 <strong>{{__('showuser.joinedDate')}}: </strong> {{$user->joined_date}}
                                 <br>
                               <strong>{{__('showuser.lineManager')}}: </strong> {{$user->linemanager}}

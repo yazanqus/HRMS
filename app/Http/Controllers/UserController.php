@@ -85,6 +85,7 @@ class UserController extends Controller
             'employee_number' => 'required|unique:users,employee_number',
             'contract',
             'birth_date',
+            'grade' => 'required',
             'position',
             'department',
             'joined_date' => 'required',
@@ -103,6 +104,7 @@ class UserController extends Controller
         $user->position = $request->position;
         $user->office = $request->office;
         $user->department = $request->department;
+        $user->grade = $request->grade;
         $user->linemanager = $request->linemanager;
         $user->joined_date = $request->joined_date;
         $user->hradmin = $request->hradmin;
@@ -534,6 +536,7 @@ class UserController extends Controller
             'position',
             'office',
             'department',
+            'grade'=> 'required',
             'joined_date' => 'required',
             'linemanager',
             'hradmin',
@@ -559,6 +562,7 @@ class UserController extends Controller
 
         }
         $user->department = $request->department;
+        $user->grade = $request->grade;
         $user->linemanager = $request->linemanager;
         $user->joined_date = $request->joined_date;
         if ($hruser->superadmin == "yes")
