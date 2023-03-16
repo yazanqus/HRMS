@@ -119,7 +119,7 @@
   background-color: #007bff;
   border-radius: 3px;
 box-shadow: inset 0 0 0 0 #FF7602;
-transition: ease-out 1.6s;
+transition: ease-out 5s;
 
 }
 #btn-1.activate {
@@ -150,6 +150,7 @@ transition: ease-out 1.6s;
 
     $(document).on('click', '#btn-1', function () {
 $(this).addClass('activate');
+
 });
 
 $(document).on('click', '#buttonSelector', function () {

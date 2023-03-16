@@ -233,6 +233,7 @@ $(document).ready(function() {
   
 
     $(document).on('click', '#buttonSelector', function () {
+      
     $(this).addClass('disabled');
 });
 

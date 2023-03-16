@@ -54,6 +54,8 @@
 
                                 <strong>{{__('welcome.position')}}: </strong> {{$user->position}}
                                   <br>
+                                  <strong>{{__('welcome.grade')}}: </strong> {{$user->grade}}
+                                  <br>
                                   <strong>{{__('welcome.joinedDate')}}: </strong> {{$user->joined_date}}
                                   <br>
                                 <strong>{{__('welcome.lineManager')}}: </strong> {{$user->linemanager}}

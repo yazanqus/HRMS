@@ -252,6 +252,9 @@ $(document).ready(function() {
 
   $(document).on('click', '.btn-1', function () {
 $(this).addClass('activate');
+$(this).html(
+        `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> `
+      );
 });
 
   $('#reset').hide();

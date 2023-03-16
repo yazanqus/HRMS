@@ -197,6 +197,7 @@
 .btn-1.activate {
   box-shadow: inset 500px 0 0 0 #14489e;
   transition: all 2s;
+ 
 
 }
 		
@@ -225,7 +226,12 @@ $(document).ready(function() {
  
 
 $(document).on('click', '.btn-1', function () {
+  // $(this).find(':submit').attr('disabled','disabled');
 $(this).addClass('activate');
+$(this).html(
+        `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> `
+      );
+      
 });
 
 // $(document).on('change', 'leavetype_id', function () {
