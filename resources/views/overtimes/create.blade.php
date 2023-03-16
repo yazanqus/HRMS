@@ -172,6 +172,10 @@
                                         </div>
                                         <br>
                                         <div class="row justify-content-center">
+                                        <h5 style='border-radius: 7px; padding:5px; border:2px orange solid; font-size:17px; width:fit-content; width:-webkit-fit-content; width:-moz-fit-content;'>Overtime Request will be approved only if 48 hours are completed in the week</h5>
+                                        </div>
+                                        <br>
+                                        <div class="row justify-content-center">
                                             <div class="justify-content-center form-group col-sm-2"> <button type="submit" class="btn-1">{{__('createOvertime.submit')}}</button> </div>
                                             <div class="form-group col-sm-3"> <a class="btn btn-outline-danger" href="{{route('overtimes.index')}}" >{{__('createOvertime.cancel')}}</a> </div>
                                         </div>
@@ -266,7 +270,7 @@ $("input[name=type]:radio").change(function(){
       $('#weekendlabel').hide();
       $('#holiday').hide();
       $('#holidaylabel').hide();
-      weekday = "5,6";
+      weekday = "5";
       $('#datepicker').datepicker({ 
     format: 'yyyy-mm-dd',
     
@@ -278,7 +282,7 @@ daysOfWeekDisabled: weekday
   });
     }
    else if ($("#weekend").prop("checked")) {
-     weekday = "0,1,2,3,4";
+     weekday = "0,1,2,3,4,6";
      $('#workday').hide();
       $('#workdaylabel').hide();
       $('#holiday').hide();

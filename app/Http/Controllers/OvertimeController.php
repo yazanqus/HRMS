@@ -39,11 +39,11 @@ class OvertimeController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        $overtime = Overtime::where('user_id', $user->id)->get();
-        return view('overtimes.index', ['overtimes' => $overtime]);
+        // $user = Auth::user();
+        // $overtime = Overtime::where('user_id', $user->id)->get();
+        // return view('overtimes.index', ['overtimes' => $overtime]);
 
-        // return view('overtimes.create');
+        return view('overtimes.create');
     }
 
     /**
