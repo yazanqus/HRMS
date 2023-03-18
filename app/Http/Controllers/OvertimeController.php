@@ -6,6 +6,7 @@ use App\Exports\OvertimesExport;
 use App\Models\Balance;
 use App\Models\Overtime;
 use App\Models\User;
+use App\Models\Comlist;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -108,7 +109,10 @@ class OvertimeController extends Controller
         
         }
 
-       
+       if ($user->grade >= "7")
+       {
+        return redirect()->back()->with("error", trans('overtimeerror.gradetoohigh')); 
+       }
 
 
         if ($request->type == 'holiday' && !in_array($request->date , $nrcholidays))
@@ -422,6 +426,12 @@ class OvertimeController extends Controller
         if ($overtime->type == 'week-end') {
             $partialstoannual = $overtime->hours / 8;
            
+            $user = Auth::user();
+            $overtime->comlists()->create([
+                'user_id' => $user->id,
+                'hours' => $partialstoannual,
+                
+            ]);
 
             $balances = Balance::where('user_id', $overtime->user->id)->get();
             $subsets = $balances->map(function ($balance) {
