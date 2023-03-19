@@ -141,6 +141,19 @@ class OvertimeController extends Controller
             else
             {
 
+
+                $stime = $request->start_hour;
+                $etime = $request->end_hour;
+                $starttime1 = new DateTime($stime);
+                $endtime2 = new DateTime($etime);
+                $interval = $starttime1->diff($endtime2);
+                $hourss = $interval->format('%h');
+                $minss = $interval->format('%i');
+                $units = round($minss / 30) * 30;
+                $mintohour = $units / 60;
+                $last = $hourss + $mintohour;
+
+
                 $datenow = Carbon::now();
                 $datenoww = new DateTime($datenow);
                 $monthnow = $datenoww->format('m');
@@ -155,8 +168,11 @@ class OvertimeController extends Controller
                                     ->orWhere('status','Pending extra Approval')
                                     ->orWhere('status','Approved');
                     })->whereMonth('date',$monthnow)->sum('hours');
-             
-                if ($submittedhours >= 40)
+
+
+                $submittedwithrequest = $submittedhours + $last;
+
+                if ($submittedwithrequest > 40)
                 {
                     return redirect()->back()->with("error", trans('overtimeerror.toomuch'));
                 }
@@ -164,16 +180,7 @@ class OvertimeController extends Controller
                 else
                 {
 
-                    $stime = $request->start_hour;
-                    $etime = $request->end_hour;
-                    $starttime1 = new DateTime($stime);
-                    $endtime2 = new DateTime($etime);
-                    $interval = $starttime1->diff($endtime2);
-                    $hourss = $interval->format('%h');
-                    $minss = $interval->format('%i');
-                    $units = round($minss / 30) * 30;
-                    $mintohour = $units / 60;
-                    $last = $hourss + $mintohour;
+                   
             
                     // dd($last);
             
