@@ -360,6 +360,7 @@ class LeaveController extends Controller
                     }
 
                     $leave->save();
+                    $request->session()->flash('successMsg',trans('overtimeerror.success')); 
                     return redirect()->route('leaves.index');
 
                     }
@@ -461,7 +462,7 @@ class LeaveController extends Controller
 
                 $leave->save();
                 // $user->notify(new EmailNotification($leave));
-
+                $request->session()->flash('successMsg',trans('overtimeerror.success')); 
                 return redirect()->route('leaves.index');
             }
 
@@ -572,7 +573,7 @@ class LeaveController extends Controller
 
                 $leave->save();
                 // $user->notify(new EmailNotification($leave));
-
+                $request->session()->flash('successMsg',trans('overtimeerror.success')); 
                 return redirect()->route('leaves.index');
             }
 
@@ -682,7 +683,7 @@ class LeaveController extends Controller
 
                 $leave->save();
                 // $user->notify(new EmailNotification($leave));
-
+                $request->session()->flash('successMsg',trans('overtimeerror.success')); 
                 return redirect()->route('leaves.index');
 
             }
@@ -790,7 +791,7 @@ class LeaveController extends Controller
 
                 $leave->save();
                 // $user->notify(new EmailNotification($leave));
-
+                $request->session()->flash('successMsg',trans('overtimeerror.success')); 
                 return redirect()->route('leaves.index');
 
             }
@@ -897,7 +898,7 @@ class LeaveController extends Controller
                     }
 
                     $leave->save();
-
+                    $request->session()->flash('successMsg',trans('overtimeerror.success')); 
                     return redirect()->route('leaves.index');
 
                     }
@@ -1011,7 +1012,7 @@ class LeaveController extends Controller
                     }
 
                     $leave->save();
-
+                    $request->session()->flash('successMsg',trans('overtimeerror.success')); 
                     return redirect()->route('leaves.index');
                 }
                 } else {
@@ -1104,7 +1105,7 @@ class LeaveController extends Controller
                     }
 
                     $leave->save();
-
+                    $request->session()->flash('successMsg',trans('overtimeerror.success')); 
                     return redirect()->route('leaves.index');
                 }
                 } else {
@@ -1199,7 +1200,7 @@ class LeaveController extends Controller
                     }
 
                     $leave->save();
-
+                    $request->session()->flash('successMsg',trans('overtimeerror.success')); 
                     return redirect()->route('leaves.index');
 
                 }
@@ -1308,7 +1309,7 @@ class LeaveController extends Controller
                     }
 
                     $leave->save();
-
+                    $request->session()->flash('successMsg',trans('overtimeerror.success')); 
                     return redirect()->route('leaves.index');
                 }
 
@@ -1460,7 +1461,7 @@ class LeaveController extends Controller
                     }
 
                     $leave->save();
-
+                    $request->session()->flash('successMsg',trans('overtimeerror.success')); 
                     return redirect()->route('leaves.index');
 
                 }
@@ -1596,7 +1597,7 @@ class LeaveController extends Controller
                     }
     
                     $leave->save();
-    
+                    $request->session()->flash('successMsg',trans('overtimeerror.success')); 
                     return redirect()->route('leaves.index');
                 }
 
@@ -1705,7 +1706,7 @@ class LeaveController extends Controller
                 }
 
                 $leave->save();
-
+                $request->session()->flash('successMsg',trans('overtimeerror.success')); 
                 return redirect()->route('leaves.index');
             }
             } else {
@@ -1812,7 +1813,7 @@ class LeaveController extends Controller
                     }
 
                     $leave->save();
-
+                    $request->session()->flash('successMsg',trans('overtimeerror.success')); 
                     return redirect()->route('leaves.index');
 
                 }
@@ -1960,7 +1961,7 @@ class LeaveController extends Controller
                     }
 
                     $leave->save();
-
+                    $request->session()->flash('successMsg',trans('overtimeerror.success')); 
                     return redirect()->route('leaves.index');
 
                 }
@@ -2071,7 +2072,7 @@ class LeaveController extends Controller
                 }
 
                 $leave->save();
-
+                $request->session()->flash('successMsg',trans('overtimeerror.success')); 
                 return redirect()->route('leaves.index');
             }
             } else {
@@ -2178,7 +2179,7 @@ class LeaveController extends Controller
                 }
 
                 $leave->save();
-
+                $request->session()->flash('successMsg',trans('overtimeerror.success')); 
                 return redirect()->route('leaves.index');
             }
             } else {
@@ -2286,7 +2287,7 @@ class LeaveController extends Controller
             //     $message->to('danial@admin.com');
             //     $message->subject('Welcome Mail');
             // });
-
+            $request->session()->flash('successMsg',trans('overtimeerror.success')); 
             return redirect()->route('leaves.index');
         }
         }

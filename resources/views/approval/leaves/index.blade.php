@@ -100,6 +100,7 @@
                 <label class="form-control-label px-1">{{__('createLeave.comment')}}</small></label>
                 <input class="form-control form-outline" type="text" id="comment" autocomplete="off" name="comment" placeholder="Optional">
 
+               
               </div>
               </div>
 
@@ -210,7 +211,9 @@
                 <input id="buttonSelector" type="submit" class="mb-0 mt-0 btn btn-danger" value="Decline">
             </div>
         </form>
+        
         </div>
+        
         <div class="modal-footer mt-0">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         </div>

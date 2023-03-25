@@ -6,6 +6,7 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ChangePassword;
+use App\Http\Controllers\ComlistController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\OvertimeController;
@@ -1025,6 +1026,8 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
     Route::post('/leaves/forward/{id}', [LeaveController::class, 'forward'])->name('leaves.forward');
     Route::post('/leaves/exapproved/{id}', [LeaveController::class, 'exapproved'])->name('leaves.exapproved');
     Route::post('/leaves/exdeclined/{id}', [LeaveController::class, 'exdeclined'])->name('leaves.exdeclined');
+
+    Route::resource('comlists', ComlistController::class)->except(['show']);
 });
 
 Route::group(['middleware' => ['auth', 'checkstatus']], function () {

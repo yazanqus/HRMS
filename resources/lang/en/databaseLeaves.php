@@ -47,4 +47,8 @@ return [
     'Thursday' => 'Thursday',
     'Friday' => 'Friday',
     'Saturday' => 'Saturday',
+    'Active' => 'Active',
+    'Used' => 'Used',
+    'partiallost' => 'Partial Lost',
+    'fulllost' => 'Fully lost',
 ];

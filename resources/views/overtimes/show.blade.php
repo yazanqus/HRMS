@@ -154,8 +154,13 @@
                                   @endif
                                   {{__('overtimeshow.approved')}}/{{__('overtimeshow.declined')}} {{__('overtimeshow.by')}} {{__('overtimeshow.hr')}}: <strong>{{$overtime->hrapprover}}</strong> - "<i>{{$overtime->hrcomment}}</i>"
                                 </div>
+                                
 
                           </div>
+                          <br>
+                          <div class="row justify-content-center">
+                                        <h5 style='border-radius: 7px; padding:5px; border:2px orange solid; font-size:17px; width:fit-content; width:-webkit-fit-content; width:-moz-fit-content;'>{{__('createOvertime.note')}}</h5>
+                                        </div>
                 </div>
             </div>
 

@@ -47,4 +47,8 @@ return [
     'Thursday' => 'الخميس',
     'Friday' => 'الجمعة',
     'Saturday' => 'السبت',
+    'Active' => 'فعال',
+    'partiallost' => 'خسارة جزئية',
+    'fulllost' => 'خسارة كاملة',
+    'Used' => 'تم استخدام الرصيد',
 ];

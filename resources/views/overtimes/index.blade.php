@@ -14,14 +14,16 @@
                     </div>
                 </div>
                 <br>
-
+                @if(Session::has('successMsg'))
+    <div class="successMsg alert alert-success"> {{ Session::get('successMsg') }}</div>
+  @endif
                   <div class="container-fluid">
                       <div class="card">
                         <div class="card-header card-header-primary">
                           <h4 class="card-title ">{{__('overtimesIndex.myOvertimes')}}</h4>
                           {{-- <p class="card-category">Here you can see the history of overtimes</p> --}}
                           <div class="col-12 text-right">
-                            <a href="" class="disabled btn btn-md btn-primary"><strong>{{__('overtimesIndex.submitNewOvertime')}}</strong></a>
+                            <a href="{{route('overtimes.create')}}" class=" btn btn-md btn-primary"><strong>{{__('overtimesIndex.submitNewOvertime')}}</strong></a>
                           </div>
                         </div>
                         <div class="card-body table-responsive-md">
@@ -131,6 +133,10 @@
 
 
     $(document).ready( function () {
+
+      setTimeout(function() {
+    $("div.successMsg").fadeOut('slow');
+}, 2000); 
 
       $('form').submit(function(){
 $(this).find(':submit').attr('disabled','disabled');
