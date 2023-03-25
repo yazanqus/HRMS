@@ -43,4 +43,5 @@ return [
 'Welfareleave'=> 'إجازة رفاهية',
 'PilgrimageIslamicleave'=> 'إجازة الحج الإسلامية',
 'PilgrimageChristianleave'=> 'إجازة الحج المسيحية',
+'changetype' => 'تغيير النوع',
 ];

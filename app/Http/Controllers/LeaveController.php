@@ -587,7 +587,24 @@ class LeaveController extends Controller
 
         //sick 30 leave
         elseif ($request->leavetype_id == '3') {
-            if ($days <= $currentbalance) {
+
+            $balances = Balance::where('user_id', $user->id)->get();
+            $subsets = $balances->map(function ($balance) {
+                return collect($balance->toArray())
+
+                    ->only(['value', 'leavetype_id'])
+                    ->all();
+            });
+            $final = $subsets->firstwhere('leavetype_id', '2');
+            $finalfinal = $final['value'];
+            $sickhalfleavebalance = $finalfinal;
+
+            if($sickhalfleavebalance > 0)
+            {
+                return redirect()->back()->with("error",trans('leaveerror.sicknotzero'));
+            }
+
+            else if ($days <= $currentbalance) {
 
                 if ($request->hasFile('file')) {
                     $path = $request->file('file')->store('public/leaves');
@@ -695,7 +712,24 @@ class LeaveController extends Controller
 
         //sick 20 leave
         elseif ($request->leavetype_id == '4') {
-            if ($days <= $currentbalance) {
+
+            $balances = Balance::where('user_id', $user->id)->get();
+            $subsets = $balances->map(function ($balance) {
+                return collect($balance->toArray())
+
+                    ->only(['value', 'leavetype_id'])
+                    ->all();
+            });
+            $final = $subsets->firstwhere('leavetype_id', '2');
+            $finalfinal = $final['value'];
+            $sickhalfleavebalance = $finalfinal;
+
+            if($sickhalfleavebalance > 0)
+            {
+                return redirect()->back()->with("error",trans('leaveerror.sicknotzero'));
+            }
+
+            else if ($days <= $currentbalance) {
 
                 if ($request->hasFile('file')) {
                     $path = $request->file('file')->store('public/leaves');

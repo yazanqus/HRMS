@@ -51,8 +51,8 @@
                                         @csrf
                                         <div class="row justify-content-between text-left">
                                         <div id="type" class="form-group col-sm-6 flex-column d-flex">
-                                        <label class="form-control-label required px-1">{{__('createOvertime.overtimeType')}}  <a class="text-danger" id="reset" href="" >
-                                                        <i class="fas fa-times"></i>
+                                        <label class="form-control-label required px-1">{{__('createOvertime.overtimeType')}}   <a class="text" style="color: #5a8efc;" id="reset" href="" > {{__('createLeave.changetype')}}
+                                                    <i class="fas fa-sync-alt" style="color: #5a8efc;"></i>
                                                     </a></label>
                                 
                                         @php

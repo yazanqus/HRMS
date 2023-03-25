@@ -43,5 +43,6 @@ return [
 'Welfareleave'=> 'Welfare Leave',
 'PilgrimageIslamicleave'=> 'Pilgrimage Islamic Leave',
 'PilgrimageChristianleave'=> 'Pilgrimage Christian Leave',
+'changetype' => 'Change type',
 
 ];

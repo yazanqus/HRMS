@@ -21,5 +21,6 @@ return [
     'totalNumberOfDays' => 'Total Number of Days' ,
     'enterStartDateAndEndDate' => 'Enter Start Date and End Date' ,
     'submit' => 'Submit' ,
+    'sicknotzero' => 'You must use all of your sick leave balance first' ,
     'cancel' => 'Cancel'
 ];

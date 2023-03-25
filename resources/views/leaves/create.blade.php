@@ -51,8 +51,8 @@
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <div class="form-outline">
                                                     <label class="form-control-label required px-1">{{__('createLeave.leaveType')}}</label>
-                                                    <a class="text-danger" id="reset" href="" >
-                                                        <i class="fas fa-times"></i>
+                                                    <a class="text" style="color: #5a8efc;" id="reset" href="" > {{__('createLeave.changetype')}}
+                                                    <i class="fas fa-sync-alt" style="color: #5a8efc;"></i>
                                                     </a>
                                                     <select
                                                     class="form-control selectpicker" data-size="6" data-style="btn btn-outline-secondary"
