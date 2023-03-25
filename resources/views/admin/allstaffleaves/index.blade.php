@@ -50,8 +50,8 @@
                           <tbody>
                             @foreach ($leaves as $leave)
                             <tr>
-                              <td class="text-center"><a  style = "color: #007bff;" href="{{ route('leaves.show', encrypt($leave->id)) }}" >{{ $leave->id }}</a></td>
-                              <td>{{ $leave->user ? $leave->user->name : 'Deleted User' }}</td>
+                              <td class="text-center"><a  style = "color: #007bff;" href="{{ route('leaves.show', encrypt($leave->id)) }}" ><strong>{{ $leave->id }}</strong></a></td>
+                              <td> <a style = "color: #007bff;" href="{{ route('admin.users.show', $leave->user) }}" >{{ $leave->user ? $leave->user->name : 'Deleted User' }}</a></td>
                               @if ($hruser->office == "AO2")
                                   <td class="text-center">{{ $leave->user->office }}</td>
                                     @endif

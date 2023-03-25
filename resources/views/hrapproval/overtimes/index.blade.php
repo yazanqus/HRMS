@@ -49,7 +49,7 @@
                                 @foreach ($overtimes as $overtime)
                                 <tr>
                                     <td class="text-center"><a href="{{ route('overtimes.show', encrypt($overtime->id)) }}" ><strong>{{ $overtime->id }}</strong></a></td>
-                                    <td>{{ $overtime->user->name }}</td>
+                                    <td><a style = "color: #007bff;" href="{{ route('admin.users.show', $overtime->user) }}" >{{ $overtime->user->name }}</td>
                                     @if ($hruser->office == "AO2")
                                   <td class="text-center">{{ $overtime->user->office }}</td>
                                     @endif
