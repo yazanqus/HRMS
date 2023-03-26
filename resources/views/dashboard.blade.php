@@ -99,7 +99,7 @@
                                   <br>
                                   <strong>{{__('welcome.sickLeave')}}:</strong> {{$balance2}}
                                   <br>
-                                <strong>{{__('welcome.compensationLeaveDays')}}:</strong> {{$balance18}} - <a href="{{ route('comlists.index') }}"><strong>({{__('comlists.dashboard')}})</strong></a>
+                                <strong>{{__('welcome.compensationLeaveDays')}}:</strong> {{$balance18}}
 
                                 </div>
 
