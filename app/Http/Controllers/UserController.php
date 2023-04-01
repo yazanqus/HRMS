@@ -83,7 +83,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'employee_number' => 'required|unique:users,employee_number',
-            'contract',
+            'contract' => 'required',
             'birth_date',
             'grade' => 'required',
             'position',
@@ -531,7 +531,7 @@ class UserController extends Controller
             'name' => 'required',
             'employee_number' => 'required|unique:users,employee_number,' . $user->id,
             // 'employee_number' => 'required',
-            'contract',
+            'contract' ,
             'birth_date',
             'position',
             'office',

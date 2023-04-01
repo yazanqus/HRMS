@@ -282,6 +282,7 @@ $("input[name=type]:radio").change(function(){
     autoclose: true,
     todayHighlight: true,
 daysOfWeekDisabled: weekday
+
   });
     }
    else if ($("#weekend").prop("checked")) {
@@ -311,7 +312,7 @@ daysOfWeekDisabled: weekday
     clearBtn: true,
     autoclose: true,
     todayHighlight: true,
-
+    
   });
     }
 

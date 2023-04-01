@@ -40,11 +40,11 @@ class OvertimeController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        $overtime = Overtime::where('user_id', $user->id)->get();
-        return view('overtimes.index', ['overtimes' => $overtime]);
+        // $user = Auth::user();
+        // $overtime = Overtime::where('user_id', $user->id)->get();
+        // return view('overtimes.index', ['overtimes' => $overtime]);
 
-        // return view('overtimes.create');
+        return view('overtimes.create');
   
         
         
@@ -435,7 +435,7 @@ class OvertimeController extends Controller
         $overtime->hrcomment = $request->comment;
         $overtime->save();
 
-        if ($overtime->type == 'week-end') {
+        if ($overtime->type == 'week-end' || $overtime->type == 'holiday') {
             $partialstoannual = $overtime->hours / 8;
            
             $user = $overtime->user;
@@ -477,6 +477,8 @@ class OvertimeController extends Controller
                 ['leavetype_id', '18'],
             ])->update(['value' => $newbalance]);
         }
+
+
 
         $dayname = Carbon::parse($overtime->date)->format('l');
         $requester=$overtime->user;
