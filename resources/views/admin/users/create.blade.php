@@ -238,7 +238,7 @@ $authuser = Auth::user();
                                       </div>
                                       <div class="row justify-content-between text-left">
                                          
-                                          <!-- <div class="form-group {{ $errors->has('password') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
+                                          <div class="form-group {{ $errors->has('password') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
                                               <label class="form-control-label required  px-1">{{__('createUser.password')}} <small>({{__('createUser.whenSigningUsingEmployeeId')}})</small></label>
                                                <div class="input-group">
                                                    <input class="form-control form-outline  {{ $errors->has('password') ? ' is-invalid' : '' }} "  type="password" readonly onfocus="this.removeAttribute('readonly');" id="password" autocomplete="off"
@@ -255,7 +255,7 @@ $authuser = Auth::user();
                                                 @if ($errors->has('password'))
                                               <span id="password-error" class="error text-danger" for="input-password">{{ $errors->first('password') }}</span>
                                              @endif
-                                        </div> -->
+                                        </div>
                                       </div>
                                       {{-- MUST ADD requirepd for radio check --}}
                                        <br>
