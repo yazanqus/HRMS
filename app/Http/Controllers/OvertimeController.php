@@ -435,7 +435,7 @@ class OvertimeController extends Controller
         $overtime->hrcomment = $request->comment;
         $overtime->save();
 
-        if ($overtime->type == 'week-end' || $overtime->type == 'holiday') {
+        if ($overtime->type == 'week-end' || $overtime->type == 'holiday' || $overtime->type == 'SC-overtime') {
             $partialstoannual = $overtime->hours / 8;
            
             $user = $overtime->user;
@@ -478,6 +478,49 @@ class OvertimeController extends Controller
             ])->update(['value' => $newbalance]);
         }
 
+
+        if ($overtime->type == 'workday') {
+            $partialstoannual = $overtime->value / 8;
+           
+            $user = $overtime->user;
+            $dateafter3months = Carbon::now()->addMonths(3);
+            $dateafter3monthsnewasdate = new DateTime($dateafter3months);
+            $dateafter3monthsnewasdatefinal = $dateafter3monthsnewasdate->format('Y-m-d');
+            // dd($dateafter3monthsnewasdatefinal);
+
+            $overtime->comlists()->create([
+                'user_id' => $user->id,
+                'hours' => $partialstoannual,
+                // 'autodate' => $dateafter3monthsnewasdatefinal,
+            ]);
+            
+            $overtime->comlists()->where([
+                ['user_id', $user->id],
+                ['overtime_id',  $overtime->id],
+            ])->update([
+                'autodate' => $dateafter3monthsnewasdatefinal,
+            ]);
+            
+
+            $balances = Balance::where('user_id', $overtime->user->id)->get();
+            $subsets = $balances->map(function ($balance) {
+                return collect($balance->toArray())
+
+                    ->only(['value', 'leavetype_id'])
+                    ->all();
+            });
+            $final = $subsets->firstwhere('leavetype_id', '18');
+
+            $finalfinal = $final['value'];
+            $currentbalance = $finalfinal;
+
+            $newbalance = $currentbalance + $partialstoannual;
+
+            Balance::where([
+                ['user_id', $overtime->user->id],
+                ['leavetype_id', '18'],
+            ])->update(['value' => $newbalance]);
+        }
 
 
         $dayname = Carbon::parse($overtime->date)->format('l');

@@ -173,8 +173,15 @@
                
                           <div class="row">
                               <div class="col">
-                                  <strong>{{__('showuser.annualLeave')}}:</strong> {{$balance1}}
+                              @if ($user->contract == "Service")
+                              <strong>{{__('showuser.annualLeave')}}:</strong> {{$balance1}}
+                              <br>
+                                  <strong>{{__('showuser.compansetion')}}:</strong> {{$balance18}}
+
+                              @endif
+                                  
                                   @if ($user->contract !== "Service")
+                                  <strong>{{__('showuser.annualLeave')}}:</strong> {{$balance1}}
                                   <br>
                                   
 
