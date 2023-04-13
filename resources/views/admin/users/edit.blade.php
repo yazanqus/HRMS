@@ -201,7 +201,7 @@
 
                                         </div>
                                         <div class="row justify-content-between text-left">
-                                            
+                                        @if ($authuser->id == '1')
                                             <div class="form-group  {{ $errors->has('password') ? ' has-danger' : '' }}  col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label  px-1">{{__('edituser.password')}} <small>({{__('edituser.changepassword')}})</small></label>
                                                 <div class="input-group">
@@ -220,7 +220,7 @@
                                               <span id="password-error" class="error text-danger" for="input-password">{{ $errors->first('password') }}</span>
                                              @endif
                                                 </div>
-                                                
+                                                @endif
                                         </div>
                                         {{-- MUST ADD requirepd for radio check --}}
                                         <div class="row justify-content-center">

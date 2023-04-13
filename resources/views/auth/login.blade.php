@@ -17,8 +17,11 @@
     @endif
         </div>
         <div class="card-body text-center">
+          
+        <!-- <p class="h1 mb-0" style="font-size:2.3rem;"> <img class="mb-0 ml-0" src="{{url('/okta.png')}}"  alt="" style=" width:60px;height:20px;"></p> -->
           <!-- <p class="login-box-msg pr-0 pb-3 pl-0">Sign in to start your session</p> -->
-
+<!-- 
+  test
           <form action="{{ route('login') }}" method="post">
             @csrf
 
@@ -33,12 +36,7 @@
                     </div>
                   </div>
                 </div>
-                {{-- @if ($errors->has('employee_number'))
-                                    <div id="employee_number-error" class="error text-danger value="{{ old('employee_number', '') }} mr-3 pl-3" for="employee_number"
-                                        style="display: block;">
-                                        <strong>{{ $errors->first('employee_number') }}</strong>
-                                    </div>
-                                @endif --}}
+                
             </div>
 
 
@@ -64,74 +62,47 @@
                       </label>
                       
                     </div>
-                    <!-- <div class=" text-right">
-                              <div class="col-12">
-                                  <div class="checkbox ">
-                                      <label >
-                                          <a href="{{ route('forget.password.get') }}">Forgot your Password?</a>
-                                      </label>
-                                  </div>
-                              </div>
-                          </div> -->
+                
                 </div>
      
             </div>
-            @if($errors->any())
-            <div class="alert " style="color:red; font-weight:bold; padding-bottom: 0.2rem;"  >{{$errors->first()}}</></div>
-@endif
+            
 
                           <div class="form-group mb-0 row text-right">
                               <div class="col">
                                   <div class="checkbox">
                                       <label>
-                                          <a style = "color: #007bff;" href="{{ route('forget.password.get') }}">Forgot your credentials?</a>
+                                         {{-- <a style = "color: #007bff;" href="{{ route('forget.password.get') }}">Forgot your credentials?</a>
                                           <br>
-                                          <a style = "color: #007bff;" href="{{ route('forget.password.get') }}">نسيت معلومات الدخول؟</a>
+                                          <a style = "color: #007bff;" href="{{ route('forget.password.get') }}">نسيت معلومات الدخول؟</a>--}}
                                       </label>
                                   </div>
                               </div>
                           </div>
-            {{-- @if ($errors->has('employee_number'))
-                                    <div id="employee_number-error" class="mb-1 error text-danger mr-3 pl-3" for="employee_number"
-                                        style="display: block;">
-                                        <strong>{{ $errors->first('employee_number') }}</strong>
-                                    </div>
-                                @endif --}}
-              <!-- /.col -->
+          
+              
               <div class="row">
                   <div class="col-12">
                     <button type="submit" class="mb-2 btn-1 ">Sign in</button>
                   </div>
               </div>
-              <!-- /.col -->
-          </form>
+              
+          </form> -->
 
-          <style>
-.btn-1 {
-  border: none;
-  width: 100%;
-  height: 100%;
-  color: white;
-  background-color: #007bff;
-  border-radius: 3px;
-box-shadow: inset 0 0 0 0 #FF7602;
-transition: ease-out 1.6s;
 
-}
-.btn-1.activate {
-  box-shadow: inset 500px 0 0 0 #FF7602;
-}
+          
+    @if($errors->any())
+            <div class="alert " style="color:red; font-weight:bold; padding-bottom: 0.2rem;"  >{{$errors->first()}}</></div>
+@endif
 
-          </style>
-
-          <!-- <div class="social-auth-links text-center ">
-            <a href="{{ route('login-okta') }}" class="btn btn-block btn-outline-primary">
-              <i class="fab fa-faecebook"></i>SSO - Sign in with Okta
+          <div class="social-auth-links text-center ">
+            <a href="{{ route('login-okta') }}" id="btn-1"class="btn-lg btn-block btn-outline-primary">
+              <i class="fab fa-faecebook"></i>Sign in with Okta
+              <br> تسجيل الدخول باستخدام الأوكتا
             </a>
-            {{-- <a href="#" class="btn btn-block btn-danger">
-              <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-            </a> --}}
-          </div> -->
+            
+        
+          </div>
           <!-- /.social-auth-links
 
         </div>
@@ -139,7 +110,23 @@ transition: ease-out 1.6s;
       </div>
       <!-- /.card -->
 
+      <style>
+#btn-1 {
+  border: none;
+  width: 100%;
+  height: 100%;
+  color: white;
+  background-color: #007bff;
+  border-radius: 3px;
+box-shadow: inset 0 0 0 0 #FF7602;
+transition: ease-out 5s;
 
+}
+#btn-1.activate {
+  box-shadow: inset 500px 0 0 0 #FF7602;
+}
+
+          </style>
 
 
 
@@ -161,8 +148,9 @@ transition: ease-out 1.6s;
 <script>
   $(document).ready(function() {
 
-    $(document).on('click', '.btn-1', function () {
+    $(document).on('click', '#btn-1', function () {
 $(this).addClass('activate');
+
 });
 
 $(document).on('click', '#buttonSelector', function () {
