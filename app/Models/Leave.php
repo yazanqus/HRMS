@@ -23,12 +23,12 @@ class Leave extends Model
         'reason',
     ];
 
-    protected static $recordEvents = ['updated'];
+    protected static $recordEvents = ['deleted','updated'];
 
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->logOnly(['status', 'user.name']);
+            ->logOnly(['status','deleted_at', 'user.name']);
 
         // Chain fluent methods for configuration options
     }

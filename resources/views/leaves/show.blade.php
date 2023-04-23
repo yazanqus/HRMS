@@ -124,6 +124,11 @@
                           {
                             $showapproval = '2';
                           }
+                          
+                          elseif ($authuser->superadmin == "yes" && $leave->status == "Approved")
+                          {
+                            $showapproval = '3';
+                          }
 
                           else {
                             $showapproval = '0';
@@ -136,6 +141,22 @@
                           @if ($showapproval == '2')
                           <button type="button" class="mx-1 form-group btn btn-xs btn-success" data-toggle="modal" data-target="#myModal3{{$leave->id}}"><i class="fas fa-check-square"></i> </button> <button type="button" class="mx-1 form-group btn btn-xs  btn-danger" data-toggle="modal" data-target="#myModal4{{$leave->id}}"><i class="fas fa-minus-circle"></i> </button><button  type="button" class="mx-2 form-group btn btn-xs btn-warning" data-toggle="modal" data-target="#myModal5{{$leave->id}}"><i class="fas fa-plus-square"></i> </button>
                           @endif
+                          @if ($showapproval == '3')
+                          <div class="col ml-3">
+                    <div class="mr-2 text-right">
+                     
+                        
+
+
+                                <a href="" role="button" data-toggle="modal" data-target="#myModal6{{$leave->id}}" class="btn btn-sm btn-outline-danger">{{__('showuser.delete')}}
+                                <i class="fas fa-times-circle fa-lg"></i>
+                                </a>
+
+                            </b>
+                                              
+                    </div>
+                </div>
+                @endif
                         </div>
                         <div class="card-body">
                     
@@ -153,6 +174,7 @@
                                 </div>
 
                           </div>
+                          
                 </div>
             </div>
 
@@ -321,6 +343,41 @@
           
             <div class="form-group">
                 <input id="buttonSelector" type="submit" class="mb-0 mt-0 btn btn-warning" value="Forward">
+            </div>
+        </form>
+        </div>
+        <div class="modal-footer mt-0">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="myModal6{{$leave->id}}" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-body text-center">
+          <p>Deleting leave: <strong>{{$leave->id}}</strong></p>
+          <p>Requested by: <strong>{{$leave->user->name}}</strong></p>
+          <form method="POST" action="{{route('leaves.hrdelete',$leave->id)}}" class="mb-0 text-center" >
+          <div class="row justify-content-center text-center">
+          <div class="form-group  col-sm-12 flex-column d-flex">
+                
+                              <div class="row justify-content-center">
+                                        <h5 style='border-radius: 7px; padding:5px; border:2px orange solid; font-size:17px; width:fit-content; width:-webkit-fit-content; width:-moz-fit-content;'>After deleting the leave, all days deducted will be added back to staff balance.</h5>
+                                        </div>
+
+              </div>
+              </div>
+
+            {{ csrf_field() }}
+          
+            <div class="form-group">
+                <input id="buttonSelector" type="submit" class="mb-0 mt-0 btn btn-danger" value="Delete">
             </div>
         </form>
         </div>

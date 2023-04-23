@@ -14,6 +14,10 @@
                     </div>
                 </div>
                 <br>
+                
+                @if(Session::has('successMsg'))
+    <div class="successMsg alert alert-success"> {{ Session::get('successMsg') }}</div>
+  @endif
                 @php
                             $hruser = Auth::user();
                             @endphp

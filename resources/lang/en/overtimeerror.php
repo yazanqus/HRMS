@@ -16,5 +16,6 @@ return [
     'toomuch' => 'You cant request more than 40 hours of overtime in the same month' ,
     'gradetoohigh' => 'Only staff with grade 6 and below can submit overtime request' ,
     'success' => 'Request submitted successfully' ,
+    'hrdelete' => 'Request deleted successfully' ,
 
 ];

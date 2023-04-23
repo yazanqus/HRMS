@@ -52,7 +52,7 @@
                     </div>
                 </div>
 
-                @if ($authuser->superadmin == "yess")
+                @if ($authuser->superadmin == "yes")
                 @if ($sus =='1')
                 <div class="col ml-3">
                     <div class="mr-2 text-right">
