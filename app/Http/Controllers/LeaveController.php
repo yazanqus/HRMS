@@ -3006,6 +3006,21 @@ class LeaveController extends Controller
         
     }
 
+    public function lmrevert(Request $request,$id)
+    {
+        $leave = Leave::find($id);
+        $leave->status = 'Pending LM Approval';
+        $leave->lmapprover = null;
+        $leave->lmcomment = null;
+
+        $leave->save();
+   
+        
+        
+        $request->session()->flash('successMsg',trans('overtimeerror.lmrevert')); 
+        return redirect()->route('admin.allstaffleaves.index');
+    }
+
     // public function onbehalf(Request $request)
     // {
     //     $leave = Leave::find($id);
