@@ -63,7 +63,22 @@
                                 @foreach ($leaves as $leave)
                                 <tr>
                                   <td class="text-center"><a href="{{ route('leaves.show', encrypt($leave->id)) }}" ><strong>{{ $leave->id }}</strong></a></td>
-                                  <td><a style = "color: #007bff;" href="{{ route('admin.users.show', $leave->user) }}" >{{ $leave->user->name }}</a></td>
+                                  <td>
+                                    
+                                   
+                              <div class="dropdown">
+  <a style="color: #007bff;"  type="button" id="dropdownMenu1" data-toggle="dropdown">
+  {{ $leave->user->name }}
+  </a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation"><a class="ml-2" target="_blank" role="menuitem"  href="{{ route('admin.users.show', $leave->user) }}">Staff Account </a></li>
+  </ul>
+</div>
+                                  
+                                  <!-- <a style = "color: #007bff;" href="{{ route('admin.users.show', $leave->user) }}" >{{ $leave->user->name }}</a> -->
+                                
+                                
+                                </td>
                                   @if ($hruser->office == "AO2")
                                   <td class="text-center">{{ $leave->user->office }}</td>
                                     @endif
