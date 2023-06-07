@@ -29,5 +29,11 @@ return [
     'cancel' => 'Cancel',
     'extra' =>'Extra Approver:',
     'note' =>'Overtime Request will be approved only if 48 work hours are completed in the week',
+    'sicknote' =>'The medical report should only include:
+    •	the employee’s full name
+    •	the number of rest days recommended by the specialist doctor
+    •	the date
+    •	stamp and signature 
+    ',
 
 ];

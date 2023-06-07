@@ -155,7 +155,13 @@
                                                  @if ($errors->has('file'))
                                                  <span id="file-error" class="error text-danger" for="input-file">{{ $errors->first('file') }}</span>
                                                 @endif
+                                                <br>
+                                               
+                                        <h5 class= 'sicknote' style='border-radius: 7px; padding:5px; border:2px orange solid; font-size:17px; width:fit-content; width:-webkit-fit-content; width:-moz-fit-content;'>{{__('createOvertime.sicknote')}}</h5>
+                                        
+                                        
                                                 </div>
+                                                
                                             {{-- <a href="#" id="output" class="btn btn-sm btn-primary"></a> --}}
 
                                         </div>
@@ -165,7 +171,6 @@
                                                  <input class="form-control form-outline " type="text" id="numofdays" readonly name="numofdays" placeholder="{{__('createLeave.enterStartDateAndEndDate')}}">
                                                 </div>
                                             {{-- <a href="#" id="output" class="btn btn-sm btn-primary"></a> --}}
-
                                         </div>
 
                                         <div class="row justify-content-center">
@@ -258,7 +263,7 @@ $(this).html(
 // $(document).on('change', 'leavetype_id', function () {
 //   $("input[type=date]").val("");
 // });
-
+$('.sicknote').hide();
   $('#hourslabel').hide();
         $('#hours').hide();
         $('#minus').hide();
@@ -284,7 +289,11 @@ $('#leavetype_id').on('change',function(){
   $('.dropdown-toggle').prop('disabled', true);
   $('#reset').show();
 
-  
+  if ($(this).val() == '3' || $(this).val() == '4' || $(this).val() == '2' || $(this).val() == '20' || $(this).val() == '21')
+    {
+      $('.sicknote').show();
+     }
+     
   if ($(this).val() == '3' || $(this).val() == '4' || $(this).val() == '15')
   {
     sickpercentage = "yes";
@@ -309,6 +318,7 @@ $('#leavetype_id').on('change',function(){
         $('#minus').show();
         $('#plus').show();
     }
+    
     else {
         $('#end_date').prop('readonly',false);
         $('#numofdays').show();
