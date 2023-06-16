@@ -54,7 +54,7 @@
                           <tbody>
                             @foreach ($leaves as $leave)
                             <tr>
-                              <td class="text-center"><a  href="{{ route('leaves.show', encrypt($leave->id)) }}" ><strong>{{ $leave->id }}</strong></a></td>
+                              <td class="text-center"><a target="_blank" href="{{ route('leaves.show', encrypt($leave->id)) }}" ><strong>{{ $leave->id }}</strong></a></td>
                               <td>
                                 
                               <div class="dropdown">
