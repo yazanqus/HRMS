@@ -178,5 +178,21 @@ class LeavetypeTableSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
+         //id=22
+         DB::table('leavetypes')->insert([
+            'name' => 'Sick leave 30% deduction - First half',
+            'value' => '90',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+         //id=23
+         DB::table('leavetypes')->insert([
+            'name' => 'Sick leave 30% deduction - Second half',
+            'value' => '90',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
     }
 }

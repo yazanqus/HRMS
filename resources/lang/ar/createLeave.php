@@ -44,4 +44,7 @@ return [
 'PilgrimageIslamicleave'=> 'إجازة الحج الإسلامية',
 'PilgrimageChristianleave'=> 'إجازة الحج المسيحية',
 'changetype' => 'تغيير النوع',
+
+'Sickleave30%deductionfirsthalf'=> 'الإجازة المرضية المقتطعة 30% - النصف الاول',
+'Sickleave30%deductionsecondhalf'=> 'الإجازة المرضية المقتطعة 30% - النصف الثاني',
 ];

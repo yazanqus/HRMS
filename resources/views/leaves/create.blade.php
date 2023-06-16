@@ -97,14 +97,16 @@
                                                     <option value="19">{{__('createLeave.Compensationhours')}}</option>
                                                     <option value="3">{{__('createLeave.Sickleave30%deduction')}}</option>
                                                     <option value="4">{{__('createLeave.Sickleave20%deduction')}}</option>
+                                                    <option value="22">{{__('createLeave.Sickleave30%deductionfirsthalf')}}</option>
+                                                    <option value="23">{{__('createLeave.Sickleave30%deductionsecondhalf')}}</option>
                                                     <option value="5">{{__('createLeave.Marriageleave')}}</option>
                                                     <option value="6">{{__('createLeave.CompassionateFirstdegreerelative')}}</option>
                                                     <option value="7">{{__('createLeave.CompassionateSeconddegreerelative')}}</option>
                                                     <option value="8">{{__('createLeave.Maternityleave')}}</option>
                                                     <option value="9">{{__('createLeave.Paternityleave')}}</option>
                                                     <option value="12">{{__('createLeave.Welfareleave')}}</option>
-                                                    <option value="10">{{__('createLeave.PilgrimageIslamicleave')}}</option>
-                                                    <option value="11">{{__('createLeave.PilgrimageChristianleave')}}</option>
+                                                    <!-- <option value="10">{{__('createLeave.PilgrimageIslamicleave')}}</option>
+                                                    <option value="11">{{__('createLeave.PilgrimageChristianleave')}}</option> -->
                                                     @endif
 
                                                 </select>
@@ -289,7 +291,7 @@ $('#leavetype_id').on('change',function(){
   $('.dropdown-toggle').prop('disabled', true);
   $('#reset').show();
 
-  if ($(this).val() == '3' || $(this).val() == '4' || $(this).val() == '2' || $(this).val() == '20' || $(this).val() == '21')
+  if ($(this).val() == '3' || $(this).val() == '4' || $(this).val() == '2' || $(this).val() == '20' || $(this).val() == '21' || $(this).val() == '22' || $(this).val() == '23')
     {
       $('.sicknote').show();
      }
@@ -301,7 +303,7 @@ $('#leavetype_id').on('change',function(){
 
   }
 
-    else if ($(this).val() == '13' || $(this).val() == '14' || $(this).val() == '16' || $(this).val() == '17' || $(this).val() == '20' || $(this).val() == '21' ) {
+    else if ($(this).val() == '13' || $(this).val() == '14' || $(this).val() == '16' || $(this).val() == '17' || $(this).val() == '20' || $(this).val() == '21' || $(this).val() == '22' || $(this).val() == '23') {
         $('#end_date').prop('readonly',true);
         $('#numofdays').hide();
         $('#labelnumofdays').hide();

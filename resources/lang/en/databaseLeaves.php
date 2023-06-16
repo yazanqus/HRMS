@@ -5,6 +5,8 @@ return [
     'Sick leave' => 'Sick leave' ,
     'Sick leave 30% deduction' => 'Sick leave 30% deduction' ,
     'Sick leave 20% deduction' => 'Sick leave 20% deduction' ,
+    'Sick leave 30% deduction - First half' => 'Sick leave 30% deduction - First half' ,
+    'Sick leave 30% deduction - Second half' => 'Sick leave 30% deduction - Second half' ,
     'Marriage leave' => ' Marriage leave' ,
     'Compassionate - First degree relative' => 'Compassionate - First degree relative' ,
     'Compassionate - Second degree relative' => 'Compassionate - Second degree relative' ,

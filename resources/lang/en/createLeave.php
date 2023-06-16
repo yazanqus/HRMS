@@ -44,5 +44,7 @@ return [
 'PilgrimageIslamicleave'=> 'Pilgrimage Islamic Leave',
 'PilgrimageChristianleave'=> 'Pilgrimage Christian Leave',
 'changetype' => 'Change type',
+'Sickleave30%deductionfirsthalf'=> 'Sick Leave - 30% deduction - First half',
+'Sickleave30%deductionsecondhalf'=> 'Sick Leave - 30% deduction - Second half',
 
 ];

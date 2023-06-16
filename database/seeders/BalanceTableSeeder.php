@@ -201,5 +201,23 @@ class BalanceTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        DB::table('balances')->insert([
+            'name' => 'Sick leave 30% deduction - First half',
+            'leavetype_id' => '22',
+            'user_id' => '1',
+            'value' => '90',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('balances')->insert([
+            'name' => 'Sick leave 30% deduction - Second half',
+            'leavetype_id' => '23',
+            'user_id' => '1',
+            'value' => '90',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }

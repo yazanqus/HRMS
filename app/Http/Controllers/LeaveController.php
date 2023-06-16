@@ -121,6 +121,21 @@ class LeaveController extends Controller
 
         }
 
+        elseif ($request->leavetype_id == '22' || $request->leavetype_id == '23') {
+
+            $balances = Balance::where('user_id', $user->id)->get();
+            $subsets = $balances->map(function ($balance) {
+                return collect($balance->toArray())
+
+                    ->only(['value', 'leavetype_id'])
+                    ->all();
+            });
+            $final = $subsets->firstwhere('leavetype_id', '3');
+            $finalfinal = $final['value'];
+            $sick30halfleavebalance = $finalfinal;
+
+        }
+
         //balance of comp hour (19) is from comp (18) after multiplying by 8
         elseif ($request->leavetype_id == '19') {
 
@@ -488,6 +503,8 @@ class LeaveController extends Controller
                     ['leavetype_id','!=', '19'],
                     ['leavetype_id','!=', '20'],
                     ['leavetype_id','!=', '21'],
+                    ['leavetype_id','!=', '22'],
+                    ['leavetype_id','!=', '23'],
                     // ['start_date', $request->start_date],
                     ])
                     // ->whereBetween(
@@ -709,6 +726,139 @@ class LeaveController extends Controller
                 return redirect()->back()->with("error",trans('leaveerror.nobalance'));
             }
         }
+
+
+        //sick leave 30% half day
+        elseif ($request->leavetype_id == '22' || $request->leavetype_id == '23') {
+
+            $balances = Balance::where('user_id', $user->id)->get();
+            $subsets = $balances->map(function ($balance) {
+                return collect($balance->toArray())
+
+                    ->only(['value', 'leavetype_id'])
+                    ->all();
+            });
+            $final = $subsets->firstwhere('leavetype_id', '2');
+            $finalfinal = $final['value'];
+            $sickhalfleavebalance = $finalfinal;
+
+            if($sickhalfleavebalance > 0)
+            {
+                return redirect()->back()->with("error",trans('leaveerror.sicknotzero'));
+            }
+
+
+            else if ($sick30halfleavebalance >= '0.5') {
+
+                if ($request->hasFile('file')) {
+                    $path = $request->file('file')->store('public/leaves');
+                }
+                $leavessubmitted = Leave::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id','!=', '13'],
+                    ['leavetype_id','!=', '14'],
+                    ['leavetype_id','!=', '16'],
+                    ['leavetype_id','!=', '17'],
+                    ['leavetype_id','!=', '19'],
+                    ['leavetype_id','!=', '20'],
+                    ['leavetype_id','!=', '21'],
+                    ['leavetype_id','!=', '22'],
+                    ['leavetype_id','!=', '23'],
+                    // ['start_date', $request->start_date],
+                    ])
+                    // ->whereBetween(
+                    //     'start_date', [$request->start_date,$request->end_date]
+                    // )->orWhereBetween(
+                    //     'end_date', [$request->start_date,$request->end_date]
+                    // )
+                    ->whereRaw(
+                        '"'.$request->start_date.'" between `start_date` and `end_date`'
+                    )->whereRaw(
+                        '"'.$request->end_date.'" between `start_date` and `end_date`'
+                    )->where(function($query) {
+                        $query->where('status','Pending LM Approval')
+                                    ->orWhere('status','Pending HR Approval')
+                                    ->orWhere('status','Approved');
+            })->get();
+
+// for not submitting two halfdays from same type (first or second) on the same day
+            $leavessubmittedcase2 = Leave::where([
+                ['user_id', $user->id],
+                ['leavetype_id', $request->leavetype_id],
+                // ['start_date', $request->start_date],
+                ])->whereRaw(
+                    '"'.$request->start_date.'" between `start_date` and `end_date`'
+                )->whereRaw(
+                    '"'.$request->end_date.'" between `start_date` and `end_date`'
+                )->where(function($query) {
+                    $query->where('status','Pending LM Approval')
+                                ->orWhere('status','Pending HR Approval')
+                                ->orWhere('status','Approved');
+        })->get();
+
+
+                $counted = count($leavessubmitted);
+                $countedcase2 = count($leavessubmittedcase2);
+
+                // dd($counted);
+
+                if($counted + $countedcase2 > 0)
+                {
+                    return redirect()->back()->with("error", trans('leaveerror.sameday'));
+                }
+
+                else
+                {
+
+                $leave = new Leave();
+                $leave->start_date = $request->start_date;
+                $leave->end_date = $request->end_date;
+                $leave->reason = $request->reason;
+                if ($request->hasFile('file')) {
+                    $leave->path = $path;
+                }
+
+                $leave->days = '0.5';
+                $leave->leavetype_id = $request->leavetype_id;
+                $leave->user_id = auth()->user()->id;
+                if (!isset($user->linemanager)) {
+                    $leave->status = 'Pending HR Approval';
+
+                } else {
+
+                    $leave->status = 'Pending LM Approval';
+                    $linemanageremail = User::where('name',$user->linemanager)->value('email');
+
+                        // dd($linemanageremail);
+                        $details = [
+                            'requestername' => $user->name,
+                            'linemanagername' => $user->linemanager,
+                            'linemanageremail' => $linemanageremail,
+                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
+                            'leavetype' => $leave->leavetype->name,
+                            'startdayname' => $startdayname,
+                            'start_date' => $leave->start_date,
+                            'enddayname' => $enddayname,
+                            'end_date' =>  $leave->end_date,
+                            'days' => $leave->days,
+                            'comment' =>  $leave->reason
+                        ];
+                       
+                        Mail::to($linemanageremail)->send(new MailLeave($details));
+                }
+
+                $leave->save();
+                // $user->notify(new EmailNotification($leave));
+                $request->session()->flash('successMsg',trans('overtimeerror.success')); 
+                return redirect()->route('leaves.index');
+            }
+
+            } else {
+                return redirect()->back()->with("error",trans('leaveerror.nobalance'));
+            }
+        }
+
+        
 
         //sick 20 leave
         elseif ($request->leavetype_id == '4') {
@@ -1407,6 +1557,8 @@ class LeaveController extends Controller
                     ['leavetype_id','!=', '19'],
                     ['leavetype_id','!=', '20'],
                     ['leavetype_id','!=', '21'],
+                    ['leavetype_id','!=', '22'],
+                    ['leavetype_id','!=', '23'],
                     // ['start_date', $request->start_date],
                     ])
                     // ->whereBetween(
@@ -1916,6 +2068,8 @@ class LeaveController extends Controller
                     ['leavetype_id','!=', '19'],
                     ['leavetype_id','!=', '20'],
                     ['leavetype_id','!=', '21'],
+                    ['leavetype_id','!=', '22'],
+                    ['leavetype_id','!=', '23'],
                     // ['start_date', $request->start_date],
                     ])->whereRaw(
                         '"'.$request->start_date.'" between `start_date` and `end_date`'
@@ -2556,6 +2710,27 @@ class LeaveController extends Controller
                     $newbalance = $currentbalanceforsick - $leave->days;
         
                 }
+
+
+
+                   // sick 30% half days leaves
+                   elseif ($leave->leavetype_id == '22' || $leave->leavetype_id == '23') {
+        
+                    $balances = Balance::where('user_id', $leave->user->id)->get();
+                    $subsets = $balances->map(function ($balance) {
+                        return collect($balance->toArray())
+        
+                            ->only(['value', 'leavetype_id'])
+                            ->all();
+                    });
+                    $final = $subsets->firstwhere('leavetype_id', '3');
+        
+                    $finalfinal = $final['value'];
+                    $currentbalanceforsick = $finalfinal;
+        
+                    $newbalance = $currentbalanceforsick - $leave->days;
+        
+                }
         
                     
         //comp hour
@@ -2724,6 +2899,31 @@ class LeaveController extends Controller
                             Balance::where([
                                 ['user_id', $leave->user->id],
                                 ['leavetype_id', '2'],
+                            ])->update(['value' => $newbalance]);
+                
+                        }
+
+
+                        // sick 30% half days leaves
+                        elseif ($leave->leavetype_id == '21' || $leave->leavetype_id == '22') {
+            
+                            $balances = Balance::where('user_id', $leave->user->id)->get();
+                            $subsets = $balances->map(function ($balance) {
+                                return collect($balance->toArray())
+                
+                                    ->only(['value', 'leavetype_id'])
+                                    ->all();
+                            });
+                            $final = $subsets->firstwhere('leavetype_id', '3');
+                
+                            $finalfinal = $final['value'];
+                            $currentbalanceforannual = $finalfinal;
+                
+                            $newbalance = $currentbalanceforannual - $leave->days;
+                
+                            Balance::where([
+                                ['user_id', $leave->user->id],
+                                ['leavetype_id', '3'],
                             ])->update(['value' => $newbalance]);
                 
                         }
@@ -2955,6 +3155,30 @@ class LeaveController extends Controller
                 Balance::where([
                     ['user_id', $leave->user->id],
                     ['leavetype_id', '2'],
+                ])->update(['value' => $newbalance]);
+    
+            }
+
+            // sick 30% half days leaves
+            elseif ($leave->leavetype_id == '22' || $leave->leavetype_id == '23') {
+
+                $balances = Balance::where('user_id', $leave->user->id)->get();
+                $subsets = $balances->map(function ($balance) {
+                    return collect($balance->toArray())
+    
+                        ->only(['value', 'leavetype_id'])
+                        ->all();
+                });
+                $final = $subsets->firstwhere('leavetype_id', '3');
+    
+                $finalfinal = $final['value'];
+                $currentbalanceforannual = $finalfinal;
+    
+                $newbalance = $currentbalanceforannual + $leave->days;
+    
+                Balance::where([
+                    ['user_id', $leave->user->id],
+                    ['leavetype_id', '3'],
                 ])->update(['value' => $newbalance]);
     
             }

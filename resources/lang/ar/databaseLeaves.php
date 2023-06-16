@@ -5,6 +5,9 @@ return [
     'Sick leave' => 'الإجازات المرضية' ,
     'Sick leave 30% deduction' => 'الإجازات المرضية المقتطعة %30' ,
     'Sick leave 20% deduction' => 'الإجازات المرضية المقتطعة %20' ,
+    'Sick leave 30% deduction - First half' => 'الإجازة المرضية المقتطعة 30% - النصف الاول' ,
+    'Sick leave 30% deduction - Second half' => 'الإجازة المرضية المقتطعة 30% - النصف الثاني' ,
+
     'Marriage leave' => ' إجازة الزواج' ,
     'Compassionate - First degree relative' => 'إجازة الوفاة من الدرجة الاولى' ,
     'Compassionate - Second degree relative' => 'إجازة الوفاة من الدرجة الثانية' ,
