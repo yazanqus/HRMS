@@ -27,7 +27,7 @@
                                 }
                                 @endphp
 
-                                @if ($authuser->office == "AO2")
+                                
                                
                                 @if ($userstatus == 'suspended')
 
@@ -42,7 +42,7 @@
                                     <i  class="ml-2 fas fa-lg fa-minus-circle"></i>
                                 </a>
                                 @endif
-                                @endif
+                                
 
 
 
