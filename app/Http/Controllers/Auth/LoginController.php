@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -51,13 +52,20 @@ class LoginController extends Controller
     }
 
     protected function validateLogin(Request $request)
+{   
+
+if(App::isProduction())
 {
     $this->validate($request, [
         $this->username() => 'exists:users,' . $this->username() . ',employee_number,1001',
         'password' => 'required|string',
     ], [
         $this->username() . '.exists' => 'This login method is not accepted, Only login via Okta is possible.'
-    ]);
+    ]); 
+}
+    
+
+  
 }
 
     public function redirectToProvider()
