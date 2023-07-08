@@ -20,7 +20,7 @@
           
         <!-- <p class="h1 mb-0" style="font-size:2.3rem;"> <img class="mb-0 ml-0" src="{{url('/okta.png')}}"  alt="" style=" width:60px;height:20px;"></p> -->
           <!-- <p class="login-box-msg pr-0 pb-3 pl-0">Sign in to start your session</p> -->
-          @if(App::isLocal())
+       
          
           
   test
@@ -90,7 +90,7 @@
               </div>
               
           </form> --> 
-          @endif
+      
 
           
     @if($errors->any())
