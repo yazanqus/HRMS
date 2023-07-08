@@ -70,7 +70,7 @@
             </div>
             
 
-                          <div class="form-group mb-0 row text-right">
+                          {{-- <div class="form-group mb-0 row text-right">
                               <div class="col">
                                   <div class="checkbox">
                                       <label>
@@ -80,7 +80,7 @@
                                       </label>
                                   </div>
                               </div>
-                          </div>
+                          </div> --}}
           
               
               <div class="row">
