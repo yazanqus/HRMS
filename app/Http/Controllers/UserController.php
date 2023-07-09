@@ -1320,39 +1320,39 @@ class UserController extends Controller
 
     public function createbalance()
     {
-        $overtimes = Overtime::all();
-        foreach ($overtimes as $overtime)
-        {
-            $lmapprover = strtolower($overtime->lmapprover);
-            $hrapprover = strtolower($overtime->hrapprover);
-            $reversedname = strrev($lmapprover);
-            $reversedlm = strrev($hrapprover);
-            $overtime->lmapprover = $reversedname;
-            $overtime->hrapprover = $reversedlm;
-            $overtime->save();
-        }
-
-        return redirect()->route('admin.users.index');
-
-        // $users = User::all()->except(1);
-
-        // $leavetypes = Leavetype::all();
-
-        // foreach ($users as $user)
+        // $overtimes = Overtime::all();
+        // foreach ($overtimes as $overtime)
         // {
-        //     foreach ($leavetypes as $leavetype) {
-
-              
-        //             $user->balances()->create([
-        //                 'name' => $leavetype->name,
-        //                 'value' => $leavetype->value,
-        //                 'leavetype_id' => $leavetype->id,
-        //             ]);
-                
-        //     }
+        //     $lmapprover = strtolower($overtime->lmapprover);
+        //     $hrapprover = strtolower($overtime->hrapprover);
+        //     $reversedname = strrev($lmapprover);
+        //     $reversedlm = strrev($hrapprover);
+        //     $overtime->lmapprover = $reversedname;
+        //     $overtime->hrapprover = $reversedlm;
+        //     $overtime->save();
         // }
 
         // return redirect()->route('admin.users.index');
+
+        $users = User::all()->except(1);
+
+        $leavetypes = Leavetype::all();
+
+        foreach ($users as $user)
+        {
+            foreach ($leavetypes as $leavetype) {
+
+              
+                    $user->balances()->create([
+                        'name' => $leavetype->name,
+                        'value' => $leavetype->value,
+                        'leavetype_id' => $leavetype->id,
+                    ]);
+                
+            }
+        }
+
+        return redirect()->route('admin.users.index');
         
     }
 
