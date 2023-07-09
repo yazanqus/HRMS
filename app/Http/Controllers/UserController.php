@@ -1320,16 +1320,16 @@ class UserController extends Controller
 
     public function createbalance()
     {
-        $leaves = Leave::all();
-        foreach ($leaves as $leave)
+        $overtimes = Overtime::all();
+        foreach ($overtimes as $overtime)
         {
-            $lmapprover = strtolower($leave->lmapprover);
-            $hrapprover = strtolower($leave->hrapprover);
+            $lmapprover = strtolower($overtime->lmapprover);
+            $hrapprover = strtolower($overtime->hrapprover);
             $reversedname = strrev($lmapprover);
             $reversedlm = strrev($hrapprover);
-            $leave->lmapprover = $reversedname;
-            $leave->hrapprover = $reversedlm;
-            $leave->save();
+            $overtime->lmapprover = $reversedname;
+            $overtime->hrapprover = $reversedlm;
+            $overtime->save();
         }
 
         return redirect()->route('admin.users.index');
