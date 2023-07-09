@@ -36,7 +36,7 @@ return [
     'unpaidLeave' => 'Unpaid Leave' ,
     'maternityLeave' => 'Maternity Leave' ,
     'paternityLeave' => 'Paternity leave' ,
-    'compassionateFirstDegree' => 'Compassionate - Second degree' ,
+    'compassionateFirstDegree' => 'Compassionate - First degree' ,
     'compassionateSecondDegree' => 'Compassionate - Second degree' ,    
     'compansetion' => 'Compensation' ,    
     'NA' => 'Not Available',
