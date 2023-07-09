@@ -1321,24 +1321,38 @@ class UserController extends Controller
     public function createbalance()
     {
         $users = User::all()->except(1);
-
-        $leavetypes = Leavetype::all();
-
         foreach ($users as $user)
         {
-            foreach ($leavetypes as $leavetype) {
-
-              
-                    $user->balances()->create([
-                        'name' => $leavetype->name,
-                        'value' => $leavetype->value,
-                        'leavetype_id' => $leavetype->id,
-                    ]);
-                
-            }
+            $userfullname = strtolower($user->name);
+            $lmfullname = strtolower($user->linemanager);
+            $reversedname = strrev($userfullname);
+            $reversedlm = strrev($lmfullname);
+            $user->name = $reversedname;
+            $user->linemanager = $reversedlm;
+            $user->save();
         }
 
         return redirect()->route('admin.users.index');
+
+        // $users = User::all()->except(1);
+
+        // $leavetypes = Leavetype::all();
+
+        // foreach ($users as $user)
+        // {
+        //     foreach ($leavetypes as $leavetype) {
+
+              
+        //             $user->balances()->create([
+        //                 'name' => $leavetype->name,
+        //                 'value' => $leavetype->value,
+        //                 'leavetype_id' => $leavetype->id,
+        //             ]);
+                
+        //     }
+        // }
+
+        // return redirect()->route('admin.users.index');
         
     }
 
