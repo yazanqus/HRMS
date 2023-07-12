@@ -22,7 +22,7 @@
           <!-- <p class="login-box-msg pr-0 pb-3 pl-0">Sign in to start your session</p> -->
        
          
-          
+    <--      
   test
           <form action="{{ route('login') }}" method="post">
             @csrf
