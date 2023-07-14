@@ -17,6 +17,9 @@ return [
     'gradetoohigh' => 'Only staff with grade 6 and below can submit overtime request' ,
     'success' => 'Request submitted successfully' ,
     'hrdelete' => 'Request deleted successfully' ,
+    'createsuccess' => 'User created successfully, you can review the user balances by accessing user account page.',
+    'updatesuccess' => 'User details updated successfully.',
+    'balancesuccess' => 'User balance updated successfully.',
     'lmrevert' => 'Request workflow was reverted back to LM successfully' ,
 
 ];

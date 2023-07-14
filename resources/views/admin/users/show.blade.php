@@ -7,7 +7,9 @@
             <div class="row">
                 <div class="col ml-3">
                     <div class="text">
-                        
+                      @if(Session::has('successMsg'))
+                      <div class="successMsg alert alert-success"> {{ Session::get('successMsg') }}</div>
+                    @endif
                         <br>
                         <h3>
                         <a href="{{ URL::previous() }}"> <i style="font-size: 0.73em;" class="fas fa-arrow-alt-circle-left"></i> </a>
@@ -384,6 +386,11 @@
 @push('scripts')
    <script>
     $(document).ready(function() {
+
+      setTimeout(function() {
+    $("div.successMsg").fadeOut('slow');
+}, 4000); 
+
 
       $('#table_id').DataTable(
         {

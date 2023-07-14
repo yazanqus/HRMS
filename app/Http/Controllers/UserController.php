@@ -286,7 +286,8 @@ class UserController extends Controller
         //     ])
         //     ->update(['month' => 'December']);
 
-        return redirect()->route('admin.users.index');
+        $request->session()->flash('successMsg', trans('overtimeerror.createsuccess'));
+        return redirect()->route('admin.users.show', $user);
     }
 
     public function show(User $user)
@@ -691,8 +692,8 @@ class UserController extends Controller
 
         $setlinemenager = $request->linemanager;
         DB::table('users')->where('name', $setlinemenager)->update(['usertype_id' => '2']);
-
-        return redirect()->route('admin.users.index');
+        $request->session()->flash('successMsg', trans('overtimeerror.updatesuccess'));
+        return redirect()->route('admin.users.show', $user);
 
     }
 
@@ -898,8 +899,8 @@ class UserController extends Controller
         ])->first()?->update(['value' => $request->compansention]);
 
         // $user->save();
-
-        return redirect()->route('admin.users.index');
+        $request->session()->flash('successMsg', trans('overtimeerror.balancesuccess'));
+        return redirect()->route('admin.users.show', $user);
 
     }
 
