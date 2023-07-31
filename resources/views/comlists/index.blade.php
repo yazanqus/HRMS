@@ -46,7 +46,7 @@
                         <tbody>
                           @foreach ($comlists as $comlist)
                           <tr>
-                            <td class="text-center">{{ $comlist->overtime->id }}</a></td>
+                            <td class="text-center"><a href="{{ route('overtimes.show', encrypt($comlist->overtime->id)) }}" ><strong>{{ $comlist->overtime->id }}</strong></a></td>
                             <td class="text-center">{{ $comlist->hours}}</td>
                             <td class="text-center">{{ __("databaseLeaves.{$comlist->status}") }}</td>
                             <td class="text-center">{{ $comlist->autodate }}</td>

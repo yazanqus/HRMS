@@ -10,6 +10,8 @@ use DateTime;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\DB;
+use App\Mail\Comlistnotification as MailComlistnotification;
+use Illuminate\Support\Facades\Mail;
 
 class Kernel extends ConsoleKernel
 {
@@ -36,7 +38,52 @@ class Kernel extends ConsoleKernel
                 $dateenow = new DateTime($datenow);
                 $intervall = $comlistcreatedate->diff($dateenow);
                 $probationdays = $intervall->format('%a');
+
+                $dayname = Carbon::parse($comlist->autodate)->format('l');
     
+                if ($probationdays == '60')
+                {
+                    $details = [
+                        'requestername' => $comlist->user->name,
+                        // 'linemanagername' => $requester->linemanager,
+                        // 'linemanageremail' => $linemanageremail,
+                        'title' => 'Compensation balance auto delete - Overtime ID: '.$comlist->overtime_id.' if 3 months passed and the balance was not used',
+                        // 'overtimetype' => $overtime->type,
+                        'dayname' => $dayname,
+                        'date' => $comlist->autodate,
+                        // 'start_hour' => $overtime->start_hour,
+                        // 'end_hour' => $overtime->end_hour,
+                        'hours' => $comlist->hours,
+                        // 'status' => $overtime->status,
+                        // 'comment' =>  $overtime->reason,
+                        // 'lmcomment' => $overtime->lmcomment
+                    ];
+                   
+                    Mail::to($comlist->user->email)->send(new MailComlistnotification($details));
+                }
+
+                if ($probationdays == '70')
+                {
+                  
+                    $details = [
+                        'requestername' => $comlist->user->name,
+                        // 'linemanagername' => $requester->linemanager,
+                        // 'linemanageremail' => $linemanageremail,
+                        'title' => 'Compensation balance auto delete - Overtime ID: '.$comlist->overtime_id.' if 3 months passed and the balance was not used',
+                        // 'overtimetype' => $overtime->type,
+                        'dayname' => $dayname,
+                        'date' => $comlist->autodate,
+                        // 'start_hour' => $overtime->start_hour,
+                        // 'end_hour' => $overtime->end_hour,
+                        'hours' => $comlist->hours,
+                        // 'status' => $overtime->status,
+                        // 'comment' =>  $overtime->reason,
+                        // 'lmcomment' => $overtime->lmcomment
+                    ];
+                   
+                    Mail::to($comlist->user->email)->send(new MailComlistnotification($details));
+                }
+
                 if ($probationdays > '90')
                 {  
                     $comlist->expired_date=$datenow;
