@@ -43,6 +43,10 @@ class Kernel extends ConsoleKernel
     
                 if ($probationdays == '60')
                 {
+                    $firstnotify = "Notifed 1 time";
+                    $comlist->stauts=$firstnotify;
+                    $comlist->save();
+
                     $details = [
                         'requestername' => $comlist->user->name,
                         // 'linemanagername' => $requester->linemanager,
@@ -64,6 +68,10 @@ class Kernel extends ConsoleKernel
 
                 if ($probationdays == '70')
                 {
+
+                    $secondnotify = "Notifed 2 times";
+                    $comlist->stauts=$secondnotify;
+                    $comlist->save();
                   
                     $details = [
                         'requestername' => $comlist->user->name,
