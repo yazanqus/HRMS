@@ -961,7 +961,45 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
 
             $leaves = Leave::whereIn('user_id', $subsets)->get();
             $overtimes = Overtime::whereIn('user_id', $subsets)->get();
-            return view('staffleaves.index', ['leaves' => $leaves, 'users' => $staff, 'overtimes' => $overtimes]);
+
+            $leavescal = Leave::whereIn('user_id', $subsets)->where('status','!=',"Declined by LM")->where('status','!=',"Declined by HR")->get();
+
+
+            
+            if (count($leavescal))
+            {
+              
+                foreach ($leavescal as $leave) {
+               
+                    $events[]=[
+                        'title' => $leave->user->name . ' - ' . $leave->leavetype->name,
+                        'start' => $leave->start_date,
+                        // 'end' => now()->parse($leave->end_date),
+                        // 'end' => $leave->end_date,
+                        'end' =>  date('Y-m-d', strtotime(now()->parse($leave->end_date)->addDays(1))),
+                        'url'=>  route('leaves.show', encrypt($leave->id)),
+                        'color'=> '#' . dechex($leave->user->id * $leave->user->id * 60),
+                        
+                    ];
+                } 
+            }
+            elseif ($leavescal->isEmpty())
+            { 
+                $events[]=[
+                    'title' => 'test',
+                    'start' => '2026-12-03',
+                    // 'end' => now()->parse($leave->end_date),
+                    // 'end' => $leave->end_date,
+                    'end' =>  '2026-12-04',
+                    
+                    
+                ];
+                // echo "hi";
+            }
+       
+
+            return view('staffleaves.index', ['leaves' => $leaves, 'users' => $staff, 'overtimes' => $overtimes,'events'=>$events]);
+            
         } else {
             $leavess = Leave::where([
                 ['user_id', $user->id],

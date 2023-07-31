@@ -71,7 +71,12 @@
                     <!-- Modal -->
 
                 </div>
-
+                <div class="container-fluid">
+                  <div class="card">
+                    <div id='calendar'></div>
+                  </div>
+              </div>
+               
 
                   <div class="container-fluid">
                       <div class="card">
@@ -173,7 +178,49 @@
 
   <!-- DataTables  & Plugins -->
 
+  @if (isset($events))
 
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        events: @json($events),
+        aspectRatio: 2.5,
+//         businessHours: {
+//   // days of week. an array of zero-based day of week integers (0=Sunday)
+//   daysOfWeek: [ 0, 1, 2, 3, 4 ], // Monday - Thursday
+
+// },
+        eventClick: function(info) {
+    // alert('Event: ' + info.event.title);
+    // alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+    // alert('View: ' + info.view.type);
+
+    // // change the border color just for fun
+    // info.el.style.borderColor = 'red';
+    info.jsEvent.preventDefault();
+    if (info.event.url) {
+      window.open(info.event.url);
+    }
+  },
+        hiddenDays: [ 5, 6 ],
+        // allDayDefault:true
+      //   events:[
+      //     {
+      //   title: 'Long Event',
+      //   start: '2023-07-07',
+      //   end: '2023-07-10'
+      // },
+      //   ]
+      });
+      calendar.render();
+    });
+
+  </script>
+  @endif
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
 
 
