@@ -28,7 +28,7 @@
                       <div class="card-body table-responsive-md">
 
                         <!-- <div class="row"> -->
-                      <table id="table_iddd" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
+                          <table id="table_iddd" class="table w-100 d-block d-md-table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                       <thead>
                           <tr style=" background-color: #ffb678 !important;">
                             <th style="width: 20%" scope="col">{{__('staffleaves.name')}}</th>
@@ -86,7 +86,7 @@
                         </div>
                         <div class="card-body table-responsive-md">
 
-                        <table id="table_id" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
+                        <table id="table_id"  class="table w-100 d-block d-md-table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                         <thead>
                             <tr style=" background-color: #ffb678 !important;">
                                 <th style="width: 5%" scope="col">{{__('staffleaves.id-Leave')}}</th>
@@ -130,7 +130,7 @@
                       </div>
                       <div class="card-body table-responsive-md">
 
-                      <table id="table_idd" class="table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
+                        <table id="table_idd" class="table w-100 d-block d-md-table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
                       <thead>
                           <tr style=" background-color: #ffb678 !important;">
                           <th style="width: 10%" scope="col">{{__('staffleaves.id-Overtime')}}</th>
