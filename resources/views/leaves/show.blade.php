@@ -30,7 +30,9 @@
                             <div class="col">
                             <strong>{{__('leaveShow.leaveId')}}: </strong> {{$leave->id}}
                                 <br>
-                                <strong>{{__('leaveShow.leaveStatus')}}: </strong> {{__("databaseLeaves.$leave->status")}}
+                                <strong>{{__('leaveShow.leaveStatus')}}: </strong> {{__("databaseLeaves.$leave->status")}}  - @if ($leave->status == "Pending LM Approval")
+                                <small>{{$currentlm}}</small>
+                              @endif
                                 <br>
                                 @php
                               $startdayname = Carbon\Carbon::parse($leave->start_date)->format('l');
@@ -106,7 +108,9 @@
 
     <div class="card">
     <div class="card-header card-header-primary">
-                          <h4 class="mr-2 card-title ">{{__('leaveShow.approvalWorlflowCurrentStatus')}}: <strong>{{__("databaseLeaves.$leave->status")}}</strong></h4>
+      <h4 class="mr-2 card-title ">{{__('leaveShow.approvalWorlflowCurrentStatus')}}: <strong>{{__("databaseLeaves.$leave->status")}}</strong> - @if ($leave->status == "Pending LM Approval")
+        <small>{{$currentlm}}</small>
+      @endif</h4>
                           @php
                           $authuser = Auth::user();
 

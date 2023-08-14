@@ -31,7 +31,9 @@
                             <div class="col">
                                 <strong>{{__('overtimeshow.overtimeId')}}: </strong> {{$overtime->id}}
                                 <br>
-                                <strong>{{__('overtimeshow.overtimeStatus')}}: </strong> {{__("databaseLeaves.$overtime->status")}}
+                                <strong>{{__('overtimeshow.overtimeStatus')}}: </strong> {{__("databaseLeaves.$overtime->status")}} - @if ($overtime->status == "Pending LM Approval")
+                                <small>{{$currentlm}}</small>
+                              @endif
                                 <br>
                                 @php
                               $dayname = Carbon\Carbon::parse($overtime->date)->format('l');
@@ -106,7 +108,9 @@
 
     <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="mr-2 card-title ">{{__('overtimeshow.approvalWorlflowCurrentStatus')}} <strong>{{__("databaseLeaves.$overtime->status")}}</strong></h4>
+                          <h4 class="mr-2 card-title ">{{__('overtimeshow.approvalWorlflowCurrentStatus')}} <strong>{{__("databaseLeaves.$overtime->status")}}</strong> - @if ($overtime->status == "Pending LM Approval")
+                            <small>{{$currentlm}}</small>
+                          @endif</h4>
                           @php
                           $authuser = Auth::user();
 

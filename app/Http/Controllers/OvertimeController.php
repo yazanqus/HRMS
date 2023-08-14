@@ -273,8 +273,10 @@ class OvertimeController extends Controller
         $overtime = Overtime::findOrFail($id);
         $overtimes = Overtime::all();
         $users = User::all();
+        $currentlm = $overtime->user->linemanager;
 
-        return view('overtimes.show', ['overtime' => $overtime,'overtimes'=>$overtimes,'users'=>$users]);
+
+        return view('overtimes.show', ['overtime' => $overtime, 'overtimes' => $overtimes, 'users' => $users,'currentlm'=>$currentlm]);
     }
 
     /**

@@ -2495,7 +2495,9 @@ class LeaveController extends Controller
         // $leavetype = Leavetype::where('id', $leave-)->get();
         $leaves = Leave::all();
         $users = User::all();
-        return view('leaves.show', ['leave' => $leave, 'leaves'=>$leaves,'users'=>$users]);
+        $currentlm = $leave->user->linemanager;
+
+        return view('leaves.show', ['leave' => $leave, 'leaves' => $leaves, 'users' => $users,'currentlm'=>$currentlm]);
     }
 
     /**
