@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Holiday;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HolidayController extends Controller
 {
@@ -25,7 +26,16 @@ class HolidayController extends Controller
      */
     public function create()
     {
-        return view('admin.holidays.create');
+        $authuser = Auth::user();
+        if ($authuser->hradmin == "yes")
+        {
+            return view('admin.holidays.create');
+        }
+        else
+        {
+            abort(403);
+        }
+        
     }
 
     /**
@@ -36,25 +46,34 @@ class HolidayController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $authuser = Auth::user();
+        if ($authuser->hradmin !== "yes")
+        {
+            abort(403);
+        }
+        else
+        {
+            $request->validate([
 
-            'name' => 'required|unique:holidays,name',
-            'year' => 'required',
-
-            'file' => 'required',
-        ]);
-
-        $path = $request->file('file')->storeAs('public/files', $request->name . '.pdf');
-
-        $holiday = new Holiday();
-        $holiday->name = $request->name;
-        $holiday->year = $request->year;
-
-        $holiday->path = $path;
-        $holiday->save();
-
-        $holiday = Holiday::all();
-        return view('admin.holidays.index', ['holidays' => $holiday]);
+                'name' => 'required|unique:holidays,name',
+                'year' => 'required',
+    
+                'file' => 'required',
+            ]);
+    
+            $path = $request->file('file')->storeAs('public/files', $request->name . '.pdf');
+    
+            $holiday = new Holiday();
+            $holiday->name = $request->name;
+            $holiday->year = $request->year;
+    
+            $holiday->path = $path;
+            $holiday->save();
+    
+            $holiday = Holiday::all();
+            return view('admin.holidays.index', ['holidays' => $holiday]);
+        }
+        
     }
 
     /**
@@ -76,7 +95,17 @@ class HolidayController extends Controller
      */
     public function edit(Holiday $holiday)
     {
-        return view('admin.holidays.edit', ['holiday' => $holiday]);
+        $authuser = Auth::user();
+        if ($authuser->hradmin == "yes")
+        {
+            return view('admin.holidays.edit', ['holiday' => $holiday]);
+        }
+        else
+        {
+            abort(403);
+        }
+
+        
     }
 
     /**
@@ -112,9 +141,18 @@ class HolidayController extends Controller
      */
     public function destroy(Holiday $holiday)
     {
-        $file_path = public_path() . '/storage/files/' . $holiday->name . '.pdf';
-        unlink($file_path);
-        $holiday->delete();
-        return redirect()->route('admin.holidays.index');
+        $authuser = Auth::user();
+        if ($authuser->hradmin == "yes")
+        {
+            $file_path = public_path() . '/storage/files/' . $holiday->name . '.pdf';
+            unlink($file_path);
+            $holiday->delete();
+            return redirect()->route('admin.holidays.index');
+        }
+        else
+        {
+            abort(403);
+        }
+       
     }
 }

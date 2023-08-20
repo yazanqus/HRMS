@@ -269,14 +269,28 @@ class OvertimeController extends Controller
     {
 
         $id = decrypt($overtimeid);
-        // dd($id);
         $overtime = Overtime::findOrFail($id);
-        $overtimes = Overtime::all();
-        $users = User::all();
-        $currentlm = $overtime->user->linemanager;
+
+        $authuser = Auth::user();
+        $overtimelmname = $overtime->user->linemanager;
+        $authusername = $authuser->name;
+
+        if ($overtime->user == $authuser OR $authuser->hradmin == "yes" OR $authusername == $overtimelmname)
+        {
+            $overtimes = Overtime::all();
+            $users = User::all();
+            $currentlm = $overtime->user->linemanager;
+    
+    
+            return view('overtimes.show', ['overtime' => $overtime, 'overtimes' => $overtimes, 'users' => $users,'currentlm'=>$currentlm]);
+        }
+        else
+        {
+            abort(403);
+        }
 
 
-        return view('overtimes.show', ['overtime' => $overtime, 'overtimes' => $overtimes, 'users' => $users,'currentlm'=>$currentlm]);
+       
     }
 
     /**
@@ -310,50 +324,72 @@ class OvertimeController extends Controller
      */
     public function destroy($id)
     {
+        $authuser = Auth::user();
         $overtime = Overtime::find($id);
-        if (isset($overtime->path)) {
-            $file_path = public_path() . '/storage/overtimes/' . basename($overtime->path);
-            unlink($file_path);
-        }
 
-        $overtime->delete();
-        return redirect()->route('overtimes.index');
+        if ($authuser->id == $overtime->user->id)
+        {
+            if (isset($overtime->path)) {
+                $file_path = public_path() . '/storage/overtimes/' . basename($overtime->path);
+                unlink($file_path);
+            }
+    
+            $overtime->delete();
+            return redirect()->route('overtimes.index');
+        }
+        else
+        {
+            abort(403);
+        }
+       
     }
 
     public function approved(Request $request,$id)
     {
         $lmuser = Auth::user();
         $overtime = Overtime::find($id);
-        $overtime->status = 'Pending HR Approval';
-        $overtime->lmapprover = $lmuser->name;
-        $overtime->lmcomment = $request->comment;
+        $requester = $overtime->user;
+
+        if ($lmuser->usertype_id == "2" && $lmuser->name == $requester->linemanager)
+        {
+            $overtime->status = 'Pending HR Approval';
+            $overtime->lmapprover = $lmuser->name;
+            $overtime->lmcomment = $request->comment;
+    
+    
+            $overtime->save();
+    
+            $dayname = Carbon::parse($overtime->date)->format('l');
+            $requester=$overtime->user;
+    
+                // dd($linemanageremail);
+                $details = [
+                    'requestername' => $requester->name,
+                    'linemanagername' => $requester->linemanager,
+                    // 'linemanageremail' => $linemanageremail,
+                    'title' => 'Overtime Request - '.$overtime->type. ' - Approved by Line Manager',
+                    'overtimetype' => $overtime->type,
+                    'dayname' => $dayname,
+                    'date' => $overtime->date,
+                    'start_hour' => $overtime->start_hour,
+                    'end_hour' => $overtime->end_hour,
+                    'hours' => $overtime->hours,
+                    'status' => $overtime->status,
+                    'comment' =>  $overtime->reason,
+                    'lmcomment' => $overtime->lmcomment
+                ];
+               
+                Mail::to($requester->email)->send(new MailOvertimeafterlm($details));
+    
+            return redirect()->route('overtimes.approval');
+        }
+        else
+        {
+            abort(403);
+        }
 
 
-        $overtime->save();
 
-        $dayname = Carbon::parse($overtime->date)->format('l');
-        $requester=$overtime->user;
-
-            // dd($linemanageremail);
-            $details = [
-                'requestername' => $requester->name,
-                'linemanagername' => $requester->linemanager,
-                // 'linemanageremail' => $linemanageremail,
-                'title' => 'Overtime Request - '.$overtime->type. ' - Approved by Line Manager',
-                'overtimetype' => $overtime->type,
-                'dayname' => $dayname,
-                'date' => $overtime->date,
-                'start_hour' => $overtime->start_hour,
-                'end_hour' => $overtime->end_hour,
-                'hours' => $overtime->hours,
-                'status' => $overtime->status,
-                'comment' =>  $overtime->reason,
-                'lmcomment' => $overtime->lmcomment
-            ];
-           
-            Mail::to($requester->email)->send(new MailOvertimeafterlm($details));
-
-        return redirect()->route('overtimes.approval');
 
     }
 
@@ -361,35 +397,46 @@ class OvertimeController extends Controller
     {
         $lmuser = Auth::user();
         $overtime = Overtime::find($id);
-        $overtime->status = 'Declined by LM';
-        $overtime->lmapprover = $lmuser->name;
-        $overtime->lmcomment = $request->comment;
+        $requester = $overtime->user;
 
-        $overtime->save();
+        if ($lmuser->usertype_id == "2" && $lmuser->name == $requester->linemanager)
+        {
 
-        $dayname = Carbon::parse($overtime->date)->format('l');
-        $requester=$overtime->user;
-
-            // dd($linemanageremail);
-            $details = [
-                'requestername' => $requester->name,
-                'linemanagername' => $requester->linemanager,
-                // 'linemanageremail' => $linemanageremail,
-                'title' => 'Overtime Request - '.$overtime->type. ' - Declined by Line Manager',
-                'overtimetype' => $overtime->type,
-                'dayname' => $dayname,
-                'date' => $overtime->date,
-                'start_hour' => $overtime->start_hour,
-                'end_hour' => $overtime->end_hour,
-                'hours' => $overtime->hours,
-                'status' => $overtime->status,
-                'comment' =>  $overtime->reason,
-                'lmcomment' => $overtime->lmcomment
-            ];
-           
-            Mail::to($requester->email)->send(new MailOvertimeafterlm($details));
-
-        return redirect()->route('overtimes.approval');
+            $overtime->status = 'Declined by LM';
+            $overtime->lmapprover = $lmuser->name;
+            $overtime->lmcomment = $request->comment;
+    
+            $overtime->save();
+    
+            $dayname = Carbon::parse($overtime->date)->format('l');
+            $requester=$overtime->user;
+    
+                // dd($linemanageremail);
+                $details = [
+                    'requestername' => $requester->name,
+                    'linemanagername' => $requester->linemanager,
+                    // 'linemanageremail' => $linemanageremail,
+                    'title' => 'Overtime Request - '.$overtime->type. ' - Declined by Line Manager',
+                    'overtimetype' => $overtime->type,
+                    'dayname' => $dayname,
+                    'date' => $overtime->date,
+                    'start_hour' => $overtime->start_hour,
+                    'end_hour' => $overtime->end_hour,
+                    'hours' => $overtime->hours,
+                    'status' => $overtime->status,
+                    'comment' =>  $overtime->reason,
+                    'lmcomment' => $overtime->lmcomment
+                ];
+               
+                Mail::to($requester->email)->send(new MailOvertimeafterlm($details));
+    
+            return redirect()->route('overtimes.approval');
+    
+        }
+        else
+        {
+            abort(403);
+        }
 
     }
 
@@ -430,6 +477,15 @@ class OvertimeController extends Controller
     public function hrapproved(Request $request,$id)
     {
         $hruser = Auth::user();
+
+        if ($hruser->hradmin !== "yes")
+        {
+            abort(403);
+        }
+        else
+        {
+            
+
         $overtime = Overtime::find($id);
         $overtime->status = 'Approved';
         $overtime->hrapprover = $hruser->name;
@@ -552,13 +608,24 @@ class OvertimeController extends Controller
         return redirect()->route('overtimes.hrapproval');
 
 
+        }
+
 
 
     }
 
     public function hrdeclined(Request $request,$id)
     {
+
         $hruser = Auth::user();
+
+        if($hruser->hradmin !== "yes")
+        {
+            abort(403);
+        }
+        else
+        {
+            
         $overtime = Overtime::find($id);
         $overtime->status = 'Declined by HR';
         $overtime->hrapprover = $hruser->name;
@@ -590,6 +657,8 @@ class OvertimeController extends Controller
             Mail::to($requester->email)->send(new MailOvertimerejected($details));
 
         return redirect()->route('overtimes.hrapproval');
+
+        }
 
     }
 

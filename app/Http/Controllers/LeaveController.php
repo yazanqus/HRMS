@@ -2490,14 +2490,29 @@ class LeaveController extends Controller
     public function show($leaveid)
     {
         $id = decrypt($leaveid);
-        // dd($id);
         $leave = Leave::findOrFail($id);
-        // $leavetype = Leavetype::where('id', $leave-)->get();
-        $leaves = Leave::all();
-        $users = User::all();
-        $currentlm = $leave->user->linemanager;
+        $authuser = Auth::user();
+        $leavelmname = $leave->user->linemanager;
+        $authusername = $authuser->name;
 
-        return view('leaves.show', ['leave' => $leave, 'leaves' => $leaves, 'users' => $users,'currentlm'=>$currentlm]);
+
+        
+        if ($leave->user == $authuser OR $authuser->hradmin == "yes" OR $authusername == $leavelmname)
+        {
+            $users = User::all();
+            $currentlm = $leave->user->linemanager;
+    
+            return view('leaves.show', ['leave' => $leave,'users' => $users,'currentlm'=>$currentlm]);
+        }
+        else
+        {
+            abort (403);
+        }
+
+        
+        // $leavetype = Leavetype::where('id', $leave-)->get();
+        // $leaves = Leave::all();
+       
     }
 
     /**
@@ -2531,91 +2546,127 @@ class LeaveController extends Controller
      */
     public function destroy($id)
     {
+        $authuser = Auth::user();
         $leave = Leave::find($id);
-        if (isset($leave->path)) {
-            $file_path = public_path() . '/storage/leaves/' . basename($leave->path);
-            unlink($file_path);
+ 
+        if ($authuser->id == $leave->user->id)
+        {
+            if (isset($leave->path)) {
+                $file_path = public_path() . '/storage/leaves/' . basename($leave->path);
+                unlink($file_path);
+            }
+    
+            $leave->delete();
+            return redirect()->route('leaves.index')->with("success", "Leave is canceled");
         }
+        else
+        {
+            abort(403);
+        }
+     
 
-        $leave->delete();
-        return redirect()->route('leaves.index')->with("success", "Leave is canceled");
     }
 
     public function approved(Request $request,$id)
     {
         $lmuser = Auth::user();
         $leave = Leave::find($id);
-        $leave->status = 'Pending HR Approval';
-        $leave->lmapprover = $lmuser->name;
-        $leave->lmapprover = $lmuser->name;
-        $leave->lmcomment = $request->comment;
-
-        $startdayname = Carbon::parse($leave->start_date)->format('l');
-        $enddayname = Carbon::parse($leave->end_date)->format('l');
-
 
         $requester=$leave->user;
-        // $linemanageremail = User::where('name',$requester->linemanager)->value('email');
+        if($lmuser->usertype_id == "2" && $lmuser->name == $requester->linemanager)
+        {
 
-        // dd($linemanageremail);
-        $details = [
-            'requestername' => $requester->name,
-            'linemanagername' => $requester->linemanager,
-            // 'linemanageremail' => $linemanageremail,
-            'title' => 'Leave Request - '.$leave->leavetype->name. ' - Approved by Line Manager',
-            'startdayname' => $startdayname,
-            'start_date' => $leave->start_date,
-            'enddayname' => $enddayname,
-            'end_date' =>  $leave->end_date,
-            'days' => $leave->days,
-            'status' => $leave->status,
-            'comment' =>  $leave->reason,
-            'lmcomment' => $leave->lmcomment
-        ];
-       
-        Mail::to($requester->email)->send(new MailLeaveafterlm($details));
-
-        $leave->save();
-
-        return redirect()->route('leaves.approval');
+            $leave->status = 'Pending HR Approval';
+            $leave->lmapprover = $lmuser->name;
+            $leave->lmapprover = $lmuser->name;
+            $leave->lmcomment = $request->comment;
+    
+            $startdayname = Carbon::parse($leave->start_date)->format('l');
+            $enddayname = Carbon::parse($leave->end_date)->format('l');
+    
+    
+           
+            // $linemanageremail = User::where('name',$requester->linemanager)->value('email');
+    
+            // dd($linemanageremail);
+            $details = [
+                'requestername' => $requester->name,
+                'linemanagername' => $requester->linemanager,
+                // 'linemanageremail' => $linemanageremail,
+                'title' => 'Leave Request - '.$leave->leavetype->name. ' - Approved by Line Manager',
+                'startdayname' => $startdayname,
+                'start_date' => $leave->start_date,
+                'enddayname' => $enddayname,
+                'end_date' =>  $leave->end_date,
+                'days' => $leave->days,
+                'status' => $leave->status,
+                'comment' =>  $leave->reason,
+                'lmcomment' => $leave->lmcomment
+            ];
+           
+            Mail::to($requester->email)->send(new MailLeaveafterlm($details));
+    
+            $leave->save();
+    
+            return redirect()->route('leaves.approval');
+    
+        }
+        else
+        {
+            abort(403);
+        }
 
     }
 
     public function declined(Request $request,$id)
     {
         $lmuser = Auth::user();
-        $leave = Leave::find($id);
-        $leave->status = 'Declined by LM';
-        $leave->lmapprover = $lmuser->name;
-        $leave->lmcomment = $request->comment;
-        $startdayname = Carbon::parse($leave->start_date)->format('l');
-        $enddayname = Carbon::parse($leave->end_date)->format('l');
-
-
-        $requester=$leave->user;
-        // $linemanageremail = User::where('name',$requester->linemanager)->value('email');
-
-        // dd($linemanageremail);
-        $details = [
-            'requestername' => $requester->name,
-            'linemanagername' => $requester->linemanager,
-            // 'linemanageremail' => $linemanageremail,
-            'title' => 'Leave Request - '.$leave->leavetype->name. ' - Declined by Line Manager',
-            'startdayname' => $startdayname,
-            'start_date' => $leave->start_date,
-            'enddayname' => $enddayname,
-            'end_date' =>  $leave->end_date,
-            'days' => $leave->days,
-            'status' => $leave->status,
-            'comment' =>  $leave->reason,
-            'lmcomment' => $leave->lmcomment
-        ];
-       
-        Mail::to($requester->email)->send(new MailLeaveafterlm($details));
         
-        $leave->save();
+        $leave = Leave::find($id);
+        $requester=$leave->user;
+        
+        if($lmuser->usertype_id == "2" && $lmuser->name == $requester->linemanager)
+        {
+           
+            $leave->status = 'Declined by LM';
+            $leave->lmapprover = $lmuser->name;
+            $leave->lmcomment = $request->comment;
+            $startdayname = Carbon::parse($leave->start_date)->format('l');
+            $enddayname = Carbon::parse($leave->end_date)->format('l');
+    
+    
+           
+            // $linemanageremail = User::where('name',$requester->linemanager)->value('email');
+    
+            // dd($linemanageremail);
+            $details = [
+                'requestername' => $requester->name,
+                'linemanagername' => $requester->linemanager,
+                // 'linemanageremail' => $linemanageremail,
+                'title' => 'Leave Request - '.$leave->leavetype->name. ' - Declined by Line Manager',
+                'startdayname' => $startdayname,
+                'start_date' => $leave->start_date,
+                'enddayname' => $enddayname,
+                'end_date' =>  $leave->end_date,
+                'days' => $leave->days,
+                'status' => $leave->status,
+                'comment' =>  $leave->reason,
+                'lmcomment' => $leave->lmcomment
+            ];
+           
+            Mail::to($requester->email)->send(new MailLeaveafterlm($details));
+            
+            $leave->save();
+    
+            return redirect()->route('leaves.approval');
+        }
+        else
+        {
 
-        return redirect()->route('leaves.approval');
+            abort(403);
+
+        }
+
 
     }
 
@@ -2654,7 +2705,12 @@ class LeaveController extends Controller
     public function hrapproved(Request $request,$id)
     {
         $hruser = Auth::user();
-        $leave = Leave::find($id);
+        if($hruser->hradmin !== "yes")
+        {
+            abort(403);
+        }
+        else {
+            $leave = Leave::find($id);
 
                 // annual half days leaves
                 if ($leave->leavetype_id == '13' || $leave->leavetype_id == '14') {
@@ -2975,45 +3031,55 @@ class LeaveController extends Controller
 
         
 
+        }
+        
     }
 
     public function hrdeclined(Request $request,$id)
     {
         $hruser = Auth::user();
-        $leave = Leave::find($id);
-        $leave->status = 'Declined by HR';
-        $leave->hrapprover = $hruser->name;
-        $leave->hrcomment = $request->comment;
-
-
-        $startdayname = Carbon::parse($leave->start_date)->format('l');
-        $enddayname = Carbon::parse($leave->end_date)->format('l');
-        
-        $requester=$leave->user;
-
-        $details = [
-            'requestername' => $requester->name,
-            'linemanagername' => $requester->linemanager,
-            'hrname' => $leave->hrapprover,
-            'title' => 'Leave Request - '.$leave->leavetype->name. ' - Declined by HR',
-            'startdayname' => $startdayname,
-            'start_date' => $leave->start_date,
-            'enddayname' => $enddayname,
-            'end_date' =>  $leave->end_date,
-            'days' => $leave->days,
-            'status' => $leave->status,
-            'comment' =>  $leave->reason,
-            'lmcomment' => $leave->lmcomment,
-            'hrcomment' => $leave->hrcomment
-        ];
-       
-        Mail::to($requester->email)->send(new MailLeaverejected($details));
-
-
-        $leave->save();
-
-        return redirect()->route('leaves.hrapproval');
-
+        if($hruser->hradmin !== "yes")
+        {
+            abort(403);
+        }
+        else
+        {
+            $leave = Leave::find($id);
+            $leave->status = 'Declined by HR';
+            $leave->hrapprover = $hruser->name;
+            $leave->hrcomment = $request->comment;
+    
+    
+            $startdayname = Carbon::parse($leave->start_date)->format('l');
+            $enddayname = Carbon::parse($leave->end_date)->format('l');
+            
+            $requester=$leave->user;
+    
+            $details = [
+                'requestername' => $requester->name,
+                'linemanagername' => $requester->linemanager,
+                'hrname' => $leave->hrapprover,
+                'title' => 'Leave Request - '.$leave->leavetype->name. ' - Declined by HR',
+                'startdayname' => $startdayname,
+                'start_date' => $leave->start_date,
+                'enddayname' => $enddayname,
+                'end_date' =>  $leave->end_date,
+                'days' => $leave->days,
+                'status' => $leave->status,
+                'comment' =>  $leave->reason,
+                'lmcomment' => $leave->lmcomment,
+                'hrcomment' => $leave->hrcomment
+            ];
+           
+            Mail::to($requester->email)->send(new MailLeaverejected($details));
+    
+    
+            $leave->save();
+    
+            return redirect()->route('leaves.hrapproval');
+    
+        }
+      
     }
 
     public function export()
