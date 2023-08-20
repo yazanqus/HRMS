@@ -18,12 +18,10 @@
         </div>
         <div class="card-body text-center">
           
-        <!-- <p class="h1 mb-0" style="font-size:2.3rem;"> <img class="mb-0 ml-0" src="{{url('/okta.png')}}"  alt="" style=" width:60px;height:20px;"></p> -->
-          <!-- <p class="login-box-msg pr-0 pb-3 pl-0">Sign in to start your session</p> -->
-       
+      
 
-    <!--      
-  test
+      
+  {{-- test
           <form action="{{ route('login') }}" method="post">
             @csrf
 
@@ -68,7 +66,7 @@
                 </div>
      
             </div>
-            
+             --}}
 
                           {{-- <div class="form-group mb-0 row text-right">
                               <div class="col">
@@ -82,14 +80,14 @@
                               </div>
                           </div> --}}
           
-              
+{{--               
                <div class="row">
                   <div class="col-12">
                     <button type="submit" class="mb-2 btn-1 ">Sign in</button>
                   </div>
               </div>
               
-          </form> --!>
+          </form> --!> --}}
       
 
           
