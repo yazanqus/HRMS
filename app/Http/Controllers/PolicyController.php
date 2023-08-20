@@ -123,20 +123,29 @@ class PolicyController extends Controller
     public function update(Request $request, Policy $policy)
     {
 
-        if (isset($request->file)) {
-            $path = $request->file('file')->storeAs('public/files', $request->name . '.pdf');
-            $policy->path = $path;
+        $authuser = Auth::user();
+        if ($authuser->hradmin == "yes")
+        {
+            if (isset($request->file)) {
+                $path = $request->file('file')->storeAs('public/files', $request->name . '.pdf');
+                $policy->path = $path;
+            }
+    
+            $policy->name = $request->name;
+            $policy->desc = $request->desc;
+            $policy->created_date = $request->created_date;
+            $policy->lastupdate_date = $request->lastupdate_date;
+    
+            $policy->save();
+    
+            $policy = Policy::all();
+            return view('admin.policies.index', ['policies' => $policy]);
         }
-
-        $policy->name = $request->name;
-        $policy->desc = $request->desc;
-        $policy->created_date = $request->created_date;
-        $policy->lastupdate_date = $request->lastupdate_date;
-
-        $policy->save();
-
-        $policy = Policy::all();
-        return view('admin.policies.index', ['policies' => $policy]);
+        else
+        {
+            abort(403);
+        }
+       
     }
 
     /**
