@@ -316,6 +316,66 @@
                     </div>
                 </div>
 
+                @if ($user->usertype_id == '2')
+                  
+                
+                <div class="container-fluid">
+                  <div class="card">
+                    <div class="card-header card-header-primary">
+                      <h4 class="card-title ">{{__('staffleaves.myStaff')}}</h4>
+                        {{-- <div class="col-12 text-right">
+                          <a href="{{route('leaves.create')}}" class="btn btn-sm btn-primary">Submit a new Leave</a>
+                        </div> --}}
+                    </div>
+                    <div class="card-body table-responsive-md">
+
+                      <!-- <div class="row"> -->
+                        <table id="table_iddd" class="table w-100 d-block d-md-table table-responsive table-bordered table-hover text-nowrap table-Secondary table-striped">
+                    <thead>
+                        <tr style=" background-color: #ffb678 !important;">
+                          <th style="width: 20%" scope="col">{{__('staffleaves.name')}}</th>
+                          <!-- <th style="width: 10%" scope="col">{{__('staffleaves.birthDate')}}</th> -->
+                          <!-- <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.email')}}</th> -->
+                          <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.employeeNumber')}}</th>
+                          {{-- <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.balance')}}</th> --}}
+                          <th style="width: 20%" class="text-center" scope="col">{{__('allUsers.office')}}</th>
+                          <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.position')}}</th>
+                          <th style="width: 20%" class="text-center" scope="col">{{__('staffleaves.joinedDate')}}</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($employees as $employee)
+                        <tr>
+                          <td>
+                              {{ $employee->name }}
+                          </td>
+                          <!-- <td>{{ $employee->birth_date }}</td> -->
+                          <!-- <td class="text-center">{{ $employee->email }}</td> -->
+                          <td class="text-center">{{ $employee->employee_number }}</td>
+                          {{-- <td class="text-center">
+                            @if ($employee->contract == "Service") 
+
+                            {{ $employee->balances->first()->value }}/NA/NA
+                            @endif
+                            @if ($employee->contract !== "Service")
+                            {{ $employee->balances->first()->value }}/{{ $employee->balances->get(1)->value }}/{{ $employee->balances->get(17)->value }}</td>
+                            @endif --}}
+                            <td class="text-center">{{ $employee->office }}</td>
+                          <td class="text-center">{{ $employee->position }}</td>
+                          <td class="text-center">{{ $employee->joined_date }}</td>
+
+                        </tr>
+                        @endforeach
+                      </tbody>
+                  </table>
+                      <!-- </div> -->
+                    </div>
+                  </div>
+                  <!-- Modal -->
+
+              </div>
+              @endif
 
 
 
@@ -402,6 +462,13 @@
     $('#table_idd').DataTable(
         {
             "order": [[ 0, "desc" ]]
+        }
+    );
+
+    $('#table_iddd').DataTable(
+        {
+          "aLengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+            "order": [[ 1, "desc" ]]
         }
     );
 

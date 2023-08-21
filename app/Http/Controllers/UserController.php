@@ -296,6 +296,8 @@ class UserController extends Controller
 
         $hruser = Auth::user();
         // dd($hruser->office);
+        $staff = User::where('linemanager', $user->name)->get();
+        // dd($staff);
 
         if ($hruser->office == "AO3" || $hruser->office == "AO4" || $hruser->office == "AO6" || $hruser->office == "AO7")
         {
@@ -386,6 +388,7 @@ class UserController extends Controller
                 'balance18' => $balance18,
                 'leaves'=> $leaves,
                 'overtimes' => $overtimes,
+                'employees'=>$staff,
             ]);
     
             }
@@ -474,6 +477,7 @@ class UserController extends Controller
                 'balance18' => $balance18,
                 'leaves'=> $leaves,
                 'overtimes' => $overtimes,
+                'employees'=>$staff,
             ]);
     
         }
