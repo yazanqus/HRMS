@@ -59,13 +59,16 @@ class PolicyController extends Controller
         {
             $request->validate([
 
-                'name' => 'required|unique:policies,name',
+                'name' => 'required|regex:/^[\pL\s]+$/u|min:3|unique:policies,name',
                 'desc',
                 'created_date' => 'required',
                 'lastupdate_date' => 'required',
-                'file' => 'required',
+                'file' => 'required|mimes:jpeg,png,jpg,pdf|max:3072',
+            ],[
+                'name.regex' => trans('overtimeerror.regex'), // custom message
             ]);
-    
+
+
             $path = $request->file('file')->storeAs('public/files', $request->name . '.pdf');
     
             $policy = new Policy();
@@ -101,15 +104,15 @@ class PolicyController extends Controller
      */
     public function edit(Policy $policy)
     {
-        $authuser = Auth::user();
-        if ($authuser->hradmin == "yes")
-        {
-            return view('admin.policies.edit', ['policy' => $policy]);
-        }
-        else
-        {
-            abort(403);
-        }
+        // $authuser = Auth::user();
+        // if ($authuser->hradmin == "yes")
+        // {
+        //     return view('admin.policies.edit', ['policy' => $policy]);
+        // }
+        // else
+        // {
+        //     abort(403);
+        // }
         
     }
 
@@ -123,28 +126,28 @@ class PolicyController extends Controller
     public function update(Request $request, Policy $policy)
     {
 
-        $authuser = Auth::user();
-        if ($authuser->hradmin == "yes")
-        {
-            if (isset($request->file)) {
-                $path = $request->file('file')->storeAs('public/files', $request->name . '.pdf');
-                $policy->path = $path;
-            }
+        // $authuser = Auth::user();
+        // if ($authuser->hradmin == "yes")
+        // {
+        //     if (isset($request->file)) {
+        //         $path = $request->file('file')->storeAs('public/files', $request->name . '.pdf');
+        //         $policy->path = $path;
+        //     }
     
-            $policy->name = $request->name;
-            $policy->desc = $request->desc;
-            $policy->created_date = $request->created_date;
-            $policy->lastupdate_date = $request->lastupdate_date;
+        //     $policy->name = $request->name;
+        //     $policy->desc = $request->desc;
+        //     $policy->created_date = $request->created_date;
+        //     $policy->lastupdate_date = $request->lastupdate_date;
     
-            $policy->save();
+        //     $policy->save();
     
-            $policy = Policy::all();
-            return view('admin.policies.index', ['policies' => $policy]);
-        }
-        else
-        {
-            abort(403);
-        }
+        //     $policy = Policy::all();
+        //     return view('admin.policies.index', ['policies' => $policy]);
+        // }
+        // else
+        // {
+        //     abort(403);
+        // }
        
     }
 

@@ -55,10 +55,12 @@ class HolidayController extends Controller
         {
             $request->validate([
 
-                'name' => 'required|unique:holidays,name',
+                'name' => 'required|regex:/^[\pL\s]+$/u|min:3|unique:holidays,name',
                 'year' => 'required',
     
-                'file' => 'required',
+                'file' => 'required|mimes:jpeg,png,jpg,pdf|max:3072',
+            ],[
+                'name.regex' => trans('overtimeerror.regex'), // custom message
             ]);
     
             $path = $request->file('file')->storeAs('public/files', $request->name . '.pdf');
@@ -95,15 +97,15 @@ class HolidayController extends Controller
      */
     public function edit(Holiday $holiday)
     {
-        $authuser = Auth::user();
-        if ($authuser->hradmin == "yes")
-        {
-            return view('admin.holidays.edit', ['holiday' => $holiday]);
-        }
-        else
-        {
-            abort(403);
-        }
+        // $authuser = Auth::user();
+        // if ($authuser->hradmin == "yes")
+        // {
+        //     return view('admin.holidays.edit', ['holiday' => $holiday]);
+        // }
+        // else
+        // {
+        //     abort(403);
+        // }
 
         
     }
@@ -117,29 +119,29 @@ class HolidayController extends Controller
      */
     public function update(Request $request, Holiday $holiday)
     {
-        $authuser = Auth::user();
-        if($authuser->hradmin == "yes")
-        {
-            if (isset($request->file)) {
-                $path = $request->file('file')->storeAs('public/files', $request->name.'.pdf');
-                $holiday->path = $path;
-            }
+        // $authuser = Auth::user();
+        // if($authuser->hradmin == "yes")
+        // {
+        //     if (isset($request->file)) {
+        //         $path = $request->file('file')->storeAs('public/files', $request->name.'.pdf');
+        //         $holiday->path = $path;
+        //     }
     
-            $holiday->name = $request->name;
-            $holiday->desc = $request->desc;
-            $holiday->start_date = $request->start_date;
-            $holiday->end_date = $request->end_date;
+        //     $holiday->name = $request->name;
+        //     $holiday->desc = $request->desc;
+        //     $holiday->start_date = $request->start_date;
+        //     $holiday->end_date = $request->end_date;
     
-            $holiday->save();
+        //     $holiday->save();
     
-            $holiday = Holiday::all();
+        //     $holiday = Holiday::all();
     
-            return view('admin.holidays.index', ['holidays' => $holiday]);
-        }
-        else
-        {
-            abort(403);
-        }
+        //     return view('admin.holidays.index', ['holidays' => $holiday]);
+        // }
+        // else
+        // {
+        //     abort(403);
+        // }
     }
 
     /**
