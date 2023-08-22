@@ -22,6 +22,7 @@ return [
     'reqularContract' => 'عقد نظامي' ,
     'serviceContract' => 'عقد خدمات' ,
     'notAvaillable' => 'ليس متاحاً' ,
+    'internationalContract' => 'عقد دولي' ,
     'email' => 'البريد الالكتروني' ,
     'whenSigningUsingEmployeeId' => 'عند تسجيل الدخول باستخدام رقم الموظف',
     'password' => 'كلمة المرور' ,

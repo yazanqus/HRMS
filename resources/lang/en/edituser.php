@@ -16,6 +16,8 @@ return [
     'lineManager' => 'Line Manager' ,
     'hrAdmin' => 'HR Admin' ,
     'Currently' => 'Currently',
+    'internationalContract' => 'International',
+    
     'permissionOnHrms' => 'Permissions on HR360' ,
     'notAdmin' => 'Not Admin' ,
     'contractType' => 'Contract Type' ,

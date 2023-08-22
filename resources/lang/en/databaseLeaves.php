@@ -45,6 +45,7 @@ return [
     'Sunday' => 'Sunday',
     'Monday' => 'Monday',
     'Tuesday' => 'Tuesday',
+    'International' => 'International',
     'Wednesday' => 'Wednesday',
     'Thursday' => 'Thursday',
     'Friday' => 'Friday',

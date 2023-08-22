@@ -227,6 +227,12 @@ $authuser = Auth::user();
                                             </label>
                                           </div> 
                                           <div class="form-check">
+                                            <input  class="btn-check" type="radio" name="contract" Value="International" id="international" @if (old('contract') == "International") {{ 'checked' }} @endif>
+                                            <label class="form-check-label" for="international">
+                                            {{__('createUser.internationalContract')}}
+                                            </label>
+                                          </div> 
+                                          <div class="form-check">
                                             <input  class="btn-check" type="radio" name="contract" Value="NA" id="na" @if (old('contract') == "NA") {{ 'checked' }} @endif>
                                             <label class="form-check-label" for="na">
                                             {{__('createUser.notAvaillable')}}

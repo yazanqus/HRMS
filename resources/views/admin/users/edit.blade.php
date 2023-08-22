@@ -175,6 +175,9 @@
                                     elseif ($user->contract == "NA") {
                                       $contract = "NA";
                                     }
+                                    elseif ($user->contract == "International") {
+                                      $contract = "International";
+                                    }
                                     else {
                                       $contract = "undefiend";
                                     }
@@ -189,6 +192,12 @@
                                             <input  class="btn-check" type="radio" name="contract" Value="Service" id="sc" {{ $contract=='Service' ? ' checked' : '' }}>
                                             <label class="form-check-label" for="sc">
                                             {{__('edituser.serviceContract')}}
+                                            </label>
+                                          </div> 
+                                          <div class="form-check">
+                                            <input  class="btn-check" type="radio" name="contract" Value="International" id="international" {{ $contract=='International' ? ' checked' : '' }}>
+                                            <label class="form-check-label" for="international">
+                                            {{__('edituser.internationalContract')}}
                                             </label>
                                           </div> 
                                           <div class="form-check">

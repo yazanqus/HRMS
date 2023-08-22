@@ -19,6 +19,7 @@ return [
     'notAdmin' => 'Not Admin' ,
     'contractType' => 'Contract Type' ,
     'reqularContract' => 'Reqular Contract' ,
+    'internationalContract' => 'International Contract' ,
     'serviceContract' => 'Service Contract' ,
     'notAvaillable' => 'Not Available' ,
     'email' => 'Email' ,

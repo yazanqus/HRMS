@@ -1209,7 +1209,7 @@ class UserController extends Controller
 
         if ($contract == Null)
         {
-            $contracte = ['Regular','Service','NA'];
+            $contracte = ['Regular','Service','International','NA'];
         }
 
         else if ($contract !== Null)
@@ -1436,7 +1436,7 @@ class UserController extends Controller
 
         if ($contract == Null)
         {
-            $contracte = ['Regular','Service','NA'];
+            $contracte = ['Regular','Service','International','NA'];
         }
 
         else if ($contract !== Null)
