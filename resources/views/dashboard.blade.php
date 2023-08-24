@@ -64,26 +64,7 @@
                         
                       </div>
                     </div>
-                    <!-- <div class="card mx-3 col-md-3 ">
-                        <div class="card-header card-header-primary">
-                          <h4 class="card-title ">{{__('welcome.leaves')}} - {{__('welcome.remainingBalance')}}</h4>
-                          <p class="card-category"></p>
-                        </div>
-                        <div class="card-body">
-                    
-                          <div class="row">
-                              <div class="col">
-                                  <strong>{{__('welcome.annualLeave')}}:</strong> {{$balance1}}
-                                  <br>
-                                  <strong>{{__('welcome.sickLeave')}}:</strong> {{$balance2}}
-                                  <br>
-                                <strong>{{__('welcome.compensationLeaveDays')}}:</strong> {{$balance18}}
-
-                                </div>
-
-                          </div>
-                </div>
-            </div> -->
+                   
             </div>
             <div class="row">
             <div class="card ml-4 mr-4 col-md-4 ">
@@ -95,11 +76,26 @@
                     
                           <div class="row">
                               <div class="col">
-                                  <strong>{{__('welcome.annualLeave')}}:</strong> {{$balance1}}
-                                  <br>
-                                  <strong>{{__('welcome.sickLeave')}}:</strong> {{$balance2}}
-                                  <br>
+                                @if ($user->contract == "International")
+                                <strong>{{__('welcome.annualLeave')}}:</strong> {{$balance1}}
+                                <br>
+                                <strong>{{__('createLeave.HomeLeave')}}:</strong> {{$balance24}}
+                                <br>
+                                <strong>{{__('createLeave.R&R')}}:</strong> {{$balance25}}
+                                <br>
+                                <strong>{{__('welcome.SickleaveSC')}}:</strong> {{$balance26}}
+                                <br>
+                                @endif
+                                @if ($user->contract !== "International")
+                                <strong>{{__('welcome.annualLeave')}}:</strong> {{$balance1}}
+                                <br>
+                                @if ($user->contract !== "Service" AND $user->contract !== "International")
+                                <strong>{{__('welcome.sickLeave')}}:</strong> {{$balance2}}
+                                <br>
+                                @endif
                                 <strong>{{__('welcome.compensationLeaveDays')}}:</strong> {{$balance18}} - <a href="{{ route('comlists.index') }}"><strong>({{__('comlists.dashboard')}})</strong></a>
+                                @endif
+                                  
 
                                 </div>
 

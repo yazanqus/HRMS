@@ -182,7 +182,7 @@
 
                               @endif
                                   
-                                  @if ($user->contract !== "Service")
+                                  @if ($user->contract == "Regular" OR $user->contract == "NA")
                                   <strong>{{__('showuser.annualLeave')}}:</strong> {{$balance1}}
                                   <br>
                                   
@@ -213,6 +213,35 @@
                                   <strong>{{__('showuser.compansetion')}}:</strong> {{$balance18}}
                                   </div>
                                   @endif
+
+                                  @if ($user->contract == "International")
+                                  <strong>{{__('showuser.annualLeave')}}:</strong> {{$balance1}}
+                                  <br>
+                                   <strong>{{__('createLeave.HomeLeave')}}:</strong> {{$balance24}}
+                                  <br>
+                                    <strong>{{__('createLeave.R&R')}}:</strong> {{$balance25}}
+                                    <br>
+                                    <strong>{{__('createLeave.SickleaveSC')}}:</strong> {{$balance26}}
+                                    <br>
+                                  
+                                    
+                                   
+                                </div>
+
+                                <div class="col">
+                                    
+                                    
+                                  <strong>{{__('showuser.maternityLeave')}}:</strong> {{$balance8}}
+                                  <br>
+                                  <strong>{{__('showuser.paternityLeave')}}:</strong> {{$balance9}}
+                                    <br>
+                                    <strong>{{__('showuser.welfareLeave')}}:</strong> {{$balance12}}
+                                    <br>
+                                  <strong>{{__('showuser.unpaidLeave')}}:</strong> {{$balance15}}
+                                  </div>
+                                  @endif
+
+
 
                           </div>
                 </div>

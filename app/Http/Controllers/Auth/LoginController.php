@@ -55,14 +55,14 @@ class LoginController extends Controller
 {   
 
 // if(App::isProduction())
-{
-    $this->validate($request, [
-        $this->username() => 'exists:users,' . $this->username() . ',employee_number,10011001',
-        'password' => 'required|string',
-    ], [
-        $this->username() . '.exists' => 'This login method is not accepted, Only login via Okta is possible.'
-    ]); 
-}
+// {
+//     $this->validate($request, [
+//         $this->username() => 'exists:users,' . $this->username() . ',employee_number,10011001',
+//         'password' => 'required|string',
+//     ], [
+//         $this->username() . '.exists' => 'This login method is not accepted, Only login via Okta is possible.'
+//     ]); 
+// }
     
 
   

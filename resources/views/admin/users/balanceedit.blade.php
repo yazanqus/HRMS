@@ -34,6 +34,54 @@
                                     <form class="form-card" action="{{ route('admin.users.balanceupdate',$user) }}" method="POST">
                                         @csrf
                                         @method('PUT')
+                                        @if ($user->contract == "International")
+                                        <div class="row justify-content-between text-left">
+                                            <div class="form-group col-sm-6 flex-column d-flex">
+                                                <label class="form-control-label px-1">{{__('balanceedit.annualLeave')}}:</label>
+                                                <input class="form-control form-outline " type="text" id="annual_leave" value="{{$balance1}}" name="annual_leave" placeholder="">
+
+                                            </div>
+                                            <div class="form-group col-sm-6 flex-column d-flex">
+                                                <label class="form-control-label px-1">{{__('balanceedit.maternityLeave')}}:</label>
+                                                <input class="form-control form-outline" type="text" id="maternity_leave" value="{{$balance8}}" name="maternity_leave" placeholder="" >
+                                                </div>
+                                        </div>
+                                        <div class="row justify-content-between text-left">
+                                            <div class="form-group col-sm-6 flex-column d-flex">
+                                                 <label class="form-control-label px-1">{{__('createLeave.HomeLeave')}}:</label>
+                                                  <input class="form-control form-outline" type="text" id="homeleave" value="{{$balance24}}" name="homeleave" placeholder="" >
+                                                 </div>
+                                                 <div class="form-group  col-sm-6 flex-column d-flex">
+                                                    <label class="form-control-label  px-1">{{__('balanceedit.paternityLeave')}}:</label>
+                                                    <input class="form-control form-outline " type="text" id="paternity_leave"  value="{{$balance9}}" name="paternity_leave" placeholder="" >
+    
+                                                </div>
+                                        </div>
+                                        <div class="row justify-content-between text-left">
+                                            <div class="form-group  col-sm-6 flex-column d-flex">
+                                                <label class="form-control-label  px-1">{{__('createLeave.R&R')}}:</label>
+                                                <input class="form-control form-outline " type="text" id="rr" value="{{$balance25}}" name="rr" placeholder="" >
+
+                                            </div>
+                                            <div class="form-group  col-sm-6 flex-column d-flex">
+                                                <label class="form-control-label  px-1">{{__('balanceedit.welfareLeave')}}:</label>
+                                                <input class="form-control form-outline " type="text" id="welfare_leave" value="{{$balance12}}" name="welfare_leave" placeholder="" >
+
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-between text-left">
+                                            <div class="form-group  col-sm-6 flex-column d-flex">
+                                                <label class="form-control-label  px-1">{{__('createLeave.SickleaveSC')}}:</label>
+                                                <input class="form-control form-outline " type="text" id="sick_leave_sc" value="{{$balance26}}" name="sick_leave_sc" placeholder="" >
+
+                                            </div>
+                                            <div class="form-group col-sm-6 flex-column d-flex">
+                                                <label class="form-control-label px-1">{{__('balanceedit.unpaidLeave')}}:</label>
+                                                <input class="form-control form-outline" type="text" id="unpaid_leave" value="{{$balance15}}" name="unpaid_leave" placeholder="" >
+                                            </div>
+                                        </div>
+                                        @endif
+                                        @if ($user->contract !== "International")
                                         <div class="row justify-content-between text-left">
                                             <div class="form-group col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-1">{{__('balanceedit.annualLeave')}}:</label>
@@ -105,7 +153,9 @@
                                         </div>
                                  
 
-                                       
+                                        
+                                        @endif
+                                      
                                            
 
                                         {{-- MUST ADD requirepd for radio check --}}

@@ -59,7 +59,7 @@ return [
             'strict' => false,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::MYSQL_ATTR_SSL_KEY    => base_path('ssl/DigiCertGlobalRootG2.crt.pem'),
+                // PDO::MYSQL_ATTR_SSL_KEY    => base_path('ssl/DigiCertGlobalRootG2.crt.pem'),
             ]) : [],
         ],
 

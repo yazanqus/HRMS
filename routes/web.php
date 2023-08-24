@@ -600,19 +600,45 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
                 ->only(['value', 'leavetype_id'])
                 ->all();
         });
-        $leave1 = $subsets->firstwhere('leavetype_id', '1');
-        $balance1 = round($leave1['value'],3);
 
-        $leave2 = $subsets->firstwhere('leavetype_id', '2');
-        $balance2 = round($leave2['value'],3);
+        if ($user->contract !== "International")
+        {
+            $leave1 = $subsets->firstwhere('leavetype_id', '1');
+            $balance1 = round($leave1['value'],3);
+    
+            $leave2 = $subsets->firstwhere('leavetype_id', '2');
+            $balance2 = round($leave2['value'],3);
+    
+            $leave12 = $subsets->firstwhere('leavetype_id', '12');
+            $balance12 = $leave12['value'];
+            
+           
+            $leave18 = $subsets->firstwhere('leavetype_id', '18');
+            $balance18 = round($leave18['value'],3);
+            return view('dashboard', ['user' => $user, 'balance1' => $balance1, 'balance2' => $balance2, 'balance12' => $balance12, 'balance18' => $balance18]);
 
-        $leave12 = $subsets->firstwhere('leavetype_id', '12');
-        $balance12 = $leave12['value'];
+        }
+    
 
-        $leave18 = $subsets->firstwhere('leavetype_id', '18');
-        $balance18 = round($leave18['value'],3);
+        elseif ($user->contract == "International")
+        {
+            $leave1 = $subsets->firstwhere('leavetype_id', '1');
+            $balance1 = round($leave1['value'],3);
 
-        return view('dashboard', ['user' => $user, 'balance1' => $balance1, 'balance2' => $balance2, 'balance12' => $balance12, 'balance18' => $balance18]);
+            $leave24 = $subsets->firstwhere('leavetype_id', '24');
+            $balance24 = round($leave24['value'],3);
+    
+            $leave25 = $subsets->firstwhere('leavetype_id', '25');
+            $balance25 = round($leave25['value'],3);
+    
+            $leave26 = $subsets->firstwhere('leavetype_id', '26');
+            $balance26 = round($leave26['value'],3); 
+            return view('dashboard', ['user' => $user, 'balance1' => $balance1,'balance24' => $balance24, 'balance25' => $balance25, 'balance26' => $balance26]);
+        }
+
+        
+
+        
     })->name('welcome');
 
 

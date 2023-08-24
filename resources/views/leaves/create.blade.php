@@ -76,9 +76,25 @@
                                                     <option value="18">{{__('createLeave.Compensation')}}</option>
                                                     <option value="19">{{__('createLeave.Compensationhours')}}</option>
                                         @endif
+
+
+                                        @if($user->contract == "International")
+                                                    <option value="1">{{__('createLeave.AnnualLeave')}}</option>
+                                                    <option value="13">{{__('createLeave.AnnualleaveFirsthalf')}}</option>
+                                                    <option value="14">{{__('createLeave.AnnualleaveSecondhalf')}}</option>
+                                                    <option value="24">{{__('createLeave.HomeLeave')}}</option>
+                                                    <option value="25">{{__('createLeave.R&R')}}</option>
+                                                    <option value="15">{{__('createLeave.Unpaidleave')}}</option>
+                                                    <option value="16">{{__('createLeave.UnpaidleaveFirsthalf')}}</option>
+                                                    <option value="17">{{__('createLeave.UnpaidleaveSecondhalf')}}</option>
+                                                    <option value="26">{{__('createLeave.SickleaveSC')}}</option>
+                                                    <option value="28">{{__('createLeave.SickleaveDC')}}</option>
+                                                    <option value="12">{{__('createLeave.Welfareleave')}}</option>
+                                                    <option value="27">{{__('createLeave.Workfromhome')}}</option>
+                                        @endif
                                      
 
-                                        @if($user->contract !== "Service")
+                                        @if($user->contract == "Regular" OR $user->contract == "NA")
 
                                        
 
