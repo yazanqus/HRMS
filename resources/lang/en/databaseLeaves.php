@@ -23,6 +23,7 @@ return [
     'Compensation' => 'Compensation' ,
     'Sick Leave - First half' => 'Sick Leave - First half' ,
     'Sick Leave - Second half' => 'Sick Leave - Second half' ,
+    'Sick leaves SC' => 'Sick Leave SC',
     'Compensation - hours' => 'Compensation - hours',
     'Pending LM Approval' => 'Pending LM Approval',
     'Pending HR Approval' => 'Pending HR Approval',

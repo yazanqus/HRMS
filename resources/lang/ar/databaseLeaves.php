@@ -26,6 +26,7 @@ return [
     'Sick Leave - First half' => 'إجازة مرضية - النصف الأول من اليوم' ,
     'Sick Leave - Second half' =>  'إجازة مرضية - النصف الثاني من اليوم' , 
     'Pending LM Approval' => 'انتظار موافقة المدير',
+    'Sick leaves SC' => 'إجازة مرضية - شهادة ذاتية',
     'Pending HR Approval' => 'انتظار موافقة الموارد البشرية',
     'Pending extra Approval' => 'انتظار المواففة الإضافية',
     'Approved by extra Approval' => 'تمت الموافقة الإضافية',
