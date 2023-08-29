@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use App\Mail\Leave as MailLeave;
 use App\Models\Overtime;
+use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -92,8 +93,7 @@ class UserController extends Controller
             'office' => 'required',
             'linemanager',
             'hradmin',
-            'email'  => 'required|email|unique:users,email',
-            
+            'email'  => 'nullable|email|unique:users,email,NULL,id,deleted_at,NULL',            
         ]);
 
         $user = new User();
@@ -802,6 +802,9 @@ class UserController extends Controller
         $user->leaves()->delete();
         $user->overtimes()->delete();
         $user->balances()->delete();
+        $user->email = $user->email . '_deleted';
+        $user->employee_number = $user->employee_number . '_deleted';
+        $user->save();
         $user->delete();
         return redirect()->route('admin.users.index');
     }
