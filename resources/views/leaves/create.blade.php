@@ -360,9 +360,14 @@ $('#leavetype_id').on('change',function(){
 
 $('#end_date,#start_date').on('change',function(){
 
+  if ($('#leavetype_id').val() == '24')
+  {
+    $("#numofdays").val(2);
+  }
+  else
+  {
 
-
-var start = $('#start_date').val();
+    var start = $('#start_date').val();
 var end = $('#end_date').val();
 
 // Copy date objects so don't modify originals
@@ -430,6 +435,8 @@ if (sickpercentage == 'yes')
 //   }
 
 
+
+  }
 
 
 });

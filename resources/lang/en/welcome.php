@@ -16,8 +16,7 @@ return [
     'leaves' => 'Leaves' ,
     'remainingBalance' => 'Remaining Balance' ,
     'annualLeave' => 'Annual Leave' ,
-
-    'SickleaveSC' => 'Sick leave SC (number of requests remaining)' ,
+    'SickleaveSC' => 'Sick leave SC requests' ,
     'sickLeave' => 'Sick Leave' ,
     'compensationLeaveDays' => 'Compensation Leave Days' 
 ];
