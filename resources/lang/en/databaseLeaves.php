@@ -37,6 +37,7 @@ return [
     'workday' => 'workday',
     'week-end' => 'week-end',
     'Home Leave' => 'Home leave',
+    'R&R' => 'R&R',
     'weekend' => 'weekend',
     'Sick leave DC' => 'Sick leave DC',
     'holiday' => 'holiday',

@@ -16,6 +16,7 @@ return [
 'friorsat' => '(Friday)',
 'message' => 'Choose Overtime Type first',
     'reason' => 'Reason',
+    'rrnote' => 'Please add in the comment field, when was your last date of entry to Syria',
     'comment' => 'Comment',
     'hours' => 'Hours'  ,
     'between' => 'between' ,

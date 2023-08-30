@@ -2585,6 +2585,100 @@ class LeaveController extends Controller
                 }
 
 
+// R&R leave coditions
+elseif ($request->leavetype_id == '25') {
+
+    if ($probationdays >= '60') {
+
+        if ($days <= $currentbalance) {
+
+            if ($request->reason == null)
+                {
+                    return redirect()->back()->with('error', trans('leaveerror.entrydate'));
+                }
+
+                if ($request->hasFile('file')) {
+                    $path = $request->file('file')->store('public/leaves');
+                }
+
+            //     $leavessubmitted = Leave::where([
+            //         ['user_id', $user->id],
+            //         ['start_date', $request->start_date],
+            //         ])->where(function($query) {
+            //             $query->where('status','Pending LM Approval')
+            //                         ->orWhere('status','Pending HR Approval')
+            //                         ->orWhere('status','Approved');
+            // })->get();
+
+            $leavessubmitted = Leave::where([
+                ['user_id', $user->id],
+                ['leavetype_id','!=', '24'],
+                // ['start_date', $request->start_date],
+            ])->where(function ($query) use ($request) {
+                $query->whereBetween('start_date', [$request->start_date, $request->end_date])
+                    ->orWhereBetween('end_date', [$request->start_date, $request->end_date]);
+            })->where(function ($query) {
+                $query->where('status', 'Pending LM Approval')
+                    ->orWhere('status', 'Pending HR Approval')
+                    ->orWhere('status', 'Approved');
+            })->get();
+
+            $leavessubmittedcase2 = Leave::where([
+                ['user_id', $user->id],
+                ['leavetype_id','!=', '24'],
+                // ['start_date', $request->start_date],
+            ])->where(function ($query) use ($request) {
+                $query->whereRaw('"'.$request->start_date.'" between `start_date` and `end_date`')
+                    ->orwhereRaw('"'.$request->end_date.'" between `start_date` and `end_date`');
+            })->where(function ($query) {
+                $query->where('status', 'Pending LM Approval')
+                    ->orWhere('status', 'Pending HR Approval')
+                    ->orWhere('status', 'Approved');
+            })->get();
+
+            $counted = count($leavessubmitted);
+            $countedcase2 = count($leavessubmittedcase2);
+
+            if ($counted + $countedcase2 > 0) {
+                return redirect()->back()->with('error', trans('leaveerror.sameday'));
+            } else {
+
+                $leave = new Leave();
+                $leave->start_date = $request->start_date;
+                $leave->end_date = $request->end_date;
+                $leave->reason = $request->reason;
+                if ($request->hasFile('file')) {
+                    $leave->path = $path;
+                }
+
+                $leave->days = $days;
+                $leave->leavetype_id = $request->leavetype_id;
+                $leave->user_id = $user->id;
+                if (! isset($user->linemanager)) {
+                    $leave->status = 'Pending HR Approval';
+
+                } else {
+
+                    $leave->status = 'Pending LM Approval';
+                }
+
+                $leave->save();
+                $request->session()->flash('successMsg', trans('overtimeerror.success'));
+
+                return redirect()->route('leaves.index');
+
+            }
+        } else {
+            return redirect()->back()->with('error', trans('leaveerror.nobalance'));
+        }
+    } else {
+        return redirect()->back()->with('error', trans('leaveerror.prob'));
+    }
+}
+
+
+
+
         //remining leaves type is: 15 (unpaid full day leave) and Sick DC
         else {
 

@@ -165,8 +165,9 @@
                                             <div class="form-group  col-sm-6 flex-column d-flex">
                                                  <label class="form-control-label px-1">{{__('createLeave.reason')}}/{{__('createLeave.comment')}}</small></label>
                                                  <input class="form-control form-outline" type="text" id="reason" autocomplete="off" name="reason" placeholder="">
-
+                                                 <h5 class= 'mt-2 rrnote' style='border-radius: 7px; padding:5px; border:2px orange solid; font-size:17px; width:fit-content; width:-webkit-fit-content; width:-moz-fit-content;'>{{__('createOvertime.rrnote')}}</h5>
                                                 </div>
+                                               
                                             <div class="form-group {{ $errors->has('file') ? ' has-danger' : '' }}  col-sm-6 flex-column d-flex">
                                                 <label class="form-control-label px-1">{{__('createLeave.attachment')}} <small>(Image or PDF - 3 MB Max)</small></label>
                                                  <input class="form-control-file form-outline {{ $errors->has('file') ? ' is-invalid' : '' }}" type="file" name="file" id="file" placeholder="" >
@@ -282,6 +283,7 @@ $(this).html(
 //   $("input[type=date]").val("");
 // });
 $('.sicknote').hide();
+$('.rrnote').hide();
   $('#hourslabel').hide();
         $('#hours').hide();
         $('#minus').hide();
@@ -311,11 +313,14 @@ $('#leavetype_id').on('change',function(){
     {
       $('.sicknote').show();
      }
+     if ($(this).val() == '25')
+     {
+      $('.rrnote').show();
+     }
      
   if ($(this).val() == '3' || $(this).val() == '4' || $(this).val() == '15')
   {
     sickpercentage = "yes";
-    
 
   }
 
