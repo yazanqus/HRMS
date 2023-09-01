@@ -802,8 +802,8 @@ class UserController extends Controller
         $user->leaves()->delete();
         $user->overtimes()->delete();
         $user->balances()->delete();
-        $user->email = $user->email . '_deleted';
-        $user->employee_number = $user->employee_number . '_deleted';
+        $user->email = $user->email . '_deleted' . $user->id;
+        $user->employee_number = $user->employee_number . '_deleted' . $user->id;
         $user->save();
         $user->delete();
         return redirect()->route('admin.users.index');
