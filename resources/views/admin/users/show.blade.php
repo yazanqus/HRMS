@@ -100,6 +100,8 @@
                                 <strong>{{__('showuser.contractType')}}: </strong> {{__("databaseLeaves.$user->contract")}}
                                 <br>
                                 <strong>{{__('showuser.office')}}: </strong> {{$user->office}}
+                                <br>
+                              <strong>{{__('showuser.lineManager')}}: </strong> {{$user->linemanager}}
                                 
                               </div>
                               <div class="col">
@@ -111,7 +113,8 @@
                                 <br>
                                 <strong>{{__('showuser.joinedDate')}}: </strong> {{$user->joined_date}}
                                 <br>
-                              <strong>{{__('showuser.lineManager')}}: </strong> {{$user->linemanager}}
+                                <strong>{{__('showuser.contract_enddate')}}: </strong> {{$user->contract_enddate}}
+                                
                               </div>
                         </div>
                       

@@ -12,6 +12,7 @@ return [
     'department' => 'Department',
     'grade' => 'Grade' ,
     'joinDate' => 'Join Date' ,
+    'endDate' => 'Contract end date' ,
     'employeeId' => 'Employee ID',
     'lineManager' => 'Line Manager' ,
     'hrAdmin' => 'HR Admin' ,

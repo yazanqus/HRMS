@@ -17,6 +17,7 @@ return [
     'grade' => 'Grade',
     'department' => 'Department' ,
     'joinedDate' => 'Joined Date' ,
+    'contract_enddate' => 'Contract End Date' ,
     'lineManager' => 'Line Manager' ,
     'additionlInformation' => 'Additionl information' ,
     'role' => 'Managerial Role' ,

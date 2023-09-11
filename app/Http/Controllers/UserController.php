@@ -17,6 +17,7 @@ use App\Models\Overtime;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -74,8 +75,10 @@ class UserController extends Controller
     public function create()
     {
         $users = User::all();
+        $contract_enddate = date('Y-12-31');
+ 
      
-        return view('admin.users.create', ['users' => $users]);
+        return view('admin.users.create', ['users' => $users,'contract_enddate'=>$contract_enddate]);
     }
 
     public function store(Request $request)
@@ -90,6 +93,7 @@ class UserController extends Controller
             'position',
             'department',
             'joined_date' => 'required',
+            'contract_enddate' => 'required',
             'office' => 'required',
             'linemanager',
             'hradmin',
@@ -107,16 +111,13 @@ class UserController extends Controller
         $user->grade = $request->grade;
         $user->linemanager = $request->linemanager;
         $user->joined_date = $request->joined_date;
+        $user->contract_enddate = $request->contract_enddate;
         $user->hradmin = $request->hradmin;
         $user->email = $request->email;
         // $user->password = Hash::make($request->password);
 
         $user->save();
 
-
-
-
-       
 
         $year = date("Y", strtotime($user->joined_date));
         $day = date("d", strtotime($user->joined_date));
@@ -639,6 +640,7 @@ class UserController extends Controller
             'department',
             'grade'=> 'required',
             'joined_date' => 'required',
+            'contract_enddate' => 'required',
             'linemanager',
             'hradmin',
             'email'  => 'required|email|unique:users,email,' .$user->id,
@@ -666,6 +668,7 @@ class UserController extends Controller
         $user->grade = $request->grade;
         $user->linemanager = $request->linemanager;
         $user->joined_date = $request->joined_date;
+        $user->contract_enddate = $request->contract_enddate;
         if ($hruser->superadmin == "yes")
         {
             $user->hradmin = $request->hradmin;

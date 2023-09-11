@@ -16,6 +16,7 @@ return [
 'grade' => 'الدرجة الوظيفية',
 'department' => 'القسم' ,
 'joinedDate' => 'تاريخ الانضمام' ,
+'contract_enddate' => 'تاريخ انتهاء العقد' ,
 'lineManager' => 'المدير المباشر' ,
 'additionlInformation' => 'معلومات إضافية' ,
 'role' => 'الصلاحيات الوظيفية' ,
