@@ -3092,6 +3092,26 @@ elseif ($leave->leavetype_id == '26') {
 
 }
 
+
+//r&r
+elseif ($leave->leavetype_id == '25') {
+
+    $balances = Balance::where('user_id', $leave->user->id)->get();
+    $subsets = $balances->map(function ($balance) {
+        return collect($balance->toArray())
+
+            ->only(['value', 'leavetype_id'])
+            ->all();
+    });
+    $final = $subsets->firstwhere('leavetype_id', '25');
+
+    $finalfinal = $final['value'];
+    $currentbalanceforcomp = $finalfinal;
+
+    $newbalance = 0;
+
+}
+
                    // sick 30% half days leaves
                    elseif ($leave->leavetype_id == '22' || $leave->leavetype_id == '23') {
         
