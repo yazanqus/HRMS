@@ -44,7 +44,7 @@ class Kernel extends ConsoleKernel
                 if ($probationdays == '60')
                 {
                     $firstnotify = "Notifed 1 time";
-                    $comlist->stauts=$firstnotify;
+                    $comlist->status=$firstnotify;
                     $comlist->save();
 
                     $details = [
@@ -70,7 +70,7 @@ class Kernel extends ConsoleKernel
                 {
 
                     $secondnotify = "Notifed 2 times";
-                    $comlist->stauts=$secondnotify;
+                    $comlist->status=$secondnotify;
                     $comlist->save();
                   
                     $details = [
