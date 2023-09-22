@@ -453,7 +453,7 @@ $.each(datesBetween, function (index, element) {
 });
 
 
-console.log(numberOfMatches);
+// console.log(numberOfMatches);
 
 // Set time to midday to avoid dalight saving and browser quirks
 // s.setHours(12,0,0,0);
