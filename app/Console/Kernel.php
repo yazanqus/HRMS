@@ -98,7 +98,7 @@ class Kernel extends ConsoleKernel
                     $comlist->save();
     
                     $x = Balance::where([
-                        ['user_id', '1'],
+                        ['user_id', $userid],
                         ['leavetype_id', '18'],
                     ])->pluck('value')->first();
     
