@@ -379,12 +379,81 @@ $('#end_date,#start_date').on('change',function(){
   else
   {
 
-    var start = $('#start_date').val();
+    var holidays = [
+            '2023-01-01',
+            '2023-03-21',
+            '2023-04-09',
+            '2023-04-16',
+            '2023-04-17',
+            '2023-04-23',
+            '2023-04-24',
+            '2023-04-25',
+            '2023-05-01',
+            '2023-06-28',
+            '2023-06-29',
+            '2023-06-30',
+            '2023-07-01',
+            '2023-07-02',
+            '2023-07-03',
+            '2023-07-19',
+            '2023-09-28',
+            '2023-10-08',
+            '2023-12-25',
+            
+        ];
+
+        
+
+var start = $('#start_date').val();
 var end = $('#end_date').val();
 
 // Copy date objects so don't modify originals
 var s = new Date(start);
 var e = new Date(end);
+
+var syyyy = s.getFullYear();
+var smm = String(s.getMonth() + 1).padStart(2, '0'); // Month is zero-based, so we add 1 and pad with '0' if needed
+var sdd = String(s.getDate()).padStart(2, '0');
+var sformattedDate = syyyy + '-' + smm + '-' + sdd;
+
+var eyyyy = e.getFullYear();
+var emm = String(e.getMonth() + 1).padStart(2, '0'); // Month is zero-based, so we add 1 and pad with '0' if needed
+var edd = String(e.getDate()).padStart(2, '0');
+var eformattedDate = eyyyy + '-' + emm + '-' + edd;
+
+var startDate = new Date(sformattedDate);
+var endDate = new Date(eformattedDate);
+function getDates(startDate, endDate) {
+    var dateArray = [];
+    var currentDate = new Date(startDate);
+    
+    while (currentDate <= endDate) {
+        var yyyy = currentDate.getFullYear();
+        var mm = String(currentDate.getMonth() + 1).padStart(2, '0'); // Month is zero-based
+        var dd = String(currentDate.getDate()).padStart(2, '0');
+        var formattedDate = yyyy + '-' + mm + '-' + dd;
+        
+        dateArray.push(formattedDate);
+        
+        currentDate.setDate(currentDate.getDate() + 1); // Move to the next day
+    }
+    
+    return dateArray;
+}
+var datesBetween = getDates(startDate, endDate);
+
+var numberOfMatches = 0;
+
+
+
+$.each(datesBetween, function (index, element) {
+  if ($.inArray(element, holidays) !== -1) {
+    numberOfMatches++;
+  }
+});
+
+
+console.log(numberOfMatches);
 
 // Set time to midday to avoid dalight saving and browser quirks
 // s.setHours(12,0,0,0);
@@ -424,10 +493,12 @@ if (sickpercentage == 'yes')
   $("#numofdays").val(daa);
 }
   else {
-    $("#numofdays").val(days);
+    // var final = days - 
+    // console.log(datesBetween);
+    $("#numofdays").val(days - numberOfMatches);
   }
 // if (days > 0) {
-    
+
     
 //   } else {
 //     $("#numofdays").val(0);
