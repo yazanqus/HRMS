@@ -132,7 +132,11 @@ class OvertimeController extends Controller
             $overtimessubmitted = Overtime::where([
                 ['user_id', $user->id],
                 ['date', $request->date],
-            ])->get();
+            ])->where(function($query) {
+                $query->where('status','Pending LM Approval')
+                            ->orWhere('status','Pending HR Approval')
+                            ->orWhere('status','Approved');
+        })->get();
 
 
             $counted = count($overtimessubmitted);
