@@ -53,7 +53,8 @@ class BalanceExport implements FromCollection, WithHeadings, WithMapping
     public function map($user): array
     {
 
-        if ($user->contract !== "Service")
+        
+        if ($user->contract == "Regular" OR $user->contract == "NA")
         {
             return [
 
@@ -73,7 +74,8 @@ class BalanceExport implements FromCollection, WithHeadings, WithMapping
             ];
         }
 
-        else{
+        elseif ($user->contract == "Service")
+        {
             return [
 
                 $user->employee_number,
@@ -84,6 +86,24 @@ class BalanceExport implements FromCollection, WithHeadings, WithMapping
             ];
 
         }
+
+        elseif ($user->contract == "International")
+
+        {
+            return [
+
+                $user->employee_number,
+                $user->name,
+                $user->balances->first()->value,
+                $user->balances->first(25)->value, //SIck leave sc
+                $user->balances->first(27)->value,//SIck leave dc
+                $user->balances->first(23)->value, //Home leave
+                $user->balances->first(24)->value, //RR
+
+            ];
+
+        }
+
       
     }
 
@@ -94,10 +114,10 @@ class BalanceExport implements FromCollection, WithHeadings, WithMapping
             'Employee Number',
             'Name',
             'Annual',
-            'Sick',
-            'Sick 30%',
-            'Sick 20%',
-            'Marriage',
+            'Sick/Sick SC (int)',
+            'Sick 30%/Sick DC (int)',
+            'Sick 20%/home Leave (int)',
+            'Marriage/R&R (int)',
             'Welfare',
             'Maternity',
             'Paternity',
