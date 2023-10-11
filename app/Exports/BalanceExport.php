@@ -95,10 +95,10 @@ class BalanceExport implements FromCollection, WithHeadings, WithMapping
                 $user->employee_number,
                 $user->name,
                 $user->balances->first()->value,
-                $user->balances->first(25)->value, //SIck leave sc
-                $user->balances->first(27)->value,//SIck leave dc
-                $user->balances->first(23)->value, //Home leave
-                $user->balances->first(24)->value, //RR
+                $user->balances->get(25)->value, //SIck leave sc
+                $user->balances->get(27)->value,//SIck leave dc
+                $user->balances->get(23)->value, //Home leave
+                $user->balances->get(24)->value, //RR
 
             ];
 
