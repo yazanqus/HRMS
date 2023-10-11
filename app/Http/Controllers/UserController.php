@@ -311,55 +311,66 @@ class UserController extends Controller
                 
                 if($user->contract == "International")
                 {
-                    $balances = Balance::where('user_id', $user->id)->get();
-                    $subsets = $balances->map(function ($balance) {
-                        return collect($balance->toArray())
-            
-                            ->only(['value', 'leavetype_id'])
-                            ->all();
-                    });
 
-                    $leave1 = $subsets->firstwhere('leavetype_id', '1');
-                    $balance1 = round($leave1['value'],3);
+                    if ($hruser->employee_number !== '104588' OR $hruser->employee_number !== '101783')
+                    {
+                        abort(403);
+                    }
 
-                    $leave8 = $subsets->firstwhere('leavetype_id', '8');
-                    $balance8 = round($leave8['value'],3);
+                    else
+                    {
+                        $balances = Balance::where('user_id', $user->id)->get();
+                        $subsets = $balances->map(function ($balance) {
+                            return collect($balance->toArray())
+                
+                                ->only(['value', 'leavetype_id'])
+                                ->all();
+                        });
+    
+                        $leave1 = $subsets->firstwhere('leavetype_id', '1');
+                        $balance1 = round($leave1['value'],3);
+    
+                        $leave8 = $subsets->firstwhere('leavetype_id', '8');
+                        $balance8 = round($leave8['value'],3);
+    
+                        $leave9 = $subsets->firstwhere('leavetype_id', '9');
+                        $balance9 = round($leave9['value'],3);
+    
+                        $leave12 = $subsets->firstwhere('leavetype_id', '12');
+                        $balance12 = round($leave12['value'],3);
+    
+                        $leave15 = $subsets->firstwhere('leavetype_id', '15');
+                        $balance15 = round($leave15['value'],3);
+    
+                        $leave24 = $subsets->firstwhere('leavetype_id', '24');
+                        $balance24 = round($leave24['value'],3);
+    
+                        $leave25 = $subsets->firstwhere('leavetype_id', '25');
+                        $balance25 = round($leave25['value'],3);
+                
+                        $leave26 = $subsets->firstwhere('leavetype_id', '26');
+                        $balance26 = round($leave26['value'],3);
+    
+                        $leaves = Leave::where('user_id', $user->id)->get();
+                        $overtimes = Overtime::where('user_id', $user->id)->get();
+                
+                        return view('admin.users.show', [
+                            'user' => $user,
+                            'balance1' => $balance1,
+                            'balance8' => $balance8,
+                            'balance9' => $balance9,
+                            'balance12' => $balance12,
+                            'balance15' => $balance15,
+                            'balance24' => $balance24,
+                            'balance25' => $balance25,
+                            'balance26' => $balance26,
+                            'leaves'=> $leaves,
+                            'overtimes' => $overtimes,
+                            'employees'=>$staff,
+                        ]);
+                    }
 
-                    $leave9 = $subsets->firstwhere('leavetype_id', '9');
-                    $balance9 = round($leave9['value'],3);
-
-                    $leave12 = $subsets->firstwhere('leavetype_id', '12');
-                    $balance12 = round($leave12['value'],3);
-
-                    $leave15 = $subsets->firstwhere('leavetype_id', '15');
-                    $balance15 = round($leave15['value'],3);
-
-                    $leave24 = $subsets->firstwhere('leavetype_id', '24');
-                    $balance24 = round($leave24['value'],3);
-
-                    $leave25 = $subsets->firstwhere('leavetype_id', '25');
-                    $balance25 = round($leave25['value'],3);
-            
-                    $leave26 = $subsets->firstwhere('leavetype_id', '26');
-                    $balance26 = round($leave26['value'],3);
-
-                    $leaves = Leave::where('user_id', $user->id)->get();
-                    $overtimes = Overtime::where('user_id', $user->id)->get();
-            
-                    return view('admin.users.show', [
-                        'user' => $user,
-                        'balance1' => $balance1,
-                        'balance8' => $balance8,
-                        'balance9' => $balance9,
-                        'balance12' => $balance12,
-                        'balance15' => $balance15,
-                        'balance24' => $balance24,
-                        'balance25' => $balance25,
-                        'balance26' => $balance26,
-                        'leaves'=> $leaves,
-                        'overtimes' => $overtimes,
-                        'employees'=>$staff,
-                    ]);
+                   
                 }
                 else
                 {
@@ -448,7 +459,15 @@ class UserController extends Controller
 
             if ($user->contract == "International")
             {
-                $balances = Balance::where('user_id', $user->id)->get();
+
+                if ($hruser->employee_number !== '104588' OR $hruser->employee_number !== '101783')
+                {
+                    abort(403);
+                }
+
+                else
+                {
+                    $balances = Balance::where('user_id', $user->id)->get();
                     $subsets = $balances->map(function ($balance) {
                         return collect($balance->toArray())
             
@@ -497,6 +516,8 @@ class UserController extends Controller
                         'overtimes' => $overtimes,
                         'employees'=>$staff,
                     ]);
+                }
+                
             }
             else
             {
