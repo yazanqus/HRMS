@@ -325,7 +325,7 @@ $('#leavetype_id').on('change',function(){
       $('.rrnote').show();
      }
      
-  if ($(this).val() == '3' || $(this).val() == '4' || $(this).val() == '15')
+  if ($(this).val() == '3' || $(this).val() == '4' || $(this).val() == '8' || $(this).val() == '15')
   {
     sickpercentage = "yes";
 
