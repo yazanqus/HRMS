@@ -287,9 +287,20 @@ class LeaveController extends Controller
         // Annual leave conditions
         if ($request->leavetype_id == '1') {
 
-            if ($probationdays >= '90') {
+            if ($probationdays >= '90' OR $user->contract == "International") {
 
-                if ($dayswithoutholidays <= $currentbalance) {
+               
+
+                if ($user->contract == "International")
+                {
+                    $xxx = $currentbalance + 2.5;
+                }
+                else
+                {
+                    $xxx = $currentbalance;
+                }
+
+                if ($dayswithoutholidays <= $xxx) {
 
 
                     $leavessubmitted = Leave::where([
@@ -3191,7 +3202,7 @@ elseif ($leave->leavetype_id == '25') {
                 }
 
 
-                if($newbalance < 0)
+                if($newbalance < 0 AND $leave->user->contract !== "International")
                 {
                     return redirect()->route('leaves.hrapproval')->with("error", "No enough balance for this type, you can only decline the leave");
                     
