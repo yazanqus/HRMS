@@ -2599,7 +2599,7 @@ class LeaveController extends Controller
 // R&R leave coditions
 elseif ($request->leavetype_id == '25') {
 
-    if ($probationdays >= '60') {
+    if ($probationdays >= '60' OR $user->contract == "International") {
 
         if ($days <= $currentbalance) {
 
