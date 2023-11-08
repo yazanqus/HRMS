@@ -236,7 +236,9 @@ $(document).ready(function() {
         }
     );
 
-
+    $('form').submit(function(){
+  $(this).find(':submit').attr('disabled','disabled');
+});
     $(document).on('click', '#buttonSelector', function () {
     $(this).addClass('disabled');
 });
