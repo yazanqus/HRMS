@@ -73,7 +73,7 @@
     </a>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
      
-      <a class="dropdown-item" href="/storage/hr360.apk">Download Mobile App
+      <a class="dropdown-item" href="/storage/hr360.apk">{{ __('sidebar.download') }}
         <i class="ml-2 fas fa-download"></i>
       
       </a>

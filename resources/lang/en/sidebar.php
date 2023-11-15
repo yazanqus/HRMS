@@ -18,6 +18,7 @@ return [
     'hrPolicies' => 'HR Policies' ,
     'holidays' => 'Holidays' ,
     'changepassword' => 'Change Password',
+    'download' => 'Download Mobile App',
     'logout' => 'Log Out'
 
 ];
