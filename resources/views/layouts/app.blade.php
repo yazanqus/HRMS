@@ -65,8 +65,24 @@
   </li> --}}
 
 
-
   <li class="nav-item dropdown">
+
+    
+    <a class="nav-link" href="" id="navbarDropdownLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-mobile"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+     
+      <a class="dropdown-item" href="/storage/hr360.apk">Download Mobile App
+        <i class="ml-2 fas fa-download"></i>
+      
+      </a>
+    
+    </div>
+  </li>
+  <li class="nav-item dropdown">
+
+    
     <a class="nav-link" href="" id="navbarDropdownLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-globe-africa"></i>
     </a>
