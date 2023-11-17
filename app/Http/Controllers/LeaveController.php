@@ -288,9 +288,7 @@ class LeaveController extends Controller
         if ($request->leavetype_id == '1') {
 
             if ($probationdays >= '90' OR $user->contract == "International") {
-
-               
-
+           
                 if ($user->contract == "International")
                 {
                     $xxx = $currentbalance + 2.5;
@@ -364,24 +362,26 @@ class LeaveController extends Controller
                         $leave->status = 'Pending LM Approval';
 
 
-                        $linemanageremail = User::where('name',$user->linemanager)->value('email');
+                        $this->sendEmailToLm($user, $leave, $startdayname, $enddayname);
 
-                        // dd($linemanageremail);
-                        $details = [
-                            'requestername' => $user->name,
-                            'linemanagername' => $user->linemanager,
-                            'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
-                            'leavetype' => $leave->leavetype->name,
-                            'startdayname' => $startdayname,
-                            'start_date' => $leave->start_date,
-                            'enddayname' => $enddayname,
-                            'end_date' =>  $leave->end_date,
-                            'days' => $leave->days,
-                            'comment' =>  $leave->reason
-                        ];
+                        // $linemanageremail = User::where('name',$user->linemanager)->value('email');
+
+                        
+                        // $details = [
+                        //     'requestername' => $user->name,
+                        //     'linemanagername' => $user->linemanager,
+                        //     'linemanageremail' => $linemanageremail,
+                        //     'title' => 'Leave Request Approval - '.$leave->leavetype->name,
+                        //     'leavetype' => $leave->leavetype->name,
+                        //     'startdayname' => $startdayname,
+                        //     'start_date' => $leave->start_date,
+                        //     'enddayname' => $enddayname,
+                        //     'end_date' =>  $leave->end_date,
+                        //     'days' => $leave->days,
+                        //     'comment' =>  $leave->reason
+                        // ];
                        
-                        Mail::to($linemanageremail)->send(new MailLeave($details));
+                        // Mail::to($linemanageremail)->send(new MailLeave($details));
 
                         
                     }
@@ -415,7 +415,6 @@ class LeaveController extends Controller
 
             $leavessubmitted = Leave::where([
                 ['user_id', $user->id],
-                // ['start_date', $request->start_date],
                 ])->where(function($query) use ($request) {
                     $query->whereBetween('start_date', [$request->start_date,$request->end_date])
                 ->orWhereBetween('end_date', [$request->start_date,$request->end_date]);
@@ -428,7 +427,6 @@ class LeaveController extends Controller
 
         $leavessubmittedcase2 = Leave::where([
             ['user_id', $user->id],
-            // ['start_date', $request->start_date],
             ])->where(function($query) use ($request) {
                 $query->whereRaw('"'.$request->start_date.'" between `start_date` and `end_date`')
                 ->orwhereRaw('"'.$request->end_date.'" between `start_date` and `end_date`');       
@@ -467,24 +465,7 @@ class LeaveController extends Controller
                 } else {
 
                     $leave->status = 'Pending LM Approval';
-                    $linemanageremail = User::where('name',$user->linemanager)->value('email');
-
-                        // dd($linemanageremail);
-                        $details = [
-                            'requestername' => $user->name,
-                            'linemanagername' => $user->linemanager,
-                            'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
-                            'leavetype' => $leave->leavetype->name,
-                            'startdayname' => $startdayname,
-                            'start_date' => $leave->start_date,
-                            'enddayname' => $enddayname,
-                            'end_date' =>  $leave->end_date,
-                            'days' => $leave->days,
-                            'comment' =>  $leave->reason
-                        ];
-                       
-                        Mail::to($linemanageremail)->send(new MailLeave($details));
+$this->sendEmailToLm($user, $leave, $startdayname, $enddayname);
                 }
 
                 $leave->save();
@@ -580,24 +561,7 @@ class LeaveController extends Controller
                 } else {
 
                     $leave->status = 'Pending LM Approval';
-                    $linemanageremail = User::where('name',$user->linemanager)->value('email');
-
-                        // dd($linemanageremail);
-                        $details = [
-                            'requestername' => $user->name,
-                            'linemanagername' => $user->linemanager,
-                            'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
-                            'leavetype' => $leave->leavetype->name,
-                            'startdayname' => $startdayname,
-                            'start_date' => $leave->start_date,
-                            'enddayname' => $enddayname,
-                            'end_date' =>  $leave->end_date,
-                            'days' => $leave->days,
-                            'comment' =>  $leave->reason
-                        ];
-                       
-                        Mail::to($linemanageremail)->send(new MailLeave($details));
+$this->sendEmailToLm($user, $leave, $startdayname, $enddayname);
                 }
 
                 $leave->save();
@@ -707,24 +671,7 @@ class LeaveController extends Controller
                 } else {
 
                     $leave->status = 'Pending LM Approval';
-                    $linemanageremail = User::where('name',$user->linemanager)->value('email');
-
-                        // dd($linemanageremail);
-                        $details = [
-                            'requestername' => $user->name,
-                            'linemanagername' => $user->linemanager,
-                            'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
-                            'leavetype' => $leave->leavetype->name,
-                            'startdayname' => $startdayname,
-                            'start_date' => $leave->start_date,
-                            'enddayname' => $enddayname,
-                            'end_date' =>  $leave->end_date,
-                            'days' => $leave->days,
-                            'comment' =>  $leave->reason
-                        ];
-                       
-                        Mail::to($linemanageremail)->send(new MailLeave($details));
+$this->sendEmailToLm($user, $leave, $startdayname, $enddayname);
                 }
 
                 $leave->save();
@@ -839,24 +786,7 @@ class LeaveController extends Controller
                 } else {
 
                     $leave->status = 'Pending LM Approval';
-                    $linemanageremail = User::where('name',$user->linemanager)->value('email');
-
-                        // dd($linemanageremail);
-                        $details = [
-                            'requestername' => $user->name,
-                            'linemanagername' => $user->linemanager,
-                            'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
-                            'leavetype' => $leave->leavetype->name,
-                            'startdayname' => $startdayname,
-                            'start_date' => $leave->start_date,
-                            'enddayname' => $enddayname,
-                            'end_date' =>  $leave->end_date,
-                            'days' => $leave->days,
-                            'comment' =>  $leave->reason
-                        ];
-                       
-                        Mail::to($linemanageremail)->send(new MailLeave($details));
+$this->sendEmailToLm($user, $leave, $startdayname, $enddayname);
                 }
 
                 $leave->save();
@@ -965,24 +895,7 @@ class LeaveController extends Controller
                 } else {
 
                     $leave->status = 'Pending LM Approval';
-                    $linemanageremail = User::where('name',$user->linemanager)->value('email');
-
-                        // dd($linemanageremail);
-                        $details = [
-                            'requestername' => $user->name,
-                            'linemanagername' => $user->linemanager,
-                            'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
-                            'leavetype' => $leave->leavetype->name,
-                            'startdayname' => $startdayname,
-                            'start_date' => $leave->start_date,
-                            'enddayname' => $enddayname,
-                            'end_date' =>  $leave->end_date,
-                            'days' => $leave->days,
-                            'comment' =>  $leave->reason
-                        ];
-                       
-                        Mail::to($linemanageremail)->send(new MailLeave($details));
+$this->sendEmailToLm($user, $leave, $startdayname, $enddayname);
                 }
 
                 $leave->save();
@@ -1073,24 +986,7 @@ class LeaveController extends Controller
                     } else {
 
                         $leave->status = 'Pending LM Approval';
-                        $linemanageremail = User::where('name',$user->linemanager)->value('email');
-
-                        // dd($linemanageremail);
-                        $details = [
-                            'requestername' => $user->name,
-                            'linemanagername' => $user->linemanager,
-                            'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
-                            'leavetype' => $leave->leavetype->name,
-                            'startdayname' => $startdayname,
-                            'start_date' => $leave->start_date,
-                            'enddayname' => $enddayname,
-                            'end_date' =>  $leave->end_date,
-                            'days' => $leave->days,
-                            'comment' =>  $leave->reason
-                        ];
-                       
-                        Mail::to($linemanageremail)->send(new MailLeave($details));
+$this->sendEmailToLm($user, $leave, $startdayname, $enddayname);
                     }
 
                     $leave->save();
@@ -1187,24 +1083,7 @@ class LeaveController extends Controller
                     } else {
 
                         $leave->status = 'Pending LM Approval';
-                        $linemanageremail = User::where('name',$user->linemanager)->value('email');
-
-                        // dd($linemanageremail);
-                        $details = [
-                            'requestername' => $user->name,
-                            'linemanagername' => $user->linemanager,
-                            'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
-                            'leavetype' => $leave->leavetype->name,
-                            'startdayname' => $startdayname,
-                            'start_date' => $leave->start_date,
-                            'enddayname' => $enddayname,
-                            'end_date' =>  $leave->end_date,
-                            'days' => $leave->days,
-                            'comment' =>  $leave->reason
-                        ];
-                       
-                        Mail::to($linemanageremail)->send(new MailLeave($details));
+$this->sendEmailToLm($user, $leave, $startdayname, $enddayname);
                     }
 
                     $leave->save();
@@ -1484,24 +1363,7 @@ class LeaveController extends Controller
                     } else {
 
                         $leave->status = 'Pending LM Approval';
-                        $linemanageremail = User::where('name',$user->linemanager)->value('email');
-
-                        // dd($linemanageremail);
-                        $details = [
-                            'requestername' => $user->name,
-                            'linemanagername' => $user->linemanager,
-                            'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
-                            'leavetype' => $leave->leavetype->name,
-                            'startdayname' => $startdayname,
-                            'start_date' => $leave->start_date,
-                            'enddayname' => $enddayname,
-                            'end_date' =>  $leave->end_date,
-                            'days' => $leave->days,
-                            'comment' =>  $leave->reason
-                        ];
-                       
-                        Mail::to($linemanageremail)->send(new MailLeave($details));
+$this->sendEmailToLm($user, $leave, $startdayname, $enddayname);
                     }
 
                     $leave->save();
@@ -1639,24 +1501,7 @@ class LeaveController extends Controller
 
                         $leave->status = 'Pending LM Approval';
 
-                        $linemanageremail = User::where('name',$user->linemanager)->value('email');
-
-                        // dd($linemanageremail);
-                        $details = [
-                            'requestername' => $user->name,
-                            'linemanagername' => $user->linemanager,
-                            'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
-                            'leavetype' => $leave->leavetype->name,
-                            'startdayname' => $startdayname,
-                            'start_date' => $leave->start_date,
-                            'enddayname' => $enddayname,
-                            'end_date' =>  $leave->end_date,
-                            'days' => $leave->days,
-                            'comment' =>  $leave->reason
-                        ];
-                       
-                        Mail::to($linemanageremail)->send(new MailLeave($details));
+$this->sendEmailToLm($user, $leave, $startdayname, $enddayname);
                     }
 
                     $leave->save();
@@ -1777,7 +1622,7 @@ class LeaveController extends Controller
                         $leave->status = 'Pending LM Approval';
                         $linemanageremail = User::where('name',$user->linemanager)->value('email');
     
-                            // dd($linemanageremail);
+                            
                             $details = [
                                 'requestername' => $user->name,
                                 'linemanagername' => $user->linemanager,
@@ -1884,24 +1729,7 @@ class LeaveController extends Controller
                 } else {
 
                     $leave->status = 'Pending LM Approval';
-                    $linemanageremail = User::where('name',$user->linemanager)->value('email');
-
-                        // dd($linemanageremail);
-                        $details = [
-                            'requestername' => $user->name,
-                            'linemanagername' => $user->linemanager,
-                            'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
-                            'leavetype' => $leave->leavetype->name,
-                            'startdayname' => $startdayname,
-                            'start_date' => $leave->start_date,
-                            'enddayname' => $enddayname,
-                            'end_date' =>  $leave->end_date,
-                            'days' => $leave->days,
-                            'comment' =>  $leave->reason
-                        ];
-                       
-                        Mail::to($linemanageremail)->send(new MailLeave($details));
+$this->sendEmailToLm($user, $leave, $startdayname, $enddayname);
                 }
 
                 $leave->save();
@@ -1991,24 +1819,7 @@ class LeaveController extends Controller
 
                         $leave->status = 'Pending LM Approval';
 
-                        $linemanageremail = User::where('name',$user->linemanager)->value('email');
-
-                        // dd($linemanageremail);
-                        $details = [
-                            'requestername' => $user->name,
-                            'linemanagername' => $user->linemanager,
-                            'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
-                            'leavetype' => $leave->leavetype->name,
-                            'startdayname' => $startdayname,
-                            'start_date' => $leave->start_date,
-                            'enddayname' => $enddayname,
-                            'end_date' =>  $leave->end_date,
-                            'days' => $leave->days,
-                            'comment' =>  $leave->reason
-                        ];
-                       
-                        Mail::to($linemanageremail)->send(new MailLeave($details));
+$this->sendEmailToLm($user, $leave, $startdayname, $enddayname);
                     }
 
                     $leave->save();
@@ -2141,24 +1952,7 @@ class LeaveController extends Controller
 
                         $leave->status = 'Pending LM Approval';
 
-                        $linemanageremail = User::where('name',$user->linemanager)->value('email');
-
-                        // dd($linemanageremail);
-                        $details = [
-                            'requestername' => $user->name,
-                            'linemanagername' => $user->linemanager,
-                            'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
-                            'leavetype' => $leave->leavetype->name,
-                            'startdayname' => $startdayname,
-                            'start_date' => $leave->start_date,
-                            'enddayname' => $enddayname,
-                            'end_date' =>  $leave->end_date,
-                            'days' => $leave->days,
-                            'comment' =>  $leave->reason
-                        ];
-                       
-                        Mail::to($linemanageremail)->send(new MailLeave($details));
+$this->sendEmailToLm($user, $leave, $startdayname, $enddayname);
                     }
 
                     $leave->save();
@@ -2252,24 +2046,7 @@ class LeaveController extends Controller
 
                     $leave->status = 'Pending LM Approval';
 
-                    $linemanageremail = User::where('name',$user->linemanager)->value('email');
-
-                        // dd($linemanageremail);
-                        $details = [
-                            'requestername' => $user->name,
-                            'linemanagername' => $user->linemanager,
-                            'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
-                            'leavetype' => $leave->leavetype->name,
-                            'startdayname' => $startdayname,
-                            'start_date' => $leave->start_date,
-                            'enddayname' => $enddayname,
-                            'end_date' =>  $leave->end_date,
-                            'days' => $leave->days,
-                            'comment' =>  $leave->reason
-                        ];
-                       
-                        Mail::to($linemanageremail)->send(new MailLeave($details));
+$this->sendEmailToLm($user, $leave, $startdayname, $enddayname);
                 }
 
                 $leave->save();
@@ -2359,24 +2136,7 @@ class LeaveController extends Controller
 
                     $leave->status = 'Pending LM Approval';
 
-                    $linemanageremail = User::where('name',$user->linemanager)->value('email');
-
-                        // dd($linemanageremail);
-                        $details = [
-                            'requestername' => $user->name,
-                            'linemanagername' => $user->linemanager,
-                            'linemanageremail' => $linemanageremail,
-                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
-                            'leavetype' => $leave->leavetype->name,
-                            'startdayname' => $startdayname,
-                            'start_date' => $leave->start_date,
-                            'enddayname' => $enddayname,
-                            'end_date' =>  $leave->end_date,
-                            'days' => $leave->days,
-                            'comment' =>  $leave->reason
-                        ];
-                       
-                        Mail::to($linemanageremail)->send(new MailLeave($details));
+$this->sendEmailToLm($user, $leave, $startdayname, $enddayname);
                 }
 
                 $leave->save();
@@ -2460,7 +2220,7 @@ class LeaveController extends Controller
                         $leave->status = 'Pending LM Approval';
                         $linemanageremail = User::where('name', $user->linemanager)->value('email');
 
-                        // dd($linemanageremail);
+                        
                         $details = [
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
@@ -2501,45 +2261,9 @@ class LeaveController extends Controller
                         if ($request->hasFile('file')) {
                             $path = $request->file('file')->store('public/leaves');
                         }
-
-
         
-                        //     $leavessubmitted = Leave::where([
-                        //         ['user_id', $user->id],
-                        //         ['start_date', $request->start_date],
-                        //         ])->where(function($query) {
-                        //             $query->where('status','Pending LM Approval')
-                        //                         ->orWhere('status','Pending HR Approval')
-                        //                         ->orWhere('status','Approved');
-                        // })->get();
-        
-                        // $leavessubmitted = Leave::where([
-                        //     ['user_id', $user->id],
-                            
-                        // ])->where(function ($query) use ($request) {
-                        //     $query->whereBetween('start_date', [$request->start_date, $request->end_date])
-                        //         ->orWhereBetween('end_date', [$request->start_date, $request->end_date]);
-                        // })->where(function ($query) {
-                        //     $query->where('status', 'Pending LM Approval')
-                        //         ->orWhere('status', 'Pending HR Approval')
-                        //         ->orWhere('status', 'Approved');
-                        // })->get();
-        
-                        // $leavessubmittedcase2 = Leave::where([
-                        //     ['user_id', $user->id],
-                            
-                        // ])->where(function ($query) use ($request) {
-                        //     $query->whereRaw('"'.$request->start_date.'" between `start_date` and `end_date`')
-                        //         ->orwhereRaw('"'.$request->end_date.'" between `start_date` and `end_date`');
-                        // })->where(function ($query) {
-                        //     $query->where('status', 'Pending LM Approval')
-                        //         ->orWhere('status', 'Pending HR Approval')
-                        //         ->orWhere('status', 'Approved');
-                        // })->get();
-        
-                        // $counted = count($leavessubmitted);
                         $counted = 0;
-                        // $countedcase2 = count($leavessubmittedcase2);
+                       
                         $countedcase2 = 0;
                         
                         if ($counted + $countedcase2 > 0) {
@@ -2565,7 +2289,7 @@ class LeaveController extends Controller
                                 $leave->status = 'Pending LM Approval';
                                 $linemanageremail = User::where('name', $user->linemanager)->value('email');
         
-                                // dd($linemanageremail);
+                                
                                 $details = [
                                     'requestername' => $user->name,
                                     'linemanagername' => $user->linemanager,
@@ -2770,7 +2494,7 @@ elseif ($request->leavetype_id == '25') {
 
                 $linemanageremail = User::where('name',$user->linemanager)->value('email');
 
-                        // dd($linemanageremail);
+                        
                         $details = [
                             'requestername' => $user->name,
                             'linemanagername' => $user->linemanager,
@@ -2904,7 +2628,7 @@ elseif ($request->leavetype_id == '25') {
            
             // $linemanageremail = User::where('name',$requester->linemanager)->value('email');
     
-            // dd($linemanageremail);
+            
             $details = [
                 'requestername' => $requester->name,
                 'linemanagername' => $requester->linemanager,
@@ -2954,7 +2678,7 @@ elseif ($request->leavetype_id == '25') {
            
             // $linemanageremail = User::where('name',$requester->linemanager)->value('email');
     
-            // dd($linemanageremail);
+            
             $details = [
                 'requestername' => $requester->name,
                 'linemanagername' => $requester->linemanager,
@@ -3884,6 +3608,34 @@ elseif ($leave->leavetype_id == '25') {
         
 
         
+    }
+
+
+    public function sendEmailToLm(User $user, Leave $leave, $startdayname, $enddayname)
+    {
+        $linemanageremail = User::where('name', $user->linemanager)->value('email');
+
+                        
+                        $details = [
+                            'requestername' => $user->name,
+                            'linemanagername' => $user->linemanager,
+                            'linemanageremail' => $linemanageremail,
+                            'title' => 'Leave Request Approval - '.$leave->leavetype->name,
+                            'leavetype' => $leave->leavetype->name,
+                            'startdayname' => $startdayname,
+                            'start_date' => $leave->start_date,
+                            'enddayname' => $enddayname,
+                            'end_date' => $leave->end_date,
+                            'days' => $leave->days,
+                            'comment' => $leave->reason,
+                        ];
+
+                        Mail::to($linemanageremail)->send(new MailLeave($details));
+    }
+
+    public function checkForCrossDays()
+    {
+
     }
 
 }
