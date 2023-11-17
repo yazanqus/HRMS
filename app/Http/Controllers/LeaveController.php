@@ -61,14 +61,9 @@ class LeaveController extends Controller
         //balance of annual half first and second half (13) + (14) is from annual leave (1)
         if ($request->leavetype_id == '13' || $request->leavetype_id == '14') {
 
-            $balances = Balance::where('user_id', $user->id)->get();
-            $subsets = $balances->map(function ($balance) {
-                return collect($balance->toArray())
-
-                    ->only(['value', 'leavetype_id'])  
-                    ->all();
-            });
+            $subsets = $this->getBalancesForUser($user);
             $final = $subsets->firstwhere('leavetype_id', '1');
+            
             $finalfinal = $final['value'];
             $annualleavebalance = $finalfinal;
 
@@ -76,13 +71,7 @@ class LeaveController extends Controller
         //balance of unpaid half first and second (16) + (17) is from unpaid leave (15)
         elseif ($request->leavetype_id == '16' || $request->leavetype_id == '17') {
 
-            $balances = Balance::where('user_id', $user->id)->get();
-            $subsets = $balances->map(function ($balance) {
-                return collect($balance->toArray())
-
-                    ->only(['value', 'leavetype_id'])
-                    ->all();
-            });
+            $subsets = $this->getBalancesForUser($user);
             $final = $subsets->firstwhere('leavetype_id', '15');
             $finalfinal = $final['value'];
             $unpaidleavebalance = $finalfinal;
@@ -91,13 +80,7 @@ class LeaveController extends Controller
         //balance of sick leave half first and second (20) + (21) is from sick leave (2)
         elseif ($request->leavetype_id == '20' || $request->leavetype_id == '21') {
 
-            $balances = Balance::where('user_id', $user->id)->get();
-            $subsets = $balances->map(function ($balance) {
-                return collect($balance->toArray())
-
-                    ->only(['value', 'leavetype_id'])
-                    ->all();
-            });
+            $subsets = $this->getBalancesForUser($user);
             $final = $subsets->firstwhere('leavetype_id', '2');
             $finalfinal = $final['value'];
             $sickhalfleavebalance = $finalfinal;
@@ -106,13 +89,7 @@ class LeaveController extends Controller
 
         elseif ($request->leavetype_id == '22' || $request->leavetype_id == '23') {
 
-            $balances = Balance::where('user_id', $user->id)->get();
-            $subsets = $balances->map(function ($balance) {
-                return collect($balance->toArray())
-
-                    ->only(['value', 'leavetype_id'])
-                    ->all();
-            });
+            $subsets = $this->getBalancesForUser($user);
             $final = $subsets->firstwhere('leavetype_id', '3');
             $finalfinal = $final['value'];
             $sick30halfleavebalance = $finalfinal;
@@ -122,25 +99,13 @@ class LeaveController extends Controller
         //balance of comp hour (19) is from comp (18) after multiplying by 8
         elseif ($request->leavetype_id == '19') {
 
-            $balances = Balance::where('user_id', $user->id)->get();
-            $subsets = $balances->map(function ($balance) {
-                return collect($balance->toArray())
-
-                    ->only(['value', 'leavetype_id'])
-                    ->all();
-            });
+            $subsets = $this->getBalancesForUser($user);
             $final = $subsets->firstwhere('leavetype_id', '18');
             $finalfinal = $final['value'];
             $comphalfleavebalance = $finalfinal * 8;
 
         } else {
-            $balances = Balance::where('user_id', $user->id)->get();
-            $subsets = $balances->map(function ($balance) {
-                return collect($balance->toArray())
-
-                    ->only(['value', 'leavetype_id'])
-                    ->all();
-            });
+            $subsets = $this->getBalancesForUser($user);
             $final = $subsets->firstwhere('leavetype_id', $request->leavetype_id);
             $finalfinal = $final['value'];
             $currentbalance = $finalfinal;
@@ -320,30 +285,7 @@ class LeaveController extends Controller
                     } else {
 
                         $leave->status = 'Pending LM Approval';
-
-
-                        $this->sendEmailToLm($user, $leave, $startdayname, $enddayname);
-
-                        // $linemanageremail = User::where('name',$user->linemanager)->value('email');
-
-                        
-                        // $details = [
-                        //     'requestername' => $user->name,
-                        //     'linemanagername' => $user->linemanager,
-                        //     'linemanageremail' => $linemanageremail,
-                        //     'title' => 'Leave Request Approval - '.$leave->leavetype->name,
-                        //     'leavetype' => $leave->leavetype->name,
-                        //     'startdayname' => $startdayname,
-                        //     'start_date' => $leave->start_date,
-                        //     'enddayname' => $enddayname,
-                        //     'end_date' =>  $leave->end_date,
-                        //     'days' => $leave->days,
-                        //     'comment' =>  $leave->reason
-                        // ];
-                       
-                        // Mail::to($linemanageremail)->send(new MailLeave($details));
-
-                        
+                        $this->sendEmailToLm($user, $leave, $startdayname, $enddayname);                        
                     }
 
                     $leave->save();
@@ -373,34 +315,6 @@ class LeaveController extends Controller
                 }
 
                $calculation = $this->checkForCrossDays($user, $request);
-        //        $leavessubmitted = Leave::where([
-        //         ['user_id', $user->id],
-        //         // ['start_date', $request->start_date],
-        //         ])->where(function($query) use ($request) {
-        //             $query->whereBetween('start_date', [$request->start_date,$request->end_date])
-        //         ->orWhereBetween('end_date', [$request->start_date,$request->end_date]);
-        // })->where(function($query) {
-        //             $query->where('status','Pending LM Approval')
-        //                         ->orWhere('status','Pending HR Approval')
-        //                         ->orWhere('status','Approved');
-        // })->get();
-
-
-        // $leavessubmittedcase2 = Leave::where([
-        //     ['user_id', $user->id],
-        //     // ['start_date', $request->start_date],
-        //     ])->where(function($query) use ($request) {
-        //         $query->whereRaw('"'.$request->start_date.'" between `start_date` and `end_date`')
-        //         ->orwhereRaw('"'.$request->end_date.'" between `start_date` and `end_date`');       
-        //  })->where(function($query) {
-        //         $query->where('status','Pending LM Approval')
-        //                     ->orWhere('status','Pending HR Approval')
-        //                     ->orWhere('status','Approved');
-        // })->get();
-
-
-        //     $counted = count($leavessubmitted);
-        //     $countedcase2 = count($leavessubmittedcase2);
 
             if($calculation[0] + $calculation[1] > 0)
             {
@@ -431,7 +345,6 @@ class LeaveController extends Controller
                 }
 
                 $leave->save();
-                // $user->notify(new EmailNotification($leave));
                 $request->session()->flash('successMsg',trans('overtimeerror.success')); 
                 return redirect()->route('leaves.index');
             }
@@ -543,13 +456,7 @@ $this->sendEmailToLm($user, $leave, $startdayname, $enddayname);
         //sick 30 leave
         elseif ($request->leavetype_id == '3') {
 
-            $balances = Balance::where('user_id', $user->id)->get();
-            $subsets = $balances->map(function ($balance) {
-                return collect($balance->toArray())
-
-                    ->only(['value', 'leavetype_id'])
-                    ->all();
-            });
+            $subsets = $this->getBalancesForUser($user);
             $final = $subsets->firstwhere('leavetype_id', '2');
             $finalfinal = $final['value'];
             $sickhalfleavebalance = $finalfinal;
@@ -615,17 +522,6 @@ $this->sendEmailToLm($user, $leave, $startdayname, $enddayname);
 
         //sick leave 30% half day
         elseif ($request->leavetype_id == '22' || $request->leavetype_id == '23') {
-
-            $balances = Balance::where('user_id', $user->id)->get();
-            $subsets = $balances->map(function ($balance) {
-                return collect($balance->toArray())
-
-                    ->only(['value', 'leavetype_id'])
-                    ->all();
-            });
-            $final = $subsets->firstwhere('leavetype_id', '2');
-            $finalfinal = $final['value'];
-            $sickhalfleavebalance = $finalfinal;
 
             if($sickhalfleavebalance > 0)
             {
@@ -731,13 +627,7 @@ $this->sendEmailToLm($user, $leave, $startdayname, $enddayname);
         //sick 20 leave
         elseif ($request->leavetype_id == '4') {
 
-            $balances = Balance::where('user_id', $user->id)->get();
-            $subsets = $balances->map(function ($balance) {
-                return collect($balance->toArray())
-
-                    ->only(['value', 'leavetype_id'])
-                    ->all();
-            });
+            $subsets = $this->getBalancesForUser($user);
             $final = $subsets->firstwhere('leavetype_id', '2');
             $finalfinal = $final['value'];
             $sickhalfleavebalance = $finalfinal;
@@ -2988,6 +2878,19 @@ elseif ($leave->leavetype_id == '25') {
         $countedcase2 = count($leavessubmittedcase2);
 
         return [$counted, $countedcase2];
+    }
+
+    public function getBalancesForUser(User $user)
+    {
+        $balances = Balance::where('user_id', $user->id)->get();
+        $subsets = $balances->map(function ($balance) {
+            return collect($balance->toArray())
+
+                ->only(['value', 'leavetype_id'])  
+                ->all();
+        });
+
+        return $subsets;
     }
 
 }
