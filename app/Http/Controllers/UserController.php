@@ -675,6 +675,16 @@ class UserController extends Controller
 
         // $user->update($request->all());
 
+        if($user->joined_date !== $request->joined_date)
+        {
+            $mustchangeannual = '1';
+        }
+        else if ($user->joined_date == $request->joined_date)
+        {
+            $mustchangeannual = '2';
+        }
+
+
         $user->name = $request->name;
         $user->employee_number = $request->employee_number;
         $user->birth_date = $request->birth_date;
@@ -712,7 +722,7 @@ class UserController extends Controller
         // dd($checkifuserhasleave);
 
         // disable the update of balances when updating user (joined date/contract) after a while (after he has at least one approved leave)
-        if ($checkifuserhasleave->isEmpty() && $user->id > 208 && $user->contract !== "International") {
+        if ($checkifuserhasleave->isEmpty() && $user->id > 208 && $user->contract !== "International" && $mustchangeannual == "1") {
 
             $yearr = date("Y", strtotime($user->joined_date));
             $dayy = date("d", strtotime($user->joined_date));
