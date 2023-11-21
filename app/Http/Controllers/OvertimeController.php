@@ -715,7 +715,7 @@ class OvertimeController extends Controller
 
             ['user_id', $userid],
             ['date', '>=', $start_date],
-            ['created_at', '<=', $end_date],
+            ['date', '<=', $end_date],
 
 
         ])->get();

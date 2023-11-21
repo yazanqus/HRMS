@@ -6,7 +6,7 @@ return [
     'overtimeStatus' => 'Overtime Status' ,
     'overtimeDate' => 'Overtime Date' ,
     'overtimestarthour' => 'Overtime Start Hour' ,
-    'overtimeendhour' => 'Overtime Start Hour' ,
+    'overtimeendhour' => 'Overtime End Hour' ,
     'extra'=>'Extra Approval',
     'overtimeHours' => 'Overtime Hours' ,
     'overtimeType' => 'Overtime Type' ,
