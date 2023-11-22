@@ -13,6 +13,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use App\Mail\Leave as MailLeave;
+use App\Mail\Balance as MailBalance;
 use App\Models\Overtime;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
@@ -984,6 +985,10 @@ class UserController extends Controller
             $leave18 = $subsets->firstwhere('leavetype_id', '18');
             $balance18 = $leave18['value'];
     
+
+
+        
+
             return view('admin.users.balanceedit', [
                 'user' => $user,
                 'balance1' => $balance1,
@@ -1005,141 +1010,180 @@ class UserController extends Controller
 
         }
 
+       
+
 
     }
 
     public function balanceupdate(Request $request, User $user)
     {
 
-        $request->validate([
+        
+        $hruser = Auth::user();
 
-            // 'name' => 'required',
-            // 'employee_number',
-            // 'birth_date',
-            // 'position',
-            // // 'unit' => 'required',
-            // 'joined_date' => 'required',
-            // 'linemanager',
-            // 'hradmin',
-            // 'password',
-            // hradminrole?
-            // staffrole?
-        ]);
-
-        if ($user->contract == "International")
+        if ($hruser->superadmin !== 'yes')
         {
-            Balance::where([
-                ['user_id', $user->id],
-                ['leavetype_id', '1'],
-            ])->first()?->update(['value' => $request->annual_leave]);
-
-            Balance::where([
-                ['user_id', $user->id],
-                ['leavetype_id', '8'],
-            ])->first()?->update(['value' => $request->maternity_leave]);
-
-            Balance::where([
-                ['user_id', $user->id],
-                ['leavetype_id', '24'],
-            ])->first()?->update(['value' => $request->homeleave]);
-
-            Balance::where([
-                ['user_id', $user->id],
-                ['leavetype_id', '9'],
-            ])->first()?->update(['value' => $request->paternity_leave]);
-
-            Balance::where([
-                ['user_id', $user->id],
-                ['leavetype_id', '25'],
-            ])->first()?->update(['value' => $request->rr]);
-
-            Balance::where([
-                ['user_id', $user->id],
-                ['leavetype_id', '12'],
-            ])->first()?->update(['value' => $request->welfare_leave]);
-
-            Balance::where([
-                ['user_id', $user->id],
-                ['leavetype_id', '26'],
-            ])->first()?->update(['value' => $request->sick_leave_sc]);
-
-
-            Balance::where([
-                ['user_id', $user->id],
-                ['leavetype_id', '15'],
-            ])->first()?->update(['value' => $request->unpaid_leave]);
-
-
-
+            abort(403);
 
         }
         else
         {
+            $request->validate([
 
+                // 'name' => 'required',
+                // 'employee_number',
+                // 'birth_date',
+                // 'position',
+                // // 'unit' => 'required',
+                // 'joined_date' => 'required',
+                // 'linemanager',
+                // 'hradmin',
+                // 'password',
+                // hradminrole?
+                // staffrole?
+            ]);
+    
+            if ($user->contract == "International")
+            {
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '1'],
+                ])->first()?->update(['value' => $request->annual_leave]);
+    
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '8'],
+                ])->first()?->update(['value' => $request->maternity_leave]);
+    
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '24'],
+                ])->first()?->update(['value' => $request->homeleave]);
+    
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '9'],
+                ])->first()?->update(['value' => $request->paternity_leave]);
+    
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '25'],
+                ])->first()?->update(['value' => $request->rr]);
+    
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '12'],
+                ])->first()?->update(['value' => $request->welfare_leave]);
+    
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '26'],
+                ])->first()?->update(['value' => $request->sick_leave_sc]);
+    
+    
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '15'],
+                ])->first()?->update(['value' => $request->unpaid_leave]);
+    
+    
+    
+    
+            }
+            else
+            {
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '1'],
+                ])->first()?->update(['value' => $request->annual_leave]);
+        
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '2'],
+                ])->first()?->update(['value' => $request->sick_leave]);
+        
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '3'],
+                ])->first()?->update(['value' => $request->sick_leave30]);
+        
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '4'],
+                ])->first()?->update(['value' => $request->sick_leave20]);
+        
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '5'],
+                ])->first()?->update(['value' => $request->marriage_leave]);
+        
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '6'],
+                ])->first()?->update(['value' => $request->compassion_first]);
+        
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '7'],
+                ])->first()?->update(['value' => $request->compassion_second]);
+        
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '8'],
+                ])->first()?->update(['value' => $request->maternity_leave]);
+        
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '9'],
+                ])->first()?->update(['value' => $request->paternity_leave]);
+        
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '12'],
+                ])->first()?->update(['value' => $request->welfare_leave]);
+        
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '15'],
+                ])->first()?->update(['value' => $request->unpaid_leave]);
+        
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '18'],
+                ])->first()?->update(['value' => $request->compansention]);
+            }
+            
+    
+            // $user->save();
+            // $balancesbefore = Balance::where('user_id', $user->id)->get();
+            // dd($balancesbefore);
+            // dd($request);
+    
+            
+            // $changes = Balance::where('user_id', $user->id)->findOrFail();
+            // $changess = $user->balances();
+            // if($changes->isDirty())
+            // {
+                
+                
+            // }
+    
+            $emailme = "danial.janboura@nrc.no";
+            $timeofchange = date('Y-m-d H:i:s');
+            $details = [
+                'hrname' => $hruser->name,
+                'staffaffected' => $user->name,
+                'timeofchange' => $timeofchange,
+                'reason' => $request->reason,
+            ];
+    
+            Mail::to($emailme)->send(new MailBalance($details));
+    
+            
+            $request->session()->flash('successMsg', trans('overtimeerror.balancesuccess'));
+            return redirect()->route('admin.users.show', $user);
         }
-        Balance::where([
-            ['user_id', $user->id],
-            ['leavetype_id', '1'],
-        ])->first()?->update(['value' => $request->annual_leave]);
-
-        Balance::where([
-            ['user_id', $user->id],
-            ['leavetype_id', '2'],
-        ])->first()?->update(['value' => $request->sick_leave]);
-
-        Balance::where([
-            ['user_id', $user->id],
-            ['leavetype_id', '3'],
-        ])->first()?->update(['value' => $request->sick_leave30]);
-
-        Balance::where([
-            ['user_id', $user->id],
-            ['leavetype_id', '4'],
-        ])->first()?->update(['value' => $request->sick_leave20]);
-
-        Balance::where([
-            ['user_id', $user->id],
-            ['leavetype_id', '5'],
-        ])->first()?->update(['value' => $request->marriage_leave]);
-
-        Balance::where([
-            ['user_id', $user->id],
-            ['leavetype_id', '6'],
-        ])->first()?->update(['value' => $request->compassion_first]);
-
-        Balance::where([
-            ['user_id', $user->id],
-            ['leavetype_id', '7'],
-        ])->first()?->update(['value' => $request->compassion_second]);
-
-        Balance::where([
-            ['user_id', $user->id],
-            ['leavetype_id', '8'],
-        ])->first()?->update(['value' => $request->maternity_leave]);
-
-        Balance::where([
-            ['user_id', $user->id],
-            ['leavetype_id', '9'],
-        ])->first()?->update(['value' => $request->paternity_leave]);
-
-        Balance::where([
-            ['user_id', $user->id],
-            ['leavetype_id', '12'],
-        ])->first()?->update(['value' => $request->welfare_leave]);
-
-        Balance::where([
-            ['user_id', $user->id],
-            ['leavetype_id', '15'],
-        ])->first()?->update(['value' => $request->unpaid_leave]);
-
-        Balance::where([
-            ['user_id', $user->id],
-            ['leavetype_id', '18'],
-        ])->first()?->update(['value' => $request->compansention]);
-
-        // $user->save();
-        $request->session()->flash('successMsg', trans('overtimeerror.balancesuccess'));
-        return redirect()->route('admin.users.show', $user);
+       
 
     }
 

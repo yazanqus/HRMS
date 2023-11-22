@@ -30,7 +30,9 @@
                                 <div class="col-12 col-lg-10 col-xl-10">
                                   <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                                     <div class="card-body p-4 p-md-5">
-                                      <h3 class="mb-4 pb-2 pb-md-0 mb-md-5"><strong>{{$user->name}}</strong> {{__('balanceedit.leaves')}}:</h3>
+                                      <h3 class="mb-2 pb-1 pb-md-0 mb-md-2"><strong>{{$user->name}}</strong> {{__('balanceedit.leaves')}}:</h3>
+                                      <h5><small>{{__('balanceedit.note')}}</small></h5>
+                                      <br>
                                     <form class="form-card" action="{{ route('admin.users.balanceupdate',$user) }}" method="POST">
                                         @csrf
                                         @method('PUT')
@@ -160,6 +162,12 @@
 
                                         {{-- MUST ADD requirepd for radio check --}}
                                         <br>
+                                        <div class="">
+                                            <label class="form-control-label required px-1">{{__('balanceedit.reason')}}:</label>
+                                            <input class="form-control  form-outline sm"required type="text" value="" name="reason" placeholder="For example, passed 5 years of service and entitled to extra 2 days therefore annual balance changed from X to Y...." >
+
+                                        </div>
+                                        <br>
                                         <div class="row justify-content-center">
                                             <div class="form-group col-sm-3"> <button type="submit" class="btn bg-gradient-primary btn-block">{{__('balanceedit.update')}}</button> </div>
                                             <div class="form-group col-sm-3"> <a class="btn btn-outline-danger" href="{{route('admin.users.index')}}" >{{__('balanceedit.cancel')}}</a> </div>
@@ -178,7 +186,13 @@
 
 
 
+<style>
+      .required:after {
+                      content:" *";
+                      color: red;
+                    }
 
+</style>
 
 
     </div>
