@@ -475,7 +475,7 @@ else
 {
     var days = wholeWeeks * 5;
 }
-if (daa % 20) {
+if (daa % 90) {
   s.setDate(s.getDate() + wholeWeeks * 7);
 
   while (s < e) {
