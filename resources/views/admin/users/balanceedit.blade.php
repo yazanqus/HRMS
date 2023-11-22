@@ -184,3 +184,18 @@
     </div>
   </div>
 @endsection
+
+@push('scripts')
+
+<script>
+    $(document).ready(function()
+    {
+
+        $('form').submit(function(){
+        $(this).find(':submit').attr('disabled','disabled');
+        });
+
+    });
+</script>
+    
+@endpush
