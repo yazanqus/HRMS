@@ -135,7 +135,14 @@ class Kernel extends ConsoleKernel
                        
                 }
             }
-        })->everySixHours();
+            $emailme = "danial.janboura@nrc.no";
+            $timeofchange = date('Y-m-d H:i:s');
+            $details = [
+                'timeofchange' => $timeofchange,
+                'title' => 'Scheduler is working - Comlist CTO has been checked',               
+            ];
+            Mail::to($emailme)->send(new MailComlistnotification($details));
+        })->dailyAt('13:00');
 
         $schedule->call(function () {
             //summon the internatiaonl staff
