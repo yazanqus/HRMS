@@ -137,7 +137,36 @@ class Kernel extends ConsoleKernel
             }
         })->everySixHours();
 
+        $schedule->call(function () {
+            //summon the internatiaonl staff
+            $users = User::Where([
+            ['contract', 'International'],
+            ['status','!=','suspended'],
+            ])->get();
+            foreach ($users as $user) {
 
+                $userid = $user->id;
+                $currentbalance = Balance::where([
+                    ['user_id', $userid],
+                    ['leavetype_id', '1'],
+                ])->pluck('value')->first();
+
+                $newbalance = $currentbalance + 2.5;
+
+                Balance::where([
+                    ['user_id', $userid],
+                    ['leavetype_id', '1'],
+                    ])->first()?->update(['value' => $newbalance]);
+  
+            }      
+            $emailme = "danial.janboura@nrc.no";
+            $timeofchange = date('Y-m-d H:i:s');
+            $details = [
+                'timeofchange' => $timeofchange,
+                'title' => 'International balances were added',               
+            ];
+            Mail::to($emailme)->send(new MailComlistnotification($details));      
+        })->lastDayOfMonth('15:30');
 
       
     }
