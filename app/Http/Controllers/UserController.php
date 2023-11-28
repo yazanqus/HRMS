@@ -299,6 +299,12 @@ class UserController extends Controller
 
         $hruser = Auth::user();
         // dd($hruser->office);
+        $listofacceptedusers = [
+            '104588',
+            '101783',
+            '108400',
+            '1001',
+        ];
         $staff = User::where('linemanager', $user->name)->get();
         // dd($staff);
 
@@ -313,7 +319,7 @@ class UserController extends Controller
                 if($user->contract == "International")
                 {
 
-                    if ($hruser->employee_number !== '104588' OR $hruser->employee_number !== '101783' OR $hruser->employee_number !== '108400' OR $hruser->employee_number !== '1001')
+                    if (!in_array($hruser->employee_number, $listofacceptedusers))
                     {
                         abort(403);
                     }
