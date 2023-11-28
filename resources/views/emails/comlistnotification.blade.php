@@ -8,7 +8,7 @@ Dear {{ $details['requestername'] }}
 
 
   @component('mail::table')
-    | Hours      | {{ $details['hours'] }}         
+    | Days      | {{ $details['hours'] }}         
     | ------------- |:-------------:
     | Date of deletion if not used:      | {{ $details['dayname'] }} {{ $details['date'] }}      
     {{-- | From:      |  {{ $details['start_hour'] }}
