@@ -319,6 +319,8 @@ class UserController extends Controller
                 if($user->contract == "International")
                 {
 
+                    
+
                     if (!in_array($hruser->employee_number, $listofacceptedusers))
                     {
                         abort(403);
@@ -467,7 +469,7 @@ class UserController extends Controller
             if ($user->contract == "International")
             {
 
-                if ($hruser->employee_number !== '104588' AND $hruser->employee_number !== '101783' AND $hruser->employee_number !== '1001')
+                if (!in_array($hruser->employee_number, $listofacceptedusers))
                 {
                     abort(403);
                 }
