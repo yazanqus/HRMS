@@ -1,6 +1,6 @@
 @component('mail::message')
 
-Dear {{ $details['requestername'] }} 
+Dear {{ $details['Danial'] }} 
 # {{ $details['title'] }}
 {{-- Line Manager: <strong>{{ $details['linemanagername'] }}</strong>  --}}
   <br>
@@ -8,9 +8,9 @@ Dear {{ $details['requestername'] }}
 
 
   @component('mail::table')
-    | Days      | {{ $details['hours'] }}         
-    | ------------- |:-------------:
-    | Date of deletion if not used:      | {{ $details['dayname'] }} {{ $details['date'] }}      
+    | On:      | {{ $details['timeofchange'] }}         
+    {{-- | ------------- |:-------------: --}}
+    {{-- | Action:      | {{ $details['dayname'] }}   --}}
     {{-- | From:      |  {{ $details['start_hour'] }}
     | To:      |  {{ $details['end_hour'] }}
     | Overtime Comment:      | {{ $details['comment'] }}

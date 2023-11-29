@@ -11,6 +11,8 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\DB;
 use App\Mail\Comlistnotification as MailComlistnotification;
+use App\Mail\Scheduleworking as MailScheduleworking;
+
 use Illuminate\Support\Facades\Mail;
 
 class Kernel extends ConsoleKernel
@@ -141,7 +143,7 @@ class Kernel extends ConsoleKernel
                 'timeofchange' => $timeofchange,
                 'title' => 'Scheduler is working - Comlist CTO has been checked',               
             ];
-            Mail::to($emailme)->send(new MailComlistnotification($details));
+            Mail::to($emailme)->send(new MailScheduleworking($details));
         })->dailyAt('13:00');
 
         // $schedule->call(function () {
