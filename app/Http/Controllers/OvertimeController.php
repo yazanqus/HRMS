@@ -385,7 +385,7 @@ class OvertimeController extends Controller
                
                 Mail::to($requester->email)->send(new MailOvertimeafterlm($details));
     
-            return redirect()->route('overtimes.approval');
+            return redirect()->route('overtimes.approval')->with("success", "Request has been approved");
         }
         else
         {
@@ -434,7 +434,7 @@ class OvertimeController extends Controller
                
                 Mail::to($requester->email)->send(new MailOvertimeafterlm($details));
     
-            return redirect()->route('overtimes.approval');
+            return redirect()->route('overtimes.approval')->with("success", "Request has been declined");
     
         }
         else

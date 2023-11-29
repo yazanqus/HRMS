@@ -1915,7 +1915,7 @@ class LeaveController extends Controller
     
             $leave->save();
     
-            return redirect()->route('leaves.approval');
+            return redirect()->route('leaves.approval')->with("success", "Request has been approved");
     
         }
         else
@@ -1965,7 +1965,7 @@ class LeaveController extends Controller
             
             $leave->save();
     
-            return redirect()->route('leaves.approval');
+            return redirect()->route('leaves.approval')->with("success", "Request has been declined");
         }
         else
         {

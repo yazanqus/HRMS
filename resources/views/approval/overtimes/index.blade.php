@@ -14,6 +14,9 @@
                     </div>
                 </div>
                 <br>
+                @if(Session::has('success'))
+                <div class="success alert alert-success"> {{ Session::get('success') }}</div>
+              @endif
 
                   <div class="container-fluid">
                           <div class="card">
@@ -241,6 +244,10 @@
 <script>
 
 $(document).ready(function() {
+
+  setTimeout(function() {
+    $("div.success").fadeOut('slow');
+}, 1500); 
 
   $('form').submit(function(){
         $(this).find(':submit').attr('disabled','disabled');
