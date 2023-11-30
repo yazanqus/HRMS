@@ -1,6 +1,6 @@
 @component('mail::message')
 
-Dear {{ $details['Danial'] }} 
+Dear Danial
 # {{ $details['title'] }}
 {{-- Line Manager: <strong>{{ $details['linemanagername'] }}</strong>  --}}
   <br>
