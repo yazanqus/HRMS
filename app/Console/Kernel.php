@@ -141,7 +141,7 @@ class Kernel extends ConsoleKernel
             $timeofchange = date('Y-m-d H:i:s');
             $details = [
                 'timeofchange' => $timeofchange,
-                'title' => 'Scheduler is working - Comlist CTO has been checked',               
+                'title' => 'Scheduler SCO is working - Comlist CTO has been checked',               
             ];
             Mail::to($emailme)->send(new MailScheduleworking($details));
         })->dailyAt('13:00');
