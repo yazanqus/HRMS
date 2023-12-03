@@ -31,7 +31,7 @@ class Scheduleworking extends Mailable implements ShouldQueue
     {
         return $this
         ->from('hr360@systems.nrc.no', 'HR 360')
-        ->subject('Schedule is working')
+        ->subject('Schedule SCO is working')
         ->markdown('emails.scheduleisworking');
     }
 }
