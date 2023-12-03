@@ -23,6 +23,8 @@ return [
     'internationalContract' => 'International Contract' ,
     'serviceContract' => 'Service Contract' ,
     'notAvaillable' => 'Not Available' ,
+    'NationalContract' => 'National Contract',
+    'InternationalContract' => 'International Contract' ,
     'email' => 'Email' ,
     'whenSigningUsingEmployeeId' => 'when signin using employee ID',
     'password' => 'Password' ,

@@ -88,7 +88,22 @@ $hruser = Auth::user();
                                                   
                                                 </select>
                                      </div>
+                                     <div class=" form-group {{ $errors->has('name') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
+                                      <label class="form-control-label  px-1">{{__('advancedSearchuser.leavetype')}}</label>
+                                      <select
+                                                  class="test form-control form-outline   selectpicker" data-size="7" data-style="btn btn-outline-secondary"
+                                                  name="contract[]" id="contract" type="text" multiple>
+                                                 
 
+                                                  <option value="Regular">{{__('createUser.reqularContract')}}</option>
+                                                  <option value="Service">{{__('createUser.serviceContract')}}</option>
+                                                  <option value="International">{{__('createUser.InternationalContract')}}</option>
+                                                  <option value="NA">{{__('createUser.notAvaillable')}}</option>
+                                                  
+
+
+                                              </select>
+                                   </div>
 
                                      
                                       </div>

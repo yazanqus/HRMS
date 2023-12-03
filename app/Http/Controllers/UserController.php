@@ -302,6 +302,7 @@ class UserController extends Controller
         $listofacceptedusers = [
             '104588',
             '101783',
+            '137066',
             '108400',
             '1001',
         ];

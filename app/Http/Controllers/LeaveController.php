@@ -2673,6 +2673,7 @@ elseif ($leave->leavetype_id == '25') {
         $status = $request->status;
         $staffstatus = $request->staffstatus;
         $linemanager = $request->linemanager;
+        $contract = $request->contract;
         // $leavetype=$request->leavetype;
         // dd($request->name);
         // dd($leavetype);
@@ -2696,6 +2697,12 @@ elseif ($leave->leavetype_id == '25') {
         {
             $end_datee = $end_date;
         }
+        if ($contract == null) {
+            $contracte = ['Regular','Service', 'International', 'NA'];
+        } elseif ($contract !== null) {
+            $contracte = $contract;
+        }
+
 
         if ($staffstatus == Null)
         {
@@ -2744,7 +2751,7 @@ elseif ($leave->leavetype_id == '25') {
         {   
             if ($hruser->office == "AO2") {
 
-                $staffwithsameoffice = User::whereIn('office',$officee)->WhereIn('status', $staffstatuse)->get();
+                $staffwithsameoffice = User::whereIn('office',$officee)->WhereIn('status', $staffstatuse)->WhereIn('contract', $contracte)->get();
                 if (count($staffwithsameoffice))
                 {
                     $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
@@ -2760,7 +2767,7 @@ elseif ($leave->leavetype_id == '25') {
                 }       
             }
             else {
-                $staffwithsameoffice = User::where('office',$hruser->office)->WhereIn('status', $staffstatuse)->get();
+                $staffwithsameoffice = User::where('office',$hruser->office)->WhereIn('status', $staffstatuse)->WhereIn('contract', $contracte)->get();
             if (count($staffwithsameoffice))
             {
                 $hrsubsets = $staffwithsameoffice->map(function ($staffwithsameoffice) {
