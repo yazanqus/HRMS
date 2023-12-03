@@ -521,6 +521,11 @@ class LeaveController extends Controller
         //sick leave 30% half day
         elseif ($request->leavetype_id == '22' || $request->leavetype_id == '23') {
 
+            $subsets = $this->getBalancesForUser($user);
+            $final = $subsets->firstwhere('leavetype_id', '2');
+            $finalfinal = $final['value'];
+            $sickhalfleavebalance = $finalfinal;
+            
             if($sickhalfleavebalance > 0)
             {
                 return redirect()->back()->with("error",trans('leaveerror.sicknotzero'));
