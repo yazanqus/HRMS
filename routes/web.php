@@ -120,7 +120,7 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/
                         ->only(['id'])
                         ->all();
                 });
-                $hrleaves = Leave::wherein('user_id', $hrsubsets)->get();
+                $hrleaves = Leave::wherein('user_id', $hrsubsets)->with('user','leavetype')->get();
                 return view('admin.allstaffleaves.index', ['leaves' => $hrleaves]);
             }            
 
@@ -243,7 +243,7 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/
  
         $hruser = Auth::user();
         if ($hruser->office == "AO2") {
-            $overtimes = Overtime::all();
+            $overtimes = Overtime::with('user')->get();
             return view('admin.allstaffovertimes.index', ['overtimes' => $overtimes]);
         }
         else
@@ -256,7 +256,7 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/
                         ->only(['id'])
                         ->all();
                 });
-                $hrovertimes = Overtime::wherein('user_id', $hrsubsets)->get();
+                $hrovertimes = Overtime::wherein('user_id', $hrsubsets)->with('user')->get();
                 return view('admin.allstaffovertimes.index', ['overtimes' => $hrovertimes]);
             }            
 
