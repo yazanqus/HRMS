@@ -151,6 +151,7 @@ class LeaveController extends Controller
             '2023-09-28',
             '2023-10-08',
             '2023-12-25',
+            '2024-01-01',
             
         ];
 
