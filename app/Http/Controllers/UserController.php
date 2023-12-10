@@ -142,7 +142,8 @@ class UserController extends Controller
             }
         }
 
-        else{
+        else if ($user->contract == "Regular")
+        {
 
             if ($year < $yearnow) {
                 $userannualleavebalance = '15';
@@ -156,6 +157,11 @@ class UserController extends Controller
                     $userannualleavebalance = ((1.25 * (12 - $month)) + 0.5);
                 }
             }
+        }
+
+        else
+        {
+            $userannualleavebalance = 0;
         }
 
         $annualleavehalfday = $userannualleavebalance * 2;
