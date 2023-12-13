@@ -55,8 +55,8 @@
                               $startdayname = Carbon\Carbon::parse($leave->start_date)->format('l');
                               $enddayname = Carbon\Carbon::parse($leave->end_date)->format('l');
                               @endphp
-                              <td class="text-center">{{__("databaseLeaves.$startdayname")}} {{ $leave->start_date }}</td>
-                              <td class="text-center">{{__("databaseLeaves.$enddayname")}} {{ $leave->end_date }}</td>
+                              <td data-order={{ $leave->start_date }} class="text-center">{{__("databaseLeaves.$startdayname")}} {{ $leave->start_date }}</td>
+                              <td data-order={{ $leave->end_date }} class="text-center">{{__("databaseLeaves.$enddayname")}} {{ $leave->end_date }}</td>
                               <td class="text-center">{{ $leave->days }}</td>
                               <td class="text-center">{{__("databaseLeaves.$leave->status")}}</td>
                               <td class="text-center">
