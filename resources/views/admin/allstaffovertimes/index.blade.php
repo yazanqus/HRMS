@@ -75,7 +75,7 @@
                               @php
                               $dayname = Carbon\Carbon::parse($overtime->date)->format('l');
                               @endphp
-                              <td class="text-center">{{__("databaseLeaves.$dayname")}} {{ $overtime->date }}</td>
+                              <td data-order={{ $overtime->date }} class="text-center">{{__("databaseLeaves.$dayname")}} {{ $overtime->date }}</td>
                               <td class="text-center">{{ $overtime->start_hour }}</td>
                               <td class="text-center">{{ $overtime->end_hour }}</td>
                               <td class="text-center">{{ $overtime->hours }}</td>
