@@ -15,7 +15,7 @@
         </div>
         <br>
         @if (session('error'))
-        <div class="alert alert-danger">
+        <div class="error alert alert-danger">
             {{ session('error') }}
         </div>
     @endif
@@ -26,7 +26,7 @@
     @endif
     @if($errors)
         @foreach ($errors->all() as $error)
-            <div class="alert alert-danger">{{ $error }}</div>
+            <div class="error alert alert-danger">{{ $error }}</div>
         @endforeach
     @endif
 
@@ -274,7 +274,9 @@
 
 <script>
 $(document).ready(function() {
-
+  setTimeout(function() {
+    $("div.error").fadeOut('slow');
+}, 2000); 
  
 
 $(document).on('click', '.btn-1', function () {
