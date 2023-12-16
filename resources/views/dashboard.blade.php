@@ -93,7 +93,7 @@
                                 <strong>{{__('welcome.sickLeave')}}:</strong> {{$balance2}}
                                 <br>
                                 @endif
-                                <strong>{{__('welcome.compensationLeaveDays')}}:</strong> {{$balance18}} @if ($balance18 > 0) - <a href="{{ route('comlists.index') }}"><strong>({{__('comlists.dashboard')}})</strong></a> @endif
+                                <strong>{{__('welcome.compensationLeaveDays')}}:</strong> {{$balance18}} - <a href="{{ route('comlists.index') }}"><strong>({{__('comlists.dashboard')}})</strong></a>
                                 @endif
                                   
 
