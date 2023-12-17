@@ -14,18 +14,7 @@
                     </div>
                 </div>
                 <br>
-                @if ($failedusers > 0)
-                <div class="alertMsg alert alert-warning"> There are <strong>{{$counter}}</strong> number of staff with incorrect line manager name, click <b class ="expand" style="cursor: pointer;
-                  font-weight: bold;">here</b> to view/hide them:
-                  <br>
-                  To solve these errors, make sure the line manager name for below staff is a name of a staff in all users list
-                <div class="list">
-                  @foreach ($failedusers as $faileduser)
-                  <li>{{$faileduser}}</li>      
-                  @endforeach
-                </div>
-                </div>
-                @endif
+                
 
                           <div class="container-fluid">
                                 <div class="card">
