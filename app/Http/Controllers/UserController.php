@@ -68,7 +68,27 @@ class UserController extends Controller
         {
             $users = User::all()->except(1);
             $variablee = '';
+            $counter = 0;
+            $failedusers = [];
+            foreach($users as $user) {
+                $userlm = $user->linemanager;
+                $found = User::where('name', $userlm)->first();
+                if ($found == null AND $user->status !== "suspended")
+                {
+                $faileduser = $user->name;
+                // $faileduser = $failedusers->push((object)['name' => 'Game1', 'color' => 'red']);
+                array_push($failedusers, $faileduser);
+                $counter = $counter + 1;
+                }
+            }
+            if ($counter > 0)
+           {
+            return view('admin.users.index', ['users' => $users, 'user' => $currentuser, 'counter'=>$counter,'failedusers'=> $failedusers]);
+           } 
+           else{
+
             return view('admin.users.index', ['users' => $users, 'variablee' => $variablee, 'user' => $currentuser]);
+        }
         }
   
     }
