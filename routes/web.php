@@ -108,7 +108,9 @@ Route::group(['middleware' => ['auth', 'checkstatus', 'hradmin'], 'prefix' => '/
         if ($hruser->office == "AO2") {
             // $leaves = Leave::all();
             $leaves = Leave::with('user','leavetype')->get();
+            
             return view('admin.allstaffleaves.index', ['leaves' => $leaves]);
+            
         }
         else
         {  

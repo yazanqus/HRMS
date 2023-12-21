@@ -45,7 +45,7 @@ class LeavetypeTableSeeder extends Seeder
         // id=5
         DB::table('leavetypes')->insert([
             'name' => 'Marriage leave',
-            'value' => '7',
+            'value' => '5',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -77,7 +77,7 @@ class LeavetypeTableSeeder extends Seeder
         // id=9
         DB::table('leavetypes')->insert([
             'name' => 'Paternity leave',
-            'value' => '7',
+            'value' => '10',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

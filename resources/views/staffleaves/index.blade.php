@@ -51,12 +51,11 @@
                             <!-- <td class="text-center">{{ $user->email }}</td> -->
                             <td class="text-center">{{ $user->employee_number }}</td>
                             <td class="text-center">
-                              @if ($user->contract == "Service") 
-
-                              {{ $user->balances->first()->value }}/NA/NA
+                              @if ($user->contract !== "International") 
+                              {{ $user->balances->first()->value }}/{{ $user->balances->get(1)->value }}/{{ $user->balances->get(17)->value }}
                               @endif
-                              @if ($user->contract !== "Service")
-                              {{ $user->balances->first()->value }}/{{ $user->balances->get(1)->value }}/{{ $user->balances->get(17)->value }}</td>
+                              @if ($user->contract == "International")
+                              {{ $user->balances->first()->value }}/{{$user->balances->get(23)->value}}/{{$user->balances->get(24)->value}}</td>
                               @endif
                             <td class="text-center">{{ $user->position }}</td>
                             <td class="text-center">{{ $user->joined_date }}</td>

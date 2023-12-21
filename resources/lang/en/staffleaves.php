@@ -11,7 +11,7 @@ return [
     'joinedDate' => 'Joined Date',
     'myStaffLeaves' => 'My Staff Leaves' ,
     'show' => 'Show' ,
-    'balance' => 'Leaves balance (Annual/Sick/Comp)',
+    'balance' => 'Leaves balance (Annual/Sick or Home/Comp or R&R)',
     'entries' => 'Entries',
     'search' => 'Search' ,
     'id-Leave' => 'ID' ,
