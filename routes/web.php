@@ -976,7 +976,7 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
     Route::get('staffleaves', function () {
 
         $user = Auth::user();
-        $staff = User::where('linemanager', $user->name)->get();
+        $staff = User::where('linemanager', $user->name)->with('balances')->get();
         // dd($user);
         if (count($staff)) {
             $subsets = $staff->map(function ($staff) {
@@ -986,10 +986,10 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
                     ->all();
             });
 
-            $leaves = Leave::whereIn('user_id', $subsets)->get();
-            $overtimes = Overtime::whereIn('user_id', $subsets)->get();
+            $leaves = Leave::whereIn('user_id', $subsets)->with('user','leavetype')->get();
+            $overtimes = Overtime::whereIn('user_id', $subsets)->with('user')->get();
 
-            $leavescal = Leave::whereIn('user_id', $subsets)->where('status','!=',"Declined by LM")->where('status','!=',"Declined by HR")->get();
+            $leavescal = Leave::whereIn('user_id', $subsets)->where('status','!=',"Declined by LM")->where('status','!=',"Declined by HR")->with('user','leavetype')->get();
 
 
             
