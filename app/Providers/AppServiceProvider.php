@@ -40,8 +40,8 @@ class AppServiceProvider extends ServiceProvider
 
                     $user = Auth::user();
                     $staff = User::where('linemanager', $user->name)->get();
-               
-                    if (count($staff)) {
+                    // dd($staff);
+                    if (count($staff) > 0) {
                         $subsets = $staff->map(function ($staff) {
                             return collect($staff->toArray())
                                 ->only(['id'])
@@ -129,7 +129,8 @@ class AppServiceProvider extends ServiceProvider
                   
                     } else {
                         // if i am not LM but still HR:
-
+                            if ($user->hradmin == 'yes')
+                            {
                             if ($user->office == "AO2")
                             // if i am AO2 HR
                             {
@@ -191,7 +192,16 @@ class AppServiceProvider extends ServiceProvider
                         
 
 
-                        
+                        }
+                        else
+                        {
+                            $view->with('numleaveapproval', '0')
+                        ->with('numoverapproval', '0')
+                        ->with('numapproval', '0')
+                        ->with('numleavehrapproval', '0')
+                        ->with('numoverhrapproval', '0')
+                        ->with('numhrapproval', '0');
+                        }
                     }
                     // if i am not LM and not HR no need to handle it becuse in the app layout it's not processed
                 }
