@@ -170,13 +170,13 @@ $authuser = Auth::user();
                                                 <span id="joined_date-error" class="error text-danger" for="input-joined_date">{{ $errors->first('joined_date') }}</span>
                                                @endif
                                         </div>
-                                        <div class="form-group {{ $errors->has('contract_enddate') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
+                                        {{-- <div class="form-group {{ $errors->has('contract_enddate') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
                                           <label class="form-control-label required px-1">{{__('createUser.endDate')}}</label>
                                           <input class="form-control form-outline {{ $errors->has('contract_enddate') ? ' is-invalid' : '' }}" type="date" value="{{ $contract_enddate }}" name="contract_enddate" id="contract_enddate" placeholder="" >
                                           @if ($errors->has('contract_enddate'))
                                               <span id="contract_enddate-error" class="error text-danger" for="input-contract_enddate">{{ $errors->first('contract_enddate') }}</span>
                                              @endif
-                                      </div>
+                                      </div> --}}
                                         <div class="form-group {{ $errors->has('employee_number') ? ' has-danger' : '' }} col-sm-6 flex-column d-flex">
                                             <label class="form-control-label required px-1">{{__('createUser.employeeId')}}</label>
                                             <input class="form-control form-outline {{ $errors->has('employee_number') ? ' is-invalid' : '' }}" type="text" value="{{ old('employee_number') }}" name= "employee_number" autocomplete="Employee ID" id="employee_number"  placeholder="" >
