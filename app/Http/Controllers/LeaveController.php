@@ -779,31 +779,15 @@ class LeaveController extends Controller
                     if ($request->hasFile('file')) {
                         $path = $request->file('file')->store('public/leaves');
                     }
-
-
-                //     $leavessubmitted = Leave::where([
-                //         ['user_id', $user->id],
-                //         ['start_date', $request->start_date],
-                //         ])->where(function($query) {
-                //             $query->where('status','Pending LM Approval')
-                //                         ->orWhere('status','Pending HR Approval')
-                //                         ->orWhere('status','Approved');
-                // })->get();
-    
                  $calculation = $this->checkForCrossDays($user, $request);
 
                  if($calculation[0] + $calculation[1] > 0)
                 {
                     return redirect()->back()->with("error", trans('leaveerror.sameday'));
                 }
-
-
-
                     else
 
                     {
-                    
-
 
                     $leave = new Leave();
                     $leave->start_date = $request->start_date;
@@ -813,7 +797,7 @@ class LeaveController extends Controller
                         $leave->path = $path;
                     }
 
-                    $leave->days = $sickpercentagedays;
+                    $leave->days = $days;
                     $leave->leavetype_id = $request->leavetype_id;
                     $leave->user_id = auth()->user()->id;
                     if (!isset($user->linemanager)) {
