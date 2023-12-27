@@ -2764,7 +2764,7 @@ elseif ($leave->leavetype_id == '25') {
                     $leaves = Leave::whereIn('user_id', $hrsubsets)->where([
                         ['start_date', '>=', $start_datee],
                         ['end_date', '<=', $end_datee],
-                    ])->WhereIn('leavetype_id', $leavetypee)->WhereIn('status', $statuse)->get();
+                    ])->WhereIn('leavetype_id', $leavetypee)->WhereIn('status', $statuse)->with('user','leavetype')->get();
                     
                 }       
             }
@@ -2780,7 +2780,7 @@ elseif ($leave->leavetype_id == '25') {
                 $leaves = Leave::whereIn('user_id', $hrsubsets)->where([
                     ['start_date', '>=', $start_datee],
                     ['end_date', '<=', $end_datee],
-                ])->WhereIn('leavetype_id', $leavetypee)->WhereIn('status', $statuse)->get();
+                ])->WhereIn('leavetype_id', $leavetypee)->WhereIn('status', $statuse)->with('user','leavetype')->get();
                 
             }       
             }            
@@ -2797,7 +2797,7 @@ elseif ($leave->leavetype_id == '25') {
                 ['end_date', '<=', $end_datee],
     
     
-            ])->WhereIn('leavetype_id', $leavetypee)->WhereIn('status', $statuse)->get();
+            ])->WhereIn('leavetype_id', $leavetypee)->WhereIn('status', $statuse)->with('user','leavetype')->get();
         }
 
         if ($linemanager !== Null)
@@ -2815,14 +2815,14 @@ elseif ($leave->leavetype_id == '25') {
             $leaves = Leave::whereIn('user_id', $subsets)->where([
                 ['start_date', '>=', $start_datee],
                 ['end_date', '<=', $end_datee],
-            ])->WhereIn('leavetype_id', $leavetypee)->WhereIn('status', $statuse)->get();
+            ])->WhereIn('leavetype_id', $leavetypee)->WhereIn('status', $statuse)->with('user','leavetype')->get();
         }
 
         else {
             $leaves = Leave::where([
                 ['start_date', '>=', $start_datee],
                 ['end_date', '<=', $end_datee],
-            ])->WhereIn('leavetype_id', $leavetypee)->Where('status', "nothing to show")->get();
+            ])->WhereIn('leavetype_id', $leavetypee)->Where('status', "nothing to show")->with('user','leavetype')->get();
         }
         }
 

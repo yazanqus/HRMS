@@ -89,10 +89,10 @@
                                 @if ($user->contract !== "International")
                                 <strong>{{__('welcome.annualLeave')}}:</strong> {{$balance1}}
                                 <br>
-                                @if ($user->contract !== "Service" AND $user->contract !== "International")
+                                
                                 <strong>{{__('welcome.sickLeave')}}:</strong> {{$balance2}}
                                 <br>
-                                @endif
+                            
                                 <strong>{{__('welcome.compensationLeaveDays')}}:</strong> {{$balance18}} - <a href="{{ route('comlists.index') }}"><strong>({{__('comlists.dashboard')}})</strong></a>
                                 @endif
                                   

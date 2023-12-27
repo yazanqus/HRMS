@@ -182,7 +182,9 @@
                               <strong>{{__('showuser.annualLeave')}}:</strong> {{$balance1}}
                               <br>
                                   <strong>{{__('showuser.compansetion')}}:</strong> {{$balance18}}
-
+                                <br>
+                                <strong>{{__('showuser.sickLeave')}}:</strong> {{$balance2}}
+                                
                               @endif
                                   
                                   @if ($user->contract == "Regular" OR $user->contract == "NA")
