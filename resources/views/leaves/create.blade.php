@@ -71,6 +71,10 @@
                                         <option value="13">{{__('createLeave.AnnualleaveFirsthalf')}}</option>
                                                     <option value="14">{{__('createLeave.AnnualleaveSecondhalf')}}</option>
                                                     <option disabled>──────────</option>
+                                                    <option value="2">{{__('createLeave.SickLeave')}}</option>
+                                                    <option value="20">{{__('createLeave.SickLeaveFirsthalf')}}</option>
+                                                    <option value="21">{{__('createLeave.SickLeaveSecondhalf')}}</option>
+                                                    <option disabled>──────────</option>
                                                     <option value="15">{{__('createLeave.Unpaidleave')}}</option>
                                                     <option value="16">{{__('createLeave.UnpaidleaveFirsthalf')}}</option>
                                                     <option value="17">{{__('createLeave.UnpaidleaveSecondhalf')}}</option>
@@ -402,6 +406,23 @@ $('#end_date,#start_date').on('change',function(){
             '2023-10-08',
             '2023-12-25',
             '2024-01-01',
+            '2024-03-21',
+            '2024-03-31',
+            '2024-04-10',
+            '2024-04-11',
+            '2024-04-14',
+            '2024-04-17',
+            '2024-05-01',
+            '2024-05-05',
+            '2024-06-16',
+            '2024-06-17',
+            '2024-06-18',
+            '2024-06-19',
+            '2024-07-07',
+            '2024-09-15',
+            '2024-10-06',
+            '2024-12-25',
+            '2025-01-01',
             
         ];
 
