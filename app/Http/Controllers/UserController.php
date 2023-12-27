@@ -94,7 +94,7 @@ class UserController extends Controller
             'position',
             'department',
             'joined_date' => 'required',
-            'contract_enddate' => 'required',
+            'contract_enddate',
             'office' => 'required',
             'linemanager',
             'hradmin',
@@ -367,8 +367,8 @@ class UserController extends Controller
                         $leave26 = $subsets->firstwhere('leavetype_id', '26');
                         $balance26 = round($leave26['value'],3);
     
-                        $leaves = Leave::where('user_id', $user->id)->get();
-                        $overtimes = Overtime::where('user_id', $user->id)->get();
+                        $leaves = Leave::where('user_id', $user->id)->with('user','leavetype')->get();
+                        $overtimes = Overtime::where('user_id', $user->id)->with('user')->get();
                 
                         return view('admin.users.show', [
                             'user' => $user,
@@ -441,8 +441,8 @@ class UserController extends Controller
                     $leave18 = $subsets->firstwhere('leavetype_id', '18');
                     $balance18 = round($leave18['value'],3);
         
-                    $leaves = Leave::where('user_id', $user->id)->get();
-                    $overtimes = Overtime::where('user_id', $user->id)->get();
+                    $leaves = Leave::where('user_id', $user->id)->with('user','leavetype')->get();
+                    $overtimes = Overtime::where('user_id', $user->id)->with('user')->get();
             
                     return view('admin.users.show', [
                         'user' => $user,
@@ -515,8 +515,8 @@ class UserController extends Controller
                     $leave26 = $subsets->firstwhere('leavetype_id', '26');
                     $balance26 = round($leave26['value'],3);
 
-                    $leaves = Leave::where('user_id', $user->id)->get();
-                    $overtimes = Overtime::where('user_id', $user->id)->get();
+                    $leaves = Leave::where('user_id', $user->id)->with('user','leavetype')->get();
+                    $overtimes = Overtime::where('user_id', $user->id)->with('user')->get();
             
                     return view('admin.users.show', [
                         'user' => $user,
@@ -588,8 +588,8 @@ class UserController extends Controller
             $leave18 = $subsets->firstwhere('leavetype_id', '18');
             $balance18 = round($leave18['value'],3);
     
-            $leaves = Leave::where('user_id', $user->id)->get();
-            $overtimes = Overtime::where('user_id', $user->id)->get();
+            $leaves = Leave::where('user_id', $user->id)->with('user','leavetype')->get();
+            $overtimes = Overtime::where('user_id', $user->id)->with('user')->get();
 
             return view('admin.users.show', [
                 'user' => $user,
@@ -677,7 +677,7 @@ class UserController extends Controller
             'department',
             'grade'=> 'required',
             'joined_date' => 'required',
-            'contract_enddate' => 'required',
+            'contract_enddate',
             'linemanager',
             'hradmin',
             'email'  => 'required|email|unique:users,email,' .$user->id,
@@ -1606,15 +1606,251 @@ class UserController extends Controller
 
     public function import(Request $request)
     {
-        $file = $request->file('file');
+    $file = $request->file('file');
 
     Excel::import(new UsersImport, $request->file('file'));
        
     }
 
+
+
     public function importshow()
     {
-        return view('admin.users.importshow');
+        set_time_limit(300);
+        $users = User::where('contract','!=','International')->get()->except(1);
+        $list1 = [
+            108250,
+            108254,
+            108256,
+            108259,
+            108264,
+            108269,
+            108275,
+            108276,
+            108279,
+            108280,
+            108285,
+            108287,
+            108288,
+            108289,
+            108291,
+            108295,
+            108310,
+            108313,
+            108314,
+            108315,
+            108317,
+            108319,
+            108322,
+            108324,
+            108325,
+            108327,
+            108329,
+            108331,
+            
+        ];
+        $list2 = [
+            108249,
+            108255,
+            108267,
+            108271,
+            108347,
+            123812,
+            133336,
+            136069,
+            138610,
+
+        ];
+        foreach ($users as $user)
+        {            
+            
+                if($user->contract == "Regular" AND in_array($user->employee_number,$list1) )
+                {
+                //annual regular in list 1
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '1'],
+                ])->first()?->update(['value' => 21]);
+                }
+                //annual regular in list 2
+                else if ($user->contract == "Regular" AND in_array($user->employee_number,$list2) )
+                {
+                    Balance::where([
+                        ['user_id', $user->id],
+                        ['leavetype_id', '1'],
+                    ])->first()?->update(['value' => 30]);
+                }
+                else if ($user->contract == "Service")
+                {
+                //annual service
+                Balance::where([
+                    ['user_id', $user->id],
+                    ['leavetype_id', '1'],
+                ])->first()?->update(['value' => 5.25]);
+                }
+                //annual regular not in list
+                else
+                {
+                    Balance::where([
+                        ['user_id', $user->id],
+                        ['leavetype_id', '1'],
+                    ])->first()?->update(['value' => 15]);
+                }
+    
+            //sick
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '2'],
+            ])->first()?->update(['value' => 12]);
+    
+            //sick 30
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '3'],
+            ])->first()?->update(['value' => 90]);
+    
+            //sick 20
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '4'],
+            ])->first()?->update(['value' => 90]);
+    
+            //marriage
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '5'],
+            ])->first()?->update(['value' => 5]);
+    
+            //com first
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '6'],
+            ])->first()?->update(['value' => 100]);
+    
+            //com second
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '7'],
+            ])->first()?->update(['value' => 100]);
+    
+            //maternity
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '8'],
+            ])->first()?->update(['value' => 120]);
+    
+            //paternity
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '9'],
+            ])->first()?->update(['value' => 10]);
+    
+            //welfare
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '12'],
+            ])->first()?->update(['value' => 9]);
+    
+            //unpaid
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '15'],
+            ])->first()?->update(['value' => 360]);
+    
+            //cto
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '18'],
+            ])->first()?->update(['value' => 0]);
+       
+        }
+        return redirect()->route('admin.users.index');
+        // return view('admin.users.importshow');
+    }
+
+    public function endyearreset()
+    {
+        return redirect()->route('admin.users.index');
+        $users = User::all()->except(1);
+        foreach ($users as $user)
+        {            
+            if ($user->contract == "National" AND $user->office == "AO3")
+            {
+
+            //annual
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '1'],
+            ])->first()?->update(['value' => 15]);
+    
+            //sick
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '2'],
+            ])->first()?->update(['value' => 12]);
+    
+            //sick 30
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '3'],
+            ])->first()?->update(['value' => 90]);
+    
+            //sick 20
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '4'],
+            ])->first()?->update(['value' => 90]);
+    
+            //marriage
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '5'],
+            ])->first()?->update(['value' => 5]);
+    
+            //com first
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '6'],
+            ])->first()?->update(['value' => 100]);
+    
+            //com second
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '7'],
+            ])->first()?->update(['value' => 100]);
+    
+            //maternity
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '8'],
+            ])->first()?->update(['value' => 120]);
+    
+            //paternity
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '9'],
+            ])->first()?->update(['value' => 10]);
+    
+            //welfare
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '12'],
+            ])->first()?->update(['value' => 9]);
+    
+            //unpaid
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '15'],
+            ])->first()?->update(['value' => 360]);
+    
+            //cto
+            Balance::where([
+                ['user_id', $user->id],
+                ['leavetype_id', '18'],
+            ])->first()?->update(['value' => 0]);
+        }
+        }
+
     }
 
     public function createbalance()
