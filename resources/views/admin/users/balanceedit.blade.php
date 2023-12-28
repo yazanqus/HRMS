@@ -163,7 +163,7 @@
                                         {{-- MUST ADD requirepd for radio check --}}
                                         <br>
                                         <div class="">
-                                            <label class="form-control-label required px-1">{{__('balanceedit.reason')}}:</label>
+                                            <label class="form-control-label px-1">{{__('balanceedit.reason')}}:</label>
                                             <input class="form-control  form-outline sm"required type="text" value="" name="reason" placeholder="For example, passed 5 years of service and entitled to extra 2 days therefore annual balance changed from X to Y...." >
 
                                         </div>

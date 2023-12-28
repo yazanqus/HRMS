@@ -1183,16 +1183,16 @@ class UserController extends Controller
                 
             // }
     
-            $emailme = "danial.janboura@nrc.no";
-            $timeofchange = date('Y-m-d H:i:s');
-            $details = [
-                'hrname' => $hruser->name,
-                'staffaffected' => $user->name,
-                'timeofchange' => $timeofchange,
-                'reason' => $request->reason,
-            ];
+            // $emailme = "danial.janboura@nrc.no";
+            // $timeofchange = date('Y-m-d H:i:s');
+            // $details = [
+            //     'hrname' => $hruser->name,
+            //     'staffaffected' => $user->name,
+            //     'timeofchange' => $timeofchange,
+            //     'reason' => $request->reason,
+            // ];
     
-            Mail::to($emailme)->send(new MailBalance($details));
+            // Mail::to($emailme)->send(new MailBalance($details));
     
             
             $request->session()->flash('successMsg', trans('overtimeerror.balancesuccess'));
