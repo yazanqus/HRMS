@@ -1617,7 +1617,7 @@ class UserController extends Controller
     public function importshow()
     {
         set_time_limit(300);
-        $users = User::where('contract','!=','International')->get()->except(1);
+        $users = User::where('contract','!=','International')->where('status','!=','suspended')->get();
         $list1 = [
             108250,
             108254,
@@ -1756,12 +1756,6 @@ class UserController extends Controller
                 ['user_id', $user->id],
                 ['leavetype_id', '15'],
             ])->first()?->update(['value' => 360]);
-    
-            //cto
-            Balance::where([
-                ['user_id', $user->id],
-                ['leavetype_id', '18'],
-            ])->first()?->update(['value' => 0]);
        
         }
         return redirect()->route('admin.users.index');
