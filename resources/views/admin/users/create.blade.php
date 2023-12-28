@@ -233,7 +233,7 @@ $authuser = Auth::user();
                                             {{__('createUser.serviceContract')}}
                                             </label>
                                           </div> 
-                                          @if ($authuser->employee_number == '104588' OR $authuser->employee_number == '101783' OR $authuser->employee_number == '1001')
+                                          @if ($authuser->employee_number == '104588' OR $authuser->employee_number == '108287' OR $authuser->employee_number == '1001')
                                           <div class="form-check">
                                             <input  class="btn-check" type="radio" name="contract" Value="International" id="international" @if (old('contract') == "International") {{ 'checked' }} @endif>
                                             <label class="form-check-label" for="international">
@@ -241,12 +241,12 @@ $authuser = Auth::user();
                                             </label>
                                           </div> 
                                           @endif
-                                          <div class="form-check">
+                                          {{-- <div class="form-check">
                                             <input  class="btn-check" type="radio" name="contract" Value="NA" id="na" @if (old('contract') == "NA") {{ 'checked' }} @endif>
                                             <label class="form-check-label" for="na">
                                             {{__('createUser.notAvaillable')}}
                                             </label>
-                                          </div> 
+                                          </div>  --}}
                                         </div>
                                        
 
