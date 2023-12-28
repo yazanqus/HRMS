@@ -25,10 +25,10 @@
                                           <a href="{{route('admin.users.create')}}" class="btn btn-sm btn-primary">{{__('allUsers.createNewUser')}}</a>
                                           <a href="{{route('admin.alluserssearch.cond')}}" class="btn btn-sm ml-2 btn-success">{{__('allStaffLeaves.advancedSearch')}} <i class="ml-2 fas fa-search"></i> </a>
                                           <a href="{{route('admin.allusersbalanceexport.cond')}}" class="btn btn-sm ml-2 btn-info">{{__('allStaffLeaves.balanceexport')}} <i class="ml-2 fas fa-file-excel"></i> </a>
-                                          @if ($user->name == "Danial Janboura")
+                                          {{-- @if ($user->name == "HR Test")
                                           <a href="{{route('admin.users.importshow')}}" class="btn btn-sm ml-2 btn-success">Import <i class="ml-2 fas fa-file-excel"></i> </a> 
                                           <a href="{{route('admin.users.createbalance')}}" class="btn btn-sm ml-2 btn-success">Create Balance <i class="ml-2 fas fa-file-excel"></i> </a>
-                                          @endif
+                                          @endif --}}
                                           <div class="btn-group" role="group">
                                             <button id="btnGroupDrop1" type="button" class="btn ml-2 btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                               Export <i class="ml-2 fas fa-file-excel"></i>
