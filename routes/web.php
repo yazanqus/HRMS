@@ -978,7 +978,7 @@ Route::group(['middleware' => ['auth', 'checkstatus']], function () {
     Route::get('staffleaves', function () {
 
         $user = Auth::user();
-        $staff = User::where('linemanager', $user->name)->with('balances')->get();
+        $staff = User::where('linemanager', $user->name)->where('status','!=','suspended')->with('balances')->get();
         // dd($user);
         if (count($staff)) {
             $subsets = $staff->map(function ($staff) {
