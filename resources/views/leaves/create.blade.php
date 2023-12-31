@@ -280,7 +280,7 @@
 $(document).ready(function() {
   setTimeout(function() {
     $("div.error").fadeOut('slow');
-}, 2000); 
+}, 3000); 
  
 
 $(document).on('click', '.btn-1', function () {
