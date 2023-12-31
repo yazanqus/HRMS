@@ -148,7 +148,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->call(function () {
             //summon the internatiaonl staff
-            $users = User::Where([
+            $users = User::where([
             ['contract', 'International'],
             ['status','!=','suspended'],
             ])->get();
@@ -175,7 +175,9 @@ class Kernel extends ConsoleKernel
                 'title' => 'International balances were added',               
             ];
             Mail::to($emailme)->send(new MailScheduleworking($details));      
-        })->lastDayOfMonth('15:30');
+        })->lastDayOfMonth('15:00')->runInBackground();
+        
+
 
       
     }
