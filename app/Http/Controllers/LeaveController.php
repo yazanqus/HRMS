@@ -30,8 +30,8 @@ class LeaveController extends Controller
     public function index()
     {
         $user = Auth::user();
-        // $leave = Leave::where('user_id', $user->id)->get();
-        $leave = $user->leaves;
+        $leave = Leave::where('user_id', $user->id)->with('user','leavetype')->get();
+        // $leave = $user->leaves;
         $variable = '';
         return view('leaves.index', ['leaves' => $leave, 'variable' => $variable]);
     }
@@ -324,6 +324,14 @@ class LeaveController extends Controller
         //sick leave
         elseif ($request->leavetype_id == '2') {
             if ($days <= $currentbalance) {
+               
+                $sickperquarter = $this->getSickSubmittedDuringQuarter($user, $request);
+
+
+                if($sickperquarter + $days > 3)
+                {
+                    return redirect()->back()->with("error",trans('leaveerror.sickperquarter'));
+                }
 
                 if ($request->hasFile('file')) {
                     $path = $request->file('file')->store('public/leaves');
@@ -376,6 +384,14 @@ class LeaveController extends Controller
         //sick leave half day
         elseif ($request->leavetype_id == '20' || $request->leavetype_id == '21') {
             if ($sickhalfleavebalance >= '0.5') {
+
+                $sickperquarter = $this->getSickSubmittedDuringQuarter($user, $request);
+
+
+                if($sickperquarter + 0.5 > 3)
+                {
+                    return redirect()->back()->with("error",trans('leaveerror.sickperquarter'));
+                }
 
                 if ($request->hasFile('file')) {
                     $path = $request->file('file')->store('public/leaves');
@@ -2904,6 +2920,27 @@ elseif ($leave->leavetype_id == '25') {
         });
 
         return $subsets;
+    }
+
+    public function getSickSubmittedDuringQuarter(User $user, Request $request)
+    {
+        $requeststartdate = $request->start_date;
+        
+        $startOfQ = Carbon::parse($requeststartdate)->startOfQuarter()->format('Y-m-d');
+        $endOfQ = Carbon::parse($requeststartdate)->endOfQuarter()->format('Y-m-d');
+
+        $sickdayssubmitted = Leave::where([
+            ['user_id', $user->id],
+            ])->whereIn('leavetype_id',[2,20,21])->where(function($query) use ($startOfQ,$endOfQ) {
+                $query->whereBetween('start_date', [$startOfQ,$endOfQ])
+            ->orWhereBetween('end_date', [$startOfQ,$endOfQ]);
+            })->where(function($query) {
+                $query->where('status','Pending LM Approval')
+                            ->orWhere('status','Pending HR Approval')
+                            ->orWhere('status','Approved');
+         })->sum('days');
+
+        return $sickdayssubmitted;
     }
 
 }

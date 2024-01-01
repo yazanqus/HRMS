@@ -11,6 +11,7 @@ return [
     'nobalance' => 'Leave remaining balance is not enough',
     'attachment' => 'Attachment is needed for this leave type',
     'sameday' => 'You have already submitted a leave during the selected period',
+    'sickperquarter'=>'Maximum 3 days sick leave fully paid can be taken in each quarter of the year',
     'prob' => "You can't submit leave while still on probation",
     'entrydate' => "Please add in the comment field, when was your last date of entry to Syria",
     'sixmonthserv' => "You can't submit leave before at least 6 months of service"  ,
