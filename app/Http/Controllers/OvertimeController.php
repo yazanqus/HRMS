@@ -181,7 +181,8 @@ class OvertimeController extends Controller
                 $datenow = Carbon::now();
                 $datenoww = new DateTime($datenow);
                 $monthnow = $datenoww->format('m');
-                
+                $yearnow = $datenoww->format('Y');
+               
 
                 //submitted hours during a month
                 $submittedhours = Overtime::where([
@@ -191,7 +192,7 @@ class OvertimeController extends Controller
                                     ->orWhere('status','Pending HR Approval')
                                     ->orWhere('status','Pending extra Approval')
                                     ->orWhere('status','Approved');
-                    })->whereMonth('date',$monthnow)->sum('hours');
+                    })->whereMonth('date',$monthnow)->whereYear('date',$yearnow)->sum('hours');
 
 
                 $submittedwithrequest = $submittedhours + $last;
