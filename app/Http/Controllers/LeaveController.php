@@ -959,9 +959,10 @@ class LeaveController extends Controller
 
             if ($days <= $currentbalance) {
                 if ($days <= '3') {
-
                     if ($request->hasFile('file')) {
                         $path = $request->file('file')->store('public/leaves');
+                    } else {
+                        return redirect()->back()->with("error",trans('leaveerror.attachment'));
                     }
     
                  $calculation = $this->checkForCrossDays($user, $request);
@@ -1403,6 +1404,8 @@ class LeaveController extends Controller
 
                 if ($request->hasFile('file')) {
                     $path = $request->file('file')->store('public/leaves');
+                } else {
+                    return redirect()->back()->with("error",trans('leaveerror.attachment'));
                 }
             $calculation = $this->checkForCrossDays($user, $request);
             if($calculation[0] + $calculation[1] > 0)
@@ -1452,6 +1455,8 @@ class LeaveController extends Controller
 
                 if ($request->hasFile('file')) {
                     $path = $request->file('file')->store('public/leaves');
+                } else {
+                    return redirect()->back()->with("error",trans('leaveerror.attachment'));
                 }
 
             $calculation = $this->checkForCrossDays($user, $request);

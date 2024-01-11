@@ -184,7 +184,14 @@
                                   <strong>{{__('showuser.compansetion')}}:</strong> {{$balance18}}
                                 <br>
                                 <strong>{{__('showuser.sickLeave')}}:</strong> {{$balance2}}
-                                
+                                <br>
+                                    <strong>{{__('showuser.welfareLeave')}}:</strong> {{$balance12}}
+                                <br>
+                                    <strong>{{__('showuser.compassionateSecondDegree')}}:</strong> {{$balance7}}
+                                  <br>
+                              
+                                  <strong>{{__('showuser.compassionateFirstDegree')}}:</strong> {{$balance6}}
+                                  <br>
                               @endif
                                   
                                   @if ($user->contract == "Regular" OR $user->contract == "NA")

@@ -67,8 +67,8 @@
                                         $user = Auth::user();
                                         @endphp
                                         @if($user->contract == "Service")
-                                        <option value="1">{{__('createLeave.AnnualLeave')}}</option>
-                                        <option value="13">{{__('createLeave.AnnualleaveFirsthalf')}}</option>
+                                                    <option value="1">{{__('createLeave.AnnualLeave')}}</option>
+                                                    <option value="13">{{__('createLeave.AnnualleaveFirsthalf')}}</option>
                                                     <option value="14">{{__('createLeave.AnnualleaveSecondhalf')}}</option>
                                                     <option disabled>──────────</option>
                                                     <option value="2">{{__('createLeave.SickLeave')}}</option>
@@ -78,6 +78,10 @@
                                                     <option value="15">{{__('createLeave.Unpaidleave')}}</option>
                                                     <option value="16">{{__('createLeave.UnpaidleaveFirsthalf')}}</option>
                                                     <option value="17">{{__('createLeave.UnpaidleaveSecondhalf')}}</option>
+                                                    <option disabled>──────────</option>
+                                                    <option value="6">{{__('createLeave.CompassionateFirstdegreerelative')}}</option>
+                                                    <option value="7">{{__('createLeave.CompassionateSeconddegreerelative')}}</option>
+                                                    <option value="12">{{__('createLeave.Welfareleave')}}</option>
                                                     <option disabled>──────────</option>
                                                     <option value="18">{{__('createLeave.Compensation')}}</option>
                                                     <option value="19">{{__('createLeave.Compensationhours')}}</option>
