@@ -126,23 +126,7 @@ class UserController extends Controller
         $datenow = Carbon::now();
         $yearnow = $datenow->year;
 
-        if ($user->contract == "Service")
-        {
-            if ($year < $yearnow) {
-                $userannualleavebalance = '21';
-            } else {
-    
-                if ($day < '15') {
-                    $userannualleavebalance = (1.75 * (12 - $month + 1));
-                }
-    
-                if ($day >= '15') {
-                    $userannualleavebalance = ((1.75 * (12 - $month)) + 0.5);
-                }
-            }
-        }
-
-        else if ($user->contract == "Regular")
+        if ($user->contract == "Regular" OR $user->contract == "Service")
         {
 
             if ($year < $yearnow) {
@@ -747,27 +731,6 @@ class UserController extends Controller
             $yearnoww = $datenoww->year;
             // dd($yearnoww);
 
-
-            if ($user->contract == "Service")
-            {
-                if ($yearr < $yearnoww) {
-                    $userannualleavebalancee = '21';
-                } else {
-    
-                    if ($dayy < '15') {
-    
-                        $userannualleavebalancee = (1.75 * (12 - $monthh + 1));
-    
-                    }
-    
-                    if ($dayy >= '15') {
-                        $userannualleavebalancee = ((1.75 * (12 - $monthh)) + 0.5);
-                    }
-                }
-            }
-
-            else
-            {
                 if ($yearr < $yearnoww) {
                     $userannualleavebalancee = '15';
                 } else {
@@ -781,12 +744,8 @@ class UserController extends Controller
                     if ($dayy >= '15') {
                         $userannualleavebalancee = ((1.25 * (12 - $monthh)) + 0.5);
                     }
-                }
-    
-            }
-            
-
-           
+                }          
+                       
             $annualleavehalfdayy = $userannualleavebalancee * 2;
 
             // dd($userannualleavebalancee);
