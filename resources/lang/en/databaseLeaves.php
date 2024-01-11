@@ -36,7 +36,7 @@ return [
     'Declined by HR' => 'Declined by HR',
     'workday' => 'workday',
     'week-end' => 'week-end',
-    'Notifed 1 times'=>'Notifed 1 times',
+    'Notifed 1 time'=>'Notifed 1 time',
     'Notifed 2 times'=>'Notifed 2 times',
     'Home Leave' => 'Home leave',
     'R&R' => 'R&R',

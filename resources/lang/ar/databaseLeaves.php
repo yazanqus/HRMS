@@ -38,7 +38,7 @@ return [
     'Home Leave' => 'اجازة منزلية',
     'workday' => 'يوم دوام',
     'R&R' => 'R&R',
-    'Notifed 1 times'=>'تم الاخطار مرة واحدة',
+    'Notifed 1 time'=>'تم الاخطار مرة واحدة',
     'Notifed 2 times'=>'تم الاخطار مرتان',
     'week-end' => 'عطلة نهاية الأسبوع',
     'Sick leave DC' => 'اجازة مرضية - شهادة دكتور',
