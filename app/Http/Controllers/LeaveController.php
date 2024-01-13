@@ -327,7 +327,7 @@ class LeaveController extends Controller
                 $sickperquarter = $this->getSickSubmittedDuringQuarter($user, $request);
 
 
-                if($sickperquarter + $days > 3)
+                if($request->hasFile('file') == null AND $sickperquarter + 1 > 3)
                 {
                     return redirect()->back()->with("error",trans('leaveerror.sickperquarter'));
                 }
@@ -387,7 +387,7 @@ class LeaveController extends Controller
                 $sickperquarter = $this->getSickSubmittedDuringQuarter($user, $request);
 
 
-                if($sickperquarter + 0.5 > 3)
+                if($request->hasFile('file') == null AND $sickperquarter + 1 > 3)
                 {
                     return redirect()->back()->with("error",trans('leaveerror.sickperquarter'));
                 }
@@ -2935,6 +2935,8 @@ elseif ($leave->leavetype_id == '25') {
 
         $sickdayssubmitted = Leave::where([
             ['user_id', $user->id],
+            ['path',null],
+            ['leavetype_id','2'],
             ])->whereIn('leavetype_id',[2,20,21])->where(function($query) use ($startOfQ,$endOfQ) {
                 $query->whereBetween('start_date', [$startOfQ,$endOfQ])
             ->orWhereBetween('end_date', [$startOfQ,$endOfQ]);
@@ -2942,9 +2944,10 @@ elseif ($leave->leavetype_id == '25') {
                 $query->where('status','Pending LM Approval')
                             ->orWhere('status','Pending HR Approval')
                             ->orWhere('status','Approved');
-         })->sum('days');
-
-        return $sickdayssubmitted;
+         })->get();
+         $countsickdayssubmitted = count($sickdayssubmitted);
+        //  dd($countsickdayssubmitted);
+        return $countsickdayssubmitted;
     }
 
 }
