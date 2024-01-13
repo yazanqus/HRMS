@@ -134,11 +134,15 @@ class UserController extends Controller
             } else {
     
                 if ($day < '15') {
-                    $userannualleavebalance = (1.25 * (12 - $month + 1));
+                    $userannualleavebalancebeforeround = (1.25 * (12 - $month + 1));
+                    $userannualleavebalance = round($userannualleavebalancebeforeround*2)/2;
+                    
                 }
     
                 if ($day >= '15') {
-                    $userannualleavebalance = ((1.25 * (12 - $month)) + 0.5);
+                    $userannualleavebalancebeforeround = ((1.25 * (12 - $month)) + 0.5);
+                    $userannualleavebalance = round($userannualleavebalancebeforeround*2)/2;
+                    
                 }
             }
         }
@@ -737,12 +741,13 @@ class UserController extends Controller
     
                     if ($dayy < '15') {
     
-                        $userannualleavebalancee = (1.25 * (12 - $monthh + 1));
+                        $userannualleavebalancee = round((1.25 * (12 - $monthh + 1))*2)/2;
+                        
     
                     }
     
                     if ($dayy >= '15') {
-                        $userannualleavebalancee = ((1.25 * (12 - $monthh)) + 0.5);
+                        $userannualleavebalancee = round(((1.25 * (12 - $monthh)) + 0.5)*2)/2;
                     }
                 }          
                        
