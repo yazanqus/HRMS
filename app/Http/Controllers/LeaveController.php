@@ -233,7 +233,7 @@ class LeaveController extends Controller
            
                 if ($user->contract == "International")
                 {
-                    $xxx = $currentbalance + 2.5;
+                    $xxx = $currentbalance + 30;
                 }
                 else
                 {
