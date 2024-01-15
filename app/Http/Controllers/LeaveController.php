@@ -2712,7 +2712,7 @@ elseif ($leave->leavetype_id == '25') {
 
         if ($end_date == Null)
         {
-            $end_datee = "2023-12-31";
+            $end_datee = "2024-12-31";
         }
 
         else if ($end_date !== Null)
