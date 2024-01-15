@@ -6,7 +6,7 @@ return [
     'balanceexport' => 'Balance export for Users' ,
     'choose' => 'Choose' ,
     'leaveStartDate' => 'Staff joined after Date (If not provided, it will consider all staff)' ,
-    'leaveEndDate' => 'Leave End Date (If not provided, it will consider end of 2023)' ,
+    'leaveEndDate' => 'Leave End Date (If not provided, it will consider end of 2024)' ,
     'view' => 'View' ,
     'excel' => 'Excel' ,
     'leavetype' => 'Contract (If not provided, it will consider all types)' ,
